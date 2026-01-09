@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://csqh8v33brm61"]
+
+[ext_resource type="Resource" uid="uid://dudanf5lhdgy8" path="res://resources/data/classes/wilder.tres" id="1_e7l0s"]
+[ext_resource type="Script" uid="uid://dalmi1756haci" path="res://scripts/components/units/character.gd" id="1_wdxxv"]
+[ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="2_x5bai"]
+
+[sub_resource type="Resource" id="Resource_t82sm"]
+script = ExtResource("2_x5bai")
+maxHp = 70
+stn = 65
+skl = 25
+spd = 60
+dfn = 40
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[sub_resource type="Resource" id="Resource_uqnh0"]
+script = ExtResource("2_x5bai")
+maxHp = 15
+stn = 6
+skl = 5
+spd = 5
+dfn = 3
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[resource]
+script = ExtResource("1_wdxxv")
+myName = "Cylna"
+currentClass = ExtResource("1_e7l0s")
+growths = SubResource("Resource_t82sm")
+stats = SubResource("Resource_uqnh0")
+metadata/_custom_type_script = "uid://dalmi1756haci"
