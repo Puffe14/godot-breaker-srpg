@@ -1,1 +1,264 @@
 class_name Units extends Resource
+
+enum Team {Player, Ally, Enemy}
+
+@export var character: Character = null
+@export var inventory: Inventory = Inventory.new(6)
+
+@export var leader: Units = null
+@export var damageTaken: int = 0
+@export var wounds: Array = [] # Array[Part]
+@export var status: Array = [] # Array[Status]
+@export var temporaryStats: Stats = null
+@export var nearbyBonuses: Stats = null
+@export var team: Team = Team.Player
+
+@export var moved = false
+@export var acted = false
+
+# whether or not a unit has particular abilities
+var canHeal: bool = character.types.has("healer")
+var canBreak: bool = character.types.has("breaker")
+var canWound: bool = character.types.has("wounder")
+var canFlies: bool = character.types.has("flier")
+var canTakeSouls: bool = character.types.has("mystic")
+
+# setters
+func setTeam(newTeam: Team): team = newTeam
+func setLeader(newLeader: Units): leader = newLeader
+
+
+## Check if the unit has been killed.
+func isDead(): return !isAlive()
+func isAlive(): return HP() > 0
+
+func giveExp(gained:int) -> String:
+    var msg = ""
+    for string in character.expTrack(gained):
+        msg += string
+    return msg
+
+# turn handling #
+func endTurn():
+    moved = true
+    acted = true
+func cancelMove():
+    moved = false
+func moves():
+    moved = true
+func refresh():
+    moved = false
+    acted = false
+func turnOver() -> bool: return acted
+func moveOver() -> bool: return moved
+
+func canMove() -> bool: return !status.has(Constants.Status.Stunned)
+func stun(): takeStatus(Constants.Status.Stunned)
+func unstun(): healStatus(Constants.Status.Stunned)
+
+# Hurt or Heal #
+
+func takeDamage(amount: int):
+    damageTaken += amount
+    limitHP()
+
+func healDamage(amount: int):
+    damageTaken -= amount
+    limitHP()
+
+func limitHP():
+    if damageTaken < 0:
+      damageTaken = 0
+    if damageTaken > MaxHP():
+      damageTaken = MaxHP()
+
+func breakArmor(piece: Item):
+    piece.armor.break()
+    inventory.clean()
+
+func breakPiece(part: Constants.BodyPart):
+    for item in inventory.equippedArmors():
+        if item.armor.part == part:
+            breakArmor(item)
+
+func reduceTemporary():
+    ## TODO
+    pass
+
+func woundableParts() -> Array:
+    var total: Array = []
+    ## TODO
+    return total
+func breakableParts() -> Array:
+    return inventory.armors().map(func(a): return a.armor.part)
+func takeWound(wound: Constants.BodyPart):
+    wounds.push_back(wound)
+func healWound(wound: Constants.BodyPart):
+    wounds.erase(wound)
+
+func takeStatus(effect: Constants.Status):
+    status.push_back(effect)
+func healStatus(effect: Constants.Status):
+    status.erase(effect)
+func hasStatus(effect: Constants.Status) -> bool:
+    return status.has(effect)
+
+
+# item and loot interactions #
+
+func useItem(item: Item):
+    item.consumable.utilize(self)
+    inventory.clean()
+
+func equip(item: Item, toggle = false):
+    if item.weapon:
+        inventory.equipWeapon(item, toggle)
+    elif item.medkit:
+        inventory.equipMedkit(item, toggle)
+    elif item.armor:
+        inventory.equipArmor(item, toggle)
+
+func toggleEquip(item: Item):
+    equip(item, true)
+
+func equipFirst():
+    for item: Item in inventory.slots:
+        equip(item)
+
+func discard(item: Item):
+    inventory.remove(item)
+
+func loot() -> Inventory:
+    if !inventory.empty():
+        return inventory.toLoot()
+    else:
+        return null
+
+
+## Totals together all bonuses given to a particular stat. */
+func bonus(_stat: String) -> int:
+    var total = 0
+    for item: Item in inventory.slots:
+        if item.equipped():
+            if item.weapon:
+                total += item.weapon.stats.get_a_val(_stat)
+            if item.armor:
+                total += item.armor.stats.get_a_val(_stat)
+    total += temporaryStats.get_a_val(_stat)
+    total += nearbyBonuses.get_a_val(_stat)
+    return total
+
+# effective stats totals
+func hp():
+    return character.maxHp + bonus("hitpoints")
+func stn(): 
+    return character.str + bonus("strength")
+func mag(): 
+    return character.mag + bonus("magic")
+func skl(): 
+    return character.skl + bonus("skill")
+func spd(): 
+    return character.spd + bonus("speed")
+func dfn(): 
+    return character.dfn + bonus("funcence")
+func res(): 
+    return character.res + bonus("resistance")
+
+
+# Unit combat stats #
+ # Current and max HP
+func MaxHP() -> int: return hp()
+func HP() -> int: return MaxHP() - damageTaken
+
+# Move
+func MOVE() -> int:
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Legs): penalty = 3
+    return (character.move + bonus("move")) / penalty
+# Jump
+func JUMP() -> int:
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Legs): penalty = 3
+    return (character.move + bonus("jump")) / penalty
+# Range
+func Range() -> Vector2i:
+    var bonusRange = 0
+    if inventory.equippedWeapon():
+        var wep = inventory.equippedWeapon().wrange
+        return Vector2i(wep.wrange.x, wep.wrange.y + bonusRange)
+    else: return Vector2i(0,0)
+
+## Attack depends on if weapon is magical or physical
+func AT() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    if wep.dmgType == Weapon.DamageType.Magic:
+        return wep.power + mag() + bonus("AT")
+    elif wep.dmgtyping == Weapon.DamageType.Force:
+        var penalty = 1
+        if wounds.has(Constants.BodyPart.Arms): penalty = 2
+        return (wep.power + stn() + bonus("AT")) / penalty
+    else: return 0
+
+## Rate of critical hits
+func CR() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    else: return round(wep.crit + skl() * 0.5) + bonus("CR")
+
+## Attack speed: Total speed - weight
+func AS() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    else: return spd() - wep.weight + bonus("AS")
+
+## Combat skill
+func SK() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    else: return skl() - wep.weight/3 + bonus("SK")
+
+## Physical funcence
+func PD() -> int:
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Torso): penalty = 2
+    return (dfn() + bonus("PD")) / penalty
+
+## Magical funcence
+func MD() -> int:
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Torso): penalty = 2
+    return (res() + bonus("MD")) / penalty
+
+## Hit rate
+func HI() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Arms): penalty = 2
+    return round(wep.hit + (skl() + spd()*0.5) + bonus("HI")) / penalty
+
+## Rate of avoiding attacks
+func AV() -> int:
+    var penalty = 1
+    if wounds.has(Constants.BodyPart.Legs): penalty = 2
+    return (round(spd() + skl()*0.5) + bonus("AV")) / penalty
+
+## Rate of avoiding critical hits
+func CA() -> int:
+    var wep = inventory.equippedWeapon()
+    if !wep: return 0
+    return 10 - wep.weight + bonus("CA")
+
+## Amount of healing given
+func HL() -> int:
+    return mag()/2 + skl()/2
+
+
+func shortInfo() -> String:
+    return character.myName + str(HP)+"/"+str(MaxHP)+"\n" + " Weapon: "+ inventory.equippedWeapon().name
+
+func hpMhp() -> String: return str(HP)+"/"+str(MaxHP)
+func lvl() -> int: return character.level
+func exp() -> int: return character.exp
+func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(exp)

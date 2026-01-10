@@ -110,7 +110,7 @@ func equipMedkit(medkit: Item, toggle: bool):
         m.equipment.unequip()
     if toggle: medkit.equipment.toggleEquip()
     else: medkit.equipment.equip()
-func equipArmor(armor: Armor, toggle: bool):
+func equipArmor(armor: Item, toggle: bool):
     # unequips any armor piece that fits on the same part of the body
     for a in equippedArmors():
         if a.armor.bodyPart == armor.armor.bodyPart and a!=armor:
@@ -126,5 +126,17 @@ func listItems() -> Array:
         else:
             return "empty"
     )
+
+# When someone is killed, their inventory is lootified
+func toLoot() -> Inventory:
+    for i: Item in slots:
+        if i.durability:
+            @warning_ignore("integer_division")
+            i.spend(i.durability.maximum/2)
+        i.equipment.unequip()
+    return self
+
+func empty() -> bool:
+    return !slots.all(func(i): return i==null)
 
 ##TODO redo equipment handling to  being handled and tracked only in Inventory
