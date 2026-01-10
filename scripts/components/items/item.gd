@@ -12,12 +12,19 @@ class_name Item extends Resource
 
 ## text intended as full item information
 func describe() -> String:
-    return name +": " + description
+    return name +":\n" + description
 
 ## True if the item is not broken.
 func intact() -> bool:
     if durability:
         return durability.intact()
+    else:
+        return true
+
+## True if the item is equipped.
+func equipped() -> bool:
+    if equipment:
+        return equipment.equipped
     else:
         return true
 

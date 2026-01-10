@@ -14,7 +14,7 @@ enum DamageType {Magic, Force}
 @export var power: int
 @export var hit: int
 @export var crit: int
-@export var wrange: Vector2
+@export var wrange: Vector2i
 @export var weight: int
 
 # Effective against these types
