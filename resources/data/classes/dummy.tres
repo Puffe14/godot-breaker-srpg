@@ -11,6 +11,7 @@ metadata/_custom_type_script = "uid://lln8oobwu0kd"
 [resource]
 script = ExtResource("1_om1mg")
 className = "dummy"
+classType = ["flying"]
 classGrowth = ExtResource("1_itse5")
 stats = ExtResource("1_itse5")
 classBuffs = ExtResource("1_itse5")

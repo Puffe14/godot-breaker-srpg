@@ -18,8 +18,17 @@ enum DamageType {Magic, Force}
 @export var weight: int
 
 # Effective against these types
-var effectiveAgainst: Effective
+@export var effectiveAgainst: Effective
+var rules = Rules.new()
 
 # If true, the weapon always doubles (2x or 4x attacks)
 func isQuick() -> bool:
-    return quick
+	return quick
+
+func advantage(other: Weapon) -> bool:
+	if !other: return false
+	var vantages: Array = rules.advantages
+	var atkpos = vantages.find(self.wpnType)
+	if vantages[atkpos+1] == other.wpnType:
+		return true
+	return false

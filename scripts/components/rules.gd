@@ -8,6 +8,7 @@ class_name Rules extends Resource
 @export var effectiveMultiplier = 3
 @export var critMultiplier = 3
 @export var diff = 3
+@export var advantages = [Weapon.WeaponType.Blunt, Weapon.WeaponType.Ranged, Weapon.WeaponType.Sharp, Weapon.WeaponType.Blunt]
 # limits for difference based activations in combat
 @export var vantageDiff = 9
 @export var alacrityDiff = 9

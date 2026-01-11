@@ -18,5 +18,5 @@ func _on_test_timer_timeout() -> void:
 	var b = $FightSelector.unitB()
 	if a: a.strike()
 	if b: b.strike()
-	var forecast: Forecast = Forecast.new(a.unit, b.unit, 2, 1, -15, 15)
+	var forecast: Forecast = Forecast.new(a.unit, b.unit, 2, 1)
 	print(forecast.aEV, forecast.arrow(), forecast.bEV)
