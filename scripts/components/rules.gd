@@ -1,4 +1,19 @@
 class_name Rules extends Resource
 
+# inventory handling
 @export var inventory_limit: int = 6
 @export var lootDurabilityCost = 2
+@export var playerStorageLimit = 50
+# combat
+@export var effectiveMultiplier = 3
+@export var critMultiplier = 3
+@export var diff = 3
+# limits for difference based activations in combat
+@export var vantageDiff = 9
+@export var alacrityDiff = 9
+@export var doubleDiff = 4
+# bonus
+@export var skillBonusHitRateForEffective = 20
+@export var skillHitRatePenaltyRatio = 2
+@export var wpnTypeAdvantageBonus = 15
+@export var statusAuraRange = Vector2i(1,2)

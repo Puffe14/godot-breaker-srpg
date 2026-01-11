@@ -1,6 +1,26 @@
-[gd_scene format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene load_steps=12 format=3 uid="uid://dnny6nhd45x0s"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
+[ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://scripts/ui/test_fight_selector.tscn" id="2_0k4wn"]
+[ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="2_7vrkn"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://de7gdtad33xrs" path="res://resources/images/units/warrior_idle.png" id="3_fu7sn"]
+[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="3_jix8l"]
+[ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="4_glbon"]
+[ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="5_0o4t1"]
+[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="5_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="6_qe12f"]
+[ext_resource type="SpriteFrames" uid="uid://duodoahfamvmo" path="res://resources/images/animation/cylna.tres" id="8_0k4wn"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_glbon")
+timer = NodePath("TestTimer")
+
+[node name="FightSelector" parent="." instance=ExtResource("2_0k4wn")]
+offset_left = 24.0
+offset_top = 244.0
+offset_right = 24.0
+offset_bottom = 244.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -13,3 +33,28 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Hallo"
+
+[node name="Node2D" parent="." instance=ExtResource("2_7vrkn")]
+position = Vector2(48, 77)
+unit = ExtResource("3_8qtwp")
+texture = ExtResource("4_glbon")
+frames = ExtResource("5_0o4t1")
+
+[node name="Node2D2" parent="." instance=ExtResource("2_7vrkn")]
+position = Vector2(172, 75)
+unit = ExtResource("3_jix8l")
+texture = ExtResource("3_fu7sn")
+frames = ExtResource("8_0k4wn")
+flip = true
+
+[node name="Dummy" parent="." instance=ExtResource("2_7vrkn")]
+position = Vector2(172, 75)
+unit = ExtResource("5_nlkkf")
+texture = ExtResource("6_qe12f")
+flip = true
+
+[node name="TestTimer" type="Timer" parent="."]
+wait_time = 1.9669999999999999
+autostart = true
+
+[connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]

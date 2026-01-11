@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://3b57ef5u6qwk"]
+
+[ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="1_1itgb"]
+[ext_resource type="Resource" uid="uid://cc2pjfupfwb05" path="res://resources/data/items/test_stick.tres" id="2_0q0y0"]
+
+[resource]
+script = ExtResource("1_1itgb")
+slots = [ExtResource("2_0q0y0"), null, null, null, null, null]
+dontReset = true
+metadata/_custom_type_script = "uid://yejumcuhegph"

@@ -5,8 +5,8 @@ enum DamageType {Magic, Force}
 
 # Info on weapon.
 @export var quick: bool
-@export var wpnType: String
-@export var dmgType: String
+@export var wpnType: WeaponType
+@export var dmgType: DamageType
 @export var rankLetter: Ranks.Letter
 @export var stats: Stats
 

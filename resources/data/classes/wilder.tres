@@ -21,13 +21,15 @@ Sharp = 1
 Blunt = 4
 metadata/_custom_type_script = "uid://lln8oobwu0kd"
 
-[sub_resource type="Resource" id="Resource_xx4lx"]
+[sub_resource type="Resource" id="Resource_oj0f7"]
 script = ExtResource("1_oj0f7")
-maxHp = 15
-stn = 15
-skl = 15
-spd = 5
-dfn = 10
+maxHp = 5
+stn = 2
+skl = 1
+spd = 1
+dfn = 1
+move = 3
+jump = 2
 metadata/_custom_type_script = "uid://cnirhagor250e"
 
 [resource]
@@ -35,6 +37,6 @@ script = ExtResource("1_j6mf2")
 className = "wilder"
 classType = ["infantry", "breaker"]
 classGrowth = SubResource("Resource_6d28p")
-classStats = SubResource("Resource_xx4lx")
+stats = SubResource("Resource_oj0f7")
 classRanks = SubResource("Resource_c8kpq")
 metadata/_custom_type_script = "uid://b0q8t75hrpec4"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://0j3bm4lh7mel"]
+
+[ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="1_vmwbu"]
+
+[resource]
+script = ExtResource("1_vmwbu")
+maxHp = 50
+stn = 60
+mag = 20
+skl = 60
+spd = 35
+dfn = 10
+res = 10
+metadata/_custom_type_script = "uid://cnirhagor250e"

@@ -1,7 +1,7 @@
 class_name Character extends Resource
 
 @export var myName: String
-@export var currentClass: Class
+@export var myClass: Class
 @export var possibleClass: Array # Vector[Class]
 @export var level: int = 1
 @export var xp: int = 0
@@ -9,7 +9,7 @@ class_name Character extends Resource
 @export var stats: Stats
 
 func swapClass(newClass: Class):
-    currentClass = newClass
+    myClass = newClass
 
 #!!! could be changed to an event that give message as a legible string
 #Increase experience and handle if reaches lvlup

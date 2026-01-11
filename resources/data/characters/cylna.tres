@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://cnirhagor250e"
 [resource]
 script = ExtResource("1_wdxxv")
 myName = "Cylna"
-currentClass = ExtResource("1_e7l0s")
+myClass = ExtResource("1_e7l0s")
 growths = SubResource("Resource_t82sm")
 stats = SubResource("Resource_uqnh0")
 metadata/_custom_type_script = "uid://dalmi1756haci"

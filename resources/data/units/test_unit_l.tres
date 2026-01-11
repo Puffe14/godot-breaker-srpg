@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Units" load_steps=7 format=3 uid="uid://dbvi4m2ryv53"]
+
+[ext_resource type="Resource" uid="uid://500bfosw668j" path="res://resources/data/characters/lairaea.tres" id="1_cjopm"]
+[ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_r305e"]
+[ext_resource type="Resource" uid="uid://3b57ef5u6qwk" path="res://resources/data/test_inventory.tres" id="2_uoguj"]
+[ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="3_oacx2"]
+
+[sub_resource type="Resource" id="Resource_7kfx0"]
+script = ExtResource("3_oacx2")
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[sub_resource type="Resource" id="Resource_mwni4"]
+script = ExtResource("3_oacx2")
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[resource]
+script = ExtResource("1_r305e")
+character = ExtResource("1_cjopm")
+inventory = ExtResource("2_uoguj")
+temporaryStats = SubResource("Resource_mwni4")
+nearbyBonuses = SubResource("Resource_7kfx0")
+metadata/_custom_type_script = "uid://0slpdtksthq2"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Class" load_steps=5 format=3 uid="uid://cda0hke67s3jn"]
+
+[ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="1_itse5"]
+[ext_resource type="Script" uid="uid://b0q8t75hrpec4" path="res://scripts/components/units/class.gd" id="1_om1mg"]
+[ext_resource type="Script" uid="uid://lln8oobwu0kd" path="res://scripts/components/items/ranks.gd" id="2_dv2vu"]
+
+[sub_resource type="Resource" id="Resource_2jtgv"]
+script = ExtResource("2_dv2vu")
+metadata/_custom_type_script = "uid://lln8oobwu0kd"
+
+[resource]
+script = ExtResource("1_om1mg")
+className = "dummy"
+classGrowth = ExtResource("1_itse5")
+stats = ExtResource("1_itse5")
+classBuffs = ExtResource("1_itse5")
+classDebuffs = ExtResource("1_itse5")
+classRanks = SubResource("Resource_2jtgv")
+metadata/_custom_type_script = "uid://b0q8t75hrpec4"

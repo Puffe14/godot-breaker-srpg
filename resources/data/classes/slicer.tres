@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Class" load_steps=8 format=3 uid="uid://723fdrdr7l5d"]
+
+[ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="1_28twj"]
+[ext_resource type="Script" uid="uid://b0q8t75hrpec4" path="res://scripts/components/units/class.gd" id="1_kb1qt"]
+[ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="2_xya6i"]
+[ext_resource type="Script" uid="uid://lln8oobwu0kd" path="res://scripts/components/items/ranks.gd" id="3_sk2ja"]
+
+[sub_resource type="Resource" id="Resource_xya6i"]
+script = ExtResource("2_xya6i")
+maxHp = 5
+stn = 10
+skl = 10
+spd = 15
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[sub_resource type="Resource" id="Resource_uljfj"]
+script = ExtResource("3_sk2ja")
+Sharp = 4
+metadata/_custom_type_script = "uid://lln8oobwu0kd"
+
+[sub_resource type="Resource" id="Resource_nftwy"]
+script = ExtResource("2_xya6i")
+maxHp = 3
+stn = 1
+skl = 2
+spd = 2
+res = 1
+move = 3
+jump = 2
+metadata/_custom_type_script = "uid://cnirhagor250e"
+
+[resource]
+script = ExtResource("1_kb1qt")
+className = "Slicer"
+classType = ["wounder", "infantry"]
+classGrowth = SubResource("Resource_xya6i")
+stats = SubResource("Resource_nftwy")
+classBuffs = ExtResource("1_28twj")
+classDebuffs = ExtResource("1_28twj")
+classRanks = SubResource("Resource_uljfj")
+metadata/_custom_type_script = "uid://b0q8t75hrpec4"
