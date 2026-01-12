@@ -1,6 +1,6 @@
 extends Node
 @export var timer: Timer = null
-
+@export var combat: Combat = null
 
 func _process(_delta: float) -> void:
 	for u in $FightSelector.units:
@@ -18,5 +18,9 @@ func _on_test_timer_timeout() -> void:
 	var b = $FightSelector.unitB()
 	if a: a.strike()
 	if b: b.strike()
-	var forecast: Forecast = Forecast.new(a.unit, b.unit, 2, 1)
+	a.unit.damageTaken = 0
+	b.unit.damageTaken = 0
+	combat.renit(a.unit, b.unit, 1)
+	var forecast = combat.forecast
 	print(forecast.aEV, forecast.arrow(), forecast.bEV)
+	combat.play()

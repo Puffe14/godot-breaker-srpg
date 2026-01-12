@@ -240,7 +240,7 @@ func HI() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Arms): penalty = 2
+	if wounds.has(Constants.BodyPart.Head): penalty = 2
 	return round(wep.weapon.hit + (skl() + spd()*0.5) + bonus("HI")) / penalty
 
 ## Rate of avoiding attacks
@@ -265,6 +265,8 @@ func isQuick() -> bool:
 		return true
 	else: return false
 
+func isArmed() -> bool:
+	return inventory.equippedWeapon() != null and inventory.equippedWeapon().intact()
 
 func shortInfo() -> String:
 	return character.myName + str(HP)+"/"+str(MaxHP)+"\n" + " Weapon: "+ inventory.equippedWeapon().name
