@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://duodoahfamvmo"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://duodoahfamvmo"]
 
 [ext_resource type="Texture2D" uid="uid://de7gdtad33xrs" path="res://resources/images/units/warrior_idle.png" id="1_6e5rh"]
 [ext_resource type="Texture2D" uid="uid://byrpt3dbeqyfq" path="res://resources/images/units/warrior_atk_1.png" id="2_n4akh"]
 [ext_resource type="Texture2D" uid="uid://rtr5qik1ajft" path="res://resources/images/units/warrior_atk_2.png" id="3_jck1w"]
+[ext_resource type="Texture2D" uid="uid://c4o4sgpcsa5mc" path="res://resources/images/units/warrior_hurt.png" id="3_n4akh"]
 
 [resource]
 animations = [{
@@ -16,6 +17,28 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n4akh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_6e5rh")
+}],
+"loop": false,
+"name": &"evade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n4akh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_6e5rh")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

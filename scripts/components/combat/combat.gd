@@ -10,9 +10,13 @@ var speed_diff: int = 0
 var skill_diff: int = 0
 var forecast: Forecast = null
 var events: Array[ComFunc] = []
+var time_passed: float = 0
+signal animate(anim: String, unit: Units, delay: float)
 
-@export var select_attacks = -1
-@export var target_attacks = -1
+@export var select_attacks_start = -1
+@export var target_attacks_start = -1
+var select_attacks = -1
+var target_attacks = -1
 @export var no_counter = false
 @export var override_vantage = false
 @export var hit_penalty_factor = 1
@@ -51,6 +55,8 @@ func targetedAttacks() -> int:
 	else: return 1
 
 func _init(_a: Units = null, _b: Units = null, _act_range: int = 1) -> void:
+	animate.connect(on_animate_sent)
+	time_passed = 0
 	selected = _a
 	targeted = _b
 	act_range = _act_range
@@ -66,6 +72,8 @@ func renit(_a: Units, _b: Units, _act_range: int) -> void:
 func precalculate() -> void:
 	skill_diff = selected.SK() - targeted.SK()
 	speed_diff = selected.AS() - targeted.AS()
+	select_attacks = select_attacks_start
+	target_attacks = target_attacks_start
 	if select_attacks==-1: select_attacks = selectedAttacks()
 	if target_attacks==-1: target_attacks = targetedAttacks()
 	forecast = Forecast.new(selected, targeted, select_attacks, target_attacks, hit_penalty_factor)
@@ -110,6 +118,7 @@ func attack(attacker: Units, defender: Units):
 	# if the attack hits
 	var hitXcritY = forecast.predictHitCrit(attacker, defender)
 	var isHit: bool = roll100() < hitXcritY.x
+	emit_signal("animate", "strike", attacker, time_passed)
 	if isHit:
 		# if a critical hit is rolled
 		var isCritical: bool = roll100() < hitXcritY.y
@@ -117,8 +126,11 @@ func attack(attacker: Units, defender: Units):
 		if isCritical: damage *= Rules.critMultiplier
 		defender.takeDamage(damage)
 		attacker.inventory.equippedWeapon().spend(1)
+		emit_signal("animate", "hurt", defender, time_passed+0.5, num_to_str(damage))
 		print(defender.character.myName," bam, ",damage,"!")
-	else: print("miss.")
+	else:
+		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
+		print("miss.")
 
 ## method for healing with medkits
 func heal(attacker: Units, defender: Units):
@@ -156,3 +168,13 @@ func wound(attacker: Units, defender: Units):
 		defender.takeWound(target_part)
 		print(defender.character.myName," wounds ", target_part,"!")
 	else: print("miss.")
+
+func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = ""):
+	time_passed += 1
+
+func num_to_str(num: int) -> String:
+	var msg = ""
+	if num < 0: msg += "-"
+	else: msg += "-"
+	msg += str(num)
+	return msg

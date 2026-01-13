@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_p4gbt")
-select_attacks = 1
+select_attacks_start = 1
+target_attacks_start = 0
 no_counter = true
 override_vantage = true
 cost = 5
