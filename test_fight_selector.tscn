@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4cpw1m7rhvp1"]
 
-[ext_resource type="Script" uid="uid://jtxn6w1ud0sa" path="res://test_fight_selector.gd" id="1_qm1is"]
+[ext_resource type="Script" uid="uid://jtxn6w1ud0sa" path="res://scripts/ui/test_fight_selector.gd" id="1_qm1is"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
