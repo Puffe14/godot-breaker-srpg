@@ -18,8 +18,6 @@ func _ready() -> void:
 func _on_test_timer_timeout() -> void:
 	var a = $FightSelector.unitA()
 	var b = $FightSelector.unitB()
-	#if a: a.strike()
-	#if b: b.strike()
 	a.unit.damageTaken = 0
 	b.unit.damageTaken = 0
 	combat.renit(a.unit, b.unit, 1)
