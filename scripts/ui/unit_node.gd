@@ -4,6 +4,8 @@ class_name UnitNode extends Node2D
 @export var texture: Texture2D
 @export var frames: SpriteFrames = null
 @export var flip: bool = false
+var timer: Timer = Timer.new()
+var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 
 func _ready() -> void:
 	if frames:
@@ -16,6 +18,17 @@ func _ready() -> void:
 		$Sprite2D.flip_h = flip
 		$Sprite2D.texture = texture
 
-func strike() -> void:
+func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
+	# wait for delay
+	await get_tree().create_timer(delay).timeout
+	# if animations have been given
 	if frames:
-		$AnimatedSprite2D.play("strike")
+		$AnimatedSprite2D.play(anim_name)
+	# if a popup text should be made
+	if msg != "":
+		var msg_node = popup_text.instantiate()
+		msg_node.create(msg)
+		add_child(msg_node)
+
+func strike():
+	$AnimatedSprite2D.play("strike")

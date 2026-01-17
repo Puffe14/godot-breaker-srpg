@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Combat" load_steps=2 format=3 uid="uid://b4gpmj6l0pvke"]
+
+[ext_resource type="Script" uid="uid://dt5e46asuae27" path="res://scripts/components/combat/combat.gd" id="1_j83nj"]
+
+[resource]
+script = ExtResource("1_j83nj")
+metadata/_custom_type_script = "uid://dt5e46asuae27"

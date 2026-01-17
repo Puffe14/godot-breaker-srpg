@@ -187,10 +187,10 @@ func JUMP() -> int:
 	return (character.move + bonus("jump")) / penalty
 # Range
 func Range() -> Vector2i:
-	var bonusRange = 0
+	var bonusRange = 0 ##TODO bonus range feature
 	if inventory.equippedWeapon():
-		var wep = inventory.equippedWeapon().wrange
-		return Vector2i(wep.wrange.x, wep.wrange.y + bonusRange)
+		var wrange = inventory.equippedWeapon().wrange
+		return Vector2i(wrange.x, wrange.y + bonusRange)
 	else: return Vector2i(0,0)
 
 ## Attack depends on if weapon is magical or physical
@@ -198,7 +198,7 @@ func AT() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
 	if wep.weapon.dmgType == Weapon.DamageType.Magic:
-		return wep.power + mag() + bonus("AT")
+		return wep.weapon.power + mag() + bonus("AT")
 	elif wep.weapon.dmgType == Weapon.DamageType.Force:
 		var penalty = 1
 		if wounds.has(Constants.BodyPart.Arms): penalty = 2
@@ -215,13 +215,13 @@ func CR() -> int:
 func AS() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
-	else: return spd() - wep.weight + bonus("AS")
+	else: return spd() - wep.weapon.weight + bonus("AS")
 
 ## Combat skill
 func SK() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
-	else: return skl() - wep.weight/3 + bonus("SK")
+	else: return skl() - wep.weapon.weight/3 + bonus("SK")
 
 ## Physical funcence
 func PD() -> int:
@@ -240,7 +240,7 @@ func HI() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Arms): penalty = 2
+	if wounds.has(Constants.BodyPart.Head): penalty = 2
 	return round(wep.weapon.hit + (skl() + spd()*0.5) + bonus("HI")) / penalty
 
 ## Rate of avoiding attacks
@@ -265,11 +265,13 @@ func isQuick() -> bool:
 		return true
 	else: return false
 
+func isArmed() -> bool:
+	return inventory.equippedWeapon() != null and inventory.equippedWeapon().intact()
 
 func shortInfo() -> String:
-	return character.myName + str(HP)+"/"+str(MaxHP)+"\n" + " Weapon: "+ inventory.equippedWeapon().name
+	return character.myName + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ inventory.equippedWeapon().name
 
-func hpMhp() -> String: return str(HP)+"/"+str(MaxHP)
+func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level
 func exp() -> int: return character.exp
 func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(exp)

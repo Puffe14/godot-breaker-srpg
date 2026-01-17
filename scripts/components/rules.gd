@@ -6,12 +6,13 @@ class_name Rules extends Resource
 @export var playerStorageLimit = 50
 # combat
 @export var effectiveMultiplier = 3
-@export var critMultiplier = 3
+static var critMultiplier = 3
 @export var diff = 3
+@export var advantages = [Weapon.WeaponType.Blunt, Weapon.WeaponType.Ranged, Weapon.WeaponType.Sharp, Weapon.WeaponType.Blunt]
 # limits for difference based activations in combat
-@export var vantageDiff = 9
-@export var alacrityDiff = 9
-@export var doubleDiff = 4
+static var vantageDiff = 9
+static var alacrityDiff = 9
+static var doubleDiff = 4
 # bonus
 @export var skillBonusHitRateForEffective = 20
 @export var skillHitRatePenaltyRatio = 2

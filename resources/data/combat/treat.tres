@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Combat" load_steps=2 format=3 uid="uid://bs8kbvasvs67g"]
+
+[ext_resource type="Script" uid="uid://dt5e46asuae27" path="res://scripts/components/combat/combat.gd" id="1_p4gbt"]
+
+[resource]
+script = ExtResource("1_p4gbt")
+select_attacks_start = 1
+target_attacks_start = 0
+no_counter = true
+override_vantage = true
+cost = 5
+combat_type = 2
+metadata/_custom_type_script = "uid://dt5e46asuae27"
