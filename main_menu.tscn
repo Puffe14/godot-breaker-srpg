@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene load_steps=14 format=3 uid="uid://dnny6nhd45x0s"]
 
 [ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
-[ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://scripts/ui/test_fight_selector.tscn" id="2_0k4wn"]
+[ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://test_fight_selector.tscn" id="2_0k4wn"]
 [ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="2_7vrkn"]
 [ext_resource type="Resource" uid="uid://b4gpmj6l0pvke" path="res://resources/data/combat/attack.tres" id="2_j5v2v"]
+[ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_j5v2v"]
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://de7gdtad33xrs" path="res://resources/images/units/warrior_idle.png" id="3_fu7sn"]
+[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_iotk1"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="3_jix8l"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="4_glbon"]
 [ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="5_0o4t1"]
@@ -17,6 +19,11 @@
 script = ExtResource("1_glbon")
 timer = NodePath("TestTimer")
 combat = ExtResource("2_j5v2v")
+
+[node name="MapNode" parent="." instance=ExtResource("2_j5v2v")]
+position = Vector2(336, 202)
+scale = Vector2(3, 3)
+field_map = ExtResource("3_iotk1")
 
 [node name="FightSelector" parent="." instance=ExtResource("2_0k4wn")]
 offset_left = 24.0
@@ -59,4 +66,20 @@ flip = true
 wait_time = 3.0
 autostart = true
 
+[node name="SpinBox" type="SpinBox" parent="."]
+offset_left = 410.0
+offset_top = 19.0
+offset_right = 496.5625
+offset_bottom = 50.0
+max_value = 3.0
+
+[node name="UpdateButton" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 62.0
+offset_right = 477.0
+offset_bottom = 94.0
+text = "Update"
+
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
+[connection signal="value_changed" from="SpinBox" to="MapNode" method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="UpdateButton" to="MapNode" method="_on_update_button_pressed"]

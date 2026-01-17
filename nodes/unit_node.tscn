@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="2_gax0m"]
 
 [node name="Node2D" type="Node2D" groups=["unit"]]
-scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
