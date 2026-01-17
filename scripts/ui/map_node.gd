@@ -8,6 +8,8 @@ var layer_node = preload("res://nodes/maps/default_map_layer.tscn")
 # direction handling
 enum Direction {UP, RIGHT, DOWN, LEFT}
 var direction: Direction = Direction.UP
+# signals
+signal move(pos: Vector2, unit: Units, delay: float)
 
 func _ready() -> void:
 	# create layers
@@ -35,6 +37,8 @@ func draw_tiles(dir: Direction = Direction.UP):
 	for l: TileMapLayer in layers():
 		l.clear()
 		#l.set_cell()
+		#l.map_to_local()
+		#l.local_to_map()
 	# set a cell in their positions
 	for tile in field_map.grid.tiles:
 		var pos_x = tile.position.x
@@ -47,6 +51,10 @@ func draw_tiles(dir: Direction = Direction.UP):
 			Direction.DOWN: translated = Vector2i(-pos_x,-pos_y)
 			Direction.LEFT: translated = Vector2i(pos_y,-pos_x)
 		layers()[pos_z].set_cell(translated,0,Vector2i(0,0),1)
+		# draw unit
+		if tile and tile.occupiable and tile.occupiable.occupant:
+			var real_pos = layers()[pos_z].map_to_local(translated)
+			emit_signal("move", position+real_pos*scale+Vector2(0,-tile_height*(pos_z+2)), tile.occupiable.occupant, pos_z, 0)
 		# draw bottoms
 		for z in range(0, pos_z):
 			layers()[z].set_cell(translated,0,Vector2i(0,0),2)

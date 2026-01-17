@@ -29,4 +29,8 @@ func animate(animation: String, unit: Units, delay: float, msg: String = ""):
 	for u in get_tree().get_nodes_in_group("unit"):
 		if u.unit == unit:
 			u.play_animation(animation, delay, msg)
-	
+
+func move(pos: Vector2, unit: Units, index: int, delay: float):
+	for u in get_tree().get_nodes_in_group("unit"):
+		if u.unit == unit:
+			u.play_move(pos, index, delay)
