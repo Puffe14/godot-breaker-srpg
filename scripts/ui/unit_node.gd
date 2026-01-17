@@ -30,5 +30,11 @@ func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 		msg_node.create(msg)
 		add_child(msg_node)
 
+func play_move(pos: Vector2, index: int, delay: float) -> void:
+	# wait for delay
+	await get_tree().create_timer(delay).timeout
+	z_index = index+1
+	position = pos
+
 func strike():
 	$AnimatedSprite2D.play("strike")

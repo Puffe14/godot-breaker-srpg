@@ -84,6 +84,7 @@ offset_right = 477.0
 offset_bottom = 94.0
 text = "Update"
 
+[connection signal="move" from="MapNode" to="." method="move"]
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
 [connection signal="value_changed" from="SpinBox" to="MapNode" method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="UpdateButton" to="MapNode" method="_on_update_button_pressed"]
