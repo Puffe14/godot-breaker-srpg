@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://crdd7l11uuw22"]
+
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_lerbw"]
+[ext_resource type="Script" uid="uid://6ho420hkl0gv" path="res://nodes/menus/button_menu.gd" id="1_rc8qm"]
+[ext_resource type="PackedScene" uid="uid://u2mbf4a6qepx" path="res://nodes/menus/button_option.tscn" id="3_npdtd"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="4_c0ade"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc8qm"]
+bg_color = Color(0.19076231, 0.19076234, 0.19076222, 0.4745098)
+
+[sub_resource type="Theme" id="Theme_lerbw"]
+default_font_size = 10
+Button/styles/normal = SubResource("StyleBoxFlat_rc8qm")
+
+[node name="Control" type="Control" node_paths=PackedStringArray("button_list_container", "menu_h_container", "hider_rect", "title")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lerbw")
+script = ExtResource("1_rc8qm")
+button_list_container = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/ButtonList")
+menu_h_container = NodePath("HMenuContainer")
+hider_rect = NodePath("HMenuContainer/MarginContainer/HideRect")
+title = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/Title")
+user = ExtResource("4_c0ade")
+
+[node name="HMenuContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HMenuContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HMenuContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("1_lerbw")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HMenuContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HMenuContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+
+[node name="ButtonList" type="VBoxContainer" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/ButtonList" instance=ExtResource("3_npdtd")]
+layout_mode = 2
+text = "wungus"
+item = ExtResource("4_c0ade")
+
+[node name="Close" type="Button" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "CLOSE"
+
+[node name="HideRect" type="ColorRect" parent="HMenuContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)
+
+[connection signal="pressed" from="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/Close" to="." method="close_this_menu"]

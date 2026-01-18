@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://u2mbf4a6qepx"]
+
+[ext_resource type="Script" uid="uid://jsqdwlq65u5c" path="res://nodes/menus/button_option.gd" id="1_gu2vx"]
+
+[node name="Button" type="Button"]
+text = "WAAAAAAA"
+script = ExtResource("1_gu2vx")
+
+[connection signal="pressed" from="." to="." method="pressed_option"]

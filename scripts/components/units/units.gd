@@ -16,6 +16,9 @@ enum Team {Player, Ally, Enemy}
 @export var moved = false
 @export var acted = false
 
+func _to_string() -> String:
+	return character.myName + " " + hpMhp()
+
 # whether or not a unit has particular abilities
 func canHeal() -> bool:
 	return character.types.has("healer")
@@ -67,7 +70,7 @@ func takeDamage(amount: int):
 	damageTaken += amount
 	limitHP()
 
-func heaslDamage(amount: int):
+func healDamage(amount: int):
 	damageTaken -= amount
 	limitHP()
 
