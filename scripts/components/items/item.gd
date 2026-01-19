@@ -40,8 +40,14 @@ func equipped() -> bool:
 func spend(durabilityLoss: int) -> void:
 	if durability:
 		durability.spent += durabilityLoss
+
 ## Decrease the spent number to a maximum of zeo
 func fix(durabilityGain: int) -> void:
 	if durability:
 		durability.spent -= durabilityGain
-		if durability.spent < 0: durability.spent = 0
+		if durability.spent < 0:
+			durability.spent = 0
+
+func fix_full() -> void:
+	if durability:
+		durability.spent = 0

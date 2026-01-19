@@ -23,3 +23,6 @@ func addCorpse(loot: Inventory, hasSoul: bool = true):
 ## remove the soul from the tile
 func spendSoul():
 	if interactible: interactible.consumeSoul()
+
+func has_dead() -> bool:
+	return occupiable and occupiable.occupant and occupiable.occupant.isDead()

@@ -21,13 +21,16 @@ func pressed_option() -> Array:
 	## create sub menu options
 	# if the item has an inventory
 	if "inventory" in item:
-		for it in item.inventory.slots:
+		options.push_back(item.inventory)
+	# if the item has an inventory
+	if "slots" in item:
+		for it in item.slots:
 			options.push_back(it)
 	# if the item can be equipped
-	if "equipment" in item:
+	if "equipment" in item and item.equipment:
 		options.push_back(Equip.new(user,item,true))
 	# if the item is consumable
-	if "consumable" in item:
+	if "consumable" in item and item.consumable:
 		options.push_back(Use.new(user,item))
 	# if the item can be thrown away
 	if "discardable" in item and item.discardable:

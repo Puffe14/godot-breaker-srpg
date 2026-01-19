@@ -81,7 +81,7 @@ func medkits() -> Array:
 		func(item: Item):
 		return item && item.medkit != null
 	)
-func consumable() -> Array:
+func consumables() -> Array:
 	return slots.filter(
 		func(item: Item):
 		return item && item.consumable != null
@@ -140,5 +140,8 @@ func toLoot() -> Inventory:
 
 func empty() -> bool:
 	return !slots.all(func(i): return i==null)
+
+func _to_string() -> String:
+	return "Inventory"
 
 ##TODO redo equipment handling to  being handled and tracked only in Inventory
