@@ -24,5 +24,5 @@ func removeOccupant() -> Units:
 
 ## Determine reduction to movement
 #TODO
-func moveReduction(_classMovementType: Array) -> float:
+func moveReduction(classMovementType: Array) -> float:
 	return 1

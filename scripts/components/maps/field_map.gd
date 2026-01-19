@@ -37,7 +37,7 @@ func isLost() -> bool:
 ## TODO BONUSES
 
 
-### UNIT & GROUP HANDLING
+### UNIT & GROUP HANDLING ###
 
 ## distance of a unit to a tile
 func unitDistanceFrom(tile: Tile, unit: Units) -> int:
@@ -109,7 +109,7 @@ func deployPlayer():
 		deployed[i].setTeam(Units.Team.Player)  # deployment map and set their team to player.
 
 
-### MOVEMENT HANDLING
+### MOVEMENT HANDLING ###
 
 func tileOf(unit: Units) -> Tile:
 	var list_of_tiles = grid.tilesWithUnits()
@@ -117,3 +117,54 @@ func tileOf(unit: Units) -> Tile:
 	if index == -1: return null
 	return list_of_tiles[index]
 
+## Method for determining the tiles accessible based on movement, current tile and class types.
+## Used by movementRangeTiles to determine where a unit can move.*/
+func moveCheck(moveLeft: float, tile: Tile, types: Array[String], team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
+	# inner lambda
+	var findSurrounding = (func(thisOneOk: bool):
+		var accessibles = Array[Tile]
+		if thisOneOk: accessibles.push_back(tile)
+		var availableNeighbors = grid.neighbors(tile).filter(func(t:Tile): return grid.elevationDifference(elevation, t) <= jump)
+		for n_tile in availableNeighbors:
+			accessibles.append_array(moveCheck(moveLeft-tile.moveReduction(types), n_tile, types, team, tile.pos.z, jump))
+		return accessibles
+	)
+
+	# Empty if not enough move left
+	if moveLeft < tile.moveReduction(types):
+		if !tile.occupiable.occupied: return [tile]
+		else: return []
+	# In the case where the tile is occupiable
+	elif !tile.occupiable.occupant:
+		return findSurrounding.call(true)
+	elif tile.occupiable.occupant and tile.occupiable.occupant.team == team:
+		return findSurrounding.call(false)
+	# If it can be flown over
+	elif tile.canFlyOver and types.has("flier"):
+		return findSurrounding.call(false)
+	# If other checks fail
+	else: return []
+
+## Returns a set of tiles which the given unit can move to during this turn. */
+func movementRangeTiles(mover: Units) -> Array[Tile]:
+	# find the location of the moving unit and find their info
+	var locationTile = tileOf(mover)
+	var movementRange = mover.MOVE()
+	var movementType = mover.types
+	var tilesFound: Array[Tile] = []
+	if locationTile:
+		tilesFound.append_array(moveCheck(movementRange, locationTile, movementType, 
+			mover.team, locationTile.position.z, mover.JUMP()))
+		tilesFound.append(locationTile)
+	return tilesFound
+
+## Gives a set of who can a unit attack.
+func attackRangeUnits(mover: Units) -> Array[Units]:
+	# find the location of the moving unit and find their info
+	var location_t = tileOf(mover)
+	var a_range = mover.Range()
+	var unitsFound: Array[Units] = []
+	if location_t:
+		for i in range(a_range.x, a_range.y):
+			unitsFound.append_array(grid.unitsFromTiles(grid.tileInRangeFrom(location_t,i)))
+	return unitsFound
