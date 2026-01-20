@@ -182,12 +182,12 @@ func HP() -> int: return MaxHP() - damageTaken
 func MOVE() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Legs): penalty = 3
-	return (character.move + bonus("move")) / penalty
+	return (character.myClass.stats.move + bonus("move")) / penalty
 # Jump
 func JUMP() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Legs): penalty = 3
-	return (character.move + bonus("jump")) / penalty
+	return (character.stats.jump + bonus("jump")) / penalty
 # Range
 func Range() -> Vector2i:
 	var bonusRange = 0 ##TODO bonus range feature

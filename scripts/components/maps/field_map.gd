@@ -113,31 +113,43 @@ func deployPlayer():
 
 func tileOf(unit: Units) -> Tile:
 	var list_of_tiles = grid.tilesWithUnits()
-	var index = list_of_tiles.find(func(t:Tile): return unit==t.occupiable.occupant)
-	if index == -1: return null
-	return list_of_tiles[index]
+	var found = null
+	for t in list_of_tiles:
+		if unit_is_on_tile(unit,t):
+			found = t
+	return found
+
+func unit_is_on_tile(u:Units,t:Tile) -> bool:
+	return u==t.occupiable.occupant
 
 ## Method for determining the tiles accessible based on movement, current tile and class types.
 ## Used by movementRangeTiles to determine where a unit can move.*/
-func moveCheck(moveLeft: float, tile: Tile, types: Array[String], team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
+func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
+	var reduction = 1
+	var occupiable = tile.occupiable
+	var occupant = null
+	if occupiable:
+		occupiable.moveReduction(types)
+		if occupiable.occupant: occupant = occupiable.occupant
 	# inner lambda
 	var findSurrounding = (func(thisOneOk: bool):
-		var accessibles = Array[Tile]
+		var accessibles: Array[Tile] = []
 		if thisOneOk: accessibles.push_back(tile)
 		var availableNeighbors = grid.neighbors(tile).filter(func(t:Tile): return grid.elevationDifference(elevation, t) <= jump)
 		for n_tile in availableNeighbors:
-			accessibles.append_array(moveCheck(moveLeft-tile.moveReduction(types), n_tile, types, team, tile.pos.z, jump))
+			accessibles.append_array(moveCheck(moveLeft-reduction, n_tile, types, team, tile.position.z, jump))
 		return accessibles
 	)
 
 	# Empty if not enough move left
-	if moveLeft < tile.moveReduction(types):
-		if !tile.occupiable.occupied: return [tile]
+	if occupiable and moveLeft < reduction:
+		if !occupant:
+			return [tile]
 		else: return []
 	# In the case where the tile is occupiable
-	elif !tile.occupiable.occupant:
+	elif !occupant:
 		return findSurrounding.call(true)
-	elif tile.occupiable.occupant and tile.occupiable.occupant.team == team:
+	elif occupant and occupant.team == team:
 		return findSurrounding.call(false)
 	# If it can be flown over
 	elif tile.canFlyOver and types.has("flier"):
@@ -150,7 +162,7 @@ func movementRangeTiles(mover: Units) -> Array[Tile]:
 	# find the location of the moving unit and find their info
 	var locationTile = tileOf(mover)
 	var movementRange = mover.MOVE()
-	var movementType = mover.types
+	var movementType = mover.character.myClass.classType
 	var tilesFound: Array[Tile] = []
 	if locationTile:
 		tilesFound.append_array(moveCheck(movementRange, locationTile, movementType, 

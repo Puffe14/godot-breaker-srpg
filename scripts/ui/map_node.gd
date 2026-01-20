@@ -36,9 +36,6 @@ func draw_tiles(dir: Direction = Direction.UP):
 	# clear all the layers
 	for l: TileMapLayer in layers():
 		l.clear()
-		#l.set_cell()
-		#l.map_to_local()
-		#l.local_to_map()
 	# set a cell in their positions
 	for tile in field_map.grid.tiles:
 		var pos_x = tile.position.x
@@ -54,6 +51,8 @@ func draw_tiles(dir: Direction = Direction.UP):
 		# draw unit
 		if tile and tile.occupiable and tile.occupiable.occupant:
 			var real_pos = layers()[pos_z].map_to_local(translated)
+			var slup = field_map.movementRangeTiles(tile.occupiable.occupant)
+			print(slup)
 			emit_signal("move", position+real_pos*scale+Vector2(0,-tile_height*(pos_z+2)), tile.occupiable.occupant, pos_z, 0)
 		# draw bottoms
 		for z in range(0, pos_z):
