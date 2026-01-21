@@ -34,7 +34,7 @@ func pressed_option() -> Array:
 		options.push_back(Use.new(user,item))
 	# if the item can be thrown away
 	if "discardable" in item and item.discardable:
-		options.push_back("discard")
+		options.push_back(Discard.new(user,item))
 	return options
 	# send it to the menu for creating the sub menu
 #	emit_signal("next_options", options)

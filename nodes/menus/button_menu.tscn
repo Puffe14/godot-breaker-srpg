@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://crdd7l11uuw22"]
+[gd_scene load_steps=6 format=3 uid="uid://crdd7l11uuw22"]
 
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_lerbw"]
 [ext_resource type="Script" uid="uid://6ho420hkl0gv" path="res://nodes/menus/button_menu.gd" id="1_rc8qm"]
-[ext_resource type="PackedScene" uid="uid://u2mbf4a6qepx" path="res://nodes/menus/button_option.tscn" id="3_npdtd"]
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="4_c0ade"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc8qm"]
@@ -60,11 +59,6 @@ horizontal_alignment = 1
 
 [node name="ButtonList" type="VBoxContainer" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Button" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/ButtonList" instance=ExtResource("3_npdtd")]
-layout_mode = 2
-text = "wungus"
-item = ExtResource("4_c0ade")
 
 [node name="Close" type="Button" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2

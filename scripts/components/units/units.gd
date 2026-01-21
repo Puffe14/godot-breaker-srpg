@@ -21,15 +21,15 @@ func _to_string() -> String:
 
 # whether or not a unit has particular abilities
 func canHeal() -> bool:
-	return character.types.has("healer")
+	return character.myClass.classType.has("healer")
 func canBreak() -> bool:
-	return character.types.has("breaker")
+	return character.myClass.classType.has("breaker")
 func canWound() -> bool:
-	return character.types.has("wounder")
+	return character.myClass.classType.has("wounder")
 func canFlies() -> bool:
-	return character.types.has("flier")
+	return character.myClass.classType.has("flier")
 func canTakeSouls() -> bool:
-	return character.types.has("mystic")
+	return character.myClass.classType.has("mystic")
 
 # setters
 func setTeam(newTeam: Team): team = newTeam
@@ -95,7 +95,10 @@ func reduceTemporary():
 
 func woundableParts() -> Array:
 	var total: Array = []
-	## TODO
+	var breaks = breakableParts()
+	for part in Constants.parts:
+		if !breaks.has(part) and !wounds.has(part):
+			total.push_back(part)
 	return total
 func breakableParts() -> Array:
 	return inventory.armors().map(func(a): return a.armor.part)
@@ -142,6 +145,11 @@ func loot() -> Inventory:
 	else:
 		return null
 
+func usable_weapons() -> Array:
+	return inventory.weapons().filter(func(item:Item):
+		return true
+		#TODO item.weapon.rankLetter
+	)
 
 ## Totals together all bonuses given to a particular stat. */
 func bonus(_stat: String) -> int:
@@ -192,7 +200,7 @@ func JUMP() -> int:
 func Range() -> Vector2i:
 	var bonusRange = 0 ##TODO bonus range feature
 	if inventory.equippedWeapon():
-		var wrange = inventory.equippedWeapon().wrange
+		var wrange = inventory.equippedWeapon().weapon.wrange
 		return Vector2i(wrange.x, wrange.y + bonusRange)
 	else: return Vector2i(0,0)
 

@@ -40,7 +40,7 @@ func tilesWithUnits() -> Array[Tile]:
 func unitsOnTiles() -> Array[Units]:
 	return tilesWithUnits().map(func(t:Tile): return t.occupiable.occupant)
 
-func unitsFromTiles(tileList: Array[Tile]) -> Array[Units]:
+func unitsFromTiles(tileList: Array[Tile]) -> Array:#[Units]:
 	var temp = tileList.filter(func(t: Tile): return t.occupiable!=null)
 	temp = temp.filter(func(t:Tile): return t.occupiable.occupant!=null)
 	return temp.map(func(t:Tile): return t.occupiable.occupant)

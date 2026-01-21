@@ -34,6 +34,15 @@ var type_dict = {
 	Type.Wound: "wound"
 }
 
+func copy() -> Combat:
+	var new_copy = self.duplicate()
+	return new_copy
+
+func recreate(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Constants.BodyPart.Head) -> Combat:
+	var new_copy = copy()
+	new_copy._init(_a, _b, _act_range, _part)
+	return new_copy
+
 func everyoneLived() -> bool:
 	return selected.isAlive() && targeted.isAlive()
 func inCounterRange() -> bool:
@@ -54,7 +63,7 @@ func targetedAttacks() -> int:
 	elif speed_diff < -Rules.doubleDiff: return 2
 	else: return 1
 
-func _init(_a: Units = null, _b: Units = null, _act_range: int = 1) -> void:
+func _init(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Constants.BodyPart.Head) -> void:
 	animate.connect(on_animate_sent)
 	time_passed = 0
 	selected = _a

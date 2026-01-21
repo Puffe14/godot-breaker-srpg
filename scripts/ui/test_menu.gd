@@ -4,6 +4,8 @@ extends Node
 @export var map: MapNode = null
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
+var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
+
 
 func _process(_delta: float) -> void:
 	for u in $FightSelector.units:
@@ -16,6 +18,7 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	$FightSelector.refresh()
 	combat.animate.connect(animate)
+	#game.animate.connect(animate)
 
 func _on_test_timer_timeout() -> void:
 	var a = $FightSelector.unitA()
@@ -52,6 +55,12 @@ func move(pos: Vector2, unit: Units, index: int, delay: float):
 
 func tile_sent_selected(tile: Tile):
 	game.selectTile(tile)
+	$Control/Label.text = str(tile)
 
 func on_game_update():
-	map.draw_tiles()
+	map.draw_tiles(map.direction)
+	var menu = pre_button_menu.instantiate()
+	#menu.new_menu([game.acting])
+	menu.new_menu(game.availableActions(game.acting))
+	$Control/Label.text = str(game.acting)
+	$Control.add_child(menu)

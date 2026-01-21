@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene load_steps=21 format=3 uid="uid://dnny6nhd45x0s"]
 
 [ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
 [ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://test_fight_selector.tscn" id="2_0k4wn"]
@@ -10,12 +10,14 @@
 [ext_resource type="Script" uid="uid://djci7nw8gativ" path="res://scripts/components/game/game.gd" id="3_g8g3n"]
 [ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_iotk1"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="3_jix8l"]
+[ext_resource type="Resource" uid="uid://c6wjn0immhcsg" path="res://resources/data/combat/break.tres" id="3_oiatc"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="4_glbon"]
+[ext_resource type="Resource" uid="uid://b4gpmj6l0pvke" path="res://resources/data/combat/attack.tres" id="4_mg3m2"]
 [ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="5_0o4t1"]
 [ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="5_nlkkf"]
+[ext_resource type="Resource" uid="uid://cyn5xbj75eyib" path="res://resources/data/combat/wound.tres" id="6_ojb7r"]
 [ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="6_qe12f"]
 [ext_resource type="SpriteFrames" uid="uid://duodoahfamvmo" path="res://resources/images/animation/cylna.tres" id="8_0k4wn"]
-[ext_resource type="PackedScene" uid="uid://crdd7l11uuw22" path="res://nodes/menus/button_menu.tscn" id="15_cm266"]
 
 [sub_resource type="Resource" id="Resource_cm266"]
 script = ExtResource("2_w44g7")
@@ -23,6 +25,9 @@ metadata/_custom_type_script = "uid://dt5e46asuae27"
 
 [sub_resource type="Resource" id="Resource_8u0te"]
 script = ExtResource("3_g8g3n")
+regular_combat = ExtResource("4_mg3m2")
+wound_combat = ExtResource("6_ojb7r")
+break_combat = ExtResource("3_oiatc")
 metadata/_custom_type_script = "uid://djci7nw8gativ"
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer", "map")]
@@ -91,8 +96,6 @@ offset_top = 62.0
 offset_right = 477.0
 offset_bottom = 94.0
 text = "Update"
-
-[node name="Control2" parent="." instance=ExtResource("15_cm266")]
 
 [connection signal="move" from="MapNode" to="." method="move"]
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]

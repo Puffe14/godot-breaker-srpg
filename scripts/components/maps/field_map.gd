@@ -11,6 +11,16 @@ class_name FieldMap extends Resource
 @export var joining: Array[Units] = []
 @export var events: Array[Event] = []
 
+class UTR:
+	var unit: Units
+	var tile: Tile
+	var dist: int
+	func _init(_unit: Units, _tile: Tile, _dist: int):
+		unit = _unit
+		tile = _tile
+		dist = _dist
+
+
 func tickTurn():
 	turnNumber += 1
 
@@ -184,3 +194,15 @@ func attackRangeUnits(mover: Units) -> Array[Units]:
 		for i in range(a_range.x, a_range.y):
 			unitsFound.append_array(grid.unitsFromTiles(grid.tileInRangeFrom(location_t,i)))
 	return unitsFound
+
+## Gives a set of who can a unit can attack from a tile.
+func unitsInRangeAt(mover: Units, tile: Tile, a_range: Vector2i) -> Array[UTR]:
+	# find the location of the moving unit and find their info
+	var utrFound: Array[UTR] = []
+	if tile:
+		for i in range(a_range.x, a_range.y+1):
+			var unit_list = grid.unitsFromTiles(grid.tileInRangeFrom(tile,i))
+			for unit in unit_list:
+				utrFound.push_back(UTR.new(unit, tile, i))
+		#if utrFound.has(mover): utrFound.erase(mover)
+	return utrFound
