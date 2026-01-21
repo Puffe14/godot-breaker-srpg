@@ -5,7 +5,7 @@ extends Node
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
-
+var current_action = null
 
 func _process(_delta: float) -> void:
 	for u in $FightSelector.units:
@@ -14,11 +14,20 @@ func _process(_delta: float) -> void:
 	var b = $FightSelector.unitB()
 	a.visible = true
 	b.visible = true
+	if !game.queue.is_empty():
+		current_action = game.queue.pop_front()
+		current_action.move.connect(move_to_tile)
+		current_action.play()
+
 
 func _ready() -> void:
 	$FightSelector.refresh()
-	combat.animate.connect(animate)
+	#combat.animate.connect(animate)
 	#game.animate.connect(animate)
+	#game.move.connect(move_to_tile)
+
+# M: Topic selection opens tommorow
+# O: Oh fuck...
 
 func _on_test_timer_timeout() -> void:
 	var a = $FightSelector.unitA()
@@ -33,7 +42,7 @@ func _on_test_timer_timeout() -> void:
 	#game.selected.connect(on_selected_tile)
 	game.currentMap = map.field_map
 	game.update.connect(on_game_update)
-
+	
 	var slup = map.field_map.movementRangeTiles(a.unit)
 	print(slup)
 	for i: Tile in slup:
@@ -53,14 +62,22 @@ func move(pos: Vector2, unit: Units, index: int, delay: float):
 		if u.unit == unit:
 			u.play_move(pos, index, delay)
 
+func move_to_tile(location: Tile, unit: Units, delay: float):
+	var pos = map.tile_translated_to_v2(location)
+	print("moving to tile "+str(location.position))
+	move(pos, unit, location.position.z, delay)
+
 func tile_sent_selected(tile: Tile):
 	game.selectTile(tile)
 	$Control/Label.text = str(tile)
 
 func on_game_update():
-	map.draw_tiles(map.direction)
+	#map.draw_tiles(map.direction)
 	var menu = pre_button_menu.instantiate()
 	#menu.new_menu([game.acting])
 	menu.new_menu(game.availableActions(game.acting))
 	$Control/Label.text = str(game.acting)
 	$Control.add_child(menu)
+
+func cancel_pressed():
+	game.acting = null

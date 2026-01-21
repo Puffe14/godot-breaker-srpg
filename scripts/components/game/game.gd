@@ -15,7 +15,7 @@ var target: Units = null
 var bout: Combat = null
 var forecast: Forecast = null
 var part: Constants.BodyPart = Constants.BodyPart.Head
-var stack: Array[Action] = []
+var queue: Array[Action] = []
 
 @export var regular_combat: Combat
 @export var wound_combat: Combat
@@ -26,7 +26,8 @@ signal selected(thing)
 signal inspected(thing)
 signal update
 
-## Decides what happens when a tile is selected. */
+
+## Decides what happens when a tile is selected.
 func selectTile(tile: Tile) -> void:
 	var occupiable = tile.occupiable
 	var occupant = null
@@ -48,14 +49,16 @@ func selectTile(tile: Tile) -> void:
 	# Move acting unit to given tile
 	elif occupiable and acting:
 		#unitToTile(o)
-		currentMap.moveTo(acting, tile)
+		move_to(acting, tile)
 		update.emit()
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
-		inspected.emit(null)
-		selected.emit(availableActions(acting))
 
+### ACTIONS INTO STACK ###
+
+func move_to(unit: Units, tile: Tile):
+	queue.push_back(Move.new(unit, currentMap, tile))
 
 ### ACTION AVAILABILITY ###
 

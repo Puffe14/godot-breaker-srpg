@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://mnt78qxjtldn"
 
 [sub_resource type="Resource" id="Resource_k0t0v"]
 script = ExtResource("2_77vox")
-position = Vector3i(1, 1, 1)
+position = Vector3i(1, 1, 0)
 occupiable = SubResource("Resource_7e72v")
 metadata/_custom_type_script = "uid://ct50js1epx5n4"
 
@@ -78,6 +78,8 @@ metadata/_custom_type_script = "uid://ct50js1epx5n4"
 [sub_resource type="Resource" id="Resource_vd0kk"]
 script = ExtResource("1_axjk8")
 tiles = Array[ExtResource("2_77vox")]([SubResource("Resource_82wo5"), SubResource("Resource_grtpj"), SubResource("Resource_pu50u"), SubResource("Resource_k0t0v"), SubResource("Resource_ghn50"), SubResource("Resource_0r4a4")])
+row = 3
+column = 3
 metadata/_custom_type_script = "uid://c7nwqx20hdnw2"
 
 [resource]

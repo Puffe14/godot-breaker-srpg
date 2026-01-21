@@ -7,6 +7,9 @@ class_name UnitNode extends Node2D
 var timer: Timer = Timer.new()
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 
+func set_node(unit: Units):
+	pass
+
 func _ready() -> void:
 	if frames:
 		$Sprite2D.visible = false

@@ -11,7 +11,6 @@ var skill_diff: int = 0
 var forecast: Forecast = null
 var events: Array[ComFunc] = []
 var time_passed: float = 0
-signal animate(anim: String, unit: Units, delay: float)
 
 @export var select_attacks_start = -1
 @export var target_attacks_start = -1
@@ -119,6 +118,7 @@ func play() -> Explain:
 				selectedStrikes()
 			else:
 				targetedStrikes()
+	stop.emit()
 	return Explain.new("")
 
 

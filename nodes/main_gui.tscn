@@ -1,0 +1,30 @@
+[gd_scene load_steps=9 format=3 uid="uid://1ujjcngqv86f"]
+
+[ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
+[ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
+[ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="2_spby4"]
+[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_spby4"]
+[ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="5_lw646"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="6_4lkkm"]
+[ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="7_qdy25"]
+[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="8_mvnht"]
+
+[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map")]
+script = ExtResource("1_q7ebc")
+map = NodePath("MapNode")
+game = ExtResource("2_spby4")
+
+[node name="MapNode" parent="." instance=ExtResource("2_7wb8r")]
+position = Vector2(336, 202)
+scale = Vector2(3, 3)
+field_map = ExtResource("3_spby4")
+
+[node name="UnitNodeList" type="Node" parent="."]
+
+[node name="Node2D" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+unit = ExtResource("6_4lkkm")
+frames = ExtResource("7_qdy25")
+
+[node name="Node2D2" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+unit = ExtResource("8_mvnht")
+frames = ExtResource("7_qdy25")

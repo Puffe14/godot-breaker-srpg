@@ -27,16 +27,27 @@ func layers() -> Array:
 
 func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")
-	#joku.sort_custom(sort_tiles_pos_x_y)
-	for i: int in range(0,joku.size()):
-		var tile_node: TileNode = joku[i]
-		var tile: Tile = field_map.grid.tiles[i]
+	for jokin in joku:
+		var tile_node: TileNode = jokin
+		var pos_z = tile_node.z_index
+		var pos = layers()[pos_z].local_to_map(tile_node.position)
+		# rotate pos back to 0 rotation
+		pos = translate_back_dir(pos)
+		var tile: Tile = field_map.grid.get_tile_v(pos)
 		tile_node.tile = tile
 		tile.show_move.connect(tile_node.show_move_sprite)
 		tile_node._ready()
+	#joku.sort_custom(sort_tiles_pos_x_y)
+	#for i: int in range(0,joku.size()):
+		#var tile_node: TileNode = joku[i]
+		#var tile: Tile = field_map.grid.tiles[i]
+		#tile_node.tile = tile
+		#tile.show_move.connect(tile_node.show_move_sprite)
+		#tile_node._ready()
 
 func draw_tiles(dir: Direction = Direction.UP):
 	var translated: Vector2i = Vector2i(1,1)
+	direction = dir
 	if !field_map: return
 	# clear all the layers
 	for l: TileMapLayer in layers():
@@ -82,3 +93,31 @@ func get_child_at_v3(vec: Vector3i) -> Node:
 		if tn.tile and tn.tile.position == vec:
 			found = tn
 	return found
+
+func tile_translated_to_v2(tile: Tile) -> Vector2:
+	var pos_x = tile.position.x
+	var pos_y = tile.position.y
+	var pos_z = tile.position.z
+	var translated: Vector2
+	# translate to rotation
+	match direction:
+		Direction.UP: translated = Vector2i(pos_x,pos_y)
+		Direction.RIGHT: translated = Vector2i(-pos_y,pos_x)
+		Direction.DOWN: translated = Vector2i(-pos_x,-pos_y)
+		Direction.LEFT: translated = Vector2i(pos_y,-pos_x)
+	layers()[pos_z].set_cell(translated,0,Vector2i(0,0),1)
+	# draw unit
+	var real_pos = layers()[pos_z].map_to_local(translated)
+	return position+real_pos*scale+Vector2(0,-tile_height*(pos_z+2))
+
+func translate_back_dir(v: Vector2i):
+	var pos_x = v.x
+	var pos_y = v.y
+	var translated: Vector2i
+	# translate to rotation
+	match direction:
+		Direction.UP: translated = Vector2i(pos_x,pos_y)
+		Direction.RIGHT: translated = Vector2i(pos_y,-pos_x)
+		Direction.DOWN: translated = Vector2i(-pos_x,-pos_y)
+		Direction.LEFT: translated = Vector2i(-pos_y,pos_x)
+	return translated

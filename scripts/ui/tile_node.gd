@@ -37,5 +37,5 @@ func on_selected():
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed('select'):
-		print('clicked!')
+		print('clicked!'+str(tile.position))
 		on_selected()

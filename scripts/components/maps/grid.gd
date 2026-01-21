@@ -12,7 +12,12 @@ func get_tile(x: int, y: int) -> Tile:
 		return null
 
 func get_tile_v(v: Vector2i) -> Tile:
-	return get_tile(v.x, v.y)
+	#return get_tile(v.x, v.y)
+	var found = null
+	for t in tiles:
+		if t.position.x == v.x and t.position.y == v.y:
+			found = t
+	return found
 
 
 #func tileAt(x: Int, y: Int): Option[Tile] =

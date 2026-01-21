@@ -8,6 +8,12 @@ var weapon = null
 var actLength: float = 1.0
 # explain
 var explain = Explain.new("")
+
+# universal signals
+signal move(location: Tile, unit: Units, delay: float)
+signal animate(anim: String, unit: Units, delay: float)
+signal stop
+
 # play out the effects of the given function
 @abstract
 func play() -> Explain
