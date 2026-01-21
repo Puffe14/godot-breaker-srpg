@@ -8,6 +8,8 @@ class_name Tile extends Resource
 @export var interactible: Interactible
 @export var occupiable: Occupiable
 
+signal show_move(show: bool)
+
 ## give new Vector3i position
 func setPos(x: int, y: int, z: int) -> void:
 	position = Vector3i(x, y, z)
@@ -26,3 +28,9 @@ func spendSoul():
 
 func has_dead() -> bool:
 	return occupiable and occupiable.occupant and occupiable.occupant.isDead()
+
+func emit_show_move(value: bool) -> void:
+	emit_signal("show_move", value)
+
+func _to_string() -> String:
+	return tile_name + ": " +str(position)

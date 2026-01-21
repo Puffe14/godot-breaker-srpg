@@ -1,6 +1,8 @@
 extends Node
 @export var timer: Timer = null
 @export var combat: Combat = null
+@export var map: MapNode = null
+@export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 
 func _process(_delta: float) -> void:
@@ -25,6 +27,19 @@ func _on_test_timer_timeout() -> void:
 	print(forecast.aEV, forecast.arrow(), forecast.bEV)
 	combat.play()
 
+	#game.selected.connect(on_selected_tile)
+	game.currentMap = map.field_map
+	game.update.connect(on_game_update)
+
+	var slup = map.field_map.movementRangeTiles(a.unit)
+	print(slup)
+	for i: Tile in slup:
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			node.show_move_sprite(true)
+			node.selected_tile.connect(tile_sent_selected)
+		#i.emit_show_move(true)
+
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
 	for u in get_tree().get_nodes_in_group("unit"):
 		if u.unit == unit:
@@ -34,3 +49,9 @@ func move(pos: Vector2, unit: Units, index: int, delay: float):
 	for u in get_tree().get_nodes_in_group("unit"):
 		if u.unit == unit:
 			u.play_move(pos, index, delay)
+
+func tile_sent_selected(tile: Tile):
+	game.selectTile(tile)
+
+func on_game_update():
+	map.draw_tiles()

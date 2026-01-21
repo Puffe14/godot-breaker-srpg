@@ -1,7 +1,7 @@
 class_name MapNode extends Node2D
 
 @export var field_map: FieldMap = null
-@export var layer_count = 3
+@export var layer_count = 4
 @export var tile_height = 16
 @export var tile_width = 32
 var layer_node = preload("res://nodes/maps/default_map_layer.tscn")
@@ -16,6 +16,7 @@ func _ready() -> void:
 	for i in range(0, layer_count):
 		var new_layer_node = layer_node.instantiate()
 		add_child(new_layer_node)
+		@warning_ignore("integer_division")
 		new_layer_node.position.y -= i*(tile_height/2)
 		new_layer_node.z_index = i
 	# create tiles
@@ -26,9 +27,13 @@ func layers() -> Array:
 
 func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")
+	#joku.sort_custom(sort_tiles_pos_x_y)
 	for i: int in range(0,joku.size()):
-		joku[i].tile = field_map.grid.tiles[i]
-		joku[i]._ready()
+		var tile_node: TileNode = joku[i]
+		var tile: Tile = field_map.grid.tiles[i]
+		tile_node.tile = tile
+		tile.show_move.connect(tile_node.show_move_sprite)
+		tile_node._ready()
 
 func draw_tiles(dir: Direction = Direction.UP):
 	var translated: Vector2i = Vector2i(1,1)
@@ -36,11 +41,14 @@ func draw_tiles(dir: Direction = Direction.UP):
 	# clear all the layers
 	for l: TileMapLayer in layers():
 		l.clear()
+	# sort tiles
+	var tiles_sorted = field_map.grid.tiles
+	#tiles_sorted.sort_custom(sort_tiles_pos_x_y)
 	# set a cell in their positions
-	for tile in field_map.grid.tiles:
+	for tile in tiles_sorted:
 		var pos_x = tile.position.x
 		var pos_y = tile.position.y
-		var pos_z = tile.position.y
+		var pos_z = tile.position.z
 		# translate to rotation
 		match dir:
 			Direction.UP: translated = Vector2i(pos_x,pos_y)
@@ -51,8 +59,6 @@ func draw_tiles(dir: Direction = Direction.UP):
 		# draw unit
 		if tile and tile.occupiable and tile.occupiable.occupant:
 			var real_pos = layers()[pos_z].map_to_local(translated)
-			var slup = field_map.movementRangeTiles(tile.occupiable.occupant)
-			print(slup)
 			emit_signal("move", position+real_pos*scale+Vector2(0,-tile_height*(pos_z+2)), tile.occupiable.occupant, pos_z, 0)
 		# draw bottoms
 		for z in range(0, pos_z):
@@ -65,3 +71,14 @@ func _on_spin_box_value_changed(value: float) -> void:
 
 func _on_update_button_pressed() -> void:
 	set_tiles_in_nodes()
+
+func sort_tiles_pos_x_y(a, b) -> bool:
+	return a.position.y < b.position.y or a.position.x < b.position.x
+
+func get_child_at_v3(vec: Vector3i) -> Node:
+	var children = get_tree().get_nodes_in_group("tile")
+	var found = null
+	for tn in children:
+		if tn.tile and tn.tile.position == vec:
+			found = tn
+	return found

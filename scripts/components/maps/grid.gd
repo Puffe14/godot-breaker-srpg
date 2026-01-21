@@ -52,13 +52,18 @@ func addUnitAt(unit: Units, coords: Vector2i):
 	else: print("cannot be occupied")
 
 func neighbor(v: Vector2i, nv: Vector2i) -> bool:
-	return (v == nv+Vector2i.UP or v == nv+Vector2i.DOWN or v == nv+Vector2i.RIGHT or v == nv+Vector2i.LEFT)
+	return (v == nv+Vector2i.UP or
+	 v == nv+Vector2i.DOWN or
+	 v == nv+Vector2i.RIGHT or
+	 v == nv+Vector2i.LEFT)
 
 func neighbors(chosenTile: Tile) -> Array[Tile]:
 	var x = chosenTile.position.x
 	var y = chosenTile.position.y
 	var total = tiles.filter(func(n):
-		return neighbor(Vector2i(x,y), Vector2i(n.position.x, n.position.y)))
+		var trueness: bool = neighbor(Vector2i(x,y), Vector2i(n.position.x, n.position.y))
+		return trueness
+		)
 	return total
 
 #func visibleTiles(direction: int) -> Array[Tile] =

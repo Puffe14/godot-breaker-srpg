@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene load_steps=19 format=3 uid="uid://dnny6nhd45x0s"]
 
 [ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
 [ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://test_fight_selector.tscn" id="2_0k4wn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dt5e46asuae27" path="res://scripts/components/combat/combat.gd" id="2_w44g7"]
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://de7gdtad33xrs" path="res://resources/images/units/warrior_idle.png" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://djci7nw8gativ" path="res://scripts/components/game/game.gd" id="3_g8g3n"]
 [ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_iotk1"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="3_jix8l"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="4_glbon"]
@@ -20,10 +21,16 @@
 script = ExtResource("2_w44g7")
 metadata/_custom_type_script = "uid://dt5e46asuae27"
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer")]
+[sub_resource type="Resource" id="Resource_8u0te"]
+script = ExtResource("3_g8g3n")
+metadata/_custom_type_script = "uid://djci7nw8gativ"
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer", "map")]
 script = ExtResource("1_glbon")
 timer = NodePath("TestTimer")
 combat = SubResource("Resource_cm266")
+map = NodePath("MapNode")
+game = SubResource("Resource_8u0te")
 
 [node name="MapNode" parent="." instance=ExtResource("2_j5v2v")]
 position = Vector2(336, 202)

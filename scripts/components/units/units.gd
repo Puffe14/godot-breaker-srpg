@@ -187,7 +187,7 @@ func MOVE() -> int:
 func JUMP() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Legs): penalty = 3
-	return (character.stats.jump + bonus("jump")) / penalty
+	return (character.myClass.stats.jump + bonus("jump")) / penalty
 # Range
 func Range() -> Vector2i:
 	var bonusRange = 0 ##TODO bonus range feature

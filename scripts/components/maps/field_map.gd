@@ -55,8 +55,8 @@ func moveTo(unit: Units, target: Tile) -> void:
 			former.occupiable.removeOccupant()
 		# add to new target tile
 		target.occupiable.addOccupant(unit)
-		if target.occupiable.containsSoul && unit.canTakeSouls():
-			target.occupiable.spendSoul()
+		if target.interactible and target.interactible.containsSoul() && unit.canTakeSouls():
+			target.interactible.spendSoul()
 			unit.weapon.fix_full()
 	else: print(target," cannot be occupied")
 
@@ -125,6 +125,8 @@ func unit_is_on_tile(u:Units,t:Tile) -> bool:
 ## Method for determining the tiles accessible based on movement, current tile and class types.
 ## Used by movementRangeTiles to determine where a unit can move.*/
 func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
+	if moveLeft < 0:
+		return []
 	var reduction = 1
 	var occupiable = tile.occupiable
 	var occupant = null
@@ -137,7 +139,9 @@ func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elev
 		if thisOneOk: accessibles.push_back(tile)
 		var availableNeighbors = grid.neighbors(tile).filter(func(t:Tile): return grid.elevationDifference(elevation, t) <= jump)
 		for n_tile in availableNeighbors:
-			accessibles.append_array(moveCheck(moveLeft-reduction, n_tile, types, team, tile.position.z, jump))
+			for new_tile: Tile in moveCheck(moveLeft-reduction, n_tile, types, team, tile.position.z, jump):
+				if !accessibles.has(new_tile):
+					accessibles.push_back(new_tile)
 		return accessibles
 	)
 
