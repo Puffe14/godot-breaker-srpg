@@ -3,10 +3,12 @@ class_name ButtonOption extends Button
 ## any item stored within the button
 @export var item = null
 @export var user: Units = null
+var game: Game = null
 signal next_options(array: Array)
 
-func _init(_item = null, _user = null) -> void:
+func _init(_game: Game, _item = null, _user = null) -> void:
 	text = str(_item)
+	game = _game
 	if item == null:
 		item = _item
 	if user == null:
@@ -16,7 +18,7 @@ func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead
 	if item.has_method("play"):
-		item.play()
+		game.add_to_stack(item)
 		return []
 	## create sub menu options
 	# if the item has an inventory

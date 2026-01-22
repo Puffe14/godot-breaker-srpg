@@ -16,7 +16,10 @@ func _process(_delta: float) -> void:
 	b.visible = true
 	if !game.queue.is_empty():
 		current_action = game.queue.pop_front()
-		current_action.move.connect(move_to_tile)
+		if current_action:# and !current_action.animate.is_connected(animate):
+			current_action.animate.connect(animate)
+			current_action.move.connect(move_to_tile)
+		# now play
 		current_action.play()
 
 
@@ -29,7 +32,7 @@ func _ready() -> void:
 # M: Topic selection opens tommorow
 # O: Oh fuck...
 
-func _on_test_timer_timeout() -> void:
+func _on_test_timer_timeout_figth_select() -> void:
 	var a = $FightSelector.unitA()
 	var b = $FightSelector.unitB()
 	a.unit.damageTaken = 0
@@ -37,20 +40,27 @@ func _on_test_timer_timeout() -> void:
 	combat.renit(a.unit, b.unit, 1)
 	var forecast = combat.forecast
 	print(forecast.aEV, forecast.arrow(), forecast.bEV)
-	combat.play()
-
+	#combat.play()
+func _on_test_timer_timeout() -> void:
 	#game.selected.connect(on_selected_tile)
 	game.currentMap = map.field_map
-	game.update.connect(on_game_update)
-	
-	var slup = map.field_map.movementRangeTiles(a.unit)
+	if !game.update.is_connected(on_game_update):
+		game.update.connect(on_game_update)
+
+	for i: Tile in game.currentMap.grid.tiles:
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			if !node.selected_tile.is_connected(tile_sent_selected):
+				node.selected_tile.connect(tile_sent_selected)
+			node.show_move_sprite(false)
+
+	# display movement area
+	var slup = map.field_map.movementRangeTiles(game.acting)
 	print(slup)
 	for i: Tile in slup:
 		var node = map.get_child_at_v3(i.position)
 		if node:
 			node.show_move_sprite(true)
-			node.selected_tile.connect(tile_sent_selected)
-		#i.emit_show_move(true)
 
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
 	for u in get_tree().get_nodes_in_group("unit"):
@@ -75,9 +85,12 @@ func on_game_update():
 	#map.draw_tiles(map.direction)
 	var menu = pre_button_menu.instantiate()
 	#menu.new_menu([game.acting])
+	menu.game = game
 	menu.new_menu(game.availableActions(game.acting))
 	$Control/Label.text = str(game.acting)
-	$Control.add_child(menu)
+	for i in $Control/MenuControl.get_children():
+		i.queue_free()
+	$Control/MenuControl.add_child(menu)
 
 func cancel_pressed():
 	game.acting = null

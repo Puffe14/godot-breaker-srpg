@@ -173,6 +173,7 @@ func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elev
 
 ## Returns a set of tiles which the given unit can move to during this turn. */
 func movementRangeTiles(mover: Units) -> Array[Tile]:
+	if !mover: return []
 	# find the location of the moving unit and find their info
 	var locationTile = tileOf(mover)
 	var movementRange = mover.MOVE()

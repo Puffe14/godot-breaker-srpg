@@ -39,6 +39,7 @@ func selectTile(tile: Tile) -> void:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
+		update.emit()
 		selected.emit(availableActions(acting))
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
@@ -49,8 +50,8 @@ func selectTile(tile: Tile) -> void:
 	# Move acting unit to given tile
 	elif occupiable and acting:
 		#unitToTile(o)
-		move_to(acting, tile)
-		update.emit()
+		if currentMap.movementRangeTiles(acting).has(tile):
+			move_to(acting, tile)
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
@@ -59,6 +60,11 @@ func selectTile(tile: Tile) -> void:
 
 func move_to(unit: Units, tile: Tile):
 	queue.push_back(Move.new(unit, currentMap, tile))
+
+func add_to_stack(action: Action, unit: Units = null):
+	if unit and action.location:
+		move_to(unit, action.location)
+	queue.push_back(action)
 
 ### ACTION AVAILABILITY ###
 

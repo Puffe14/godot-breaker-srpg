@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1ujjcngqv86f"]
+[gd_scene load_steps=11 format=3 uid="uid://1ujjcngqv86f"]
 
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
@@ -8,6 +8,10 @@
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="6_4lkkm"]
 [ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="7_qdy25"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="8_mvnht"]
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="9_cu6kq"]
+
+[sub_resource type="Theme" id="Theme_4lkkm"]
+default_font_size = 32
 
 [node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map")]
 script = ExtResource("1_q7ebc")
@@ -28,3 +32,48 @@ frames = ExtResource("7_qdy25")
 [node name="Node2D2" parent="UnitNodeList" instance=ExtResource("5_lw646")]
 unit = ExtResource("8_mvnht")
 frames = ExtResource("7_qdy25")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 412.0
+offset_right = 319.0
+offset_bottom = 638.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HUD/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("9_cu6kq")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HUD/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Title"
+horizontal_alignment = 1
+
+[node name="StatList" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HideRect" type="ColorRect" parent="HUD/MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)

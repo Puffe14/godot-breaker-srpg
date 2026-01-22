@@ -50,6 +50,13 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Hallo"
 
+[node name="MenuControl" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 32.0
+offset_right = 50.0
+offset_bottom = 72.0
+
 [node name="Node2D" parent="." instance=ExtResource("2_7vrkn")]
 position = Vector2(48, 77)
 unit = ExtResource("3_8qtwp")

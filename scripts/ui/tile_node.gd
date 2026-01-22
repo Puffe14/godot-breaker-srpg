@@ -35,7 +35,10 @@ func show_move_sprite(move_visibility: bool):
 func on_selected():
 	selected_tile.emit(tile)
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if Input.is_action_just_pressed('select'):
-		print('clicked!'+str(tile.position))
+		if tile:
+			print('clicked!'+str(tile.position))
+		else:
+			print('not connected!')
 		on_selected()

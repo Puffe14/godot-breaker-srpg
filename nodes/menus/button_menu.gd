@@ -7,6 +7,7 @@ var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 @export var title: Label
 @export var user: Units = null
 var childed = false
+var game: Game = null
 signal closed
 
 func _ready() -> void:
@@ -25,13 +26,14 @@ func new_menu(options: Array) -> void:
 		close_this_menu()
 	if !childed:
 		var new_button_menu = pre_button_menu.instantiate()
+		new_button_menu.game = game
 		menu_h_container.add_child(new_button_menu)
 		new_button_menu.closed.connect(reopen_parent_menu)
 		childed = true
 		hider_rect.visible = true
 		# give correct buttons to submenu
 		for option in options:
-			var button_option = ButtonOption.new(option, user)
+			var button_option = ButtonOption.new(game, option, user)
 			new_button_menu.button_list_container.add_child(button_option)
 		new_button_menu.connect_buttons()
 
@@ -47,6 +49,4 @@ func reopen_parent_menu():
 func update_options():
 	var button_list = button_list_container.get_children()
 	for b: ButtonOption in button_list:
-		#if !b.item:
-		#	b.queue_free()
-		b._init(b.item, b.user)
+		b._init(game, b.item, b.user)

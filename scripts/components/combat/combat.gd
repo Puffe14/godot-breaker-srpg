@@ -63,7 +63,8 @@ func targetedAttacks() -> int:
 	else: return 1
 
 func _init(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Constants.BodyPart.Head) -> void:
-	animate.connect(on_animate_sent)
+	if !animate.is_connected(on_animate_sent):
+		animate.connect(on_animate_sent)
 	time_passed = 0
 	selected = _a
 	targeted = _b
