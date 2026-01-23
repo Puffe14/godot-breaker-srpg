@@ -7,10 +7,14 @@ var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 
 func _ready() -> void:
 	map.move.connect(move)
+	game.currentMap = map.field_map
+	map.draw_tiles(map.direction)
+	map.set_tiles_in_nodes()
 	
 
 func _process(_delta):
-	game.currentMap = map.field_map
+	connect_tile_nodes()
+	show_movement_range()
 	if game.queue.is_empty(): return
 	var current_action: Action = game.queue.pop_front()
 	current_action.animate.connect(animate)
@@ -38,8 +42,26 @@ func tile_sent_selected(tile: Tile):
 	game.selectTile(tile)
 	$Control/Label.text = str(tile)
 
+func connect_tile_nodes():
+	for i: Tile in game.currentMap.grid.tiles:
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			if !node.selected_tile.is_connected(tile_sent_selected):
+				node.selected_tile.connect(tile_sent_selected)
+			node.show_move_sprite(false)
+
+func show_movement_range():
+	# display movement area
+	for i: Tile in map.field_map.movementRangeTiles(game.acting):
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			node.show_move_sprite(true)
+
+
 func on_game_update():
 	map.draw_tiles(map.direction)
+	map.set_tiles_in_nodes()
+
 	var menu = pre_button_menu.instantiate()
 	#menu.new_menu([game.acting])
 	menu.new_menu(game.availableActions(game.acting))

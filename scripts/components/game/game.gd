@@ -32,14 +32,14 @@ func selectTile(tile: Tile) -> void:
 	var occupiable = tile.occupiable
 	var occupant = null
 	if occupiable:
-		if occupiable.occupant: occupant = occupiable.occupant
+		if occupiable.occupant:
+			occupant = occupiable.occupant
 	
 	# If the character is selected again and it's not their turn
 	if occupiable and acting and acting.team!=turnOf:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
-		update.emit()
 		selected.emit(availableActions(acting))
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
@@ -55,6 +55,7 @@ func selectTile(tile: Tile) -> void:
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
+	update.emit()
 
 ### ACTIONS INTO STACK ###
 
@@ -121,4 +122,5 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 		total.append_array(combats)
 		heals.append_array(combats)
 		uses.append_array(combats)
+	total.push_back(Wait.new(unit))
 	return total

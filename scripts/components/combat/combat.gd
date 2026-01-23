@@ -188,3 +188,6 @@ func num_to_str(num: int) -> String:
 	else: msg += "-"
 	msg += str(num)
 	return msg
+
+func _to_string() -> String:
+	return type_dict[combat_type] + ": " + selected.character.myName + "->" + targeted.character.myName

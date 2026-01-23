@@ -41,12 +41,16 @@ func _on_test_timer_timeout_figth_select() -> void:
 	var forecast = combat.forecast
 	print(forecast.aEV, forecast.arrow(), forecast.bEV)
 	#combat.play()
+
 func _on_test_timer_timeout() -> void:
 	#game.selected.connect(on_selected_tile)
 	game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
+	connect_tile_nodes()
+	show_movement_range()
 
+func connect_tile_nodes():
 	for i: Tile in game.currentMap.grid.tiles:
 		var node = map.get_child_at_v3(i.position)
 		if node:
@@ -54,10 +58,9 @@ func _on_test_timer_timeout() -> void:
 				node.selected_tile.connect(tile_sent_selected)
 			node.show_move_sprite(false)
 
+func show_movement_range():
 	# display movement area
-	var slup = map.field_map.movementRangeTiles(game.acting)
-	print(slup)
-	for i: Tile in slup:
+	for i: Tile in map.field_map.movementRangeTiles(game.acting):
 		var node = map.get_child_at_v3(i.position)
 		if node:
 			node.show_move_sprite(true)
@@ -82,9 +85,12 @@ func tile_sent_selected(tile: Tile):
 	$Control/Label.text = str(tile)
 
 func on_game_update():
+	connect_tile_nodes()
+	show_movement_range()
+
 	#map.draw_tiles(map.direction)
-	var menu = pre_button_menu.instantiate()
 	#menu.new_menu([game.acting])
+	var menu = pre_button_menu.instantiate()
 	menu.game = game
 	menu.new_menu(game.availableActions(game.acting))
 	$Control/Label.text = str(game.acting)
