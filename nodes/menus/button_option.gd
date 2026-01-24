@@ -18,7 +18,7 @@ func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead
 	if item.has_method("play"):
-		game.add_to_stack(item)
+		game.add_to_stack(item, user)
 		return []
 	## create sub menu options
 	# if the item has an inventory

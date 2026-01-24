@@ -8,15 +8,17 @@
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="6_4lkkm"]
 [ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="7_qdy25"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="8_mvnht"]
-[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="9_cu6kq"]
+[ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
+[ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
 
-[sub_resource type="Theme" id="Theme_4lkkm"]
-default_font_size = 32
-
-[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map")]
+[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_spby4")
+hud_node = NodePath("HUD")
+menu_node = NodePath("HUD/MenuControl")
+unit_container = NodePath("HUD/UnitContainer")
+tile_container = NodePath("HUD/TileContainer")
 
 [node name="MapNode" parent="." instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
@@ -39,41 +41,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+[node name="UnitContainer" parent="HUD" instance=ExtResource("9_4lkkm")]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 412.0
-offset_right = 319.0
-offset_bottom = 638.0
+offset_left = 12.0
+offset_top = 406.0
+offset_right = 296.0
+offset_bottom = 632.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HUD/MarginContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-texture = ExtResource("9_cu6kq")
-region_rect = Rect2(0, 0, 32, 32)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+[node name="TileContainer" parent="HUD" instance=ExtResource("10_4lkkm")]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 565.0
+offset_right = 1136.0
+offset_bottom = 632.0
 
-[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="HUD/MarginContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_4lkkm")
-text = "Title"
-horizontal_alignment = 1
-
-[node name="StatList" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HideRect" type="ColorRect" parent="HUD/MarginContainer"]
-visible = false
-layout_mode = 2
-color = Color(0, 0, 0, 0.6392157)
+[node name="MenuControl" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

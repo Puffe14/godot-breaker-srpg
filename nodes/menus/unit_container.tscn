@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://c73exgfedhbd7"]
+
+[ext_resource type="Script" uid="uid://ddg2of0p5ik6o" path="res://scripts/ui/unit_container.gd" id="1_altb7"]
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="2_nu1ys"]
+
+[sub_resource type="Theme" id="Theme_4lkkm"]
+default_font_size = 32
+
+[node name="UnitContainer" type="MarginContainer" node_paths=PackedStringArray("title", "stat_container")]
+offset_left = 35.0
+offset_top = 412.0
+offset_right = 319.0
+offset_bottom = 638.0
+script = ExtResource("1_altb7")
+title = NodePath("PanelContainer/VBoxContainer/Title")
+stat_container = NodePath("PanelContainer/VBoxContainer/HFlowContainer")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("2_nu1ys")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title2" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title3" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title4" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title5" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title6" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="HideRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)

@@ -12,8 +12,8 @@ func occupied() -> bool:
 	return occupant !=  null
 
 func addOccupant(newUnit: Units) -> void:
-	if occupied():
-		print("Adding Occupant "+newUnit.name+" failed. Tile already has "+occupant.name)
+	if occupied() and occupant != newUnit:
+		print("Adding Occupant "+newUnit.character.myName+" failed. Tile already has "+occupant.character.myName)
 	else:
 		occupant = newUnit
 

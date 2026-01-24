@@ -4,15 +4,26 @@ class_name MainGUI extends Node2D
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
+@export var hud_node: Control = null
+@export var menu_node: Control = null
+@export var unit_container: UnitContainer = null
+@export var tile_container: TileContainer = null
 
 func _ready() -> void:
 	map.move.connect(move)
 	game.currentMap = map.field_map
+	game.update.connect(on_game_update)
 	map.draw_tiles(map.direction)
-	map.set_tiles_in_nodes()
+	draw_and_set_tiles()
 	
-
+var set = false
 func _process(_delta):
+	game.currentMap = map.field_map
+	if !game.update.is_connected(on_game_update):
+		game.update.connect(on_game_update)
+	#if !set:
+	#	set = true
+	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
 	if game.queue.is_empty(): return
@@ -21,6 +32,7 @@ func _process(_delta):
 	current_action.move.connect(move)
 	await current_action.stop
 
+### UNIT NODE HANDLING ###
 
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
 	for u in get_tree().get_nodes_in_group("unit"):
@@ -36,11 +48,11 @@ func move_to_tile(location: Tile, unit: Units, delay: float):
 	var pos = map.tile_translated_to_v2(location)
 	move(pos, unit, location.position.z, delay)
 
-
+### TILE NODE HANDING ###
 
 func tile_sent_selected(tile: Tile):
 	game.selectTile(tile)
-	$Control/Label.text = str(tile)
+	tile_container._ready(tile)
 
 func connect_tile_nodes():
 	for i: Tile in game.currentMap.grid.tiles:
@@ -57,13 +69,27 @@ func show_movement_range():
 		if node:
 			node.show_move_sprite(true)
 
-
-func on_game_update():
+func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
 	map.set_tiles_in_nodes()
 
-	var menu = pre_button_menu.instantiate()
-	#menu.new_menu([game.acting])
-	menu.new_menu(game.availableActions(game.acting))
-	$Control/Label.text = str(game.acting)
-	$Control.add_child(menu)
+func on_game_update():
+	draw_and_set_tiles()
+	unit_container._ready(game.acting)
+	if game.acting == game.target:
+		free_children(menu_node)
+		var menu = pre_button_menu.instantiate()
+		menu.game = game
+		menu.new_menu([game.acting])
+		menu_node.add_child(menu)
+	elif game.target:
+		free_children(menu_node)
+		var menu = pre_button_menu.instantiate()
+		menu.game = game
+		menu.user = game.acting
+		menu.new_menu(game.availableActions(game.acting))
+		hud_node.add_child(menu)
+
+func free_children(node) -> void:
+	for child in node.get_children():
+		child.queue_free()

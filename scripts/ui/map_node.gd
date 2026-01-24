@@ -35,7 +35,8 @@ func set_tiles_in_nodes():
 		pos = translate_back_dir(pos)
 		var tile: Tile = field_map.grid.get_tile_v(pos)
 		tile_node.tile = tile
-		tile.show_move.connect(tile_node.show_move_sprite)
+		if !tile.show_move.is_connected(tile_node.show_move_sprite):
+			tile.show_move.connect(tile_node.show_move_sprite)
 		tile_node._ready()
 	#joku.sort_custom(sort_tiles_pos_x_y)
 	#for i: int in range(0,joku.size()):

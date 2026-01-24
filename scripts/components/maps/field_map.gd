@@ -61,7 +61,7 @@ func moveTo(unit: Units, target: Tile) -> void:
 	var former = tileOf(unit)
 	if target.occupiable:
 		# remove from previous
-		if former.occupiable:
+		if former and former.occupiable:
 			former.occupiable.removeOccupant()
 		# add to new target tile
 		target.occupiable.addOccupant(unit)

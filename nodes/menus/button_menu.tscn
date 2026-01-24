@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://crdd7l11uuw22"]
+[gd_scene load_steps=5 format=3 uid="uid://crdd7l11uuw22"]
 
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_lerbw"]
 [ext_resource type="Script" uid="uid://6ho420hkl0gv" path="res://nodes/menus/button_menu.gd" id="1_rc8qm"]
-[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="4_c0ade"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc8qm"]
 bg_color = Color(0.19076231, 0.19076234, 0.19076222, 0.4745098)
@@ -24,7 +23,6 @@ button_list_container = NodePath("HMenuContainer/MarginContainer/PanelContainer/
 menu_h_container = NodePath("HMenuContainer")
 hider_rect = NodePath("HMenuContainer/MarginContainer/HideRect")
 title = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/Title")
-user = ExtResource("4_c0ade")
 
 [node name="HMenuContainer" type="HBoxContainer" parent="."]
 layout_mode = 0

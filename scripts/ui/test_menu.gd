@@ -92,7 +92,8 @@ func on_game_update():
 	#menu.new_menu([game.acting])
 	var menu = pre_button_menu.instantiate()
 	menu.game = game
-	menu.new_menu(game.availableActions(game.acting))
+	menu.user = game.acting
+	menu.new_menu(game.availableActions(game.acting, true))
 	$Control/Label.text = str(game.acting)
 	for i in $Control/MenuControl.get_children():
 		i.queue_free()

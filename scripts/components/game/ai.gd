@@ -6,16 +6,16 @@ var groupsLeft: Array[Group] = []
 var currentUnit: Units = null
 
 func _init(_game: Game = null) -> void:
-    game = _game
+	game = _game
 
 ## Called to make the AI act and continue going through groups*/
 func play():
-    if (currentGroup || currentGroup.doneActing) and !groupsLeft.is_empty():
-        currentGroup = nextGroup()
-    if currentGroup.doneActing():
-        currentGroup = null
-    if currentGroup:                                       
-        continue_group(currentGroup)
+	if (currentGroup || currentGroup.doneActing) and !groupsLeft.is_empty():
+		currentGroup = nextGroup()
+	if currentGroup.doneActing():
+		currentGroup = null
+	if currentGroup:                                       
+		continue_group(currentGroup)
 
   ## Gives a random item [T] from a collection.*/
 #func randomFrom[T, C[T] <: collection.Seq[T]](thingCollection: C[T]): T =
@@ -52,28 +52,28 @@ func play():
 
   ## Adds Groups next action to the action queue of the game.*/
 func continue_group(g: Group):
-    var actAndGo: Array[Action] = []
-    #match selectNextAction(g):
-    #  case Some(c: Combat) =>
-    #    game.move(c.select) match
-    #      #  In case the character needs to move
-    #      case Some(move) =>
-    #        move.location = c.location
-    #        Vector(move, c)
-    #      #  If no movement takes place
-    #      case _ => Vector(c)
-    #  case Some(a: Action) =>
-    #    Vector(a)
-    #  case _ => Vector()
-    actAndGo.push_back(unitBestAction(g.haveNotActed().pop_front()))
-    addToStack(actAndGo)
+	var actAndGo: Array[Action] = []
+	#match selectNextAction(g):
+	#  case Some(c: Combat) =>
+	#    game.move(c.select) match
+	#      #  In case the character needs to move
+	#      case Some(move) =>
+	#        move.location = c.location
+	#        Vector(move, c)
+	#      #  If no movement takes place
+	#      case _ => Vector(c)
+	#  case Some(a: Action) =>
+	#    Vector(a)
+	#  case _ => Vector()
+	actAndGo.push_back(unitBestAction(g.haveNotActed().pop_front()))
+	addToStack(actAndGo)
 
   
 
 # !!! could I add a way to track action priority based on if hp is critical or so on?
 ### Checks the best action for a unit*/
 func unitBestAction(u: Units) -> Action:
-    return game.availableActions(u).pop_front()
+	return game.availableActions(u).pop_front()
 #    var chosen: Vector[Action] = Vector()
 #    #  equip the first weapon&medkit, all armor in inventory
 #    u.equipFirst()
@@ -135,12 +135,12 @@ func unitBestAction(u: Units) -> Action:
 #
   ##  Add action to the stack of the game. */
 func addToStack(actions: Array[Action]):
-    for act in actions:
-        game.add_to_stack(act)
+	for act in actions:
+		game.add_to_stack(act)
 
 
 func nextGroup():
-    currentGroup = groupsLeft.pop_back()
+	currentGroup = groupsLeft.pop_back()
 
 #func checkGroupCondition() = ()
 #

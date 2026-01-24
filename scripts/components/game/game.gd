@@ -55,6 +55,8 @@ func selectTile(tile: Tile) -> void:
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
+	else:
+		acting = null
 	update.emit()
 
 ### ACTIONS INTO STACK ###
@@ -88,18 +90,19 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 				#  possible breaks
 				if unit.canBreak():
 					for b in utr.unit.breakableParts():
-						combats.push_back(break_combat.recreate(unit, utr.unit, utr.dist, b))
+						newActions.push_back(break_combat.recreate(unit, utr.unit, utr.dist, b))
 				#  possible wounds
 				if unit.canWound():
 					for b in utr.unit.woundableParts():
-						combats.push_back(wound_combat.recreate(unit, utr.unit, utr.dist, b))
+						newActions.push_back(wound_combat.recreate(unit, utr.unit, utr.dist, b))
 				#  combine all of them with basic Combat
-				combats.push_back(regular_combat.recreate(unit, utr.unit, utr.dist))
+				newActions.push_back(regular_combat.recreate(unit, utr.unit, utr.dist))
 				for na in newActions:
 					# Sets where these actions are happening so that a correct Move is made.
-					na.location = utr.tile
+					na.location = tile
 					# Sets the weapon used when the actions happen
 					na.weapon = weapon
+				total.append_array(newActions)
   
 		var heals = [] #(for medkit <- unit.usableMedkits yield # Medkits that the character could use
 #fm.movementRangeTiles(unit) # On movement range tiles --Tiles
