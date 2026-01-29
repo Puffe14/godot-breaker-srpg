@@ -5,6 +5,7 @@ var currentMapNumber: int = 1
 var currentMap: FieldMap = null
 var midBattle: bool = false
 var changeMap: bool = false
+var currentTurn: int = 0
 # Who is doing what to whom?
 var turnOf: Units.Team = Units.Team.Player
 var player: Organisation = null
@@ -16,6 +17,7 @@ var bout: Combat = null
 var forecast: Forecast = null
 var part: Constants.BodyPart = Constants.BodyPart.Head
 var queue: Array[Action] = []
+var ai = AI.new()
 
 @export var regular_combat: Combat
 @export var wound_combat: Combat
@@ -57,6 +59,12 @@ func selectTile(tile: Tile) -> void:
 		acting = occupant
 	else:
 		acting = null
+		target = null
+	update.emit()
+
+func deSelect():
+	acting = null
+	target = null
 	update.emit()
 
 ### ACTIONS INTO STACK ###
@@ -64,10 +72,14 @@ func selectTile(tile: Tile) -> void:
 func move_to(unit: Units, tile: Tile):
 	queue.push_back(Move.new(unit, currentMap, tile))
 
-func add_to_stack(action: Action, unit: Units = null):
+func add_to_queue(action: Action, unit: Units = null):
 	if unit and action.location:
 		move_to(unit, action.location)
 	queue.push_back(action)
+
+func add_array_to_queue(array: Array[Action]):
+	for action in array:
+		add_to_queue(action)
 
 ### ACTION AVAILABILITY ###
 
@@ -103,7 +115,7 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					# Sets the weapon used when the actions happen
 					na.weapon = weapon
 				total.append_array(newActions)
-  
+
 		var heals = [] #(for medkit <- unit.usableMedkits yield # Medkits that the character could use
 #fm.movementRangeTiles(unit) # On movement range tiles --Tiles
 #.flatMap(tile=>(fm.attackRangeUnitsAt(unit,tile,medkit.range)))
@@ -127,3 +139,81 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 		uses.append_array(combats)
 	total.push_back(Wait.new(unit))
 	return total
+
+
+### TURN HANDLING ###
+
+func place_player() -> void:
+	if player:
+		currentMap.setPlayer(player)
+		currentMap.deployPlayer()
+		currentMap.setLeaders()
+
+func nextMap():
+	pass
+
+func turnCountUp():
+	pass
+
+func refreshAll():
+	pass
+
+func isBattleOver() -> bool:
+	var over = !midBattle
+	if currentMap:
+		if currentMap.isLost():
+			over = true
+			add_to_queue(GameOver.new())
+		if currentMap.isCleared():
+			over = true
+			add_to_queue(MapWon.new())
+	return over
+
+## Called when the turn is continuing.
+func handle_turn() -> void:
+	# Next map if everything is over.
+	if changeMap && queue.is_empty():
+		nextMap()
+		changeMap = false
+	# all groups on a particular side on the current map
+	var groupsWithTurn: Array[Group] = []
+	if currentMap:
+		if currentMap.player != player:
+			place_player()
+		currentMap.clearDead()
+		groupsWithTurn = currentMap.groups().filter(func(n): return n.side==turnOf)
+		currentTurn = currentMap.turnNumber
+		add_array_to_queue(currentMap.eventCheck())
+
+	# If the AI has no groups to control yet, give them all to the AI so it can handle them
+	if turnOf!=Units.Team.Player && queue.is_empty():
+		var groupsLeft = groupsWithTurn.filter(func(g: Group): return !g.doneActing())
+		if ai.currentGroup and !groupsLeft.is_empty():
+			ai.game = self
+			ai.groupsLeft = groupsLeft.iterator
+		ai.play()
+
+
+	# if the turn of the current team is over: change to the next teams turn.
+	if groupsWithTurn.all(func(n): return n.doneActing()) and queue.is_empty():
+		refreshAll()
+		match(turnOf):
+			Units.Team.Player:
+				turnOf = Units.Team.Enemy
+			Units.Team.Enemy:
+				turnOf = Units.Team.Ally
+			Units.Team.Ally:
+				turnCountUp()
+				turnOf = Units.Team.Player
+		deSelect()
+		for group in groupsWithTurn: group.handleLeader()
+		for group in groupsWithTurn: group.reduceTemporary() # reduce temporary status effects
+		currentMap.giveBonuses(true) # hurt or heal tile effects and bonuses
+		
+	# stun all non player groups if their leader dies
+	for group in currentMap.groups():
+		group.stunLeaderless()
+
+	# change maps if the battle is over
+	if !changeMap:
+		changeMap = isBattleOver()

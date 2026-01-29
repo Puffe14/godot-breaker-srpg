@@ -76,19 +76,18 @@ func draw_and_set_tiles():
 func on_game_update():
 	draw_and_set_tiles()
 	unit_container._ready(game.acting)
+	free_children(menu_node)
 	if game.acting == game.target:
-		free_children(menu_node)
 		var menu = pre_button_menu.instantiate()
 		menu.game = game
 		menu.new_menu([game.acting])
 		menu_node.add_child(menu)
 	elif game.target:
-		free_children(menu_node)
 		var menu = pre_button_menu.instantiate()
 		menu.game = game
 		menu.user = game.acting
 		menu.new_menu(game.availableActions(game.acting))
-		hud_node.add_child(menu)
+		menu_node.add_child(menu)
 
 func free_children(node) -> void:
 	for child in node.get_children():

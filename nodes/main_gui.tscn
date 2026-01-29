@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1ujjcngqv86f"]
+[gd_scene load_steps=13 format=3 uid="uid://1ujjcngqv86f"]
 
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
@@ -9,7 +9,12 @@
 [ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="7_qdy25"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="8_mvnht"]
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
+[ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
 [ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
+
+[sub_resource type="Theme" id="Theme_mvnht"]
+default_font = ExtResource("9_qdy25")
+/fonts/font = ExtResource("9_qdy25")
 
 [node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
@@ -40,13 +45,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = SubResource("Theme_mvnht")
 
 [node name="UnitContainer" parent="HUD" instance=ExtResource("9_4lkkm")]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 406.0
-offset_right = 296.0
-offset_bottom = 632.0
+offset_left = 850.0
+offset_top = 12.0
+offset_right = 1134.0
+offset_bottom = 238.0
 
 [node name="TileContainer" parent="HUD" instance=ExtResource("10_4lkkm")]
 layout_mode = 0

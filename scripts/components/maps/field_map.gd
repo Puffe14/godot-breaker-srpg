@@ -30,6 +30,9 @@ func eventCheck() -> Array[Action]:
 		actions.append_array(event.trigger(self))
 	return actions
 
+func setPlayer(_player: Organisation):
+	player = _player
+
 func setLeaders():
 	var leadGroups = enemies
 	for group in leadGroups:
