@@ -1,94 +1,32 @@
-[gd_resource type="Resource" script_class="FieldMap" load_steps=26 format=3 uid="uid://ck2g62guljqbd"]
+[gd_resource type="Resource" script_class="FieldMap" load_steps=12 format=3 uid="uid://ck2g62guljqbd"]
 
 [ext_resource type="Script" uid="uid://puvu5m1h8ffy" path="res://scripts/components/maps/field_map.gd" id="1_6a2bk"]
-[ext_resource type="Script" uid="uid://c7nwqx20hdnw2" path="res://scripts/components/maps/grid.gd" id="1_axjk8"]
 [ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="1_ny7gg"]
-[ext_resource type="Script" uid="uid://ct50js1epx5n4" path="res://scripts/components/tiles/tile.gd" id="2_77vox"]
 [ext_resource type="Script" uid="uid://cdouyaimvdgrx" path="res://scripts/components/maps/event.gd" id="2_vd0kk"]
-[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="3_82wo5"]
-[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_grtpj"]
-[ext_resource type="Script" uid="uid://mnt78qxjtldn" path="res://scripts/components/tiles/occupiable.gd" id="4_pu50u"]
-[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="5_pu50u"]
+[ext_resource type="Resource" uid="uid://bwesf2unxmke3" path="res://resources/data/test_group_e.tres" id="3_k0t0v"]
+[ext_resource type="Resource" uid="uid://dpk3ugti86ktq" path="res://resources/data/test_group_set.tres" id="5_pu50u"]
+[ext_resource type="Resource" uid="uid://djh5vm7oim1mr" path="res://resources/data/test_grid.tres" id="6_k0t0v"]
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="9_vcrps"]
 [ext_resource type="Script" uid="uid://cjlqy5rlp8ji7" path="res://scripts/components/maps/condition.gd" id="10_u2i03"]
 
-[sub_resource type="Resource" id="Resource_o8ble"]
-script = ExtResource("1_ny7gg")
-members = Array[ExtResource("9_vcrps")]([ExtResource("3_82wo5"), ExtResource("5_pu50u")])
-side = 2
-metadata/_custom_type_script = "uid://crqgat2qr076t"
-
-[sub_resource type="Resource" id="Resource_vcrps"]
-script = ExtResource("4_pu50u")
-occupant = ExtResource("3_grtpj")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
-
-[sub_resource type="Resource" id="Resource_82wo5"]
-script = ExtResource("2_77vox")
-occupiable = SubResource("Resource_vcrps")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_u2i03"]
-script = ExtResource("4_pu50u")
-occupant = ExtResource("3_82wo5")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
-
-[sub_resource type="Resource" id="Resource_grtpj"]
-script = ExtResource("2_77vox")
-position = Vector3i(1, 0, 0)
-occupiable = SubResource("Resource_u2i03")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_8p05g"]
-script = ExtResource("4_pu50u")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
-
-[sub_resource type="Resource" id="Resource_pu50u"]
-script = ExtResource("2_77vox")
-position = Vector3i(0, 1, 0)
-occupiable = SubResource("Resource_8p05g")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_7e72v"]
-script = ExtResource("4_pu50u")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
-
 [sub_resource type="Resource" id="Resource_k0t0v"]
-script = ExtResource("2_77vox")
-position = Vector3i(1, 1, 0)
-occupiable = SubResource("Resource_7e72v")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_hloux"]
-script = ExtResource("4_pu50u")
-occupant = ExtResource("5_pu50u")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
+script = ExtResource("10_u2i03")
+metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
 
 [sub_resource type="Resource" id="Resource_ghn50"]
-script = ExtResource("2_77vox")
-position = Vector3i(2, 0, 0)
-occupiable = SubResource("Resource_hloux")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_ny7gg"]
-script = ExtResource("4_pu50u")
-metadata/_custom_type_script = "uid://mnt78qxjtldn"
+script = ExtResource("10_u2i03")
+metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
 
 [sub_resource type="Resource" id="Resource_0r4a4"]
-script = ExtResource("2_77vox")
-position = Vector3i(2, 2, 1)
-occupiable = SubResource("Resource_ny7gg")
-metadata/_custom_type_script = "uid://ct50js1epx5n4"
-
-[sub_resource type="Resource" id="Resource_vd0kk"]
-script = ExtResource("1_axjk8")
-tiles = Array[ExtResource("2_77vox")]([SubResource("Resource_82wo5"), SubResource("Resource_grtpj"), SubResource("Resource_pu50u"), SubResource("Resource_k0t0v"), SubResource("Resource_ghn50"), SubResource("Resource_0r4a4")])
-row = 3
-column = 3
-metadata/_custom_type_script = "uid://c7nwqx20hdnw2"
+script = ExtResource("10_u2i03")
+metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
 
 [resource]
 script = ExtResource("1_6a2bk")
-grid = SubResource("Resource_vd0kk")
-enemies = Array[ExtResource("1_ny7gg")]([SubResource("Resource_o8ble")])
+grid = ExtResource("6_k0t0v")
+group_set = ExtResource("5_pu50u")
+enemies = [ExtResource("3_k0t0v")]
+clearCondition = SubResource("Resource_k0t0v")
+loseConditions = Array[ExtResource("10_u2i03")]([SubResource("Resource_ghn50"), SubResource("Resource_0r4a4")])
+deployment = Array[Vector2i]([Vector2i(0, 0)])
 metadata/_custom_type_script = "uid://puvu5m1h8ffy"

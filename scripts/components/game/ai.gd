@@ -5,17 +5,18 @@ var currentGroup: Group = null
 var groupsLeft: Array[Group] = []
 var currentUnit: Units = null
 
-func _init(_game: Game = null) -> void:
+func set_game(_game: Game = null) -> void:
 	game = _game
 
 ## Called to make the AI act and continue going through groups*/
 func play():
-	if (currentGroup || currentGroup.doneActing) and !groupsLeft.is_empty():
-		currentGroup = nextGroup()
-	if currentGroup.doneActing():
-		currentGroup = null
+	#if (currentGroup and currentGroup.doneActing) and !groupsLeft.is_empty():
+	#	currentGroup = nextGroup()
+	#if currentGroup and currentGroup.doneActing():
+	#	currentGroup = null
 	if currentGroup:                                       
 		continue_group(currentGroup)
+	print("ai out")
 
   ## Gives a random item [T] from a collection.*/
 #func randomFrom[T, C[T] <: collection.Seq[T]](thingCollection: C[T]): T =
@@ -65,15 +66,16 @@ func continue_group(g: Group):
 	#  case Some(a: Action) =>
 	#    Vector(a)
 	#  case _ => Vector()
-	actAndGo.push_back(unitBestAction(g.haveNotActed().pop_front()))
-	addToStack(actAndGo)
+	var actor = g.haveNotActed().pop_front()
+	actAndGo.push_back(unitBestAction(actor))
+	addToQueue(actAndGo, actor)
 
   
 
 # !!! could I add a way to track action priority based on if hp is critical or so on?
 ### Checks the best action for a unit*/
 func unitBestAction(u: Units) -> Action:
-	return game.availableActions(u).pop_front()
+	return game.availableActions(u, true).pop_front()
 #    var chosen: Vector[Action] = Vector()
 #    #  equip the first weapon&medkit, all armor in inventory
 #    u.equipFirst()
@@ -134,9 +136,9 @@ func unitBestAction(u: Units) -> Action:
 #    action
 #
   ##  Add action to the stack of the game. */
-func addToStack(actions: Array[Action]):
+func addToQueue(actions: Array[Action], actor: Units):
 	for act in actions:
-		game.add_to_stack(act)
+		game.add_to_queue(act, actor)
 
 
 func nextGroup():

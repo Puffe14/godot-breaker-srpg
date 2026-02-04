@@ -1,8 +1,9 @@
 class_name FieldMap extends Resource
 
 @export var grid: Grid = null
-@export var enemies: Array[Group]
-@export var allies: Array[Group]
+@export var group_set: GroupSet = null
+@export var enemies: Array[Group] = []
+@export var allies: Array[Group] = []
 @export var player: Organisation
 @export var clearCondition: Condition
 @export var loseConditions: Array[Condition]
@@ -20,6 +21,9 @@ class UTR:
 		tile = _tile
 		dist = _dist
 
+func set_group() -> void:
+	enemies = group_set.enemies
+	allies = group_set.allies
 
 func tickTurn():
 	turnNumber += 1
@@ -39,7 +43,7 @@ func setLeaders():
 		group.setLeader()
 
 func isCleared() -> bool:
-	return clearCondition.met(self)
+	return clearCondition and clearCondition.met(self)
 
 func isLost() -> bool:
 	var lost = false
@@ -49,6 +53,8 @@ func isLost() -> bool:
 
 ## TODO BONUSES
 
+func giveBonuses(boo: bool):
+	pass
 
 ### UNIT & GROUP HANDLING ###
 
@@ -82,18 +88,18 @@ func clearDead() -> void:
 	### TODO giveBonuses(false)
 
 ## Array of all units on the grid
-func all_units() -> Array[Units]:
+func all_units() -> Array:
 	return grid.unitsFromTiles(grid.tiles)
 
 ## Array of units on given team
-func unitsOnTeam(team: Units.Team) -> Array[Units]:
+func unitsOnTeam(team: Units.Team) -> Array:
 	return all_units().filter(func(u:Units): return u.team==team)
 
 ## all groups on field
 func groups() -> Array[Group]:
-	var groups_found = enemies
+	var groups_found = enemies.duplicate()
 	groups_found.append_array(allies)
-	groups_found.push_back(player.group)
+#	if player: groups_found.push_back(player.group)
 	return groups_found
 
 func deploymentTiles() -> Array[Tile]:
@@ -114,11 +120,12 @@ func addUnitListToDeployed(units: Array[Units]):
 ## Place player characters onto the deployment tiles on the map.*/
 func deployPlayer():
 	var tiles = deploymentTiles()
-	var deployed = player.deployed.slice(tiles.size)
-	for unit in unitsOnTeam(Units.Team.Player): # Get any "player" team characters on map
+	var deployed = player.deployed.slice(0,tiles.size())
+	# Get any "player" team characters on map
+	for unit in unitsOnTeam(Units.Team.Player):
 		addUnitToPlayerDeployed(unit)        	# and add them to the player deployds.
 	for i in range(0, deployed.size()):
-		tiles[i].addOccupant(deployed[i])   	# Add the characters chosen to be deployed onto the
+		tiles[i].occupiable.addOccupant(deployed[i])   	# Add the characters chosen to be deployed onto the
 		deployed[i].setTeam(Units.Team.Player)  # deployment map and set their team to player.
 
 

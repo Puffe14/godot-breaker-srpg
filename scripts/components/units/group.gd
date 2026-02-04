@@ -6,7 +6,7 @@ enum Behaviour {Agressive, Stand, OnSight, Reach, Control, Erratic}
 @export var side: Units.Team
 @export var condition_met: bool = false
 
-func _init(_members: Array[Units], _behaviour: Behaviour, _side: Units.Team, _condition: bool = false):
+func set_new(_members: Array[Units], _behaviour: Behaviour, _side: Units.Team, _condition: bool = false):
 	members = _members
 	behaviour = _behaviour
 	side = _side
@@ -24,7 +24,7 @@ func living_members() -> Array:
 
 ## true if all members are done
 func doneActing() -> bool:
-	return haveNotActed().is_empty()
+	return false #haveNotActed().is_empty()
 
 func changeSide(newSide: Units.Team):
 	side = newSide
@@ -42,3 +42,7 @@ func setLeader():
 
 func higherLevel(a,b) -> bool:
 	return a.lvl() > b.lvl()
+
+func stunLeaderless():
+	for unit in living_members():
+		pass ##TODO

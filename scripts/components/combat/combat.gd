@@ -120,6 +120,7 @@ func play() -> Explain:
 			else:
 				targetedStrikes()
 	stop.emit()
+	selected.endTurn()
 	return Explain.new("")
 
 

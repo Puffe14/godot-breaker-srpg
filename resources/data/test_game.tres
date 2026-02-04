@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Game" load_steps=5 format=3 uid="uid://52m2blhp25hg"]
+[gd_resource type="Resource" script_class="Game" load_steps=7 format=3 uid="uid://52m2blhp25hg"]
 
 [ext_resource type="Resource" uid="uid://c6wjn0immhcsg" path="res://resources/data/combat/break.tres" id="1_gs87y"]
+[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="2_6kqxf"]
 [ext_resource type="Resource" uid="uid://b4gpmj6l0pvke" path="res://resources/data/combat/attack.tres" id="2_viwja"]
 [ext_resource type="Script" uid="uid://djci7nw8gativ" path="res://scripts/components/game/game.gd" id="3_6kqxf"]
+[ext_resource type="Resource" uid="uid://hhck1amffjja" path="res://resources/data/test_player.tres" id="3_7qyjo"]
 [ext_resource type="Resource" uid="uid://cyn5xbj75eyib" path="res://resources/data/combat/wound.tres" id="4_7qyjo"]
 
 [resource]
 script = ExtResource("3_6kqxf")
+currentMap = ExtResource("2_6kqxf")
+player = ExtResource("3_7qyjo")
 regular_combat = ExtResource("2_viwja")
 wound_combat = ExtResource("4_7qyjo")
 break_combat = ExtResource("1_gs87y")

@@ -2,13 +2,13 @@ class_name Game extends Resource
 
 # Map in question
 var currentMapNumber: int = 1
-var currentMap: FieldMap = null
+@export var currentMap: FieldMap = null
 var midBattle: bool = false
 var changeMap: bool = false
 var currentTurn: int = 0
 # Who is doing what to whom?
-var turnOf: Units.Team = Units.Team.Player
-var player: Organisation = null
+var turnOf: Units.Team = Units.Team.Enemy
+@export var player: Organisation = null
 var acting: Units = null
 var target: Units = null
 #var inspected: Units = null
@@ -84,7 +84,7 @@ func add_array_to_queue(array: Array[Action]):
 ### ACTION AVAILABILITY ###
 
 func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
-	if !currentMap: return []
+	if !currentMap or ! unit: return []
 	var total: Array[Action] = []
 	var fm = currentMap
 	var possibleWeaponsOrNone = unit.usable_weapons()
@@ -145,18 +145,26 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 
 func place_player() -> void:
 	if player:
+		player.re_group()
 		currentMap.setPlayer(player)
 		currentMap.deployPlayer()
 		currentMap.setLeaders()
 
 func nextMap():
-	pass
+	# TODO
+	currentMapNumber+=1 # Advance to next map
+	turnOf = Units.Team.Player
+	#currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
 
 func turnCountUp():
-	pass
+	if currentMap:
+		currentMap.tickTurn()
+		add_array_to_queue(currentMap.eventCheck())
 
 func refreshAll():
-	pass
+	if currentMap: 
+		for unit in currentMap.all_units():
+			unit.refresh()
 
 func isBattleOver() -> bool:
 	var over = !midBattle
@@ -180,22 +188,23 @@ func handle_turn() -> void:
 	if currentMap:
 		if currentMap.player != player:
 			place_player()
-		currentMap.clearDead()
-		groupsWithTurn = currentMap.groups().filter(func(n): return n.side==turnOf)
+#		currentMap.clearDead()
 		currentTurn = currentMap.turnNumber
 		add_array_to_queue(currentMap.eventCheck())
+	groupsWithTurn = currentMap.groups().filter(func(n): return n.side==turnOf)
 
 	# If the AI has no groups to control yet, give them all to the AI so it can handle them
-	if turnOf!=Units.Team.Player && queue.is_empty():
+	if queue.is_empty():
 		var groupsLeft = groupsWithTurn.filter(func(g: Group): return !g.doneActing())
-		if ai.currentGroup and !groupsLeft.is_empty():
+		if !ai.currentGroup and !groupsLeft.is_empty():
 			ai.game = self
-			ai.groupsLeft = groupsLeft.iterator
-		ai.play()
-
+			ai.groupsLeft = groupsLeft
+			ai.currentGroup = groupsLeft.pop_front()
+		if ai.currentGroup:
+			ai.play()
 
 	# if the turn of the current team is over: change to the next teams turn.
-	if groupsWithTurn.all(func(n): return n.doneActing()) and queue.is_empty():
+	if groupsWithTurn.is_empty() or groupsWithTurn.all(func(n): return n.doneActing()) and queue.is_empty():
 		refreshAll()
 		match(turnOf):
 			Units.Team.Player:
@@ -205,6 +214,7 @@ func handle_turn() -> void:
 			Units.Team.Ally:
 				turnCountUp()
 				turnOf = Units.Team.Player
+		print("turn "+str(currentTurn)+", turn of "+str(turnOf))
 		deSelect()
 		for group in groupsWithTurn: group.handleLeader()
 		for group in groupsWithTurn: group.reduceTemporary() # reduce temporary status effects
@@ -212,8 +222,6 @@ func handle_turn() -> void:
 		
 	# stun all non player groups if their leader dies
 	for group in currentMap.groups():
-		group.stunLeaderless()
-
-	# change maps if the battle is over
+		group.stunLeaderless()	# change maps if the battle is over
 	if !changeMap:
 		changeMap = isBattleOver()

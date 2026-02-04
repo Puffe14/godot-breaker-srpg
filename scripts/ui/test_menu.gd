@@ -44,11 +44,16 @@ func _on_test_timer_timeout_figth_select() -> void:
 
 func _on_test_timer_timeout() -> void:
 	#game.selected.connect(on_selected_tile)
-	game.currentMap = map.field_map
+	#game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
 	connect_tile_nodes()
 	show_movement_range()
+	for u in game.currentMap.all_units():
+		u.damageTaken = 0
+	if game.queue.is_empty():
+		if game.currentMap:
+			game.handle_turn()
 
 func connect_tile_nodes():
 	for i: Tile in game.currentMap.grid.tiles:
