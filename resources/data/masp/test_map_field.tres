@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="FieldMap" load_steps=12 format=3 uid="uid://ck2g62guljqbd"]
+[gd_resource type="Resource" script_class="FieldMap" load_steps=11 format=3 uid="uid://ck2g62guljqbd"]
 
 [ext_resource type="Script" uid="uid://puvu5m1h8ffy" path="res://scripts/components/maps/field_map.gd" id="1_6a2bk"]
 [ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="1_ny7gg"]
 [ext_resource type="Script" uid="uid://cdouyaimvdgrx" path="res://scripts/components/maps/event.gd" id="2_vd0kk"]
 [ext_resource type="Resource" uid="uid://bwesf2unxmke3" path="res://resources/data/test_group_e.tres" id="3_k0t0v"]
-[ext_resource type="Resource" uid="uid://dpk3ugti86ktq" path="res://resources/data/test_group_set.tres" id="5_pu50u"]
 [ext_resource type="Resource" uid="uid://djh5vm7oim1mr" path="res://resources/data/test_grid.tres" id="6_k0t0v"]
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="9_vcrps"]
 [ext_resource type="Script" uid="uid://cjlqy5rlp8ji7" path="res://scripts/components/maps/condition.gd" id="10_u2i03"]
@@ -24,8 +23,7 @@ metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
 [resource]
 script = ExtResource("1_6a2bk")
 grid = ExtResource("6_k0t0v")
-group_set = ExtResource("5_pu50u")
-enemies = [ExtResource("3_k0t0v")]
+enemies = Array[ExtResource("1_ny7gg")]([ExtResource("3_k0t0v")])
 clearCondition = SubResource("Resource_k0t0v")
 loseConditions = Array[ExtResource("10_u2i03")]([SubResource("Resource_ghn50"), SubResource("Resource_0r4a4")])
 deployment = Array[Vector2i]([Vector2i(0, 0)])

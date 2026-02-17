@@ -19,4 +19,5 @@ character = ExtResource("1_cjopm")
 inventory = ExtResource("2_cjopm")
 temporaryStats = SubResource("Resource_mwni4")
 nearbyBonuses = SubResource("Resource_7kfx0")
+team = 1
 metadata/_custom_type_script = "uid://0slpdtksthq2"

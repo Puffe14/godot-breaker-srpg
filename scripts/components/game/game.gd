@@ -3,7 +3,7 @@ class_name Game extends Resource
 # Map in question
 var currentMapNumber: int = 1
 @export var currentMap: FieldMap = null
-var midBattle: bool = false
+var midBattle: bool = true
 var changeMap: bool = false
 var currentTurn: int = 0
 # Who is doing what to whom?
@@ -133,7 +133,8 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 # all possible item uses for character
 		var uses = []
 		for c in unit.inventory.consumables():
-			uses.push_back(Use.new(unit,c)) # use action for each item
+			# use action for each item
+			uses.push_back(Use.new(unit,c))
 		total.append_array(combats)
 		heals.append_array(combats)
 		uses.append_array(combats)
@@ -152,7 +153,8 @@ func place_player() -> void:
 
 func nextMap():
 	# TODO
-	currentMapNumber+=1 # Advance to next map
+	# Advance to next map
+	currentMapNumber+=1
 	turnOf = Units.Team.Player
 	#currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
 
@@ -204,7 +206,7 @@ func handle_turn() -> void:
 			ai.play()
 
 	# if the turn of the current team is over: change to the next teams turn.
-	if groupsWithTurn.is_empty() or groupsWithTurn.all(func(n): return n.doneActing()) and queue.is_empty():
+	if groupsWithTurn.is_empty() or (groupsWithTurn.all(func(n): return n.doneActing())) or queue.is_empty():
 		refreshAll()
 		match(turnOf):
 			Units.Team.Player:
@@ -216,12 +218,16 @@ func handle_turn() -> void:
 				turnOf = Units.Team.Player
 		print("turn "+str(currentTurn)+", turn of "+str(turnOf))
 		deSelect()
+		# handle leader business
 		for group in groupsWithTurn: group.handleLeader()
-		for group in groupsWithTurn: group.reduceTemporary() # reduce temporary status effects
-		currentMap.giveBonuses(true) # hurt or heal tile effects and bonuses
+		# reduce temporary status effects
+		for group in groupsWithTurn: group.reduceTemporary() 
+		# hurt or heal tile effects and bonuses
+		currentMap.giveBonuses(true)
 		
 	# stun all non player groups if their leader dies
 	for group in currentMap.groups():
-		group.stunLeaderless()	# change maps if the battle is over
+		group.stunLeaderless()
+	# change maps if the battle is over
 	if !changeMap:
 		changeMap = isBattleOver()

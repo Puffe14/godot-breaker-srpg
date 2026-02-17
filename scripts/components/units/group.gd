@@ -24,7 +24,8 @@ func living_members() -> Array:
 
 ## true if all members are done
 func doneActing() -> bool:
-	return false #haveNotActed().is_empty()
+	var all_done = haveNotActed().is_empty()
+	return all_done
 
 func changeSide(newSide: Units.Team):
 	side = newSide
@@ -40,9 +41,18 @@ func setLeader():
 		m.setLeader(leader)
 		m.unstun()
 
+func handleLeader():
+	if side == Units.Team.Player: return
+	# else set leader
+	setLeader()
+
 func higherLevel(a,b) -> bool:
 	return a.lvl() > b.lvl()
 
 func stunLeaderless():
 	for unit in living_members():
 		pass ##TODO
+
+func reduceTemporary():
+	for m in members:
+		m.reduceTemporary()

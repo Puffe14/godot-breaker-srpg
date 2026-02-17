@@ -11,4 +11,5 @@ func _init(_unit: Units, _field_map: FieldMap, _location: Tile) -> void:
 func play() -> Explain:
 	field_map.moveTo(unit, location)
 	move.emit(location, unit, 0)
+	update.emit(unit, 0, false)
 	return explain

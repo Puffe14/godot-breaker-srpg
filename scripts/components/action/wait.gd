@@ -9,6 +9,7 @@ func play() -> Explain:
 	unit.endTurn()
 	animate.emit("default",unit,0,"Wait")
 	stop.emit()
+	print(unit," wait")
 	return explain
 
 func _to_string() -> String:

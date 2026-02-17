@@ -12,6 +12,7 @@ var explain = Explain.new("")
 # universal signals
 signal move(location: Tile, unit: Units, delay: float)
 signal animate(anim: String, unit: Units, delay: float)
+signal update(unit: Units, delay: float, dim: bool)
 signal stop
 
 # play out the effects of the given function

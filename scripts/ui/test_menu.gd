@@ -19,8 +19,10 @@ func _process(_delta: float) -> void:
 		if current_action:# and !current_action.animate.is_connected(animate):
 			current_action.animate.connect(animate)
 			current_action.move.connect(move_to_tile)
+			current_action.update.connect(update_unit_node)
 		# now play
-		current_action.play()
+		if current_action:
+			current_action.play()
 
 
 func _ready() -> void:
@@ -28,9 +30,6 @@ func _ready() -> void:
 	#combat.animate.connect(animate)
 	#game.animate.connect(animate)
 	#game.move.connect(move_to_tile)
-
-# M: Topic selection opens tommorow
-# O: Oh fuck...
 
 func _on_test_timer_timeout_figth_select() -> void:
 	var a = $FightSelector.unitA()
@@ -69,6 +68,12 @@ func show_movement_range():
 		var node = map.get_child_at_v3(i.position)
 		if node:
 			node.show_move_sprite(true)
+
+func update_unit_node(unit: Units, delay: float, dim: bool):
+	for u in get_tree().get_nodes_in_group("unit"):
+		if u.unit == unit:
+			u.on_update(delay, dim)
+
 
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
 	for u in get_tree().get_nodes_in_group("unit"):

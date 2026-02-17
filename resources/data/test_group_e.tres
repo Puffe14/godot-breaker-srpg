@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="Group" load_steps=5 format=3 uid="uid://bwesf2unxmke3"]
+[gd_resource type="Resource" script_class="Group" load_steps=4 format=3 uid="uid://bwesf2unxmke3"]
 
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_e4ke7"]
-[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="2_ttwjb"]
-[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="3_sodgp"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="2_efjnn"]
 [ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="4_aoto7"]
 
 [resource]
 script = ExtResource("4_aoto7")
-members = Array[ExtResource("1_e4ke7")]([ExtResource("2_ttwjb"), ExtResource("3_sodgp")])
-side = 2
+members = Array[ExtResource("1_e4ke7")]([ExtResource("2_efjnn")])
+side = 1
 metadata/_custom_type_script = "uid://crqgat2qr076t"

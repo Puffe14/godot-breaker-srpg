@@ -3,12 +3,22 @@ class_name UnitNode extends Node2D
 @export var unit: Units
 @export var texture: Texture2D
 @export var frames: SpriteFrames = null
+@export var shader: Shader = null
 @export var flip: bool = false
 var timer: Timer = Timer.new()
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 
 func set_node(unit: Units):
 	pass
+
+func on_update(delay: float, _dim: bool = false) -> void:
+	# wait for delay
+	await get_tree().create_timer(delay).timeout
+	# dimming
+	if _dim and unit and unit.acted:
+		dim()
+	else:
+		undim()
 
 func _ready() -> void:
 	if frames:
@@ -41,3 +51,11 @@ func play_move(pos: Vector2, index: int, delay: float) -> void:
 
 func strike():
 	$AnimatedSprite2D.play("strike")
+
+func dim():
+	if frames:
+		$AnimatedSprite2D.material.shader = load("res://resources/shaders/gray.gdshader")
+
+func undim():
+	if frames:
+		$AnimatedSprite2D.material.shader = null

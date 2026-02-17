@@ -1,7 +1,6 @@
 class_name FieldMap extends Resource
 
 @export var grid: Grid = null
-@export var group_set: GroupSet = null
 @export var enemies: Array[Group] = []
 @export var allies: Array[Group] = []
 @export var player: Organisation
@@ -20,10 +19,6 @@ class UTR:
 		unit = _unit
 		tile = _tile
 		dist = _dist
-
-func set_group() -> void:
-	enemies = group_set.enemies
-	allies = group_set.allies
 
 func tickTurn():
 	turnNumber += 1
@@ -98,7 +93,7 @@ func unitsOnTeam(team: Units.Team) -> Array:
 ## all groups on field
 func groups() -> Array[Group]:
 	var groups_found = enemies.duplicate()
-	groups_found.append_array(allies)
+	groups_found.append_array(allies.duplicate())
 #	if player: groups_found.push_back(player.group)
 	return groups_found
 
