@@ -14,6 +14,9 @@ func play():
 	#	currentGroup = nextGroup()
 	#if currentGroup and currentGroup.doneActing():
 	#	currentGroup = null
+	if currentGroup.haveNotActed().size() < 1:
+		print("no have not acted in group")
+		currentGroup = null
 	if currentGroup:                                       
 		continue_group(currentGroup)
 	print("ai out")

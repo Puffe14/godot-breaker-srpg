@@ -7,5 +7,5 @@
 [resource]
 script = ExtResource("4_aoto7")
 members = Array[ExtResource("1_e4ke7")]([ExtResource("2_efjnn")])
-side = 1
+side = 2
 metadata/_custom_type_script = "uid://crqgat2qr076t"
