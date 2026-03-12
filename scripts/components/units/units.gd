@@ -7,8 +7,8 @@ enum Team {Player, Ally, Enemy}
 
 @export var leader: Units = null
 @export var damageTaken: int = 0
-@export var wounds: Array = [] # Array[Part]
-@export var status: Array = [] # Array[Status]
+@export var wounds: Array[Constants.BodyPart] = [] # Array[Part]
+@export var status: Array[Status] = [] # Array[Status]
 @export var temporaryStats: Stats = Stats.new()
 @export var nearbyBonuses: Stats = Stats.new()
 @export var team: Team = Team.Player

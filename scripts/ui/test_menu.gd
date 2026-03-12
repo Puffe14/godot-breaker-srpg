@@ -21,6 +21,7 @@ func _process(_delta: float) -> void:
 			current_action.move.connect(move_to_tile)
 			current_action.update.connect(update_unit_node)
 		# now play
+		await get_tree().create_timer(1).timeout
 		if current_action:
 			current_action.play()
 

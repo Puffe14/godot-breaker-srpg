@@ -8,10 +8,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax037"]
 
-[node name="Node2D" type="Node2D" groups=["unit"]]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("icon_control") groups=["unit"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 shader = ExtResource("3_c38aa")
+icon_control = NodePath("Control")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gax0m")
@@ -29,6 +30,7 @@ offset_right = 24.666664
 offset_bottom = 35.666668
 script = ExtResource("3_6kcvq")
 vbox = NodePath("VBoxContainer")
+icon_rect = ExtResource("4_76tq2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
