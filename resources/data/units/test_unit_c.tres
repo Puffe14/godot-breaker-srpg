@@ -9,4 +9,5 @@
 script = ExtResource("1_lwcr2")
 character = ExtResource("1_lxpto")
 inventory = ExtResource("2_4ubco")
+team = 1
 metadata/_custom_type_script = "uid://0slpdtksthq2"

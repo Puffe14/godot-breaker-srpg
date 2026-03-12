@@ -78,7 +78,7 @@ func continue_group(g: Group):
 # !!! could I add a way to track action priority based on if hp is critical or so on?
 ### Checks the best action for a unit*/
 func unitBestAction(u: Units) -> Action:
-	return game.availableActions(u, true).pop_front()
+	return game.availableActions(u, true).filter(func(n): return n.sensible()).pop_front()
 #    var chosen: Vector[Action] = Vector()
 #    #  equip the first weapon&medkit, all armor in inventory
 #    u.equipFirst()

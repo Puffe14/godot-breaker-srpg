@@ -15,6 +15,11 @@ signal animate(anim: String, unit: Units, delay: float)
 signal update(unit: Units, delay: float, dim: bool)
 signal stop
 
-# play out the effects of the given function
+## play out the effects of the given function
 @abstract
 func play() -> Explain
+
+## False for actions that are directly detrimental.
+## Example: attack other team -> true, attack self -> false
+func sensible() -> bool:
+	return true

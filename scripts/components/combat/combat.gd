@@ -30,7 +30,7 @@ var type_dict = {
 	Type.Attack: "attack",
 	Type.Heal:  "heal",
 	Type.Treat: "treat",
-	Type.Break: "break",
+	Type.Break: "shatter",
 	Type.Wound: "wound"
 }
 
@@ -200,6 +200,21 @@ func num_to_str(num: int) -> String:
 	else: msg += "-"
 	msg += str(num)
 	return msg
+
+func sensible() -> bool:
+	match combat_type:
+		Type.Attack:
+			return selected.team != targeted.team
+		Type.Heal:
+			return selected.team == targeted.team
+		Type.Break:
+			return selected.team != targeted.team
+		Type.Wound:
+			return selected.team != targeted.team
+		Type.Treat:
+			return selected.team == targeted.team
+		_:
+			return true
 
 func _to_string() -> String:
 	return type_dict[combat_type] + ": " + selected.character.myName + "->" + targeted.character.myName

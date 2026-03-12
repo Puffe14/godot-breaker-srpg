@@ -51,7 +51,7 @@ func swap(other: Inventory, index: int, otherIndex: int):
 ## remove broken/used up items from inventory
 func clean() -> void:
 	for item in slots:
-		if !item.intact():
+		if item and !item.intact():
 			remove(item)
 
 ## move non null back to top

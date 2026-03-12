@@ -28,6 +28,7 @@ func on_update(delay: float, _dim: bool = false) -> void:
 		undim()
 
 func _ready() -> void:
+	list_status_icons()
 	if frames:
 		$Sprite2D.visible = false
 		$AnimatedSprite2D.flip_h = flip
@@ -37,6 +38,7 @@ func _ready() -> void:
 		$Sprite2D.visible = true
 		$Sprite2D.flip_h = flip
 		$Sprite2D.texture = texture
+	
 
 func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 	# wait for delay

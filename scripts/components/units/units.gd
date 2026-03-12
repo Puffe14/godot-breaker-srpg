@@ -81,7 +81,7 @@ func limitHP():
 		damageTaken = MaxHP()
 
 func breakArmor(piece: Item):
-	piece.armor.break()
+	piece.armor.shatter()
 	inventory.clean()
 
 func breakPiece(part: Constants.BodyPart):
@@ -156,9 +156,9 @@ func bonus(_stat: String) -> int:
 	var total = 0
 	for item: Item in inventory.slots:
 		if item and item.equipped():
-			if item.weapon:
+			if item.weapon and item.weapon.stats:
 				total += item.weapon.stats.get_a_val(_stat)
-			if item.armor:
+			if item.armor and item.armor.stats:
 				total += item.armor.stats.get_a_val(_stat)
 	total += temporaryStats.get_a_val(_stat)
 	total += nearbyBonuses.get_a_val(_stat)

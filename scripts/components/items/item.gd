@@ -24,6 +24,8 @@ func _to_string() -> String:
 
 ## True if the item is not broken.
 func intact() -> bool:
+	if armor:
+		return !armor.broken
 	if durability:
 		return durability.intact()
 	else:

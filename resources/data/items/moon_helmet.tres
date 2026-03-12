@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://bb6vt655walxx"
 
 [sub_resource type="Resource" id="Resource_xdblt"]
 script = ExtResource("4_c5dxx")
+equipped = true
 metadata/_custom_type_script = "uid://cclj43y3y4ppb"
 
 [resource]
