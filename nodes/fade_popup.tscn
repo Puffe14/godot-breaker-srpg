@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfy4wfruvvql6"]
+
+[ext_resource type="Script" uid="uid://c4jw2ts06wxx4" path="res://scripts/ui/popup_text.gd" id="1_uxkl3"]
+
+[node name="Control" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uxkl3")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1182.0
+offset_bottom = 660.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.81960785)
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "woah"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

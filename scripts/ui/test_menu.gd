@@ -4,6 +4,7 @@ extends Node
 @export var map: MapNode = null
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
+var fade_msg: PackedScene = preload("res://nodes/fade_popup.tscn")
 var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 var current_action = null
 
@@ -113,6 +114,15 @@ func on_game_update():
 func on_change_turn():
 	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
 		u.on_update(1, true)
+	# inform whose turn it is now
+	var msg: String = ""
+	if game:
+		msg = "Now" + game.turn_of_dict[game.turnOf]
+	var msg_node = fade_msg.instantiate()
+	msg_node.create(msg)
+	add_child(msg_node)
+
+	
 
 func cancel_pressed():
 	game.acting = null
