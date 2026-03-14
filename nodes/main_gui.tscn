@@ -16,12 +16,13 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_container", "tile_container")]
+[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_spby4")
 hud_node = NodePath("HUD")
 menu_node = NodePath("HUD/MenuControl")
+unit_list_node = NodePath("UnitNodeList")
 unit_container = NodePath("HUD/UnitContainer")
 tile_container = NodePath("HUD/TileContainer")
 

@@ -8,6 +8,7 @@ func _init(_unit: Units) -> void:
 func play() -> Explain:
 	unit.endTurn()
 	animate.emit("default",unit,0,"Wait")
+	update.emit("default",unit,true)
 	stop.emit()
 	print(unit," wait")
 	return explain

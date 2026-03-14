@@ -94,7 +94,7 @@ func unitsOnTeam(team: Units.Team) -> Array:
 func groups() -> Array[Group]:
 	var groups_found = enemies.duplicate()
 	groups_found.append_array(allies.duplicate())
-#	if player: groups_found.push_back(player.group)
+	if player: groups_found.push_back(player.group)
 	return groups_found
 
 func deploymentTiles() -> Array[Tile]:
@@ -118,7 +118,9 @@ func deployPlayer():
 	var deployed = player.deployed.slice(0,tiles.size())
 	# Get any "player" team characters on map
 	for unit in unitsOnTeam(Units.Team.Player):
-		addUnitToPlayerDeployed(unit)        	# and add them to the player deployds.
+		# and add them to the player deployds.
+		addUnitToPlayerDeployed(unit)
+		print("deployed ", unit)
 	for i in range(0, deployed.size()):
 		tiles[i].occupiable.addOccupant(deployed[i])   	# Add the characters chosen to be deployed onto the
 		deployed[i].setTeam(Units.Team.Player)  # deployment map and set their team to player.

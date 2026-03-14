@@ -19,6 +19,12 @@ var part: Constants.BodyPart = Constants.BodyPart.Head
 var queue: Array[Action] = []
 var ai = AI.new()
 
+var turn_of_dict = {
+	Units.Team.Player: "player",
+	Units.Team.Enemy: "enemy",
+	Units.Team.Ally: "ally"
+}
+
 @export var regular_combat: Combat
 @export var wound_combat: Combat
 @export var break_combat: Combat
@@ -27,7 +33,7 @@ var ai = AI.new()
 signal selected(thing)
 signal inspected(thing)
 signal update
-
+signal change_turn
 
 ## Decides what happens when a tile is selected.
 func selectTile(tile: Tile) -> void:
@@ -190,13 +196,14 @@ func handle_turn() -> void:
 	if currentMap:
 		if currentMap.player != player:
 			place_player()
+			change_turn.emit()
 #		currentMap.clearDead()
 		currentTurn = currentMap.turnNumber
 		add_array_to_queue(currentMap.eventCheck())
 	groupsWithTurn = currentMap.groups().filter(func(n): return n.side==turnOf)
 
 	# If the AI has no groups to control yet, give them all to the AI so it can handle them
-	if queue.is_empty():
+	if queue.is_empty() and turnOf!=Units.Team.Player:
 		var groupsLeft = groupsWithTurn.filter(func(g: Group): return !g.doneActing())
 		if !ai.currentGroup and !groupsLeft.is_empty():
 			ai.game = self
@@ -206,7 +213,7 @@ func handle_turn() -> void:
 			ai.play()
 
 	# if the turn of the current team is over: change to the next teams turn.
-	if groupsWithTurn.is_empty() or (groupsWithTurn.all(func(n): return n.doneActing())) or queue.is_empty():
+	if groupsWithTurn.is_empty() or (groupsWithTurn.all(func(n): return n.doneActing())):
 		refreshAll()
 		match(turnOf):
 			Units.Team.Player:
@@ -216,7 +223,7 @@ func handle_turn() -> void:
 			Units.Team.Ally:
 				turnCountUp()
 				turnOf = Units.Team.Player
-		print("turn "+str(currentTurn)+", turn of "+str(turnOf))
+		print("turn "+str(currentTurn)+", turn of "+turn_of_dict[turnOf])
 		deSelect()
 		# handle leader business
 		for group in groupsWithTurn: group.handleLeader()
@@ -224,7 +231,7 @@ func handle_turn() -> void:
 		for group in groupsWithTurn: group.reduceTemporary() 
 		# hurt or heal tile effects and bonuses
 		currentMap.giveBonuses(true)
-		
+		change_turn.emit()
 	# stun all non player groups if their leader dies
 	for group in currentMap.groups():
 		group.stunLeaderless()

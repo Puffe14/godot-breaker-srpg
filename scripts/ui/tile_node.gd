@@ -39,6 +39,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 	if Input.is_action_just_pressed('select'):
 		if tile:
 			print('clicked!'+str(tile.position))
+			if tile.occupiable:
+				print("  occupant ", tile.occupiable.occupant)
 		else:
 			print('not connected!')
 		on_selected()

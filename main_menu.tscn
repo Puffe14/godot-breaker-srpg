@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene load_steps=22 format=3 uid="uid://dnny6nhd45x0s"]
 
 [ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
-[ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://test_fight_selector.tscn" id="2_0k4wn"]
 [ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_j5v2v"]
 [ext_resource type="Script" uid="uid://dt5e46asuae27" path="res://scripts/components/combat/combat.gd" id="2_w44g7"]
@@ -15,10 +14,52 @@
 [ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="5_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="6_qe12f"]
 [ext_resource type="SpriteFrames" uid="uid://duodoahfamvmo" path="res://resources/images/animation/cylna.tres" id="8_0k4wn"]
+[ext_resource type="Resource" uid="uid://clrx651vvcyce" path="res://resources/data/units/dummy2_unit.tres" id="16_8u0te"]
+[ext_resource type="SpriteFrames" uid="uid://bx864agjdymh1" path="res://resources/images/animation/ninja.tres" id="16_g8g3n"]
 
 [sub_resource type="Resource" id="Resource_cm266"]
 script = ExtResource("2_w44g7")
 metadata/_custom_type_script = "uid://dt5e46asuae27"
+
+[sub_resource type="Shader" id="Shader_g8g3n"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	float gray = color.r * 0.3 + color.g * 0.6 + color.b * 0.1;
+	COLOR = vec4(vec3(gray), color.a);
+}"
+
+[sub_resource type="Shader" id="Shader_8u0te"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	float gray = color.r * 0.3 + color.g * 0.6 + color.b * 0.1;
+	COLOR = vec4(vec3(gray), color.a);
+}"
+
+[sub_resource type="Shader" id="Shader_oiatc"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	float gray = color.r * 0.3 + color.g * 0.6 + color.b * 0.1;
+	COLOR = vec4(vec3(gray), color.a);
+}"
+
+[sub_resource type="Shader" id="Shader_mg3m2"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	float gray = color.r * 0.3 + color.g * 0.6 + color.b * 0.1;
+	COLOR = vec4(vec3(gray), color.a);
+}"
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer", "map")]
 script = ExtResource("1_glbon")
@@ -32,12 +73,6 @@ position = Vector2(336, 202)
 scale = Vector2(3, 3)
 field_map = ExtResource("3_iotk1")
 
-[node name="FightSelector" parent="." instance=ExtResource("2_0k4wn")]
-offset_left = 24.0
-offset_top = 244.0
-offset_right = 24.0
-offset_bottom = 244.0
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -48,6 +83,13 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+text = "Hallo"
+
+[node name="TurnLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 22.0
+offset_right = 41.0
+offset_bottom = 45.0
 text = "Hallo"
 
 [node name="MenuControl" type="Control" parent="Control"]
@@ -62,18 +104,28 @@ position = Vector2(48, 77)
 unit = ExtResource("3_8qtwp")
 texture = ExtResource("4_glbon")
 frames = ExtResource("5_0o4t1")
+shader = SubResource("Shader_g8g3n")
 
 [node name="Node2D2" parent="." instance=ExtResource("2_7vrkn")]
 position = Vector2(172, 75)
 unit = ExtResource("3_jix8l")
 texture = ExtResource("3_fu7sn")
 frames = ExtResource("8_0k4wn")
+shader = SubResource("Shader_8u0te")
 flip = true
 
 [node name="Dummy" parent="." instance=ExtResource("2_7vrkn")]
-position = Vector2(172, 75)
+position = Vector2(298, 75)
 unit = ExtResource("5_nlkkf")
 texture = ExtResource("6_qe12f")
+shader = SubResource("Shader_oiatc")
+flip = true
+
+[node name="Dummy2" parent="." instance=ExtResource("2_7vrkn")]
+position = Vector2(456, 138)
+unit = ExtResource("16_8u0te")
+frames = ExtResource("16_g8g3n")
+shader = SubResource("Shader_mg3m2")
 flip = true
 
 [node name="TestTimer" type="Timer" parent="."]

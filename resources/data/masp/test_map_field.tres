@@ -28,5 +28,5 @@ enemies = Array[ExtResource("1_ny7gg")]([ExtResource("3_k0t0v")])
 allies = Array[ExtResource("1_ny7gg")]([ExtResource("2_pu50u")])
 clearCondition = SubResource("Resource_k0t0v")
 loseConditions = Array[ExtResource("10_u2i03")]([SubResource("Resource_ghn50"), SubResource("Resource_0r4a4")])
-deployment = Array[Vector2i]([Vector2i(0, 0)])
+deployment = Array[Vector2i]([Vector2i(0, 0), Vector2i(2, 2)])
 metadata/_custom_type_script = "uid://puvu5m1h8ffy"

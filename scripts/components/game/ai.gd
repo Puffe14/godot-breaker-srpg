@@ -138,7 +138,8 @@ func unitBestAction(u: Units) -> Action:
 #    action.weapon.foreach(u.equip(_))
 #    action
 #
-  ##  Add action to the stack of the game. */
+
+##  Add action to the stack of the game. */
 func addToQueue(actions: Array[Action], actor: Units):
 	for act in actions:
 		game.add_to_queue(act, actor)

@@ -4,10 +4,14 @@ class_name MainGUI extends Node2D
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
+var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var hud_node: Control = null
 @export var menu_node: Control = null
+@export var unit_list_node: Node = null
+
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
+
 
 func _ready() -> void:
 	map.move.connect(move)
@@ -26,11 +30,14 @@ func _process(_delta):
 	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
-	if game.queue.is_empty(): return
+	make_unit_nodes()
+	if game.queue.is_empty():
+		game.handle_turn()
+		return
 	var current_action: Action = game.queue.pop_front()
 	current_action.animate.connect(animate)
 	current_action.move.connect(move)
-	await current_action.stop
+	#await current_action.stop
 
 ### UNIT NODE HANDLING ###
 
@@ -92,3 +99,14 @@ func on_game_update():
 func free_children(node) -> void:
 	for child in node.get_children():
 		child.queue_free()
+
+func make_unit_nodes() -> void:
+	if !(game and game.currentMap): return
+	var unit_list = game.currentMap.all_units()
+	var node_list = get_tree().get_nodes_in_group("unit")
+	for unit in unit_list:
+		# if no matching reference is found in nodes
+		if node_list.all(func(n): return n.unit != unit):
+			var new_unit_node = unit_node.instantiate()
+			new_unit_node.unit = unit
+			unit_list_node.add_child(new_unit_node)

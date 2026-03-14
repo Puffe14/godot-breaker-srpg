@@ -12,4 +12,5 @@ func play() -> Explain:
 	field_map.moveTo(unit, location)
 	move.emit(location, unit, 0)
 	update.emit(unit, 0, false)
+	print(unit," moves to ",location.position)
 	return explain

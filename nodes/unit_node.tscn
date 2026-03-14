@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://burbvc1ohhmsh" path="res://nodes/status_icon.tscn" id="4_76tq2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax037"]
+resource_local_to_scene = true
+shader = ExtResource("3_c38aa")
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("icon_control") groups=["unit"]]
 scale = Vector2(3, 3)

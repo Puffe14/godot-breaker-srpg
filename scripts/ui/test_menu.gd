@@ -8,12 +8,6 @@ var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 var current_action = null
 
 func _process(_delta: float) -> void:
-	for u in $FightSelector.units:
-		u.visible = false
-	var a = $FightSelector.unitA()
-	var b = $FightSelector.unitB()
-	a.visible = true
-	b.visible = true
 	if !game.queue.is_empty():
 		current_action = game.queue.pop_front()
 		if current_action:# and !current_action.animate.is_connected(animate):
@@ -21,13 +15,15 @@ func _process(_delta: float) -> void:
 			current_action.move.connect(move_to_tile)
 			current_action.update.connect(update_unit_node)
 		# now play
-		await get_tree().create_timer(1).timeout
+		#await get_tree().create_timer(1).timeout
 		if current_action:
 			current_action.play()
+	$Control/TurnLabel.text = game.turn_of_dict[game.turnOf]
 
 
 func _ready() -> void:
-	$FightSelector.refresh()
+	pass
+	#$FightSelector.refresh()
 	#combat.animate.connect(animate)
 	#game.animate.connect(animate)
 	#game.move.connect(move_to_tile)
@@ -47,6 +43,8 @@ func _on_test_timer_timeout() -> void:
 	#game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
+	if !game.change_turn.is_connected(on_change_turn):
+		game.change_turn.connect(on_change_turn)
 	connect_tile_nodes()
 	show_movement_range()
 	for u in game.currentMap.all_units():
@@ -77,6 +75,8 @@ func update_unit_node(unit: Units, delay: float, dim: bool):
 
 
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
+	if msg=="Wait":
+		update_unit_node(unit, delay, true)
 	for u in get_tree().get_nodes_in_group("unit"):
 		if u.unit == unit:
 			u.play_animation(animation, delay, msg)
@@ -98,17 +98,21 @@ func tile_sent_selected(tile: Tile):
 func on_game_update():
 	connect_tile_nodes()
 	show_movement_range()
-
 	#map.draw_tiles(map.direction)
 	#menu.new_menu([game.acting])
 	var menu = pre_button_menu.instantiate()
 	menu.game = game
 	menu.user = game.acting
+	print("show menus for ", menu.user)
 	menu.new_menu(game.availableActions(game.acting, true))
 	$Control/Label.text = str(game.acting)
 	for i in $Control/MenuControl.get_children():
 		i.queue_free()
 	$Control/MenuControl.add_child(menu)
+
+func on_change_turn():
+	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
+		u.on_update(1, true)
 
 func cancel_pressed():
 	game.acting = null

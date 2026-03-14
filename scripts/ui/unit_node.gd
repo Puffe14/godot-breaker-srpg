@@ -10,19 +10,19 @@ var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var status_icon: PackedScene = preload("res://nodes/status_icon.tscn")
 @export var icon_control: Control = null
 
-func set_node(unit: Units):
+func set_node(new_unit: Units):
 	pass
 
 func list_status_icons():
 	icon_control.set_icons(unit.status)
 	icon_control.set_wounds(unit)
 
-func on_update(delay: float, _dim: bool = false) -> void:
+func on_update(delay: float, _dim: bool = true) -> void:
 	# wait for delay
 	await get_tree().create_timer(delay).timeout
 	list_status_icons()
 	# dimming
-	if _dim and unit and unit.acted:
+	if unit and unit.acted:
 		dim()
 	else:
 		undim()

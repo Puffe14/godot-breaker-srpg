@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="Organisation" load_steps=4 format=3 uid="uid://hhck1amffjja"]
+[gd_resource type="Resource" script_class="Organisation" load_steps=5 format=3 uid="uid://hhck1amffjja"]
 
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_pxoso"]
-[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="2_l8pym"]
+[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="3_l8pym"]
 [ext_resource type="Script" uid="uid://dvhtd7aojoqbl" path="res://scripts/components/units/organisation.gd" id="3_u0ala"]
+[ext_resource type="Resource" uid="uid://clrx651vvcyce" path="res://resources/data/units/dummy2_unit.tres" id="3_uj8oy"]
 
 [resource]
 script = ExtResource("3_u0ala")
-members = Array[ExtResource("1_pxoso")]([ExtResource("2_l8pym")])
-deployed = Array[ExtResource("1_pxoso")]([ExtResource("2_l8pym")])
+members = Array[ExtResource("1_pxoso")]([ExtResource("3_l8pym"), ExtResource("3_uj8oy")])
+deployed = Array[ExtResource("1_pxoso")]([ExtResource("3_l8pym"), ExtResource("3_uj8oy")])
 metadata/_custom_type_script = "uid://dvhtd7aojoqbl"
