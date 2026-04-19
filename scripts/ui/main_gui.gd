@@ -110,6 +110,7 @@ func on_game_update():
 		var menu = pre_button_menu.instantiate()
 		menu.game = game
 		menu.user = game.acting
+		
 		menu.new_menu(game.availableActions(game.acting))
 		menu_node.add_child(menu)
 

@@ -8,6 +8,7 @@ var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 @export var user: Units = null
 var childed = false
 var game: Game = null
+var is_root: bool = true
 signal closed
 
 func _ready() -> void:
@@ -22,10 +23,11 @@ func option_pressed(button):
 	new_menu(button.pressed_option())
 
 func new_menu(options: Array) -> void:
-	if options.is_empty():
+	if options.is_empty() or options.all(func f(n): return n == null):
 		close_this_menu()
 	if !childed:
 		var new_button_menu = pre_button_menu.instantiate()
+		new_button_menu.is_root = false
 		new_button_menu.game = game
 		menu_h_container.add_child(new_button_menu)
 		new_button_menu.closed.connect(reopen_parent_menu)
@@ -35,6 +37,9 @@ func new_menu(options: Array) -> void:
 		for option in options:
 			var button_option = ButtonOption.new(game, option, user)
 			new_button_menu.button_list_container.add_child(button_option)
+		if is_root:
+			new_button_menu.closed.connect(close_this_menu)
+			$HMenuContainer/MarginContainer.visible = false
 		new_button_menu.connect_buttons()
 
 func close_this_menu():
