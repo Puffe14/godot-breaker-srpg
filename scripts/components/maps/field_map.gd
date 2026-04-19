@@ -69,7 +69,7 @@ func moveTo(unit: Units, target: Tile) -> void:
 			former.occupiable.removeOccupant()
 		# add to new target tile
 		target.occupiable.addOccupant(unit)
-		if target.interactible and target.interactible.containsSoul() && unit.canTakeSouls():
+		if target.interactible and target.interactible.soul && unit.canTakeSouls():
 			target.interactible.spendSoul()
 			unit.weapon.fix_full()
 	else: print(target," cannot be occupied")

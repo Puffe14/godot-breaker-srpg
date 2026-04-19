@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_ywmxy"]
 script = ExtResource("4_uqm38")
 maxHp = 100
+move = 3
 metadata/_custom_type_script = "uid://cnirhagor250e"
 
 [resource]

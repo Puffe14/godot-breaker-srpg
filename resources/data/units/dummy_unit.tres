@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://coy0hgrlxgos0" path="res://resources/data/characters/dummy.tres" id="1_20231"]
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="2_2bhrd"]
 [ext_resource type="Resource" uid="uid://3b57ef5u6qwk" path="res://resources/data/test_inventory.tres" id="2_fjyi4"]
-[ext_resource type="Script" uid="uid://dgsr38mbf7wnu" path="res://scripts/components/units/status.gd" id="4_2bhrd"]
+[ext_resource type="Script" path="res://scripts/components/units/status.gd" id="4_2bhrd"]
 
 [resource]
 script = ExtResource("1_6diyd")

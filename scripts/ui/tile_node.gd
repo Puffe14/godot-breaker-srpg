@@ -2,6 +2,7 @@ class_name TileNode extends Node2D
 
 @export var tile = null
 @export var texture = "field_bluegrass"
+@export var shader: Shader = preload("res://resources/shaders/gray.gdshader")
 var unit_node = preload("res://nodes/unit_node.tscn")
 
 signal selected_tile(t:Tile)
@@ -29,8 +30,12 @@ func _on_area_2d_mouse_entered() -> void:
 func _on_area_2d_mouse_exited() -> void:
 	$TopSprite.visible = false
 
-func show_move_sprite(move_visibility: bool):
+func show_move_sprite(move_visibility: bool, can_move: bool = true):
 	$MoveSprite.visible = move_visibility
+	if !can_move:
+		$MoveSprite.material.shader = shader
+	else:
+		$MoveSprite.material.shader = null
 
 func on_selected():
 	selected_tile.emit(tile)
@@ -41,6 +46,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			print('clicked!'+str(tile.position))
 			if tile.occupiable:
 				print("  occupant ", tile.occupiable.occupant)
+				if tile.occupiable.occupant: print(" (",tile.occupiable.occupant.team,")")
 		else:
 			print('not connected!')
 		on_selected()

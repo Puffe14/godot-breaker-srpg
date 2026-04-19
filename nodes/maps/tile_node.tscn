@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bntpkq4hix4qr"]
+[gd_scene load_steps=7 format=3 uid="uid://bntpkq4hix4qr"]
 
 [ext_resource type="Script" uid="uid://by3w4x0egftiq" path="res://scripts/ui/tile_node.gd" id="1_10ckc"]
 [ext_resource type="Texture2D" uid="uid://cdcgcwjyk6uds" path="res://resources/images/tiles/field_red.png" id="2_d0kgv"]
@@ -7,6 +7,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvye0"]
 size = Vector2(16, 12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0kgv"]
 
 [node name="TileNode" type="Node2D" groups=["tile"]]
 script = ExtResource("1_10ckc")
@@ -22,6 +24,7 @@ shape = SubResource("RectangleShape2D_nvye0")
 
 [node name="MoveSprite" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_d0kgv")
 texture = ExtResource("3_d0kgv")
 
 [node name="TopSprite" type="Sprite2D" parent="."]

@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 		#await get_tree().create_timer(1).timeout
 		if current_action:
 			current_action.play()
+			game.deSelect()
 	$Control/TurnLabel.text = game.turn_of_dict[game.turnOf]
 
 
@@ -67,7 +68,7 @@ func show_movement_range():
 	for i: Tile in map.field_map.movementRangeTiles(game.acting):
 		var node = map.get_child_at_v3(i.position)
 		if node:
-			node.show_move_sprite(true)
+			node.show_move_sprite(true, !game.acting.moved)
 
 func update_unit_node(unit: Units, delay: float, dim: bool):
 	for u in get_tree().get_nodes_in_group("unit"):
@@ -105,7 +106,8 @@ func on_game_update():
 	menu.game = game
 	menu.user = game.acting
 	print("show menus for ", menu.user)
-	menu.new_menu(game.availableActions(game.acting, true))
+	if game.acting:
+		menu.new_menu(game.availableActions(game.acting, !game.acting.moved))
 	$Control/Label.text = str(game.acting)
 	for i in $Control/MenuControl.get_children():
 		i.queue_free()

@@ -44,11 +44,11 @@ func selectTile(tile: Tile) -> void:
 			occupant = occupiable.occupant
 	
 	# If the character is selected again and it's not their turn
-	if occupiable and acting and acting.team!=turnOf:
+	if occupiable and acting and acting.team!=turnOf and false:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
-		selected.emit(availableActions(acting))
+		selected.emit(availableActions(acting, !acting.moved))
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
 		#attack()
@@ -59,7 +59,11 @@ func selectTile(tile: Tile) -> void:
 	elif occupiable and acting:
 		#unitToTile(o)
 		if currentMap.movementRangeTiles(acting).has(tile):
-			move_to(acting, tile)
+			if !acting.moved:
+				move_to(acting, tile)
+			else:
+				print("cant move!!!")
+
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
@@ -197,10 +201,11 @@ func handle_turn() -> void:
 		if currentMap.player != player:
 			place_player()
 			change_turn.emit()
-#		currentMap.clearDead()
+		currentMap.clearDead()
 		currentTurn = currentMap.turnNumber
 		add_array_to_queue(currentMap.eventCheck())
 	groupsWithTurn = currentMap.groups().filter(func(n): return n.side==turnOf)
+	for g in groupsWithTurn: g.changeSide(turnOf)
 
 	# If the AI has no groups to control yet, give them all to the AI so it can handle them
 	if queue.is_empty() and turnOf!=Units.Team.Player:

@@ -3,6 +3,7 @@ class_name MainGUI extends Node2D
 @export var map: MapNode = null
 @export var game: Game = null
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
+var fade_msg: PackedScene = preload("res://nodes/fade_popup.tscn")
 var pre_button_menu = preload("res://nodes/menus/button_menu.tscn")
 var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var hud_node: Control = null
@@ -20,28 +21,37 @@ func _ready() -> void:
 	map.draw_tiles(map.direction)
 	draw_and_set_tiles()
 	
-var set = false
+
 func _process(_delta):
 	game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
-	#if !set:
-	#	set = true
+	if !game.change_turn.is_connected(on_change_turn):
+		game.change_turn.connect(on_change_turn)
+	# set the nodes and tiles
 	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
 	make_unit_nodes()
 	if game.queue.is_empty():
+		print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
 		game.handle_turn()
 		return
 	var current_action: Action = game.queue.pop_front()
-	current_action.animate.connect(animate)
-	current_action.move.connect(move)
+	if current_action:
+		current_action.animate.connect(animate)
+		current_action.move.connect(move_to_tile)
+		current_action.play()
+		#hide move range
+		game.deSelect()
+		show_movement_range()
 	#await current_action.stop
 
 ### UNIT NODE HANDLING ###
 
 func animate(animation: String, unit: Units, delay: float, msg: String = ""):
+	if msg=="Wait":
+		update_unit_node(unit, delay, true)
 	for u in get_tree().get_nodes_in_group("unit"):
 		if u.unit == unit:
 			u.play_animation(animation, delay, msg)
@@ -53,7 +63,13 @@ func move(pos: Vector2, unit: Units, index: int, delay: float):
 
 func move_to_tile(location: Tile, unit: Units, delay: float):
 	var pos = map.tile_translated_to_v2(location)
+	print("moving to tile "+str(location.position))
 	move(pos, unit, location.position.z, delay)
+
+func update_unit_node(unit: Units, delay: float, dim: bool):
+	for u in get_tree().get_nodes_in_group("unit"):
+		if u.unit == unit:
+			u.on_update(delay, dim)
 
 ### TILE NODE HANDING ###
 
@@ -74,7 +90,7 @@ func show_movement_range():
 	for i: Tile in map.field_map.movementRangeTiles(game.acting):
 		var node = map.get_child_at_v3(i.position)
 		if node:
-			node.show_move_sprite(true)
+			node.show_move_sprite(true, !game.acting.moved)
 
 func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
@@ -88,6 +104,7 @@ func on_game_update():
 		var menu = pre_button_menu.instantiate()
 		menu.game = game
 		menu.new_menu([game.acting])
+		show_movement_range()
 		menu_node.add_child(menu)
 	elif game.target:
 		var menu = pre_button_menu.instantiate()
@@ -110,3 +127,14 @@ func make_unit_nodes() -> void:
 			var new_unit_node = unit_node.instantiate()
 			new_unit_node.unit = unit
 			unit_list_node.add_child(new_unit_node)
+
+func on_change_turn():
+	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
+		u.on_update(1, true)
+	# inform whose turn it is now
+	var msg: String = ""
+	if game:
+		msg = "Now " + game.turn_of_dict[game.turnOf]
+	var msg_node = fade_msg.instantiate()
+	msg_node.create(msg)
+	add_child(msg_node)

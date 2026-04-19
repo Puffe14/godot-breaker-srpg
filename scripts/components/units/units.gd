@@ -280,7 +280,7 @@ func isArmed() -> bool:
 	return inventory.equippedWeapon() != null and inventory.equippedWeapon().intact()
 
 func shortInfo() -> String:
-	return character.myName + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ inventory.equippedWeapon().name
+	return character.myName + " " + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ inventory.equippedWeapon().name
 
 func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level
