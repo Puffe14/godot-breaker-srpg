@@ -1,12 +1,36 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://c0rww68rlw5y4"]
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c0rww68rlw5y4"]
 
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="1_6e5rh"]
+[ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_xteew"]
 [ext_resource type="Texture2D" uid="uid://dow58xes3g1bn" path="res://resources/images/units/lairaea_atk_1.png" id="2_n4akh"]
 [ext_resource type="Texture2D" uid="uid://cro8l2gm002qy" path="res://resources/images/units/lairaea_hurt.png" id="3_axnqc"]
 [ext_resource type="Texture2D" uid="uid://ddao0udmlt2mi" path="res://resources/images/units/lairaea_atk_2.png" id="3_jck1w"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xteew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_axnqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_xteew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_axnqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_xteew")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_6e5rh")

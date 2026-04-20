@@ -1,5 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bx864agjdymh1"]
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bx864agjdymh1"]
 
+[ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_tg7rq"]
 [ext_resource type="Texture2D" uid="uid://bkj30xjyeuny3" path="res://resources/images/units/ninja_atk_1.png" id="1_uo0kj"]
 [ext_resource type="Texture2D" uid="uid://eh0tg4d1xtrc" path="res://resources/images/units/ninja_idle.png" id="2_tg7rq"]
 [ext_resource type="Texture2D" uid="uid://bkfheq6xdg4yc" path="res://resources/images/units/ninja_hurt.png" id="3_1c4f0"]
@@ -7,6 +8,29 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1c4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1c4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_uo0kj")

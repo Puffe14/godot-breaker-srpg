@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bcn8tp67l360l" path="res://scripts/ui/unit_node.gd" id="1_xinmc"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="2_gax0m"]
-[ext_resource type="Script" uid="uid://dv60de3x0max6" path="res://scripts/ui/status_icon_display.gd" id="3_6kcvq"]
+[ext_resource type="Script" path="res://scripts/ui/status_icon_display.gd" id="3_6kcvq"]
 [ext_resource type="Shader" uid="uid://dl7mist6pfwy2" path="res://resources/shaders/gray.gdshader" id="3_c38aa"]
 [ext_resource type="PackedScene" uid="uid://burbvc1ohhmsh" path="res://nodes/status_icon.tscn" id="4_76tq2"]
 

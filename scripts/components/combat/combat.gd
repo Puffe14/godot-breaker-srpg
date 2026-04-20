@@ -23,6 +23,8 @@ var target_attacks = -1
 @export var target_part: Constants.BodyPart = Constants.BodyPart.Head
 var body_part_text: String = ""
 
+const dead_delay = 0.5
+
 # which methods should be called?
 enum Type {Attack, Heal, Treat, Break, Wound}
 @export var combat_type: Type
@@ -114,6 +116,10 @@ func play() -> Explain:
 		var current = events.pop_front()
 		current.resolve()
 		if !everyoneLived():
+			if selected.isDead():
+				emit_signal("animate", "dead", selected, time_passed+dead_delay)
+			if targeted.isDead():
+				emit_signal("animate", "dead", targeted, time_passed+dead_delay)
 			print("death")
 			break
 		while (select_attacks > 0 || target_attacks > 0):

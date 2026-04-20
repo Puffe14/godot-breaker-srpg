@@ -9,13 +9,15 @@ var timer: Timer = Timer.new()
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var status_icon: PackedScene = preload("res://nodes/status_icon.tscn")
 @export var icon_control: Control = null
+signal dead
 
 func set_node(new_unit: Units):
 	pass
 
 func list_status_icons():
-	icon_control.set_icons(unit.status)
-	icon_control.set_wounds(unit)
+	if icon_control:
+		icon_control.set_icons(unit.status)
+		icon_control.set_wounds(unit)
 
 func on_update(delay: float, _dim: bool = true) -> void:
 	# wait for delay
@@ -51,6 +53,12 @@ func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 		var msg_node = popup_text.instantiate()
 		msg_node.create(msg)
 		add_child(msg_node)
+	# handle death
+	if anim_name == "dead":
+		$Control.queue_free()
+		await get_tree().create_timer(delay).timeout
+		dead.emit()
+		queue_free()
 
 func play_move(pos: Vector2, index: int, delay: float) -> void:
 	# wait for delay
