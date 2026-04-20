@@ -21,8 +21,12 @@ func _ready() -> void:
 	map.draw_tiles(map.direction)
 	draw_and_set_tiles()
 	
+var continue_process = true
 
 func _process(_delta):
+	if not continue_process: return
+	if Input.is_action_just_pressed("deselect"):
+		game.deSelect()
 	game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
@@ -45,7 +49,9 @@ func _process(_delta):
 		#hide move range
 		game.deSelect()
 		show_movement_range()
-	#await current_action.stop
+		continue_process = false
+		await get_tree().create_timer(current_action.actLength).timeout
+		continue_process = true
 
 ### UNIT NODE HANDLING ###
 

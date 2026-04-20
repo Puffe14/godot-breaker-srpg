@@ -9,6 +9,8 @@ var actLength: float = 1.0
 # explain
 var explain = Explain.new("")
 
+var delay = 0
+
 # universal signals
 signal move(location: Tile, unit: Units, delay: float)
 signal animate(anim: String, unit: Units, delay: float)

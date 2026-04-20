@@ -193,6 +193,7 @@ func wound(attacker: Units, defender: Units):
 
 func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = ""):
 	time_passed += 1
+	actLength = time_passed
 
 func num_to_str(num: int) -> String:
 	var msg = ""
