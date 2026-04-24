@@ -29,6 +29,7 @@ func new_menu(options: Array) -> void:
 		var new_button_menu = pre_button_menu.instantiate()
 		new_button_menu.is_root = false
 		new_button_menu.game = game
+		new_button_menu.user = user
 		menu_h_container.add_child(new_button_menu)
 		new_button_menu.closed.connect(reopen_parent_menu)
 		childed = true

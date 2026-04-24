@@ -55,18 +55,22 @@ func selectTile(tile: Tile) -> void:
 	# Select target
 	elif occupiable and occupant and acting:
 		target = occupant
+		#if target == acting:
+		selected.emit([acting])
 	# Move acting unit to given tile
 	elif occupiable and acting:
-		#unitToTile(o)
 		if currentMap.movementRangeTiles(acting).has(tile):
 			if !acting.moved:
 				move_to(acting, tile)
 			else:
-				print("cant move!!!")
+				print("cant move again!!!")
+		else:
+			print("out of range, cant move!!!")
 
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
+		selected.emit([acting])
 	else:
 		acting = null
 		target = null
@@ -243,3 +247,4 @@ func handle_turn() -> void:
 	# change maps if the battle is over
 	if !changeMap:
 		changeMap = isBattleOver()
+	#update.emit()

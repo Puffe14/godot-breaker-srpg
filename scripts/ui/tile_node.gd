@@ -6,6 +6,7 @@ class_name TileNode extends Node2D
 var unit_node = preload("res://nodes/unit_node.tscn")
 
 signal selected_tile(t:Tile)
+signal hovered_tile(t:Tile)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,10 +26,12 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	$TopSprite.visible = true
+	hovered_tile.emit(tile)
 
 
 func _on_area_2d_mouse_exited() -> void:
 	$TopSprite.visible = false
+	hovered_tile.emit(null)
 
 func show_move_sprite(move_visibility: bool, can_move: bool = true):
 	$MoveSprite.visible = move_visibility
@@ -41,12 +44,17 @@ func on_selected():
 	selected_tile.emit(tile)
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	# if hovered
+	if $TopSprite.visible:
+		hovered_tile.emit(tile)
+	# if clicked
 	if Input.is_action_just_pressed('select'):
 		if tile:
 			print('clicked!'+str(tile.position))
 			if tile.occupiable:
 				print("  occupant ", tile.occupiable.occupant)
-				if tile.occupiable.occupant: print(" (",tile.occupiable.occupant.team,")")
+				if tile.occupiable.occupant:
+					print(" (",tile.occupiable.occupant.team,")")
 		else:
 			print('not connected!')
 		on_selected()

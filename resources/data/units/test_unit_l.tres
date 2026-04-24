@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Units" load_steps=8 format=3 uid="uid://dbvi4m2ryv53"]
+[gd_resource type="Resource" script_class="Units" load_steps=7 format=3 uid="uid://dbvi4m2ryv53"]
 
 [ext_resource type="Resource" uid="uid://500bfosw668j" path="res://resources/data/characters/lairaea.tres" id="1_cjopm"]
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_r305e"]
 [ext_resource type="Resource" uid="uid://jiw277b2evxe" path="res://resources/data/test_bow_inventory.tres" id="2_cjopm"]
 [ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="3_oacx2"]
-[ext_resource type="Script" path="res://scripts/components/units/status.gd" id="5_uoguj"]
 
 [sub_resource type="Resource" id="Resource_7kfx0"]
 script = ExtResource("3_oacx2")

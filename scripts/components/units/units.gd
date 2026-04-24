@@ -8,7 +8,7 @@ enum Team {Player, Ally, Enemy}
 @export var leader: Units = null
 @export var damageTaken: int = 0
 @export var wounds: Array[Constants.BodyPart] = [] # Array[Part]
-@export var status: Array[Status] = [] # Array[Status]
+@export var status: Array[Constants.Status] = [] # Array[Status]
 @export var temporaryStats: Stats = Stats.new()
 @export var nearbyBonuses: Stats = Stats.new()
 @export var team: Team = Team.Player
@@ -151,7 +151,7 @@ func usable_weapons() -> Array:
 		#TODO item.weapon.rankLetter
 	)
 
-## Totals together all bonuses given to a particular stat. */
+## Totals together all bonuses given to a particular stat.
 func bonus(_stat: String) -> int:
 	var total = 0
 	for item: Item in inventory.slots:
@@ -176,7 +176,7 @@ func skl():
 func spd(): 
 	return character.stats.spd + character.myClass.stats.spd + bonus("speed")
 func dfn(): 
-	return character.stats.dfn + character.myClass.stats.dfn + bonus("funcence")
+	return character.stats.dfn + character.myClass.stats.dfn + bonus("defence")
 func res(): 
 	return character.stats.res + character.myClass.stats.res + bonus("resistance")
 
@@ -280,7 +280,9 @@ func isArmed() -> bool:
 	return inventory.equippedWeapon() != null and inventory.equippedWeapon().intact()
 
 func shortInfo() -> String:
-	return character.myName + " " + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ inventory.equippedWeapon().name
+	var wpn_text = "none"
+	if inventory.equippedWeapon(): wpn_text = inventory.equippedWeapon().name
+	return character.myName + " " + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ wpn_text
 
 func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level

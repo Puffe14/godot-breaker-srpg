@@ -20,17 +20,20 @@ func set_stat():
 	title.text = tile.tile_name
 	#for child_node in stat_container.get_children():
 	#	child_node.queue_free()
-	#var stat_labels = [
-	#	" Atk: "+str(unit.AT()),
-	#	" Crit: "+str(unit.CR()),
-	#	" Hit: "+str(unit.HI()),
-	#	" Speed: "+str(unit.AS()),
-	#	" Skill: "+str(unit.SK()),
-	#	" PhysDef: "+str(unit.PD()),
-	#	" MagicRes: "+str(unit.MD()),
-	#	" Avoid: "+str(unit.CR()),
-	#	" CritAvo: "+str(unit.CA())
-	#]
+	var stat_labels = []
+	if tile.occupiable:
+		var occ = tile.occupiable
+		stat_labels = [
+		#	" Atk: "+str(unit.AT()),
+		#	" Crit: "+str(unit.CR()),
+		#	" Hit: "+str(unit.HI()),
+		#	" Speed: "+str(unit.AS()),
+		#	" Skill: "+str(unit.SK()),
+			" PhysDef: "+str(occ.physical),
+		#	" MagicRes: "+str(unit.MD()),
+			" Avoid: "+str(occ.avoid),
+		#	" CritAvo: "+str(unit.CA())
+		]
 		#"\n",
 		#"stn: "+str(unit.stn()),
 		#"mag: "+str(unit.mag()),
@@ -40,10 +43,10 @@ func set_stat():
 		#"res: "+str(unit.res()),
 		#"move: "+str(unit.MOVE()),
 		#"jump: "+str(unit.JUMP())
-	#for label_text in stat_labels:
-	#	var new_label: Label = Label.new()
-	#	new_label.text = label_text
-	#	stat_container.add_child(new_label)
+	for label_text in stat_labels:
+		var new_label: Label = Label.new()
+		new_label.text = label_text
+		stat_container.add_child(new_label)
 
 #class StatLabel:
 #	func _init() -> void:

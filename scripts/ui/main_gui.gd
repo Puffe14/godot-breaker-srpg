@@ -32,13 +32,15 @@ func _process(_delta):
 		game.update.connect(on_game_update)
 	if !game.change_turn.is_connected(on_change_turn):
 		game.change_turn.connect(on_change_turn)
+	if !game.selected.is_connected(on_selected):
+		game.selected.connect(on_selected)
 	# set the nodes and tiles
 	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
 	make_unit_nodes()
 	if game.queue.is_empty():
-		print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
+		#print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
 		game.handle_turn()
 		return
 	var current_action: Action = game.queue.pop_front()
@@ -83,12 +85,16 @@ func tile_sent_selected(tile: Tile):
 	game.selectTile(tile)
 	tile_container._ready(tile)
 
+func tile_sent_hovered(tile: Tile):
+	tile_container._ready(tile)
+
 func connect_tile_nodes():
 	for i: Tile in game.currentMap.grid.tiles:
 		var node = map.get_child_at_v3(i.position)
 		if node:
 			if !node.selected_tile.is_connected(tile_sent_selected):
 				node.selected_tile.connect(tile_sent_selected)
+				node.hovered_tile.connect(tile_sent_hovered)
 			node.show_move_sprite(false)
 
 func show_movement_range():
@@ -105,20 +111,22 @@ func draw_and_set_tiles():
 func on_game_update():
 	draw_and_set_tiles()
 	unit_container._ready(game.acting)
-	free_children(menu_node)
-	if game.acting == game.target:
-		var menu = pre_button_menu.instantiate()
-		menu.game = game
-		menu.new_menu([game.acting])
-		show_movement_range()
-		menu_node.add_child(menu)
-	elif game.target:
-		var menu = pre_button_menu.instantiate()
-		menu.game = game
-		menu.user = game.acting
-		
-		menu.new_menu(game.availableActions(game.acting))
-		menu_node.add_child(menu)
+	tile_container._ready(null)
+	#free_children(menu_node)
+	#if game.acting == game.target:
+	#	var menu = pre_button_menu.instantiate()
+	#	menu.game = game
+	#	menu.user = game.acting
+	#	menu.new_menu([game.acting])
+	#	show_movement_range()
+	#	menu_node.add_child(menu)
+	#elif game.target:
+	#	var menu = pre_button_menu.instantiate()
+	#	menu.game = game
+	#	menu.user = game.acting
+	#	
+	#	menu.new_menu([game.acting])
+	#	menu_node.add_child(menu)
 
 func free_children(node) -> void:
 	for child in node.get_children():
@@ -145,3 +153,17 @@ func on_change_turn():
 	var msg_node = fade_msg.instantiate()
 	msg_node.create(msg)
 	add_child(msg_node)
+
+func on_selected(thing):
+	draw_and_set_tiles()
+	unit_container._ready(game.acting)
+	tile_container._ready(null)
+	free_children(menu_node)
+	if game.acting:
+		var menu = pre_button_menu.instantiate()
+		menu.game = game
+		menu.user = game.acting
+		menu.new_menu(thing)
+		show_movement_range()
+		menu_node.add_child(menu)
+		print("made menu", thing)
