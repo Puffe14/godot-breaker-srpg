@@ -27,6 +27,7 @@ func _process(_delta):
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
+		free_children(menu_node)
 	game.currentMap = map.field_map
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
@@ -96,6 +97,9 @@ func connect_tile_nodes():
 				node.selected_tile.connect(tile_sent_selected)
 				node.hovered_tile.connect(tile_sent_hovered)
 			node.show_move_sprite(false)
+			if node.tile.occupiable and node.tile.occupiable.occupant:
+				pass
+				# TODO create new unit node or somsin.ce
 
 func show_movement_range():
 	# display movement area

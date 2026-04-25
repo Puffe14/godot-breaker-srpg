@@ -115,7 +115,7 @@ func equipMedkit(medkit: Item, toggle: bool):
 func equipArmor(armor: Item, toggle: bool):
 	# unequips any armor piece that fits on the same part of the body
 	for a in equippedArmors():
-		if a.armor.bodyPart == armor.armor.bodyPart and a!=armor:
+		if a.armor.part == armor.armor.part and a!=armor:
 			a.equipment.unequip()
 	if toggle: armor.equipment.toggleEquip()
 	else: armor.equipment.equip()

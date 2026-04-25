@@ -118,7 +118,9 @@ func hasStatus(effect: Constants.Status) -> bool:
 # item and loot interactions #
 
 func useItem(item: Item):
-	item.consumable.utilize(self)
+	item.consumable.use(self)
+	if item.durability:
+		item.spend(1)
 	inventory.clean()
 
 func equip(item: Item, toggle = false):

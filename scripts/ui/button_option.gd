@@ -17,13 +17,14 @@ func _init(_game: Game, _item = null, _user = null) -> void:
 func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead
-	if item.has_method("play"):
+	if item and item.has_method("play"):
 		game.add_to_queue(item, user)
 		return []
 	## create sub menu options
 	# if the item has an inventory
 	if "inventory" in item:
 		options.push_back(item.inventory)
+		options.push_back(Wait.new(user))
 	# if the item has an inventory
 	if "slots" in item:
 		for it in item.slots:
@@ -33,7 +34,8 @@ func pressed_option() -> Array:
 		options.push_back(Equip.new(user,item,true))
 	# if the item is consumable
 	if "consumable" in item and item.consumable:
-		options.push_back(Use.new(user,item))
+		if item.intact():
+			options.push_back(Use.new(user,item))
 	# if the item can be thrown away
 	if "discardable" in item and item.discardable:
 		options.push_back(Discard.new(user,item))

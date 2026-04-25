@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://1ujjcngqv86f"]
+[gd_scene format=3 uid="uid://1ujjcngqv86f"]
 
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
@@ -20,7 +20,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "unit_container", "tile_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_spby4")
@@ -30,51 +30,51 @@ unit_list_node = NodePath("UnitNodeList")
 unit_container = NodePath("HUD/UnitContainer")
 tile_container = NodePath("HUD/TileContainer")
 
-[node name="MapNode" parent="." instance=ExtResource("2_7wb8r")]
+[node name="MapNode" parent="." unique_id=1417285264 instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
 scale = Vector2(3, 3)
 field_map = ExtResource("3_spby4")
 
-[node name="UnitNodeList" type="Node" parent="."]
+[node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
 
-[node name="Node2D" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+[node name="Node2D" parent="UnitNodeList" unique_id=868511613 instance=ExtResource("5_lw646")]
 unit = ExtResource("6_4lkkm")
 frames = ExtResource("7_qdy25")
 
-[node name="Node2D2" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+[node name="Node2D2" parent="UnitNodeList" unique_id=110937731 instance=ExtResource("5_lw646")]
 unit = ExtResource("8_mvnht")
 frames = ExtResource("9_unew4")
 
-[node name="Node2D3" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+[node name="Node2D3" parent="UnitNodeList" unique_id=1182455284 instance=ExtResource("5_lw646")]
 unit = ExtResource("10_834jy")
 frames = ExtResource("11_ex6rk")
 
-[node name="Node2D4" parent="UnitNodeList" instance=ExtResource("5_lw646")]
+[node name="Node2D4" parent="UnitNodeList" unique_id=1926424269 instance=ExtResource("5_lw646")]
 unit = ExtResource("12_yx44x")
 frames = ExtResource("11_ex6rk")
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=113286467]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_mvnht")
 
-[node name="UnitContainer" parent="HUD" instance=ExtResource("9_4lkkm")]
+[node name="UnitContainer" parent="HUD" unique_id=828232133 instance=ExtResource("9_4lkkm")]
 layout_mode = 0
 offset_left = 850.0
 offset_top = 12.0
 offset_right = 1134.0
 offset_bottom = 238.0
 
-[node name="TileContainer" parent="HUD" instance=ExtResource("10_4lkkm")]
+[node name="TileContainer" parent="HUD" unique_id=1353515007 instance=ExtResource("10_4lkkm")]
 layout_mode = 0
 offset_left = 921.0
 offset_top = 565.0
 offset_right = 1136.0
 offset_bottom = 632.0
 
-[node name="MenuControl" type="Control" parent="HUD"]
+[node name="MenuControl" type="Control" parent="HUD" unique_id=1583445029]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

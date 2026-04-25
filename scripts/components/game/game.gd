@@ -48,7 +48,7 @@ func selectTile(tile: Tile) -> void:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
-		selected.emit(availableActions(acting, !acting.moved))
+		selected.emit([acting])
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
 		#attack()
@@ -56,7 +56,7 @@ func selectTile(tile: Tile) -> void:
 	elif occupiable and occupant and acting:
 		target = occupant
 		#if target == acting:
-		selected.emit([acting])
+		selected.emit(availableActions(acting, !acting.moved))
 	# Move acting unit to given tile
 	elif occupiable and acting:
 		if currentMap.movementRangeTiles(acting).has(tile):
@@ -110,6 +110,11 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 		for weapon in possibleWeaponsOrNone: # Weapons that the character could use
 			unit.equip(weapon)
 			var targets = fm.unitsInRangeAt(unit,tile,unit.Range()) # Who can be attacked? --(who, from)
+			if target:
+				targets = targets.filter(func(u):
+					print(u.unit," & ")
+					print(target)
+					return u.unit == target)
 			# all available unit, distance, tile combinations
 			for utr in targets:
 				var newActions: Array[Combat] = []
@@ -152,7 +157,8 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 		total.append_array(combats)
 		heals.append_array(combats)
 		uses.append_array(combats)
-	total.push_back(Wait.new(unit))
+	if !target:
+		total.push_back(Wait.new(unit))
 	return total
 
 

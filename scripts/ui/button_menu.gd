@@ -56,3 +56,4 @@ func update_options():
 	var button_list = button_list_container.get_children()
 	for b: ButtonOption in button_list:
 		b._init(game, b.item, b.user)
+		#TODO somehow remove broken item
