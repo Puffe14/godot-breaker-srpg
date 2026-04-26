@@ -10,6 +10,7 @@ class_name Tile extends Resource
 
 signal show_move(show: bool)
 
+
 ## give new Vector3i position
 func setPos(x: int, y: int, z: int) -> void:
 	position = Vector3i(x, y, z)

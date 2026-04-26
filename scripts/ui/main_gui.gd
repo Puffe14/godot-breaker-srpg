@@ -12,7 +12,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
-
+var file_loader: FileLoader = FileLoader.new()
 
 func _ready() -> void:
 	map.move.connect(move)
