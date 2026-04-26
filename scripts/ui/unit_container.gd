@@ -2,7 +2,7 @@ class_name UnitContainer extends MarginContainer
 
 @export var title: Label = null
 @export var stat_container: Container = null
-@export var unit = null
+@export var unit: Units = null
 
 func _ready(new_unit = null) -> void:
 	unit = new_unit
@@ -29,7 +29,9 @@ func set_stat():
 		" PhysDef: "+str(unit.PD()),
 		" MagicRes: "+str(unit.MD()),
 		" Avoid: "+str(unit.CR()),
-		" CritAvo: "+str(unit.CA())
+		" CritAvo: "+str(unit.CA()),
+		" Move: "+str(unit.MOVE()),
+		" Jump: "+str(unit.JUMP())
 	]
 		#"\n",
 		#"stn: "+str(unit.stn()),
@@ -38,8 +40,8 @@ func set_stat():
 		#"spd: "+str(unit.spd()),
 		#"def: "+str(unit.dfn()),
 		#"res: "+str(unit.res()),
-		#"move: "+str(unit.MOVE()),
-		#"jump: "+str(unit.JUMP())
+		#move: "+str(unit.move()),
+		#jump: "+str(unit.jump())
 	for label_text in stat_labels:
 		var new_label: Label = Label.new()
 		new_label.text = label_text

@@ -72,6 +72,7 @@ func _init(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Cons
 	selected = _a
 	targeted = _b
 	act_range = _act_range
+	target_part = _part
 	if selected:
 		precalculate()
 
@@ -177,11 +178,11 @@ func shatter(attacker: Units, defender: Units):
 	emit_signal("animate", "strike", attacker, time_passed)
 	if isHit:
 		defender.breakPiece(target_part)
-		print(defender.character.myName," breaks ", target_part,"!")
+		print(defender.character.myName," breaks ", part_string(),"!")
 		emit_signal("animate", "hurt", defender, time_passed+0.5, body_part_text+" armor shattered")
 	else:
 		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
-		print("miss.")
+		print("misses ",part_string())
 
 ## method for break attacks
 func wound(attacker: Units, defender: Units):
@@ -191,10 +192,10 @@ func wound(attacker: Units, defender: Units):
 	attacker.inventory.equippedWeapon().spend(cost)
 	if isHit:
 		defender.takeWound(target_part)
-		print(defender.character.myName," wounds ", target_part,"!")
+		print(defender.character.myName," wounds ", part_string(),"!")
 		emit_signal("animate", "hurt", defender, time_passed+0.5, body_part_text+" wounded")
 	else:
-		print("miss.")
+		print("misses ",part_string())
 		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
 
 func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = ""):
@@ -223,5 +224,13 @@ func sensible() -> bool:
 		_:
 			return true
 
+func ctype_string() -> String:
+	return type_dict[combat_type]
+
+func part_string() -> String:
+	return Constants.body_part_dict[target_part]
+
 func _to_string() -> String:
+	if combat_type == Type.Wound || combat_type == Type.Break:
+		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + "->" + targeted.character.myName
 	return type_dict[combat_type] + ": " + selected.character.myName + "->" + targeted.character.myName

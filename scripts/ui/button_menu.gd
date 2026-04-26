@@ -52,6 +52,10 @@ func reopen_parent_menu():
 	hider_rect.visible = false
 	update_options()
 
+func _process(delta: float) -> void:
+	update_options()
+	# TODO a more efficient way to update text
+
 func update_options():
 	var button_list = button_list_container.get_children()
 	for b: ButtonOption in button_list:
