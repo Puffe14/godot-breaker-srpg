@@ -6,6 +6,7 @@ class_name Discard extends Action
 func _init(_user: Units, _item: Item) -> void:
 	user = _user
 	item = _item
+	closes_menu = false
 
 func play() -> Explain:
 	user.inventory.remove(item)

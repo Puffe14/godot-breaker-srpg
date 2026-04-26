@@ -53,6 +53,8 @@ func _process(_delta):
 		game.deSelect()
 		show_movement_range()
 		continue_process = false
+		if current_action.closes_menu:
+			free_children(menu_node)
 		await get_tree().create_timer(current_action.actLength).timeout
 		continue_process = true
 

@@ -8,6 +8,8 @@ var weapon = null
 var actLength: float = 1.0
 # explain
 var explain = Explain.new("")
+# closes menu node when processed
+var closes_menu = true
 
 var delay = 0
 

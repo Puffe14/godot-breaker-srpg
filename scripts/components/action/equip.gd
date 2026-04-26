@@ -8,6 +8,7 @@ func _init(_user: Units, _item: Item, _toggle: bool) -> void:
 	user = _user
 	item = _item
 	toggle = _toggle
+	closes_menu = false
 
 func play() -> Explain:
 	user.equip(item, toggle)

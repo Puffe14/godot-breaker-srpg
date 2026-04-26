@@ -1,0 +1,3 @@
+BUGS:
+	UnitNode: status change seen only after target end's turn
+	UnitNode: dimming only works when a character waits
