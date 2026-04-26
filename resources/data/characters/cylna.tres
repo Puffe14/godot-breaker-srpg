@@ -28,4 +28,5 @@ myName = "Cylna"
 myClass = ExtResource("1_e7l0s")
 growths = SubResource("Resource_t82sm")
 stats = SubResource("Resource_uqnh0")
+picture_name = "cylna"
 metadata/_custom_type_script = "uid://dalmi1756haci"

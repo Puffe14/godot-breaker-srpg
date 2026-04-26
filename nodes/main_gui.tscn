@@ -4,17 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
 [ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="2_spby4"]
 [ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_spby4"]
-[ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="5_lw646"]
-[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="6_4lkkm"]
-[ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="7_qdy25"]
-[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="8_mvnht"]
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
 [ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
-[ext_resource type="SpriteFrames" uid="uid://duodoahfamvmo" path="res://resources/images/animation/cylna.tres" id="9_unew4"]
 [ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
-[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="10_834jy"]
-[ext_resource type="SpriteFrames" uid="uid://bx864agjdymh1" path="res://resources/images/animation/ninja.tres" id="11_ex6rk"]
-[ext_resource type="Resource" uid="uid://clrx651vvcyce" path="res://resources/data/units/dummy2_unit.tres" id="12_yx44x"]
 
 [sub_resource type="Theme" id="Theme_mvnht"]
 default_font = ExtResource("9_qdy25")
@@ -36,22 +28,6 @@ scale = Vector2(3, 3)
 field_map = ExtResource("3_spby4")
 
 [node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
-
-[node name="Node2D" parent="UnitNodeList" unique_id=868511613 instance=ExtResource("5_lw646")]
-unit = ExtResource("6_4lkkm")
-frames = ExtResource("7_qdy25")
-
-[node name="Node2D2" parent="UnitNodeList" unique_id=110937731 instance=ExtResource("5_lw646")]
-unit = ExtResource("8_mvnht")
-frames = ExtResource("9_unew4")
-
-[node name="Node2D3" parent="UnitNodeList" unique_id=1182455284 instance=ExtResource("5_lw646")]
-unit = ExtResource("10_834jy")
-frames = ExtResource("11_ex6rk")
-
-[node name="Node2D4" parent="UnitNodeList" unique_id=1926424269 instance=ExtResource("5_lw646")]
-unit = ExtResource("12_yx44x")
-frames = ExtResource("11_ex6rk")
 
 [node name="HUD" type="Control" parent="." unique_id=113286467]
 layout_mode = 3

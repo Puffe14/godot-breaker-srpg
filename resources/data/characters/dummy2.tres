@@ -16,4 +16,5 @@ myName = "Dummy Two"
 myClass = ExtResource("2_mqpwc")
 growths = ExtResource("1_xqn82")
 stats = SubResource("Resource_ywmxy")
+picture_name = "ninja"
 metadata/_custom_type_script = "uid://dalmi1756haci"

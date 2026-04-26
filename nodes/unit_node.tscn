@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bssumlqsjyewn"]
+[gd_scene format=3 uid="uid://bssumlqsjyewn"]
 
 [ext_resource type="Script" uid="uid://bcn8tp67l360l" path="res://scripts/ui/unit_node.gd" id="1_xinmc"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="2_gax0m"]
-[ext_resource type="Script" path="res://scripts/ui/status_icon_display.gd" id="3_6kcvq"]
+[ext_resource type="Script" uid="uid://dv60de3x0max6" path="res://scripts/ui/status_icon_display.gd" id="3_6kcvq"]
 [ext_resource type="Shader" uid="uid://dl7mist6pfwy2" path="res://resources/shaders/gray.gdshader" id="3_c38aa"]
 [ext_resource type="PackedScene" uid="uid://burbvc1ohhmsh" path="res://nodes/status_icon.tscn" id="4_76tq2"]
 
@@ -10,20 +10,20 @@
 resource_local_to_scene = true
 shader = ExtResource("3_c38aa")
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("icon_control") groups=["unit"]]
+[node name="Node2D" type="Node2D" unique_id=1337361225 node_paths=PackedStringArray("icon_control") groups=["unit"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 shader = ExtResource("3_c38aa")
 icon_control = NodePath("Control")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503339535]
 texture = ExtResource("2_gax0m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1680806366]
 material = SubResource("ShaderMaterial_ax037")
 animation = &""
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("vbox")]
+[node name="Control" type="Control" parent="." unique_id=416744645 node_paths=PackedStringArray("vbox")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -15.333335
@@ -35,7 +35,7 @@ script = ExtResource("3_6kcvq")
 vbox = NodePath("VBoxContainer")
 icon_rect = ExtResource("4_76tq2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1748369356]
 layout_mode = 0
 offset_left = -0.33333206
 offset_top = -6.0
@@ -43,5 +43,5 @@ offset_right = 39.666668
 offset_bottom = 34.0
 theme_override_constants/separation = 1
 
-[node name="TextureRect" parent="Control/VBoxContainer" instance=ExtResource("4_76tq2")]
+[node name="TextureRect" parent="Control/VBoxContainer" unique_id=1262584961 instance=ExtResource("4_76tq2")]
 layout_mode = 2

@@ -145,11 +145,17 @@ func make_unit_nodes() -> void:
 		if node_list.all(func(n): return n.unit != unit):
 			var new_unit_node = unit_node.instantiate()
 			new_unit_node.unit = unit
+			new_unit_node.set_node(unit)
+			new_unit_node._ready()
 			unit_list_node.add_child(new_unit_node)
 
 func on_change_turn():
 	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
 		u.on_update(1, true)
+		if u.unit and u.unit.team == game.turnOf:
+			u.play_animation("default",1)
+		else:
+			u.play_animation("still",1)
 	# inform whose turn it is now
 	var msg: String = ""
 	if game:

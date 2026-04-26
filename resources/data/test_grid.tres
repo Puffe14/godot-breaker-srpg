@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://mnt78qxjtldn" path="res://scripts/components/tiles/occupiable.gd" id="3_hgld7"]
 [ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_s1kq2"]
 [ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="4_fly2l"]
+[ext_resource type="Resource" uid="uid://bu2im4wwhcoou" path="res://resources/data/units/dummy3_unit.tres" id="6_s1kq2"]
 
 [sub_resource type="Resource" id="Resource_s1kq2"]
 script = ExtResource("3_hgld7")
@@ -53,6 +54,7 @@ metadata/_custom_type_script = "uid://ct50js1epx5n4"
 
 [sub_resource type="Resource" id="Resource_hloux"]
 script = ExtResource("3_hgld7")
+occupant = ExtResource("6_s1kq2")
 metadata/_custom_type_script = "uid://mnt78qxjtldn"
 
 [sub_resource type="Resource" id="Resource_ghn50"]

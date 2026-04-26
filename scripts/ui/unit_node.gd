@@ -12,7 +12,9 @@ var status_icon: PackedScene = preload("res://nodes/status_icon.tscn")
 signal dead
 
 func set_node(new_unit: Units):
-	pass
+	unit = new_unit
+	if unit:
+		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
 
 func list_status_icons():
 	if icon_control:

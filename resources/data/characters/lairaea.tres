@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://500bfosw668j"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://500bfosw668j"]
 
 [ext_resource type="Script" uid="uid://dalmi1756haci" path="res://scripts/components/units/character.gd" id="1_auf6x"]
 [ext_resource type="Resource" uid="uid://pgekrm5clm0w" path="res://resources/data/stats/lairaea_stats.tres" id="1_iqnrb"]
@@ -11,4 +11,5 @@ myName = "Lairaea"
 myClass = ExtResource("2_iqnrb")
 growths = ExtResource("4_5252y")
 stats = ExtResource("1_iqnrb")
+picture_name = "lairaea"
 metadata/_custom_type_script = "uid://dalmi1756haci"
