@@ -12,6 +12,10 @@ signal show_move(show: bool)
 
 func copy() -> Tile:
 	var new_copy = self.duplicate()
+	if interactible:
+		new_copy.interactible = Interactible.new(interactible.loot, interactible.soul)
+	if occupiable:
+		new_copy.occupiable = Occupiable.new()##occupiable, interactible.soul)
 	return new_copy
 
 ## give new Vector3i position

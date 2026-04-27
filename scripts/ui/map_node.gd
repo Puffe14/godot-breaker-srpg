@@ -45,6 +45,7 @@ func set_tiles_in_nodes():
 		#tile_node.tile = tile
 		#tile.show_move.connect(tile_node.show_move_sprite)
 		#tile_node._ready()
+	pass
 
 func draw_tiles(dir: Direction = Direction.UP):
 	var translated: Vector2i = Vector2i(1,1)
