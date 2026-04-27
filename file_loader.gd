@@ -5,6 +5,11 @@ var tile_dict: Dictionary = {
 	"sand_field":preload("res://resources/data/tiles/sand_field.tres")
 	}
 
+var unit_dict: Dictionary = {
+	"Cylna":preload("res://resources/data/units/test_unit_c.tres"),
+	"BossLairaea":preload("res://resources/data/units/test_unit_l.tres"),
+	}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -35,3 +40,33 @@ func reread_map(map: FieldMap):
 		new_tile.position = Vector3i(index%map.grid.row, index/map.grid.column, heights[index])
 		map.grid.tiles.append(new_tile)
 		index+=1
+	## units onto map
+	var joining = map_json["joining"]
+	for joiner in joining:
+		var unit: Units = unit_dict[joiner[0]]
+		unit.takeDamage(joiner[1])
+		var location = joiner[2]
+		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
+		map.addUnitToPlayerDeployed(unit)
+	var enemies = map_json["enemies"]
+	for grouping in enemies:
+		var group: Group = Group.new()
+		group.side = Units.Team.Enemy
+		for enemy in grouping:
+			var unit: Units = unit_dict[enemy[0]]
+			group.members.append(unit)
+			unit.takeDamage(enemy[1])
+			var location = enemy[2]
+			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
+		map.enemies.append(group)
+	var allies = map_json["allies"]
+	for grouping in allies:
+		var group: Group = Group.new()
+		group.side = Units.Team.Enemy
+		for ally in grouping:
+			var unit: Units = unit_dict[ally[0]]
+			group.members.append(unit)
+			unit.takeDamage(ally[1])
+			var location = ally[2]
+			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
+		map.allies.append(group)
