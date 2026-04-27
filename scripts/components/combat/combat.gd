@@ -48,7 +48,7 @@ func recreate(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = C
 func everyoneLived() -> bool:
 	return selected.isAlive() && targeted.isAlive()
 func inCounterRange() -> bool:
-	var t_wep: Item = targeted.equippedWeapon()
+	var t_wep: Item = targeted.inventory.equippedWeapon()
 	if t_wep:
 		var t_wrange = t_wep.weapon.wrange
 		# true only if target's current weapon range includes given range
@@ -61,7 +61,7 @@ func selectedAttacks() -> int:
 	else: return 1
 ## calculate how many attacks in combat for target
 func targetedAttacks() -> int:
-	if no_counter || !targeted.isArmed(): return 0
+	if no_counter|| !targeted.isArmed() || !inCounterRange() : return 0
 	elif speed_diff < -Rules.doubleDiff: return 2
 	else: return 1
 
