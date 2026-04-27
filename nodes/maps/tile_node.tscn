@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bntpkq4hix4qr"]
+[gd_scene format=3 uid="uid://bntpkq4hix4qr"]
 
 [ext_resource type="Script" uid="uid://by3w4x0egftiq" path="res://scripts/ui/tile_node.gd" id="1_10ckc"]
 [ext_resource type="Texture2D" uid="uid://cdcgcwjyk6uds" path="res://resources/images/tiles/field_red.png" id="2_d0kgv"]
@@ -10,24 +10,28 @@ size = Vector2(16, 12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0kgv"]
 
-[node name="TileNode" type="Node2D" groups=["tile"]]
+[node name="TileNode" type="Node2D" unique_id=48730674 groups=["tile"]]
 script = ExtResource("1_10ckc")
+texture = "field_base"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=643211788]
 texture = ExtResource("2_d0kgv")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1760220771]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=41155499]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_nvye0")
 
-[node name="MoveSprite" type="Sprite2D" parent="."]
+[node name="MoveSprite" type="Sprite2D" parent="." unique_id=1187731354]
 visible = false
 material = SubResource("ShaderMaterial_d0kgv")
 texture = ExtResource("3_d0kgv")
 
-[node name="TopSprite" type="Sprite2D" parent="."]
+[node name="TeamSprite" type="Sprite2D" parent="." unique_id=963935627]
+visible = false
+
+[node name="TopSprite" type="Sprite2D" parent="." unique_id=1138989718]
 visible = false
 texture = ExtResource("3_b5hsi")
 

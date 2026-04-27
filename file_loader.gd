@@ -61,7 +61,7 @@ func reread_map(map: FieldMap):
 		group.side = Units.Team.Enemy
 		for enemy in grouping:
 			var unit: Units = unit_dict[enemy[0]]
-			group.members.append(unit)
+			group.add_unit(unit)
 			unit.takeDamage(enemy[1])
 			var location = enemy[2]
 			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
@@ -72,7 +72,7 @@ func reread_map(map: FieldMap):
 		group.side = Units.Team.Enemy
 		for ally in grouping:
 			var unit: Units = unit_dict[ally[0]]
-			group.members.append(unit)
+			group.add_unit(unit)
 			unit.takeDamage(ally[1])
 			var location = ally[2]
 			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))

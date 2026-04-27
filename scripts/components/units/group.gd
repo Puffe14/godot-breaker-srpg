@@ -21,6 +21,9 @@ func haveNotActed() -> Array:
 func living_members() -> Array:
 	return members.filter(func(m:Units): return m.isAlive())
 
+func add_unit(unit: Units):
+	members.append(unit)
+	unit.setTeam(side)
 
 ## true if all members are done
 func doneActing() -> bool:

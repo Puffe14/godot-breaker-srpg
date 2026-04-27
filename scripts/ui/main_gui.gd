@@ -25,6 +25,7 @@ func _ready() -> void:
 var continue_process = true
 
 func _process(_delta):
+	map.set_tiles_in_nodes()
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
@@ -37,7 +38,6 @@ func _process(_delta):
 	if !game.selected.is_connected(on_selected):
 		game.selected.connect(on_selected)
 	# set the nodes and tiles
-	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
 	make_unit_nodes()
@@ -99,7 +99,7 @@ func connect_tile_nodes():
 			if !node.selected_tile.is_connected(tile_sent_selected):
 				node.selected_tile.connect(tile_sent_selected)
 				node.hovered_tile.connect(tile_sent_hovered)
-			node.show_move_sprite(false)
+			node.show_move_sprite(false, true, game.acting)
 			if node.tile.occupiable and node.tile.occupiable.occupant:
 				pass
 				# TODO create new unit node or somsin.ce

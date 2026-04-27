@@ -4,6 +4,9 @@ class_name TileNode extends Node2D
 @export var texture = "field_bluegrass"
 @export var shader: Shader = preload("res://resources/shaders/gray.gdshader")
 var unit_node = preload("res://nodes/unit_node.tscn")
+var ally_texture = preload("res://resources/images/tiles/field_cursor_ally.png")
+var enemy_texture = preload("res://resources/images/tiles/field_cursor_enemy.png")
+var player_texture = preload("res://resources/images/tiles/field_cursor_player.png")
 
 signal selected_tile(t:Tile)
 signal hovered_tile(t:Tile)
@@ -35,12 +38,24 @@ func _on_area_2d_mouse_exited() -> void:
 	$TopSprite.visible = false
 	hovered_tile.emit(null)
 
-func show_move_sprite(move_visibility: bool, can_move: bool = true):
+func show_move_sprite(move_visibility: bool, can_move: bool = true, actor = null):
 	$MoveSprite.visible = move_visibility
+	$TeamSprite.visible = !move_visibility
 	if !can_move:
 		$MoveSprite.material.shader = shader
 	else:
 		$MoveSprite.material.shader = null
+	if !move_visibility and actor and tile.occupiable and tile.occupiable.occupant:
+		match tile.occupiable.occupant.team:
+			Units.Team.Player:
+				$TeamSprite.texture = player_texture
+			Units.Team.Enemy:
+				$TeamSprite.texture = enemy_texture
+			Units.Team.Ally:
+				$TeamSprite.texture = ally_texture
+			_:
+				$TeamSprite.texture = null
+				print("no team found???")
 
 func on_selected():
 	selected_tile.emit(tile)
