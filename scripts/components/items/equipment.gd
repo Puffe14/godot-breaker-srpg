@@ -3,10 +3,10 @@ class_name Equipment extends Resource
 @export var equipped: bool = false
 
 func isEquipped() -> bool:
-    return equipped
+	return equipped
 func equip() -> void:
-    equipped = true
+	equipped = true
 func unequip() -> void:
-    equipped = false
+	equipped = false
 func toggleEquip() -> void:
-    equipped = !equipped
+	equipped = !equipped

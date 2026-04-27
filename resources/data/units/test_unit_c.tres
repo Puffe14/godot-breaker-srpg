@@ -1,13 +1,55 @@
-[gd_resource type="Resource" script_class="Units" load_steps=5 format=3 uid="uid://bie562w7q05je"]
+[gd_resource type="Resource" script_class="Units" format=3 uid="uid://bie562w7q05je"]
 
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_lwcr2"]
 [ext_resource type="Resource" uid="uid://csqh8v33brm61" path="res://resources/data/characters/cylna.tres" id="1_lxpto"]
-[ext_resource type="Resource" uid="uid://3b57ef5u6qwk" path="res://resources/data/test_inventory.tres" id="2_4ubco"]
-[ext_resource type="Script" uid="uid://dgsr38mbf7wnu" path="res://scripts/components/units/status.gd" id="4_ixy1u"]
+[ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="2_xev44"]
+[ext_resource type="Script" uid="uid://bb6vt655walxx" path="res://scripts/components/items/durability.gd" id="3_s25n5"]
+[ext_resource type="Script" uid="uid://cclj43y3y4ppb" path="res://scripts/components/items/equipment.gd" id="4_qcr3b"]
+[ext_resource type="Script" uid="uid://cj1r2ti1vrrxq" path="res://scripts/components/items/item.gd" id="5_vmgcg"]
+[ext_resource type="Script" uid="uid://bj34ms24eyr8e" path="res://scripts/components/items/weapon.gd" id="6_wp6gf"]
+[ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="7_vnkew"]
+[ext_resource type="Resource" uid="uid://b733gd7oi20qn" path="res://resources/data/items/test_club.tres" id="8_s25n5"]
+
+[sub_resource type="Resource" id="Resource_55lec"]
+script = ExtResource("3_s25n5")
+maximum = 50
+metadata/_custom_type_script = "uid://bb6vt655walxx"
+
+[sub_resource type="Resource" id="Resource_17wmj"]
+script = ExtResource("4_qcr3b")
+equipped = true
+metadata/_custom_type_script = "uid://cclj43y3y4ppb"
+
+[sub_resource type="Resource" id="Resource_i4fld"]
+script = ExtResource("6_wp6gf")
+dmgType = 1
+rankLetter = 1
+stats = ExtResource("7_vnkew")
+power = 1
+hit = 70
+crit = 5
+wrange = Vector2i(1, 1)
+weight = 3
+metadata/_custom_type_script = "uid://bj34ms24eyr8e"
+
+[sub_resource type="Resource" id="Resource_3vjqn"]
+script = ExtResource("5_vmgcg")
+weapon = SubResource("Resource_i4fld")
+equipment = SubResource("Resource_17wmj")
+name = "Test Stick"
+description = "yum yum xizzy"
+durability = SubResource("Resource_55lec")
+metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"
+
+[sub_resource type="Resource" id="Resource_rnjmg"]
+script = ExtResource("2_xev44")
+slots = [SubResource("Resource_3vjqn"), ExtResource("8_s25n5"), null, null, null, null]
+dontReset = true
+metadata/_custom_type_script = "uid://yejumcuhegph"
 
 [resource]
 script = ExtResource("1_lwcr2")
 character = ExtResource("1_lxpto")
-inventory = ExtResource("2_4ubco")
+inventory = SubResource("Resource_rnjmg")
 team = 1
 metadata/_custom_type_script = "uid://0slpdtksthq2"

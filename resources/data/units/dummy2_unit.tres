@@ -1,15 +1,22 @@
-[gd_resource type="Resource" script_class="Units" load_steps=6 format=3 uid="uid://clrx651vvcyce"]
+[gd_resource type="Resource" script_class="Units" format=3 uid="uid://clrx651vvcyce"]
 
 [ext_resource type="Resource" uid="uid://bdub1bfsqbcql" path="res://resources/data/characters/dummy2.tres" id="1_df30j"]
-[ext_resource type="Resource" uid="uid://3b57ef5u6qwk" path="res://resources/data/test_inventory.tres" id="2_ghkls"]
+[ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="2_ghkls"]
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="3_cwi3c"]
+[ext_resource type="Resource" uid="uid://cc2pjfupfwb05" path="res://resources/data/items/test_stick.tres" id="3_scvn8"]
+[ext_resource type="Resource" uid="uid://cpc8l1qp52mc8" path="res://resources/data/items/test_bow.tres" id="4_emkw8"]
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="4_scvn8"]
-[ext_resource type="Script" uid="uid://dgsr38mbf7wnu" path="res://scripts/components/units/status.gd" id="5_emkw8"]
+
+[sub_resource type="Resource" id="Resource_kdf5c"]
+script = ExtResource("2_ghkls")
+slots = [ExtResource("3_scvn8"), ExtResource("4_emkw8"), null, null, null, null]
+dontReset = true
+metadata/_custom_type_script = "uid://yejumcuhegph"
 
 [resource]
 script = ExtResource("4_scvn8")
 character = ExtResource("1_df30j")
-inventory = ExtResource("2_ghkls")
+inventory = SubResource("Resource_kdf5c")
 temporaryStats = ExtResource("3_cwi3c")
 nearbyBonuses = ExtResource("3_cwi3c")
 metadata/_custom_type_script = "uid://0slpdtksthq2"

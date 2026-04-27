@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://jiw277b2evxe"]
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://jiw277b2evxe"]
 
 [ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="1_qwqpe"]
 [ext_resource type="Resource" uid="uid://cpc8l1qp52mc8" path="res://resources/data/items/test_bow.tres" id="2_qwqpe"]
 [ext_resource type="Resource" uid="uid://cakksqejd8d0q" path="res://resources/data/items/moon_helmet.tres" id="3_das56"]
 [ext_resource type="Resource" uid="uid://cf7g5ryeloruv" path="res://resources/data/items/test_bread.tres" id="4_vxn4v"]
+[ext_resource type="Resource" uid="uid://bx40u5b3es58s" path="res://resources/data/items/test_pole.tres" id="5_ob6m4"]
 
 [resource]
 script = ExtResource("1_qwqpe")
-slots = [ExtResource("2_qwqpe"), ExtResource("3_das56"), ExtResource("4_vxn4v"), null, null, null]
+slots = [ExtResource("2_qwqpe"), ExtResource("3_das56"), ExtResource("4_vxn4v"), ExtResource("5_ob6m4"), null, null]
 dontReset = true
 metadata/_custom_type_script = "uid://yejumcuhegph"

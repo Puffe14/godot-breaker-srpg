@@ -6,17 +6,17 @@
 [ext_resource type="Script" uid="uid://bj34ms24eyr8e" path="res://scripts/components/items/weapon.gd" id="2_stqw7"]
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="3_wxj1v"]
 
-[sub_resource type="Resource" id="Resource_55lec"]
+[sub_resource type="Resource" id="Resource_i4fld"]
 script = ExtResource("1_wxj1v")
 maximum = 50
 metadata/_custom_type_script = "uid://bb6vt655walxx"
 
-[sub_resource type="Resource" id="Resource_17wmj"]
+[sub_resource type="Resource" id="Resource_55lec"]
 script = ExtResource("2_i4fld")
 equipped = true
 metadata/_custom_type_script = "uid://cclj43y3y4ppb"
 
-[sub_resource type="Resource" id="Resource_i4fld"]
+[sub_resource type="Resource" id="Resource_17wmj"]
 script = ExtResource("2_stqw7")
 dmgType = 1
 rankLetter = 1
@@ -30,9 +30,9 @@ metadata/_custom_type_script = "uid://bj34ms24eyr8e"
 
 [resource]
 script = ExtResource("1_ldf58")
-weapon = SubResource("Resource_i4fld")
-equipment = SubResource("Resource_17wmj")
+weapon = SubResource("Resource_17wmj")
+equipment = SubResource("Resource_55lec")
 name = "test stick"
 description = "yum yum xizzy"
-durability = SubResource("Resource_55lec")
+durability = SubResource("Resource_i4fld")
 metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

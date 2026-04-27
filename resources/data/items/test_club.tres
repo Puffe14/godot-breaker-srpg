@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b733gd7oi20qn"]
+
+[ext_resource type="Script" uid="uid://bb6vt655walxx" path="res://scripts/components/items/durability.gd" id="1_4hwck"]
+[ext_resource type="Script" uid="uid://cclj43y3y4ppb" path="res://scripts/components/items/equipment.gd" id="2_ckk6h"]
+[ext_resource type="Script" uid="uid://cj1r2ti1vrrxq" path="res://scripts/components/items/item.gd" id="3_xgnb1"]
+[ext_resource type="Script" uid="uid://bj34ms24eyr8e" path="res://scripts/components/items/weapon.gd" id="4_vw0gx"]
+[ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="5_5ieew"]
+
+[sub_resource type="Resource" id="Resource_55lec"]
+script = ExtResource("1_4hwck")
+maximum = 50
+metadata/_custom_type_script = "uid://bb6vt655walxx"
+
+[sub_resource type="Resource" id="Resource_17wmj"]
+script = ExtResource("2_ckk6h")
+equipped = true
+metadata/_custom_type_script = "uid://cclj43y3y4ppb"
+
+[sub_resource type="Resource" id="Resource_4hwck"]
+script = ExtResource("4_vw0gx")
+wpnType = 2
+dmgType = 1
+rankLetter = 1
+stats = ExtResource("5_5ieew")
+power = 1
+hit = 80
+crit = 7
+wrange = Vector2i(1, 1)
+weight = 4
+metadata/_custom_type_script = "uid://bj34ms24eyr8e"
+
+[resource]
+script = ExtResource("3_xgnb1")
+weapon = SubResource("Resource_4hwck")
+equipment = SubResource("Resource_17wmj")
+name = "Test Pole"
+description = "yum yum xizzy"
+durability = SubResource("Resource_55lec")
+metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

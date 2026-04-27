@@ -6,6 +6,20 @@ class_name ButtonOption extends Button
 var game: Game = null
 signal next_options(array: Array)
 
+var wpnTypeDict: Dictionary = {
+	Weapon.WeaponType.Blunt: preload("res://resources/images/items/wpn_blunt.png"),
+	Weapon.WeaponType.Long: preload("res://resources/images/items/wpn_long.png"),
+	Weapon.WeaponType.Sharp: preload("res://resources/images/items/wpn_sharp.png"),
+	Weapon.WeaponType.Spell: preload("res://resources/images/items/wpn_spell.png"),
+	Weapon.WeaponType.Ranged: preload("res://resources/images/items/wpn_ranged.png")
+}
+var armorTypeDict: Dictionary = {
+	Constants.BodyPart.Head: preload("res://resources/images/status/armor head.png"),
+	Constants.BodyPart.Legs: preload("res://resources/images/status/armor legs.png"),
+	Constants.BodyPart.Arms: preload("res://resources/images/status/armor arms.png"),
+	Constants.BodyPart.Torso: preload("res://resources/images/status/armor torso.png")
+}
+
 func _init(_game: Game, _item = null, _user = null) -> void:
 	text = str(_item)
 	game = _game
@@ -13,7 +27,14 @@ func _init(_game: Game, _item = null, _user = null) -> void:
 		item = _item
 	if user == null:
 		user = _user
-
+	if item:
+		if "consumable" in item and item.consumable:
+			icon = load("res://resources/images/items/itm_consumable.png")
+		if "weapon" in item and "equipment" in item and item.weapon:
+			icon = wpnTypeDict[item.weapon.wpnType]
+		if "armor" in item and item.armor:
+			icon = armorTypeDict[item.armor.part]
+sssssss
 func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead
@@ -36,6 +57,7 @@ func pressed_option() -> Array:
 	if "consumable" in item and item.consumable:
 		if item.intact():
 			options.push_back(Use.new(user,item))
+		icon = load("res://resources/images/items/itm_consumable.png")
 	# if the item can be thrown away
 	if "discardable" in item and item.discardable:
 		options.push_back(Discard.new(user,item))

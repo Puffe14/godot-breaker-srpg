@@ -12,9 +12,8 @@ script = ExtResource("1_c8c62")
 maximum = 50
 metadata/_custom_type_script = "uid://bb6vt655walxx"
 
-[sub_resource type="Resource" id="Resource_17wmj"]
+[sub_resource type="Resource" id="Resource_84g7s"]
 script = ExtResource("2_84g7s")
-equipped = true
 metadata/_custom_type_script = "uid://cclj43y3y4ppb"
 
 [sub_resource type="Resource" id="Resource_mikmx"]
@@ -22,7 +21,7 @@ script = ExtResource("4_84g7s")
 flying = true
 metadata/_custom_type_script = "uid://dbcq6n3wcudho"
 
-[sub_resource type="Resource" id="Resource_i4fld"]
+[sub_resource type="Resource" id="Resource_5j1ga"]
 script = ExtResource("4_5j1ga")
 wpnType = 3
 dmgType = 1
@@ -38,8 +37,8 @@ metadata/_custom_type_script = "uid://bj34ms24eyr8e"
 
 [resource]
 script = ExtResource("3_mikmx")
-weapon = SubResource("Resource_i4fld")
-equipment = SubResource("Resource_17wmj")
+weapon = SubResource("Resource_5j1ga")
+equipment = SubResource("Resource_84g7s")
 name = "test bow"
 description = "yum yum xizzy"
 durability = SubResource("Resource_55lec")
