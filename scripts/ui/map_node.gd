@@ -29,6 +29,7 @@ func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")
 	for jokin in joku:
 		var tile_node: TileNode = jokin
+		tile_node._ready()
 		var pos_z = tile_node.z_index
 		var pos = layers()[pos_z].local_to_map(tile_node.position)
 		# rotate pos back to 0 rotation
@@ -37,7 +38,6 @@ func set_tiles_in_nodes():
 		tile_node.tile = tile
 		if !tile.show_move.is_connected(tile_node.show_move_sprite):
 			tile.show_move.connect(tile_node.show_move_sprite)
-		tile_node._ready()
 	#joku.sort_custom(sort_tiles_pos_x_y)
 	#for i: int in range(0,joku.size()):
 		#var tile_node: TileNode = joku[i]

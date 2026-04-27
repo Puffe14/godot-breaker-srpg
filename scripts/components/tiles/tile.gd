@@ -10,6 +10,9 @@ class_name Tile extends Resource
 
 signal show_move(show: bool)
 
+func copy() -> Tile:
+	var new_copy = self.duplicate()
+	return new_copy
 
 ## give new Vector3i position
 func setPos(x: int, y: int, z: int) -> void:

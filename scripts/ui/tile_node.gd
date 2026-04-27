@@ -1,6 +1,6 @@
 class_name TileNode extends Node2D
 
-@export var tile = null
+@export var tile: Tile = null
 @export var texture = "field_bluegrass"
 @export var shader: Shader = preload("res://resources/shaders/gray.gdshader")
 var unit_node = preload("res://nodes/unit_node.tscn")
@@ -10,6 +10,8 @@ signal hovered_tile(t:Tile)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if tile:
+		texture = tile.photo_name
 	$Sprite2D.texture = load("res://resources/images/tiles/"+texture+".png")
 	#if tile and tile.occupiable and tile.occupiable.occupant:
 	#	var new_unit_node = unit_node.instantiate()

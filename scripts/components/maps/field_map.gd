@@ -140,7 +140,7 @@ func unit_is_on_tile(u:Units,t:Tile) -> bool:
 	return u==t.occupiable.occupant
 
 ## Method for determining the tiles accessible based on movement, current tile and class types.
-## Used by movementRangeTiles to determine where a unit can move.*/
+## Used by movementRangeTiles to determine where a unit can move.
 func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
 	if moveLeft < 0:
 		return []

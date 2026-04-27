@@ -17,6 +17,7 @@ var file_loader: FileLoader = FileLoader.new()
 func _ready() -> void:
 	map.move.connect(move)
 	game.currentMap = map.field_map
+	file_loader.reread_map(map.field_map)
 	game.update.connect(on_game_update)
 	map.draw_tiles(map.direction)
 	draw_and_set_tiles()
@@ -24,6 +25,7 @@ func _ready() -> void:
 var continue_process = true
 
 func _process(_delta):
+	map.set_tiles_in_nodes()
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
@@ -36,13 +38,13 @@ func _process(_delta):
 	if !game.selected.is_connected(on_selected):
 		game.selected.connect(on_selected)
 	# set the nodes and tiles
-	map.set_tiles_in_nodes()
 	connect_tile_nodes()
 	show_movement_range()
 	make_unit_nodes()
 	if game.queue.is_empty():
 		#print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
 		game.handle_turn()
+		map.set_tiles_in_nodes()
 		return
 	var current_action: Action = game.queue.pop_front()
 	if current_action:
@@ -57,6 +59,7 @@ func _process(_delta):
 			free_children(menu_node)
 		await get_tree().create_timer(current_action.actLength).timeout
 		continue_process = true
+	map.set_tiles_in_nodes()
 
 ### UNIT NODE HANDLING ###
 
