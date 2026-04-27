@@ -40,7 +40,13 @@ func reread_map(map: FieldMap):
 		new_tile.position = Vector3i(index%map.grid.row, index/map.grid.column, heights[index])
 		map.grid.tiles.append(new_tile)
 		index+=1
+	# deployment
+	map.deployment = []
+	for location in map_json["deploy"]:
+		map.deployment.append(Vector2i(location[0], location[1]))
 	## units onto map
+	map.enemies = []
+	map.allies = []
 	var joining = map_json["joining"]
 	for joiner in joining:
 		var unit: Units = unit_dict[joiner[0]]
@@ -48,6 +54,7 @@ func reread_map(map: FieldMap):
 		var location = joiner[2]
 		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
 		map.addUnitToPlayerDeployed(unit)
+		unit.setTeam(Units.Team.Player)
 	var enemies = map_json["enemies"]
 	for grouping in enemies:
 		var group: Group = Group.new()

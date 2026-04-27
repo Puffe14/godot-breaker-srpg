@@ -105,7 +105,10 @@ func deploymentTiles() -> Array[Tile]:
 
 ## add more characters to this maps current player organization
 func addUnitToPlayerDeployed(unit: Units):
-	player.addDeployed(unit)
+	if player:
+		player.addDeployed(unit)
+	else:
+		print("No player to add ", unit._to_string(), " to.")
 
 
 func addUnitListToDeployed(units: Array[Units]):

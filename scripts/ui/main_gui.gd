@@ -15,9 +15,9 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 var file_loader: FileLoader = FileLoader.new()
 
 func _ready() -> void:
+	file_loader.reread_map(map.field_map)
 	map.move.connect(move)
 	game.currentMap = map.field_map
-	file_loader.reread_map(map.field_map)
 	game.update.connect(on_game_update)
 	map.draw_tiles(map.direction)
 	draw_and_set_tiles()
