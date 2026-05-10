@@ -34,7 +34,7 @@ func _init(_game: Game, _item = null, _user = null) -> void:
 			icon = wpnTypeDict[item.weapon.wpnType]
 		if "armor" in item and item.armor:
 			icon = armorTypeDict[item.armor.part]
-sssssss
+
 func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead

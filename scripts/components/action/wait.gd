@@ -7,8 +7,8 @@ func _init(_unit: Units) -> void:
 
 func play() -> Explain:
 	unit.endTurn()
-	animate.emit("default",unit,0,"Wait")
-	update.emit("default",unit,true)
+	animate.emit("still",unit,0,"Wait")
+	update.emit(unit,true)
 	stop.emit()
 	print(unit," wait")
 	return explain

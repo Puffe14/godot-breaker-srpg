@@ -1,0 +1,409 @@
+{
+  "Cylna": {
+	"name": "Cylna",
+	"class": "wilder",
+	"classes": ["wilder"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 15,
+	  "strength": 6,
+	  "skill": 5,
+	  "speed": 5,
+	  "defence": 3,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 70,
+	  "strength": 65,
+	  "magic": 0,
+	  "skill": 25,
+	  "speed": 60,
+	  "defence": 40,
+	  "resistance": 0
+	}
+  },
+
+  "Lairaea": {
+	"name": "Lairaea",
+	"class": "slicer",
+	"classes": ["slicer"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 13,
+	  "strength": 6,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 8,
+	  "defence": 2,
+	  "resistance": 2
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 20,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 10
+	}
+  },
+
+  "Geblah": {
+	"name": "Geblah",
+	"class": "singer",
+	"classes": ["singer"],
+	"level": 1,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 9,
+	  "strength": 4,
+	  "magic": 2,
+	  "skill": 4,
+	  "speed": 6,
+	  "defence": 1,
+	  "resistance": 2
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 40,
+	  "magic": 60,
+	  "skill": 40,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 40
+	}
+  },
+
+  "Ulrarik": {
+	"name": "Ulrarik",
+	"class": "taker",
+	"classes": ["taker"],
+	"level": 1,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 12,
+	  "strength": 4,
+	  "magic": 2,
+	  "skill": 6,
+	  "speed": 4,
+	  "defence": 2,
+	  "resistance": 1
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 40,
+	  "magic": 30,
+	  "skill": 40,
+	  "speed": 35,
+	  "defence": 40,
+	  "resistance": 10
+	}
+  },
+
+  "Aynia": {
+	"name": "Aynia",
+	"class": "channeler",
+	"classes": ["channeler"],
+	"level": 1,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 9,
+	  "strength": 2,
+	  "magic": 4,
+	  "skill": 5,
+	  "speed": 6,
+	  "defence": 3,
+	  "resistance": 2
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 30,
+	  "magic": 60,
+	  "skill": 45,
+	  "speed": 35,
+	  "defence": 30,
+	  "resistance": 5
+	}
+  },
+
+  "Faga": {
+	"name": "Faga",
+	"class": "flier",
+	"classes": ["flier"],
+	"level": 3,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 12,
+	  "strength": 5,
+	  "magic": 0,
+	  "skill": 5,
+	  "speed": 7,
+	  "defence": 1,
+	  "resistance": 1
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 30,
+	  "resistance": 5
+	}
+  },
+
+  "Slingman": {
+	"name": "Slingman",
+	"class": "shooter",
+	"classes": ["shooter"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 10,
+	  "strength": 4,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 4,
+	  "defence": 2,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 10
+	}
+  },
+  "Fusiller": {
+	"name": "Fusiller",
+	"class": "shooter",
+	"classes": ["shooter"],
+	"level": 1,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 9,
+	  "strength": 2,
+	  "magic": 0,
+	  "skill": 2,
+	  "speed": 2,
+	  "defence": 0,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 50,
+	  "magic": 0,
+	  "skill": 50,
+	  "speed": 50,
+	  "defence": 40,
+	  "resistance": 40
+	}
+  },
+  "Archer": {
+	"name": "Archer",
+	"class": "shooter",
+	"classes": ["shooter"],
+	"level": 3,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 10,
+	  "strength": 6,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 4,
+	  "defence": 2,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 10
+	}
+  },
+  "Medic": {
+	"name": "Medic",
+	"class": "medic",
+	"classes": ["medic"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 6,
+	  "strength": 3,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 6,
+	  "defence": 0,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 10
+	}
+  },
+  "Warrior": {
+	"name": "Warrior",
+	"class": "warrior",
+	"classes": ["warrior"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 13,
+	  "strength": 5,
+	  "magic": 0,
+	  "skill": 5,
+	  "speed": 4,
+	  "defence": 3,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 30,
+	  "speed": 30,
+	  "defence": 20,
+	  "resistance": 20
+	}
+  },
+  "Swordsman": {
+	"name": "Swordsman",
+	"class": "swordsman",
+	"classes": ["swordsman"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 14,
+	  "strength": 2,
+	  "magic": 0,
+	  "skill": 3,
+	  "speed": 6,
+	  "defence": 2,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 30,
+	  "speed": 30,
+	  "defence": 20,
+	  "resistance": 20
+	}
+  },
+  "Lochagos": {
+	"name": "Lochagos",
+	"class": "rider",
+	"classes": ["rider"],
+	"level": 5,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 16,
+	  "strength": 7,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 8,
+	  "defence": 4,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 25,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 20,
+	  "resistance": 20
+	}
+  },
+  "Ghulam": {
+	"name": "Ghulam",
+	"class": "rider",
+	"classes": ["rider"],
+	"level": 6,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 20,
+	  "strength": 8,
+	  "magic": 0,
+	  "skill": 9,
+	  "speed": 5,
+	  "defence": 5,
+	  "resistance": 0
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 0,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 20,
+	  "resistance": 20
+	}
+  },
+
+  "BossLairaea": {
+	"name": "Lairaea",
+	"class": "slicer",
+	"classes": ["slicer"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 13,
+	  "strength": 4,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 8,
+	  "defence": 2,
+	  "resistance": 2
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 20,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 20,
+	  "resistance": 20
+	}
+  },
+
+  "tester": {
+	"name": "test",
+	"class": "tester",
+	"classes": ["tester"],
+	"level": 1,
+	"exp": 1,
+	"stats": {
+	  "hitpoints": 1,
+	  "strength": 1,
+	  "magic": 1,
+	  "skill": 1,
+	  "speed": 1,
+	  "defence": 1,
+	  "resistance": 1
+	},
+	"growth": {
+	  "hitpoints": 1,
+	  "strength": 1,
+	  "magic": 1,
+	  "skill": 1,
+	  "speed": 1,
+	  "defence": 1,
+	  "resistance": 1
+	}
+  }
+}

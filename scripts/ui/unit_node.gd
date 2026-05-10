@@ -28,6 +28,7 @@ func on_update(delay: float, _dim: bool = true) -> void:
 	# dimming
 	if unit and unit.acted:
 		dim()
+		$AnimatedSprite2D.stop()
 	else:
 		undim()
 
@@ -78,3 +79,6 @@ func dim():
 func undim():
 	if frames:
 		$AnimatedSprite2D.material.shader = null
+		
+func is_dim() -> bool:
+	return frames and !$AnimatedSprite2D.material.shader

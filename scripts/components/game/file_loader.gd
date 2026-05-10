@@ -10,6 +10,17 @@ var unit_dict: Dictionary = {
 	"BossLairaea":preload("res://resources/data/units/test_unit_l.tres"),
 	}
 
+var class_dict: Dictionary = {
+	
+}
+
+var character_dict: Dictionary = {
+	
+}
+
+var item_dict: Dictionary = {
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,6 +34,32 @@ func make_tile() -> Tile:
 	var tile: Tile = Tile.new()
 	tile.tile_name = ""
 	return tile
+
+func read_classes():
+	var class_json = load("res://resources/data/classes/classes.json").data
+	for next_class in class_json.values():
+		var new_class: Class = Class.new()
+		new_class.className = next_class["name"]
+		new_class.requiredLevel = next_class["level"]
+		new_class.classType = next_class["type"]
+		new_class.stats = Stats.new_val_from_dict(next_class["stats"])
+		new_class.classGrowth = Stats.new_val_from_dict(next_class["growth"])
+		new_class.classBuffs = Stats.new_val_from_dict(next_class["buffs"])
+		new_class.classDebuffs = Stats.new_val_from_dict(next_class["debuffs"])
+		class_dict[new_class.className] = new_class
+
+func read_characters():
+	var character_json = load("res://resources/data/characters/characters.json").data
+	for next_character in character_json.values():
+		var new_character: Character = Character.new()
+		new_character.myName = next_character["name"]
+		new_character.xp = next_character["exp"]
+		new_character.level = next_character["level"]
+		new_character.myClass = class_dict[next_character["class"]]
+		new_character.stats = Stats.new_val_from_dict(next_character["stats"])
+		new_character.growths = Stats.new_val_from_dict(next_character["growth"])
+		new_character.possibleClass = next_character["classes"]
+		character_dict[new_character.myName] = new_character
 
 func reread_map(map: FieldMap):
 	map.grid = Grid.new()
@@ -50,6 +87,10 @@ func reread_map(map: FieldMap):
 	var joining = map_json["joining"]
 	for joiner in joining:
 		var unit: Units = unit_dict[joiner[0]]
+		## TODO waiting for unit dict to be loaded first
+		unit.character = character_dict[joiner[0]]
+		unit.character.picture_name = joiner[0].to_lower()
+		##
 		unit.takeDamage(joiner[1])
 		var location = joiner[2]
 		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
