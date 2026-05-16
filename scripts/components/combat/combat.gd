@@ -230,7 +230,21 @@ func ctype_string() -> String:
 func part_string() -> String:
 	return Constants.body_part_dict[target_part]
 
+func arrow_string() -> String:
+	var arw = "->"
+	if speed_diff >= Rules.alacrityDiff:
+		arw = "->>"
+	elif speed_diff >= Rules.doubleDiff:
+		arw = "->->"
+	elif speed_diff <= -Rules.doubleDiff:
+		arw = "-<-<"
+	elif skill_diff <= Rules.vantageDiff:
+		arw = "<" + arw
+	return arw
+
 func _to_string() -> String:
 	if combat_type == Type.Wound || combat_type == Type.Break:
-		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + "->" + targeted.character.myName
-	return type_dict[combat_type] + ": " + selected.character.myName + "->" + targeted.character.myName
+		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName
+	elif combat_type == Type.Attack:
+		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName
+	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName
