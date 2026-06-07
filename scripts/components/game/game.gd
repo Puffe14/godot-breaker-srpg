@@ -203,6 +203,7 @@ func isBattleOver() -> bool:
 func handle_turn() -> void:
 	# Next map if everything is over.
 	if changeMap && queue.is_empty():
+		print("Next Map!")
 		nextMap()
 		changeMap = false
 	# all groups on a particular side on the current map

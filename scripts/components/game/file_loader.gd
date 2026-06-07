@@ -64,9 +64,11 @@ func read_characters():
 func reread_map(map: FieldMap):
 	map.grid = Grid.new()
 	var map_json = load("res://resources/data/maps/test_map.json").data
+
 	# boundaries
 	map.grid.row = map_json["grid"]["row"]
 	map.grid.column = map_json["grid"]["column"]
+
 	# create the tiles
 	var index: int = 0
 	for tile_name in map_json["grid"]["tiles"]:
@@ -77,10 +79,22 @@ func reread_map(map: FieldMap):
 		new_tile.position = Vector3i(index%map.grid.row, index/map.grid.column, heights[index])
 		map.grid.tiles.append(new_tile)
 		index+=1
+
 	# deployment
 	map.deployment = []
 	for location in map_json["deploy"]:
 		map.deployment.append(Vector2i(location[0], location[1]))
+
+	# conditions
+	map.clearCondition = null
+	match map_json["clear"]["title"]:
+		"survive":
+			map.clearCondition = Survive.new(map_json["clear"]["limit"])
+		"kill":
+			map.clearCondition = Kill.new(map_json["clear"]["target"])
+		_:
+			map.clearCondition = Route.new(Units.Team.Enemy)
+
 	## units onto map
 	map.enemies = []
 	map.allies = []

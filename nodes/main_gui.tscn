@@ -12,13 +12,14 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "unit_container", "tile_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
-map = NodePath("MapNode")
 game = ExtResource("2_spby4")
+map = NodePath("MapNode")
 hud_node = NodePath("HUD")
 menu_node = NodePath("HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
+map_info_label = NodePath("HUD/MapInfoLabel")
 unit_container = NodePath("HUD/UnitContainer")
 tile_container = NodePath("HUD/TileContainer")
 
@@ -54,3 +55,9 @@ offset_bottom = 632.0
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="MapInfoLabel" type="Label" parent="HUD" unique_id=1166450183]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 18.0
+scale = Vector2(2, 2)

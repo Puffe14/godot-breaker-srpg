@@ -7,7 +7,9 @@ func _init(_targets: Array) -> void:
 
 ## Met when the characters with target names are dead
 func met(fieldMap: FieldMap) -> bool:
-	return targets.all(func(name): fieldMap.allCharacters.all(func(c): return c.name!=name))
+	return targets.all(func(name):
+		return fieldMap.all_units().all(func(c: Units):
+			return c.character.myName!=name))
 
 func description() -> String:
 	var txt = ""

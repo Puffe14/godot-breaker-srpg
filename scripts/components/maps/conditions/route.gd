@@ -1,7 +1,7 @@
 ## Remove ALL characters on a particular team on map.
 class_name Route extends Condition
 
-var target_team: Units.Team = Units.Team
+var target_team: Units.Team = Units.Team.Enemy
 
 var turn_of_dict = {
 	Units.Team.Player: "player",
@@ -14,7 +14,7 @@ func _init(_target_team: Units.Team) -> void:
 
 ## Remove ALL characters on a particular team on map.
 func met(fieldMap: FieldMap) -> bool:
-	return fieldMap.unitsOnTeam(targetTeam).is_empty()
+	return fieldMap.unitsOnTeam(target_team).is_empty()
 
 func description() -> String:
-	return "Route " + turn_of_dict[targetTeam]
+	return "Route " + turn_of_dict[target_team]

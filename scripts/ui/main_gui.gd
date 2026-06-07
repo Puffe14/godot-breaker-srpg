@@ -9,6 +9,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var hud_node: Control = null
 @export var menu_node: Control = null
 @export var unit_list_node: Node = null
+@export var map_info_label: Label = null
 
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
@@ -161,6 +162,8 @@ func on_change_turn():
 			u.play_animation("default",1)
 		else:
 			u.play_animation("still",1)
+	# turn number, cleaar condition
+	map_info_label.text = str(game.currentMap.turnNumber) + "\n" + game.currentMap.clearCondition.description()
 	# inform whose turn it is now
 	var msg: String = ""
 	if game:
