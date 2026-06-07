@@ -95,6 +95,9 @@ func reread_map(map: FieldMap):
 		_:
 			map.clearCondition = Route.new(Units.Team.Enemy)
 
+	# TODO how will they be implemented in file?
+	map.loseConditions = [Route.new(Units.Team.Enemy)]
+
 	## units onto map
 	map.enemies = []
 	map.allies = []

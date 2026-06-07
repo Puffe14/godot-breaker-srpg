@@ -163,7 +163,10 @@ func on_change_turn():
 		else:
 			u.play_animation("still",1)
 	# turn number, cleaar condition
-	map_info_label.text = str(game.currentMap.turnNumber) + "\n" + game.currentMap.clearCondition.description()
+	map_info_label.text = str(game.currentMap.turnNumber) + "\nVictory:\n " + game.currentMap.clearCondition.description()
+	map_info_label.text += "\nLoss: "
+	for lose: Condition in game.currentMap.loseConditions:
+		map_info_label.text += "\n " + lose.description()
 	# inform whose turn it is now
 	var msg: String = ""
 	if game:

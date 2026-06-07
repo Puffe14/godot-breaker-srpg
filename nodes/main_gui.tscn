@@ -14,8 +14,8 @@ default_font = ExtResource("9_qdy25")
 
 [node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container")]
 script = ExtResource("1_q7ebc")
-game = ExtResource("2_spby4")
 map = NodePath("MapNode")
+game = ExtResource("2_spby4")
 hud_node = NodePath("HUD")
 menu_node = NodePath("HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
