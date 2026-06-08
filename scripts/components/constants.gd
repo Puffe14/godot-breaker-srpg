@@ -8,6 +8,16 @@ static var body_part_dict = {
 	BodyPart.Legs: "Legs",
 	BodyPart.Torso: "Torso"
 }
+static var team_of_dict = {
+	Units.Team.Player: "player",
+	Units.Team.Enemy: "enemy",
+	Units.Team.Ally: "ally"
+}
+static var string_to_team = {
+	"player": Units.Team.Player,
+	"enemy": Units.Team.Enemy,
+	"ally": Units.Team.Ally
+}
 
 static var parts = [BodyPart.Head, BodyPart.Arms, BodyPart.Legs, BodyPart.Torso]
 

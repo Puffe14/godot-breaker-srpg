@@ -86,17 +86,14 @@ func reread_map(map: FieldMap):
 		map.deployment.append(Vector2i(location[0], location[1]))
 
 	# conditions
-	map.clearCondition = null
-	match map_json["clear"]["title"]:
-		"survive":
-			map.clearCondition = Survive.new(map_json["clear"]["limit"])
-		"kill":
-			map.clearCondition = Kill.new(map_json["clear"]["target"])
-		_:
-			map.clearCondition = Route.new(Units.Team.Enemy)
+	map.clearCondition = read_condition(map_json["clear"])
 
 	# TODO how will they be implemented in file?
-	map.loseConditions = [Route.new(Units.Team.Enemy)]
+	map.loseConditions = []
+	for lose: Dictionary in map_json["lose"]:
+		map.loseConditions.push_back(read_condition(lose))
+	if map.loseConditions.is_empty():
+		map.loseConditions = [Route.new(Units.Team.Player)]
 
 	## units onto map
 	map.enemies = []
@@ -135,3 +132,16 @@ func reread_map(map: FieldMap):
 			var location = ally[2]
 			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
 		map.allies.append(group)
+
+func read_condition(condition_object: Dictionary) -> Condition:
+	var condition: Condition = null
+	match condition_object["title"]:
+		"survive":
+			condition = Survive.new(condition_object["limit"])
+		"kill":
+			condition = Kill.new(condition_object["target"])
+		"route":
+			condition = Route.new(Constants.string_to_team[condition_object["team"].to_lower()])
+		_:
+			condition = Route.new(Units.Team.Enemy)
+	return condition

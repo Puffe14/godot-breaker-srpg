@@ -34,7 +34,16 @@
 	  "title": "kill",
 	  "target": ["Lairaea"]
 	},
-	"lose": [],
+	"lose": [
+		{
+		  "title": "kill",
+		  "target": ["Cylna"]
+		},
+		{
+		  "title": "route",
+		  "team": "player"
+		}
+	],
 	"deploy": [[0,0],[0,1],[1,0]],
 	"rotation": 2,
 	"turnNumber": 1
