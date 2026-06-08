@@ -7,8 +7,8 @@ enum Team {Player, Ally, Enemy}
 
 @export var leader: Units = null
 @export var damageTaken: int = 0
-@export var wounds: Array = [] # Array[Part]
-@export var status: Array = [] # Array[Status]
+@export var wounds: Array[Constants.BodyPart] = [] # Array[Part]
+@export var status: Array[Constants.Status] = [] # Array[Status]
 @export var temporaryStats: Stats = Stats.new()
 @export var nearbyBonuses: Stats = Stats.new()
 @export var team: Team = Team.Player
@@ -16,17 +16,20 @@ enum Team {Player, Ally, Enemy}
 @export var moved = false
 @export var acted = false
 
+func _to_string() -> String:
+	return character.myName + " " + hpMhp()
+
 # whether or not a unit has particular abilities
 func canHeal() -> bool:
-	return character.types.has("healer")
+	return character.myClass.classType.has("healer")
 func canBreak() -> bool:
-	return character.types.has("breaker")
+	return character.myClass.classType.has("breaker")
 func canWound() -> bool:
-	return character.types.has("wounder")
+	return character.myClass.classType.has("wounder")
 func canFlies() -> bool:
-	return character.types.has("flier")
+	return character.myClass.classType.has("flier")
 func canTakeSouls() -> bool:
-	return character.types.has("mystic")
+	return character.myClass.classType.has("mystic")
 
 # setters
 func setTeam(newTeam: Team): team = newTeam
@@ -67,7 +70,7 @@ func takeDamage(amount: int):
 	damageTaken += amount
 	limitHP()
 
-func heaslDamage(amount: int):
+func healDamage(amount: int):
 	damageTaken -= amount
 	limitHP()
 
@@ -78,7 +81,7 @@ func limitHP():
 		damageTaken = MaxHP()
 
 func breakArmor(piece: Item):
-	piece.armor.break()
+	piece.armor.shatter()
 	inventory.clean()
 
 func breakPiece(part: Constants.BodyPart):
@@ -92,7 +95,10 @@ func reduceTemporary():
 
 func woundableParts() -> Array:
 	var total: Array = []
-	## TODO
+	var breaks = breakableParts()
+	for part in Constants.parts:
+		if !breaks.has(part) and !wounds.has(part):
+			total.push_back(part)
 	return total
 func breakableParts() -> Array:
 	return inventory.armors().map(func(a): return a.armor.part)
@@ -112,7 +118,9 @@ func hasStatus(effect: Constants.Status) -> bool:
 # item and loot interactions #
 
 func useItem(item: Item):
-	item.consumable.utilize(self)
+	item.consumable.use(self)
+	if item.durability:
+		item.spend(1)
 	inventory.clean()
 
 func equip(item: Item, toggle = false):
@@ -139,15 +147,20 @@ func loot() -> Inventory:
 	else:
 		return null
 
+func usable_weapons() -> Array:
+	return inventory.weapons().filter(func(item:Item):
+		return true
+		#TODO item.weapon.rankLetter
+	)
 
-## Totals together all bonuses given to a particular stat. */
+## Totals together all bonuses given to a particular stat.
 func bonus(_stat: String) -> int:
 	var total = 0
 	for item: Item in inventory.slots:
 		if item and item.equipped():
-			if item.weapon:
+			if item.weapon and item.weapon.stats:
 				total += item.weapon.stats.get_a_val(_stat)
-			if item.armor:
+			if item.armor and item.armor.stats:
 				total += item.armor.stats.get_a_val(_stat)
 	total += temporaryStats.get_a_val(_stat)
 	total += nearbyBonuses.get_a_val(_stat)
@@ -165,7 +178,7 @@ func skl():
 func spd(): 
 	return character.stats.spd + character.myClass.stats.spd + bonus("speed")
 func dfn(): 
-	return character.stats.dfn + character.myClass.stats.dfn + bonus("funcence")
+	return character.stats.dfn + character.myClass.stats.dfn + bonus("defence")
 func res(): 
 	return character.stats.res + character.myClass.stats.res + bonus("resistance")
 
@@ -179,17 +192,17 @@ func HP() -> int: return MaxHP() - damageTaken
 func MOVE() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Legs): penalty = 3
-	return (character.move + bonus("move")) / penalty
+	return (character.myClass.stats.move + bonus("move")) / penalty
 # Jump
 func JUMP() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Legs): penalty = 3
-	return (character.move + bonus("jump")) / penalty
+	return (character.myClass.stats.jump + bonus("jump")) / penalty
 # Range
 func Range() -> Vector2i:
 	var bonusRange = 0 ##TODO bonus range feature
 	if inventory.equippedWeapon():
-		var wrange = inventory.equippedWeapon().wrange
+		var wrange = inventory.equippedWeapon().weapon.wrange
 		return Vector2i(wrange.x, wrange.y + bonusRange)
 	else: return Vector2i(0,0)
 
@@ -269,7 +282,9 @@ func isArmed() -> bool:
 	return inventory.equippedWeapon() != null and inventory.equippedWeapon().intact()
 
 func shortInfo() -> String:
-	return character.myName + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ inventory.equippedWeapon().name
+	var wpn_text = "none"
+	if inventory.equippedWeapon(): wpn_text = inventory.equippedWeapon().name
+	return character.myName + " " + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ wpn_text
 
 func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level

@@ -8,6 +8,16 @@ class_name Tile extends Resource
 @export var interactible: Interactible
 @export var occupiable: Occupiable
 
+signal show_move(show: bool)
+
+func copy() -> Tile:
+	var new_copy = self.duplicate()
+	if interactible:
+		new_copy.interactible = Interactible.new(interactible.loot, interactible.soul)
+	if occupiable:
+		new_copy.occupiable = Occupiable.new()##occupiable, interactible.soul)
+	return new_copy
+
 ## give new Vector3i position
 func setPos(x: int, y: int, z: int) -> void:
 	position = Vector3i(x, y, z)
@@ -23,3 +33,12 @@ func addCorpse(loot: Inventory, hasSoul: bool = true):
 ## remove the soul from the tile
 func spendSoul():
 	if interactible: interactible.consumeSoul()
+
+func has_dead() -> bool:
+	return occupiable and occupiable.occupant and occupiable.occupant.isDead()
+
+func emit_show_move(value: bool) -> void:
+	emit_signal("show_move", value)
+
+func _to_string() -> String:
+	return tile_name + ": " +str(position)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://coy0hgrlxgos0"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://coy0hgrlxgos0"]
 
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="1_8nio8"]
 [ext_resource type="Script" uid="uid://dalmi1756haci" path="res://scripts/components/units/character.gd" id="1_hia38"]
@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_ywmxy"]
 script = ExtResource("4_uqm38")
 maxHp = 100
+move = 3
 metadata/_custom_type_script = "uid://cnirhagor250e"
 
 [resource]
@@ -16,4 +17,5 @@ myName = "Dummy"
 myClass = ExtResource("2_uqm38")
 growths = ExtResource("1_8nio8")
 stats = SubResource("Resource_ywmxy")
+picture_name = "ninja"
 metadata/_custom_type_script = "uid://dalmi1756haci"

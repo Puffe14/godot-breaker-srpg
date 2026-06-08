@@ -3,11 +3,37 @@ class_name UnitNode extends Node2D
 @export var unit: Units
 @export var texture: Texture2D
 @export var frames: SpriteFrames = null
+@export var shader: Shader = null
 @export var flip: bool = false
 var timer: Timer = Timer.new()
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
+var status_icon: PackedScene = preload("res://nodes/status_icon.tscn")
+@export var icon_control: Control = null
+signal dead
+
+func set_node(new_unit: Units):
+	unit = new_unit
+	if unit:
+		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
+
+func list_status_icons():
+	if icon_control:
+		icon_control.set_icons(unit.status)
+		icon_control.set_wounds(unit)
+
+func on_update(delay: float, _dim: bool = true) -> void:
+	# wait for delay
+	await get_tree().create_timer(delay).timeout
+	list_status_icons()
+	# dimming
+	if unit and unit.acted:
+		dim()
+		$AnimatedSprite2D.stop()
+	else:
+		undim()
 
 func _ready() -> void:
+	list_status_icons()
 	if frames:
 		$Sprite2D.visible = false
 		$AnimatedSprite2D.flip_h = flip
@@ -17,6 +43,7 @@ func _ready() -> void:
 		$Sprite2D.visible = true
 		$Sprite2D.flip_h = flip
 		$Sprite2D.texture = texture
+	
 
 func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 	# wait for delay
@@ -29,6 +56,12 @@ func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 		var msg_node = popup_text.instantiate()
 		msg_node.create(msg)
 		add_child(msg_node)
+	# handle death
+	if anim_name == "dead":
+		$Control.queue_free()
+		await get_tree().create_timer(delay).timeout
+		dead.emit()
+		queue_free()
 
 func play_move(pos: Vector2, index: int, delay: float) -> void:
 	# wait for delay
@@ -38,3 +71,14 @@ func play_move(pos: Vector2, index: int, delay: float) -> void:
 
 func strike():
 	$AnimatedSprite2D.play("strike")
+
+func dim():
+	if frames:
+		$AnimatedSprite2D.material.shader = load("res://resources/shaders/gray.gdshader")
+
+func undim():
+	if frames:
+		$AnimatedSprite2D.material.shader = null
+		
+func is_dim() -> bool:
+	return frames and !$AnimatedSprite2D.material.shader

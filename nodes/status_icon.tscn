@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://burbvc1ohhmsh"]
+
+[ext_resource type="Texture2D" uid="uid://c0jav8iv8bfmk" path="res://resources/images/status/armor legs.png" id="1_q46r8"]
+[ext_resource type="Script" uid="uid://b7qvlrl35isxo" path="res://scripts/ui/status_icon.gd" id="2_jqbr0"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_q46r8")
+stretch_mode = 2
+script = ExtResource("2_jqbr0")

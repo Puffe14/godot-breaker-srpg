@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Grid" format=3 uid="uid://djh5vm7oim1mr"]
+
+[ext_resource type="Script" uid="uid://c7nwqx20hdnw2" path="res://scripts/components/maps/grid.gd" id="1_uom5a"]
+[ext_resource type="Script" uid="uid://ct50js1epx5n4" path="res://scripts/components/tiles/tile.gd" id="2_s1kq2"]
+[ext_resource type="Script" uid="uid://mnt78qxjtldn" path="res://scripts/components/tiles/occupiable.gd" id="3_hgld7"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="3_s1kq2"]
+[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="4_fly2l"]
+[ext_resource type="Resource" uid="uid://bu2im4wwhcoou" path="res://resources/data/units/dummy3_unit.tres" id="6_s1kq2"]
+
+[sub_resource type="Resource" id="Resource_s1kq2"]
+script = ExtResource("3_hgld7")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_82wo5"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+occupiable = SubResource("Resource_s1kq2")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_u2i03"]
+script = ExtResource("3_hgld7")
+occupant = ExtResource("4_fly2l")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_grtpj"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(1, 0, 0)
+occupiable = SubResource("Resource_u2i03")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_8p05g"]
+script = ExtResource("3_hgld7")
+occupant = ExtResource("3_s1kq2")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_pu50u"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(0, 1, 0)
+occupiable = SubResource("Resource_8p05g")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_7e72v"]
+script = ExtResource("3_hgld7")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_k0t0v"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(1, 1, 0)
+occupiable = SubResource("Resource_7e72v")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_hloux"]
+script = ExtResource("3_hgld7")
+occupant = ExtResource("6_s1kq2")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_ghn50"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(2, 0, 0)
+occupiable = SubResource("Resource_hloux")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_ny7gg"]
+script = ExtResource("3_hgld7")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_0r4a4"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(2, 2, 1)
+occupiable = SubResource("Resource_ny7gg")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[sub_resource type="Resource" id="Resource_uom5a"]
+script = ExtResource("3_hgld7")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[sub_resource type="Resource" id="Resource_hgld7"]
+script = ExtResource("2_s1kq2")
+tile_name = "Grass"
+position = Vector3i(2, 3, 1)
+occupiable = SubResource("Resource_uom5a")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"
+
+[resource]
+script = ExtResource("1_uom5a")
+tiles = Array[ExtResource("2_s1kq2")]([SubResource("Resource_82wo5"), SubResource("Resource_grtpj"), SubResource("Resource_pu50u"), SubResource("Resource_k0t0v"), SubResource("Resource_ghn50"), SubResource("Resource_0r4a4"), SubResource("Resource_hgld7")])
+row = 4
+column = 4
+metadata/_custom_type_script = "uid://c7nwqx20hdnw2"

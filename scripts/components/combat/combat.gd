@@ -11,7 +11,6 @@ var skill_diff: int = 0
 var forecast: Forecast = null
 var events: Array[ComFunc] = []
 var time_passed: float = 0
-signal animate(anim: String, unit: Units, delay: float)
 
 @export var select_attacks_start = -1
 @export var target_attacks_start = -1
@@ -22,6 +21,9 @@ var target_attacks = -1
 @export var hit_penalty_factor = 1
 @export var cost = 1
 @export var target_part: Constants.BodyPart = Constants.BodyPart.Head
+var body_part_text: String = ""
+
+const dead_delay = 0.5
 
 # which methods should be called?
 enum Type {Attack, Heal, Treat, Break, Wound}
@@ -30,14 +32,23 @@ var type_dict = {
 	Type.Attack: "attack",
 	Type.Heal:  "heal",
 	Type.Treat: "treat",
-	Type.Break: "break",
+	Type.Break: "shatter",
 	Type.Wound: "wound"
 }
+
+func copy() -> Combat:
+	var new_copy = self.duplicate()
+	return new_copy
+
+func recreate(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Constants.BodyPart.Head) -> Combat:
+	var new_copy = copy()
+	new_copy._init(_a, _b, _act_range, _part)
+	return new_copy
 
 func everyoneLived() -> bool:
 	return selected.isAlive() && targeted.isAlive()
 func inCounterRange() -> bool:
-	var t_wep: Item = targeted.equippedWeapon()
+	var t_wep: Item = targeted.inventory.equippedWeapon()
 	if t_wep:
 		var t_wrange = t_wep.weapon.wrange
 		# true only if target's current weapon range includes given range
@@ -50,16 +61,18 @@ func selectedAttacks() -> int:
 	else: return 1
 ## calculate how many attacks in combat for target
 func targetedAttacks() -> int:
-	if no_counter || !targeted.isArmed(): return 0
+	if no_counter|| !targeted.isArmed() || !inCounterRange() : return 0
 	elif speed_diff < -Rules.doubleDiff: return 2
 	else: return 1
 
-func _init(_a: Units = null, _b: Units = null, _act_range: int = 1) -> void:
-	animate.connect(on_animate_sent)
+func _init(_a: Units = null, _b: Units = null, _act_range: int = 1, _part = Constants.BodyPart.Head) -> void:
+	if !animate.is_connected(on_animate_sent):
+		animate.connect(on_animate_sent)
 	time_passed = 0
 	selected = _a
 	targeted = _b
 	act_range = _act_range
+	target_part = _part
 	if selected:
 		precalculate()
 
@@ -77,7 +90,7 @@ func precalculate() -> void:
 	if select_attacks==-1: select_attacks = selectedAttacks()
 	if target_attacks==-1: target_attacks = targetedAttacks()
 	forecast = Forecast.new(selected, targeted, select_attacks, target_attacks, hit_penalty_factor)
-
+	body_part_text = Constants.body_part_to_text(target_part)
 
 func selectedStrikes():
 	if !selected.isArmed():
@@ -94,6 +107,7 @@ func targetedStrikes():
 
 
 func play() -> Explain:
+	print(selected, " ", type_dict.get(combat_type))
 	if !override_vantage and target_attacks > 0 and skill_diff < -Rules.vantageDiff:
 		targetedStrikes()
 	else:
@@ -103,6 +117,10 @@ func play() -> Explain:
 		var current = events.pop_front()
 		current.resolve()
 		if !everyoneLived():
+			if selected.isDead():
+				emit_signal("animate", "dead", selected, time_passed+dead_delay)
+			if targeted.isDead():
+				emit_signal("animate", "dead", targeted, time_passed+dead_delay)
 			print("death")
 			break
 		while (select_attacks > 0 || target_attacks > 0):
@@ -110,6 +128,10 @@ func play() -> Explain:
 				selectedStrikes()
 			else:
 				targetedStrikes()
+	stop.emit()
+	update.emit(selected, time_passed+1, true)
+	update.emit(targeted, time_passed+1, false)
+	selected.endTurn()
 	return Explain.new("")
 
 
@@ -153,10 +175,14 @@ func shatter(attacker: Units, defender: Units):
 	var hitXcritY = forecast.predictHitCrit(attacker, defender)
 	var isHit: bool = roll100() < hitXcritY.x
 	attacker.inventory.equippedWeapon().spend(cost)
+	emit_signal("animate", "strike", attacker, time_passed)
 	if isHit:
 		defender.breakPiece(target_part)
-		print(defender.character.myName," breaks ", target_part,"!")
-	else: print("miss.")
+		print(defender.character.myName," breaks ", part_string(),"!")
+		emit_signal("animate", "hurt", defender, time_passed+0.5, body_part_text+" armor shattered")
+	else:
+		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
+		print("misses ",part_string())
 
 ## method for break attacks
 func wound(attacker: Units, defender: Units):
@@ -166,11 +192,15 @@ func wound(attacker: Units, defender: Units):
 	attacker.inventory.equippedWeapon().spend(cost)
 	if isHit:
 		defender.takeWound(target_part)
-		print(defender.character.myName," wounds ", target_part,"!")
-	else: print("miss.")
+		print(defender.character.myName," wounds ", part_string(),"!")
+		emit_signal("animate", "hurt", defender, time_passed+0.5, body_part_text+" wounded")
+	else:
+		print("misses ",part_string())
+		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
 
 func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = ""):
 	time_passed += 1
+	actLength = time_passed
 
 func num_to_str(num: int) -> String:
 	var msg = ""
@@ -178,3 +208,43 @@ func num_to_str(num: int) -> String:
 	else: msg += "-"
 	msg += str(num)
 	return msg
+
+func sensible() -> bool:
+	match combat_type:
+		Type.Attack:
+			return selected.team != targeted.team
+		Type.Heal:
+			return selected.team == targeted.team
+		Type.Break:
+			return selected.team != targeted.team
+		Type.Wound:
+			return selected.team != targeted.team
+		Type.Treat:
+			return selected.team == targeted.team
+		_:
+			return true
+
+func ctype_string() -> String:
+	return type_dict[combat_type]
+
+func part_string() -> String:
+	return Constants.body_part_dict[target_part]
+
+func arrow_string() -> String:
+	var arw = "->"
+	if speed_diff >= Rules.alacrityDiff:
+		arw = "->>"
+	elif speed_diff >= Rules.doubleDiff:
+		arw = "->->"
+	elif speed_diff <= -Rules.doubleDiff:
+		arw = "-<-<"
+	elif skill_diff <= Rules.vantageDiff:
+		arw = "<" + arw
+	return arw
+
+func _to_string() -> String:
+	if combat_type == Type.Wound || combat_type == Type.Break:
+		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName
+	elif combat_type == Type.Attack:
+		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName
+	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName

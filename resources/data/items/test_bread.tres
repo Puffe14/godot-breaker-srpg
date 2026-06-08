@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cf7g5ryeloruv"]
+
+[ext_resource type="Script" uid="uid://bb6vt655walxx" path="res://scripts/components/items/durability.gd" id="1_0y246"]
+[ext_resource type="Script" uid="uid://gvxgetac3srb" path="res://scripts/components/items/consumable.gd" id="1_qalbl"]
+[ext_resource type="Script" uid="uid://cj1r2ti1vrrxq" path="res://scripts/components/items/item.gd" id="3_23y1v"]
+
+[sub_resource type="Resource" id="Resource_hcoug"]
+script = ExtResource("1_qalbl")
+heal = 5
+metadata/_custom_type_script = "uid://gvxgetac3srb"
+
+[sub_resource type="Resource" id="Resource_55lec"]
+script = ExtResource("1_0y246")
+maximum = 50
+metadata/_custom_type_script = "uid://bb6vt655walxx"
+
+[resource]
+script = ExtResource("3_23y1v")
+consumable = SubResource("Resource_hcoug")
+name = "Test Bread"
+description = "You know it, you love it."
+durability = SubResource("Resource_55lec")
+metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

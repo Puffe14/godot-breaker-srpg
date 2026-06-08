@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://u2mbf4a6qepx"]
+
+[ext_resource type="Texture2D" uid="uid://c3u5ugl8tsdo2" path="res://resources/images/items/itm_consumable.png" id="1_61k0a"]
+[ext_resource type="Script" uid="uid://jsqdwlq65u5c" path="res://scripts/ui/button_option.gd" id="1_gu2vx"]
+
+[node name="Button" type="Button" unique_id=1425751260]
+text = "WAAAAAAA"
+icon = ExtResource("1_61k0a")
+script = ExtResource("1_gu2vx")
+
+[connection signal="pressed" from="." to="." method="pressed_option"]

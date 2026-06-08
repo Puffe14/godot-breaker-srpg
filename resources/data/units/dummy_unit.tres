@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Units" load_steps=4 format=3 uid="uid://ddf228rj1u2qe"]
+[gd_resource type="Resource" script_class="Units" load_steps=6 format=3 uid="uid://ddf228rj1u2qe"]
 
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_6diyd"]
 [ext_resource type="Resource" uid="uid://coy0hgrlxgos0" path="res://resources/data/characters/dummy.tres" id="1_20231"]
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="2_2bhrd"]
+[ext_resource type="Resource" uid="uid://3b57ef5u6qwk" path="res://resources/data/test_inventory.tres" id="2_fjyi4"]
+[ext_resource type="Script" path="res://scripts/components/units/status.gd" id="4_2bhrd"]
 
 [resource]
 script = ExtResource("1_6diyd")
 character = ExtResource("1_20231")
+inventory = ExtResource("2_fjyi4")
 temporaryStats = ExtResource("2_2bhrd")
 nearbyBonuses = ExtResource("2_2bhrd")
-team = 2
 metadata/_custom_type_script = "uid://0slpdtksthq2"

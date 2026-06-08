@@ -12,7 +12,12 @@ func get_tile(x: int, y: int) -> Tile:
 		return null
 
 func get_tile_v(v: Vector2i) -> Tile:
-	return get_tile(v.x, v.y)
+	#return get_tile(v.x, v.y)
+	var found = null
+	for t in tiles:
+		if t.position.x == v.x and t.position.y == v.y:
+			found = t
+	return found
 
 
 #func tileAt(x: Int, y: Int): Option[Tile] =
@@ -40,7 +45,7 @@ func tilesWithUnits() -> Array[Tile]:
 func unitsOnTiles() -> Array[Units]:
 	return tilesWithUnits().map(func(t:Tile): return t.occupiable.occupant)
 
-func unitsFromTiles(tileList: Array[Tile]) -> Array[Units]:
+func unitsFromTiles(tileList: Array[Tile]) -> Array:#[Units]:
 	var temp = tileList.filter(func(t: Tile): return t.occupiable!=null)
 	temp = temp.filter(func(t:Tile): return t.occupiable.occupant!=null)
 	return temp.map(func(t:Tile): return t.occupiable.occupant)
@@ -52,13 +57,18 @@ func addUnitAt(unit: Units, coords: Vector2i):
 	else: print("cannot be occupied")
 
 func neighbor(v: Vector2i, nv: Vector2i) -> bool:
-	return (v == nv+Vector2i.UP or v == nv+Vector2i.DOWN or v == nv+Vector2i.RIGHT or v == nv+Vector2i.LEFT)
+	return (v == nv+Vector2i.UP or
+	 v == nv+Vector2i.DOWN or
+	 v == nv+Vector2i.RIGHT or
+	 v == nv+Vector2i.LEFT)
 
 func neighbors(chosenTile: Tile) -> Array[Tile]:
 	var x = chosenTile.position.x
 	var y = chosenTile.position.y
 	var total = tiles.filter(func(n):
-		return neighbor(Vector2i(x,y), Vector2i(n.position.x, n.position.y)))
+		var trueness: bool = neighbor(Vector2i(x,y), Vector2i(n.position.x, n.position.y))
+		return trueness
+		)
 	return total
 
 #func visibleTiles(direction: int) -> Array[Tile] =

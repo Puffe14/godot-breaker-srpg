@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3leony1sl4j3"]
+
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_bvy3b"]
+[ext_resource type="Script" uid="uid://p0roxqun8pi1" path="res://scripts/ui/tile_container.gd" id="1_oyo3n"]
+
+[sub_resource type="Theme" id="Theme_4lkkm"]
+default_font_size = 32
+
+[node name="TileContainer" type="MarginContainer" node_paths=PackedStringArray("title", "stat_container")]
+offset_left = 919.0
+offset_top = 571.0
+offset_right = 1134.0
+offset_bottom = 638.0
+script = ExtResource("1_oyo3n")
+title = NodePath("PanelContainer/VBoxContainer/Title")
+stat_container = NodePath("PanelContainer/VBoxContainer/StatList")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("1_bvy3b")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Tile"
+horizontal_alignment = 1
+
+[node name="StatList" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HideRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)

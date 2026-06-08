@@ -51,7 +51,7 @@ func swap(other: Inventory, index: int, otherIndex: int):
 ## remove broken/used up items from inventory
 func clean() -> void:
 	for item in slots:
-		if !item.intact():
+		if item and !item.intact():
 			remove(item)
 
 ## move non null back to top
@@ -81,7 +81,7 @@ func medkits() -> Array:
 		func(item: Item):
 		return item && item.medkit != null
 	)
-func consumable() -> Array:
+func consumables() -> Array:
 	return slots.filter(
 		func(item: Item):
 		return item && item.consumable != null
@@ -115,7 +115,7 @@ func equipMedkit(medkit: Item, toggle: bool):
 func equipArmor(armor: Item, toggle: bool):
 	# unequips any armor piece that fits on the same part of the body
 	for a in equippedArmors():
-		if a.armor.bodyPart == armor.armor.bodyPart and a!=armor:
+		if a.armor.part == armor.armor.part and a!=armor:
 			a.equipment.unequip()
 	if toggle: armor.equipment.toggleEquip()
 	else: armor.equipment.equip()
@@ -140,5 +140,8 @@ func toLoot() -> Inventory:
 
 func empty() -> bool:
 	return !slots.all(func(i): return i==null)
+
+func _to_string() -> String:
+	return "Inventory"
 
 ##TODO redo equipment handling to  being handled and tracked only in Inventory

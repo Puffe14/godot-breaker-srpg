@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c73exgfedhbd7"]
+
+[ext_resource type="Script" uid="uid://ddg2of0p5ik6o" path="res://scripts/ui/unit_container.gd" id="1_altb7"]
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="2_nu1ys"]
+
+[sub_resource type="Theme" id="Theme_4lkkm"]
+default_font_size = 32
+
+[node name="UnitContainer" type="MarginContainer" unique_id=1495541055 node_paths=PackedStringArray("title", "stat_container")]
+offset_left = 35.0
+offset_top = 412.0
+offset_right = 319.0
+offset_bottom = 638.0
+script = ExtResource("1_altb7")
+title = NodePath("PanelContainer/VBoxContainer/Title")
+stat_container = NodePath("PanelContainer/VBoxContainer/HFlowContainer")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=79955257]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("2_nu1ys")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1482969888]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2005755283]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1127110197]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/VBoxContainer" unique_id=130061944]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=614956396]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title2" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=481688396]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title3" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=785918413]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title4" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=176686667]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title5" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=191691540]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Title6" type="Label" parent="PanelContainer/VBoxContainer/HFlowContainer" unique_id=797514093]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="HideRect" type="ColorRect" parent="." unique_id=589654003]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)

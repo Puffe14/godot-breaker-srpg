@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://1ujjcngqv86f"]
+
+[ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
+[ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
+[ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="2_spby4"]
+[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_spby4"]
+[ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
+[ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
+[ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
+
+[sub_resource type="Theme" id="Theme_mvnht"]
+default_font = ExtResource("9_qdy25")
+/fonts/font = ExtResource("9_qdy25")
+
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container")]
+script = ExtResource("1_q7ebc")
+map = NodePath("MapNode")
+game = ExtResource("2_spby4")
+hud_node = NodePath("HUD")
+menu_node = NodePath("HUD/MenuControl")
+unit_list_node = NodePath("UnitNodeList")
+map_info_label = NodePath("HUD/MapInfoLabel")
+unit_container = NodePath("HUD/UnitContainer")
+tile_container = NodePath("HUD/TileContainer")
+
+[node name="MapNode" parent="." unique_id=1417285264 instance=ExtResource("2_7wb8r")]
+position = Vector2(336, 202)
+scale = Vector2(3, 3)
+field_map = ExtResource("3_spby4")
+
+[node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
+
+[node name="HUD" type="Control" parent="." unique_id=113286467]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_mvnht")
+
+[node name="UnitContainer" parent="HUD" unique_id=828232133 instance=ExtResource("9_4lkkm")]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 12.0
+offset_right = 1134.0
+offset_bottom = 238.0
+
+[node name="TileContainer" parent="HUD" unique_id=1353515007 instance=ExtResource("10_4lkkm")]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 565.0
+offset_right = 1136.0
+offset_bottom = 632.0
+
+[node name="MenuControl" type="Control" parent="HUD" unique_id=1583445029]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MapInfoLabel" type="Label" parent="HUD" unique_id=1166450183]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 18.0
+scale = Vector2(2, 2)

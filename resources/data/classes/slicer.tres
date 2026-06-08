@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Class" load_steps=8 format=3 uid="uid://723fdrdr7l5d"]
+[gd_resource type="Resource" script_class="Class" format=3 uid="uid://723fdrdr7l5d"]
 
 [ext_resource type="Resource" uid="uid://b4p6vaa66l6uq" path="res://resources/data/zero_stat.tres" id="1_28twj"]
 [ext_resource type="Script" uid="uid://b0q8t75hrpec4" path="res://scripts/components/units/class.gd" id="1_kb1qt"]
@@ -25,7 +25,7 @@ stn = 1
 skl = 2
 spd = 2
 res = 1
-move = 3
+move = 1
 jump = 2
 metadata/_custom_type_script = "uid://cnirhagor250e"
 

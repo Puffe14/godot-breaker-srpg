@@ -1,0 +1,91 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bx864agjdymh1"]
+
+[ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_tg7rq"]
+[ext_resource type="Texture2D" uid="uid://bkj30xjyeuny3" path="res://resources/images/units/ninja_atk_1.png" id="1_uo0kj"]
+[ext_resource type="Texture2D" uid="uid://eh0tg4d1xtrc" path="res://resources/images/units/ninja_idle.png" id="2_tg7rq"]
+[ext_resource type="Texture2D" uid="uid://bkfheq6xdg4yc" path="res://resources/images/units/ninja_hurt.png" id="3_1c4f0"]
+[ext_resource type="Texture2D" uid="uid://dcy1lgwdus0vs" path="res://resources/images/units/ninja_atk_2.png" id="4_1rxhx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1c4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1c4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_tg7rq")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uo0kj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uo0kj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}],
+"loop": false,
+"name": &"evade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1c4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}],
+"loop": true,
+"name": &"still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_uo0kj")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_1rxhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tg7rq")
+}],
+"loop": false,
+"name": &"strike",
+"speed": 5.0
+}]

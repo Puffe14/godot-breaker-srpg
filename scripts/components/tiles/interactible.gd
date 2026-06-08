@@ -4,16 +4,16 @@ class_name Interactible extends Resource
 @export var soul: bool = false
 
 func _init(_loot: Inventory, _hasSoul: bool) -> void:
-    loot = _loot
-    soul = _hasSoul
+	loot = _loot
+	soul = _hasSoul
 
 func consumeSoul() -> void:
-    soul = false
+	soul = false
 
 func setLoot(newLoot: Inventory):
-    loot = newLoot
+	loot = newLoot
 
 func takeLoot() -> Inventory:
-    var tempO = loot
-    loot = null
-    return tempO
+	var tempO = loot
+	loot = null
+	return tempO

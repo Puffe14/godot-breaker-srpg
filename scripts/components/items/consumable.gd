@@ -5,5 +5,7 @@ class_name Consumable extends Resource
 @export var permanent: bool
 
 func use(_unit: Units) -> void:
-    if permanent:
-        pass#_unit..addUp(effects)
+	if heal != 0:
+		_unit.healDamage(heal)
+	if permanent:
+		pass#_unit..addUp(effects)

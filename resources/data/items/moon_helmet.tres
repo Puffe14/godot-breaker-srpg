@@ -1,13 +1,20 @@
-[gd_resource type="Resource" script_class="Item" load_steps=10 format=3 uid="uid://cakksqejd8d0q"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cakksqejd8d0q"]
 
 [ext_resource type="Script" uid="uid://bub7lcqqoqotq" path="res://scripts/components/items/armor.gd" id="1_7q1je"]
 [ext_resource type="Script" uid="uid://cj1r2ti1vrrxq" path="res://scripts/components/items/item.gd" id="1_hmc25"]
 [ext_resource type="Script" uid="uid://gvxgetac3srb" path="res://scripts/components/items/consumable.gd" id="2_b3oy7"]
+[ext_resource type="Script" uid="uid://cnirhagor250e" path="res://scripts/components/units/stats.gd" id="2_r6tg7"]
 [ext_resource type="Script" uid="uid://bb6vt655walxx" path="res://scripts/components/items/durability.gd" id="3_r6tg7"]
-[ext_resource type="Script" uid="uid://cclj43y3y4ppb" path="res://scripts/components/items/equipment.gd" id="4_c5dxx"]
+[ext_resource type="Script" uid="uid://cclj43y3y4ppb" path="res://scripts/components/items/equipment.gd" id="5_b3oy7"]
+
+[sub_resource type="Resource" id="Resource_c5dxx"]
+script = ExtResource("2_r6tg7")
+dfn = 5
+metadata/_custom_type_script = "uid://cnirhagor250e"
 
 [sub_resource type="Resource" id="Resource_26m4v"]
 script = ExtResource("1_7q1je")
+stats = SubResource("Resource_c5dxx")
 metadata/_custom_type_script = "uid://bub7lcqqoqotq"
 
 [sub_resource type="Resource" id="Resource_3sywd"]
@@ -19,16 +26,17 @@ script = ExtResource("3_r6tg7")
 maximum = 5
 metadata/_custom_type_script = "uid://bb6vt655walxx"
 
-[sub_resource type="Resource" id="Resource_xdblt"]
-script = ExtResource("4_c5dxx")
+[sub_resource type="Resource" id="Resource_r6tg7"]
+script = ExtResource("5_b3oy7")
+equipped = true
 metadata/_custom_type_script = "uid://cclj43y3y4ppb"
 
 [resource]
 script = ExtResource("1_hmc25")
 consumable = SubResource("Resource_3sywd")
 armor = SubResource("Resource_26m4v")
-equipment = SubResource("Resource_xdblt")
-name = "Moon Helmet"
-description = "A smooth, well-shined helmet, that seems to glow with a mystic power."
+equipment = SubResource("Resource_r6tg7")
+name = "Moon Helm"
+description = "A shining helm."
 durability = SubResource("Resource_1l0ke")
 metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

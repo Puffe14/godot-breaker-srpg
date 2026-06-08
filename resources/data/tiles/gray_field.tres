@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://bcr8jyvjkbei5"]
+
+[ext_resource type="Script" uid="uid://mnt78qxjtldn" path="res://scripts/components/tiles/occupiable.gd" id="1_nrsvh"]
+[ext_resource type="Script" uid="uid://ct50js1epx5n4" path="res://scripts/components/tiles/tile.gd" id="2_47qxh"]
+
+[sub_resource type="Resource" id="Resource_a5x8l"]
+script = ExtResource("1_nrsvh")
+metadata/_custom_type_script = "uid://mnt78qxjtldn"
+
+[resource]
+script = ExtResource("2_47qxh")
+tile_name = "Ground"
+photo_name = "field_gray"
+occupiable = SubResource("Resource_a5x8l")
+metadata/_custom_type_script = "uid://ct50js1epx5n4"

@@ -1,0 +1,123 @@
+[gd_scene load_steps=19 format=3 uid="uid://77e1koqf8bv2"]
+
+[ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_152i2"]
+[ext_resource type="Script" uid="uid://dt5e46asuae27" path="res://scripts/components/combat/combat.gd" id="2_44lgr"]
+[ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="3_vc4co"]
+[ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="4_5its4"]
+[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="5_cjcx5"]
+[ext_resource type="PackedScene" uid="uid://b4cpw1m7rhvp1" path="res://test_fight_selector.tscn" id="6_78r42"]
+[ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="7_xrffk"]
+[ext_resource type="Resource" uid="uid://dbvi4m2ryv53" path="res://resources/data/units/test_unit_l.tres" id="8_17wx8"]
+[ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="9_ouw63"]
+[ext_resource type="SpriteFrames" uid="uid://c0rww68rlw5y4" path="res://resources/images/animation/lairaea.tres" id="10_6jalf"]
+[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="11_omkpc"]
+[ext_resource type="Texture2D" uid="uid://de7gdtad33xrs" path="res://resources/images/units/warrior_idle.png" id="12_lfky2"]
+[ext_resource type="SpriteFrames" uid="uid://duodoahfamvmo" path="res://resources/images/animation/cylna.tres" id="13_h3euc"]
+[ext_resource type="Resource" uid="uid://ddf228rj1u2qe" path="res://resources/data/units/dummy_unit.tres" id="14_ctqnj"]
+[ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="15_fqroh"]
+[ext_resource type="Resource" uid="uid://clrx651vvcyce" path="res://resources/data/units/dummy2_unit.tres" id="16_78ifi"]
+[ext_resource type="SpriteFrames" uid="uid://bx864agjdymh1" path="res://resources/images/animation/ninja.tres" id="17_ulx05"]
+
+[sub_resource type="Resource" id="Resource_cm266"]
+script = ExtResource("2_44lgr")
+metadata/_custom_type_script = "uid://dt5e46asuae27"
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer", "map")]
+script = ExtResource("1_152i2")
+timer = NodePath("TestTimer")
+combat = SubResource("Resource_cm266")
+map = NodePath("MapNode")
+game = ExtResource("3_vc4co")
+
+[node name="MapNode" parent="." instance=ExtResource("4_5its4")]
+position = Vector2(336, 202)
+scale = Vector2(3, 3)
+field_map = ExtResource("5_cjcx5")
+
+[node name="FightSelector" parent="." instance=ExtResource("6_78r42")]
+offset_left = 24.0
+offset_top = 244.0
+offset_right = 24.0
+offset_bottom = 244.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Hallo"
+
+[node name="TurnLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 22.0
+offset_right = 41.0
+offset_bottom = 45.0
+text = "Hallo"
+
+[node name="MenuControl" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 32.0
+offset_right = 50.0
+offset_bottom = 72.0
+
+[node name="Node2D" parent="." instance=ExtResource("7_xrffk")]
+position = Vector2(48, 77)
+unit = ExtResource("8_17wx8")
+texture = ExtResource("9_ouw63")
+frames = ExtResource("10_6jalf")
+
+[node name="Node2D2" parent="." instance=ExtResource("7_xrffk")]
+position = Vector2(172, 75)
+unit = ExtResource("11_omkpc")
+texture = ExtResource("12_lfky2")
+frames = ExtResource("13_h3euc")
+flip = true
+
+[node name="Dummy" parent="." instance=ExtResource("7_xrffk")]
+position = Vector2(298, 75)
+unit = ExtResource("14_ctqnj")
+texture = ExtResource("15_fqroh")
+flip = true
+
+[node name="Dummy2" parent="." instance=ExtResource("7_xrffk")]
+position = Vector2(298, 75)
+unit = ExtResource("16_78ifi")
+frames = ExtResource("17_ulx05")
+flip = true
+
+[node name="TestTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="SpinBox" type="SpinBox" parent="."]
+offset_left = 410.0
+offset_top = 19.0
+offset_right = 496.5625
+offset_bottom = 50.0
+max_value = 3.0
+
+[node name="UpdateButton" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 62.0
+offset_right = 477.0
+offset_bottom = 94.0
+text = "Update"
+
+[node name="UpdateButton2" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 256.0
+offset_right = 477.0
+offset_bottom = 309.0
+text = "Cancel"
+
+[connection signal="move" from="MapNode" to="." method="move"]
+[connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
+[connection signal="value_changed" from="SpinBox" to="MapNode" method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="UpdateButton" to="MapNode" method="_on_update_button_pressed"]
+[connection signal="pressed" from="UpdateButton2" to="." method="cancel_pressed"]
