@@ -5,3 +5,5 @@ func play() -> Explain:
 	explain.addDialogue("You've lost.")
 	print("Game over played.")
 	return explain
+
+var over = true

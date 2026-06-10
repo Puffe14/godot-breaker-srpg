@@ -29,6 +29,8 @@ var continue_process = true
 
 func _process(_delta):
 	map.set_tiles_in_nodes()
+	if Input.is_action_just_pressed("retry"):
+		_ready()
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
@@ -60,6 +62,7 @@ func _process(_delta):
 		if current_action.closes_menu:
 			free_children(menu_node)
 		await get_tree().create_timer(current_action.actLength).timeout
+		if current_action.get("over"): on_lose()
 		continue_process = true
 
 ### UNIT NODE HANDLING ###
@@ -188,3 +191,13 @@ func on_selected(thing):
 		show_movement_range()
 		menu_node.add_child(menu)
 		print("made menu", thing)
+
+func on_lose():
+	var msg: String = ""
+	if game:
+		msg = "The heroes have fallen."
+	var msg_node = fade_msg.instantiate()
+	msg_node.create(msg)
+	add_child(msg_node)
+	await get_tree().create_timer(2).timeout
+	_ready()

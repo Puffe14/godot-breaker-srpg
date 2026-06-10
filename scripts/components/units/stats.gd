@@ -63,6 +63,6 @@ static func new_val_from_dict(sl: Dictionary) -> Stats:
 	sl.get("speed",0),
 	sl.get("defence",0),
 	sl.get("resistance",0),
-	sl.get("move",0),
+	sl.get("movement",0),
 	sl.get("jump",0))
 	

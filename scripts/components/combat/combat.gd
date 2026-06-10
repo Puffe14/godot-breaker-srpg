@@ -236,8 +236,10 @@ func arrow_string() -> String:
 		arw = "->>"
 	elif speed_diff >= Rules.doubleDiff:
 		arw = "->->"
+	if target_attacks < 1:
+		arw = arw + "O"
 	elif speed_diff <= -Rules.doubleDiff:
-		arw = "-<-<"
+		arw = arw + "<-<"
 	elif skill_diff <= Rules.vantageDiff:
 		arw = "<" + arw
 	return arw

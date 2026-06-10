@@ -7,7 +7,7 @@ var midBattle: bool = true
 var changeMap: bool = false
 var currentTurn: int = 0
 # Who is doing what to whom?
-var turnOf: Units.Team = Units.Team.Enemy
+var turnOf: Units.Team = Units.Team.Player
 @export var player: Organisation = null
 var acting: Units = null
 var target: Units = null

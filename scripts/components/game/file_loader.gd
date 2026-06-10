@@ -63,6 +63,7 @@ func read_characters():
 
 func reread_map(map: FieldMap):
 	map.grid = Grid.new()
+	map.turnNumber = 1
 	var map_json = load("res://resources/data/maps/test_map.json").data
 
 	# boundaries

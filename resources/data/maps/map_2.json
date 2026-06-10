@@ -1,0 +1,69 @@
+{
+	"enemies": [
+	  [
+		["Lochagos",0,[10,0]],
+		["Medic",0,[9,3]]
+	  ],
+	  [
+		["Fusiller",0,[3,2]],
+		["Warrior",0,[3,3]]
+	  ],
+	  [
+		["Swordsman",0,[7,4]],
+		["Warrior",0,[9,4]]
+	  ]
+	],
+	"allies": [
+	 [ ["Slingman",0,[6,1]] ]
+	],
+	"joining": [
+	  ["Geblah",0,[0,2]],
+	  ["Lairaea",0,[0,4]]
+	],
+	"events": {
+	  "aynia_joins": {
+		"title": "reinforcement",
+		"units": [
+		  ["Aynia",[4,5]]
+		],
+		"team": "Player",
+		"turns": [2]
+	  },
+	  "knight_appears": {
+		"title": "reinforcement",
+		"units": [
+		  ["Lochagos",[0,0]]
+		],
+		"team": "Enemy",
+		"turns": [3,4]
+	  }
+	},
+	"grid": {
+	  "tiles": ["grf","grf","thc","thc","thc","grf","grf","grf","grf","grf","grf",
+				"grf","grf","thc","thc","thc","grf","gbu","thc","thc","grf","grf",
+				"grf","grf","grf","grf","grf","grf","grf","grf","grf","grf","grf",
+				"grf","grf","grf","grf","grf","grf","grf","grf","grf","grf","grf",
+				"grf","grf","grf","grf","grf","gbu","grf","grf","grf","grf","grf",
+				"grf","grf","grf","grf","grf","grf","grf","grf","grf","grf","thc",
+				"grf","grf","grf","grf","grf","grf","grf","grf","grf","thc","thc"
+	  ],
+	  "row": 11,
+	  "column": 7,
+	  "elevation": [2,1,4,4,4,3,3,2,1,0,0,
+					2,1,4,4,4,2,2,3,3,0,0,
+					2,1,1,2,2,2,2,2,0,0,0,
+					1,1,1,2,2,2,2,2,0,0,0,
+					1,1,2,2,2,2,2,2,2,0,0,
+					2,1,1,5,5,5,2,2,2,1,2,
+					2,1,1,5,5,5,2,2,2,2,2
+	  ]
+	},
+	"clear": {
+	  "title": "survive",
+	  "limit": 5
+	},
+	"lose": [],
+	"deploy": [[0,3]],
+	"rotation": 0,
+	"turnNumber": 1
+  }

@@ -42,7 +42,11 @@
 		{
 		  "title": "route",
 		  "team": "player"
-		}
+		},
+		{
+		  "title": "survive",
+		  "limit": 1
+	  	}
 	],
 	"deploy": [[0,0],[0,1],[1,0]],
 	"rotation": 2,
