@@ -1,7 +1,7 @@
 class_name Game extends Resource
 
 # Map in question
-var currentMapNumber: int = 1
+var currentMapNumber: int = 2
 @export var currentMap: FieldMap = null
 var midBattle: bool = true
 var changeMap: bool = false

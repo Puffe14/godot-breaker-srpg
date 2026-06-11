@@ -1,7 +1,7 @@
 class_name MapNode extends Node2D
 
 @export var field_map: FieldMap = null
-@export var layer_count = 4
+@export var layer_count = 9
 @export var tile_height = 16
 @export var tile_width = 32
 var layer_node = preload("res://nodes/maps/default_map_layer.tscn")

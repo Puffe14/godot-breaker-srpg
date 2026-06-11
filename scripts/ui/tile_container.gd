@@ -18,8 +18,9 @@ func set_stat():
 	if !set_visibility(): return # stop if not visible
 	
 	title.text = tile.tile_name
-	#for child_node in stat_container.get_children():
-	#	child_node.queue_free()
+	# remove the previous text labels
+	for child_node in stat_container.get_children():
+		child_node.queue_free()
 	var stat_labels = []
 	if tile.occupiable:
 		var occ = tile.occupiable
@@ -34,6 +35,7 @@ func set_stat():
 			" Avoid: "+str(occ.avoid),
 		#	" CritAvo: "+str(unit.CA())
 		]
+
 		#"\n",
 		#"stn: "+str(unit.stn()),
 		#"mag: "+str(unit.mag()),

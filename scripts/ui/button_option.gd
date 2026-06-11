@@ -61,6 +61,10 @@ func pressed_option() -> Array:
 	# if the item can be thrown away
 	if "discardable" in item and item.discardable:
 		options.push_back(Discard.new(user,item))
+	# check if should skip giving options (one option, not playable)
+	if options.size() == 1 and options[0] != null and options[0]:
+		item = options[1]
+		return pressed_option()
 	return options
 	# send it to the menu for creating the sub menu
 #	emit_signal("next_options", options)

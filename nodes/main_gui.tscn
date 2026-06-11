@@ -51,11 +51,6 @@ offset_top = 565.0
 offset_right = 1136.0
 offset_bottom = 632.0
 
-[node name="MenuControl" type="Control" parent="HUD" unique_id=1583445029]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="MapInfoLabel" type="Label" parent="HUD" unique_id=1166450183]
 layout_mode = 0
 offset_left = 9.0
@@ -63,3 +58,8 @@ offset_top = 4.0
 offset_right = 49.0
 offset_bottom = 22.0
 scale = Vector2(2, 2)
+
+[node name="MenuControl" type="Control" parent="HUD" unique_id=1583445029]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,8 +1,6 @@
 class_name FileLoader extends Node
 
 var tile_dict: Dictionary = {
-	"gray_field":preload("res://resources/data/tiles/gray_field.tres"),
-	"sand_field":preload("res://resources/data/tiles/sand_field.tres")
 	}
 
 var unit_dict: Dictionary = {
@@ -21,6 +19,12 @@ var character_dict: Dictionary = {
 var item_dict: Dictionary = {
 }
 
+
+var map_dict: Dictionary = {
+	"1": preload("res://resources/data/maps/test_map.json"),
+	"2": preload("res://resources/data/maps/map_2.json")
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -34,6 +38,23 @@ func make_tile() -> Tile:
 	var tile: Tile = Tile.new()
 	tile.tile_name = ""
 	return tile
+
+func read_tiles():
+	var tile_json = load("res://resources/data/tiles/tiles.json").data
+	var values = tile_json.values()
+	var keys = tile_json.keys()
+	for i in range(values.size()):
+		var next_tile = values[i]
+		var new_tile: Tile = Tile.new()
+		if next_tile["occupiable"]:
+			new_tile.occupiable = Occupiable.new()
+			new_tile.occupiable.effects_from_dict(next_tile["effect"])
+		else:
+			new_tile.occupiable = null
+		new_tile.photo_name = next_tile["photo"]
+		new_tile.tile_name = next_tile["name"]
+		tile_dict[keys[i]] = new_tile
+		#### MIKS NE ON SAMA ARVO OCCUISSA KUN SE RUNAA BROO
 
 func read_classes():
 	var class_json = load("res://resources/data/classes/classes.json").data
@@ -61,10 +82,10 @@ func read_characters():
 		new_character.possibleClass = next_character["classes"]
 		character_dict[new_character.myName] = new_character
 
-func reread_map(map: FieldMap):
+func reread_map(map: FieldMap, map_key: String):
 	map.grid = Grid.new()
 	map.turnNumber = 1
-	var map_json = load("res://resources/data/maps/test_map.json").data
+	var map_json = map_dict[map_key].data
 
 	# boundaries
 	map.grid.row = map_json["grid"]["row"]

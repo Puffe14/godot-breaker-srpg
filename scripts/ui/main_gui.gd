@@ -18,7 +18,8 @@ var file_loader: FileLoader = FileLoader.new()
 func _ready() -> void:
 	file_loader.read_classes()
 	file_loader.read_characters()
-	file_loader.reread_map(map.field_map)
+	file_loader.read_tiles()
+	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	map.move.connect(move)
 	game.currentMap = map.field_map
 	game.update.connect(on_game_update)
