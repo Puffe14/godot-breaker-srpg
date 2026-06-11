@@ -126,7 +126,7 @@
 	"type": ["infantry","healer"],
 	"stats": {
 	  "movement": 3,
-	  "jump": 2,
+	  "jump": 1,
 	  "hitpoints": 1,
 	  "strength": 1,
 	  "magic": 0,

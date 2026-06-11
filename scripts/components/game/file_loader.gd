@@ -6,6 +6,7 @@ var tile_dict: Dictionary = {
 var unit_dict: Dictionary = {
 	"Cylna":preload("res://resources/data/units/test_unit_c.tres"),
 	"BossLairaea":preload("res://resources/data/units/test_unit_l.tres"),
+	"Lairaea":preload("res://resources/data/units/test_unit_l.tres"),
 	}
 
 var class_dict: Dictionary = {
@@ -98,7 +99,7 @@ func reread_map(map: FieldMap, map_key: String):
 		var new_tile: Tile = tile_dict[tile_name].copy()
 		var heights = map_json["grid"]["elevation"]
 		@warning_ignore("integer_division")
-		new_tile.position = Vector3i(index%map.grid.row, index/map.grid.column, heights[index])
+		new_tile.position = Vector3i(index%map.grid.row, index/map.grid.row, heights[index])
 		map.grid.tiles.append(new_tile)
 		index+=1
 
@@ -154,6 +155,7 @@ func reread_map(map: FieldMap, map_key: String):
 			var location = ally[2]
 			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
 		map.allies.append(group)
+	for unit in map.all_units(): unit.refresh()
 
 func read_condition(condition_object: Dictionary) -> Condition:
 	var condition: Condition = null

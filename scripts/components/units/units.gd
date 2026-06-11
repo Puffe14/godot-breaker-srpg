@@ -283,7 +283,8 @@ func isArmed() -> bool:
 
 func shortInfo() -> String:
 	var wpn_text = "none"
-	if inventory.equippedWeapon(): wpn_text = inventory.equippedWeapon().name
+	if inventory.equippedWeapon():
+		wpn_text = inventory.equippedWeapon().name
 	return character.myName + " " + str(HP())+"/"+str(MaxHP())+"\n" + " Weapon: "+ wpn_text
 
 func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
