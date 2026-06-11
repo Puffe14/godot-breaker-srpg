@@ -39,8 +39,12 @@ func _on_area_2d_mouse_exited() -> void:
 	hovered_tile.emit(null)
 
 func show_move_sprite(move_visibility: bool, can_move: bool = true, actor = null):
+	if !tile.occupiable:
+		return
+	# elsewise, change the move sprite or teamsprite visibility
 	$MoveSprite.visible = move_visibility
 	$TeamSprite.visible = !move_visibility
+	# show as gray via shader if the actor can't move this turn
 	if !can_move:
 		$MoveSprite.material.shader = shader
 	else:
