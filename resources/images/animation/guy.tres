@@ -1,0 +1,91 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://fdum81tebxsm"]
+
+[ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_2s8fr"]
+[ext_resource type="Texture2D" uid="uid://bv68n5gd3ouh5" path="res://resources/images/units/guy_atk_1.png" id="2_fx4ry"]
+[ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="3_3rf01"]
+[ext_resource type="Texture2D" uid="uid://c0lav1xyi811v" path="res://resources/images/units/guy_hurt.png" id="4_2a3k3"]
+[ext_resource type="Texture2D" uid="uid://c6suv7evvmpy5" path="res://resources/images/units/guy_atk_2.png" id="5_lfll7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2s8fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fx4ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2s8fr")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2s8fr")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fx4ry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fx4ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}],
+"loop": false,
+"name": &"evade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2a3k3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}],
+"loop": true,
+"name": &"stills",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fx4ry")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_lfll7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3rf01")
+}],
+"loop": false,
+"name": &"strike",
+"speed": 5.0
+}]

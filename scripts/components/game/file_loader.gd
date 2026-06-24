@@ -76,7 +76,6 @@ func read_tiles():
 		new_tile.photo_name = next_tile["photo"]
 		new_tile.tile_name = next_tile["name"]
 		tile_dict[keys[i]] = new_tile
-		#### MIKS NE ON SAMA ARVO OCCUISSA KUN SE RUNAA BROO
 
 func read_classes():
 	var class_json = load("res://resources/data/classes/classes.json").data
@@ -167,7 +166,7 @@ func reread_map(map: FieldMap, map_key: String):
 	var allies = map_json["allies"]
 	for grouping in allies:
 		var group: Group = Group.new()
-		group.side = Units.Team.Enemy
+		group.side = Units.Team.Ally
 		for ally in grouping:
 			var unit: Units = makeUnit(ally[0])
 			group.add_unit(unit)

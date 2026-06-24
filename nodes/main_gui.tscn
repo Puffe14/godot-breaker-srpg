@@ -61,6 +61,7 @@ offset_bottom = 22.0
 scale = Vector2(2, 2)
 
 [node name="MenuControl" type="Control" parent="HUD" unique_id=1583445029]
+z_index = 12
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

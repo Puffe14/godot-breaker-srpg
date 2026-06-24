@@ -7,7 +7,7 @@ class_name Character extends Resource
 @export var xp: int = 0
 @export var growths: Stats
 @export var stats: Stats
-@export var picture_name = ""
+@export var picture_name = "guy"
 
 func swapClass(newClass: Class):
 	myClass = newClass
