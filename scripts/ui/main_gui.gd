@@ -21,6 +21,7 @@ func _ready() -> void:
 	file_loader.read_tiles()
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	map.move.connect(move)
+	map.field_map.player = null
 	game.currentMap = map.field_map
 	game.update.connect(on_game_update)
 	map.draw_tiles(map.direction)

@@ -17,9 +17,8 @@
 	 [ ["Slingman",0,[6,1]] ]
 	],
 	"joining": [
-	  ["Cylna",0,[0,2]],
 	  ["Lairaea",0,[0,4]],
-	  ["Geblah",0,[0,3]]
+	  ["Geblah",0,[0,2]]
 	],
 	"events": {
 	  "aynia_joins": {

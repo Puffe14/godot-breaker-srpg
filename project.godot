@@ -15,9 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="GodotBreaker"
+config/name_localized={
+"tem_SL": ""
+}
 run/main_scene="uid://1ujjcngqv86f"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://bjwbf02qpgcw8"
+config/icon="uid://808pernjhtg6"
 
 [global_group]
 

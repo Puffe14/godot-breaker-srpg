@@ -15,7 +15,7 @@ func set_visibility() -> bool:
 	return visible
 
 func set_stat():
-	if !set_visibility(): return # stop if not visible
+	if !set_visibility() or not tile: return # stop if not visible
 	
 	title.text = tile.tile_name
 	# remove the previous text labels
