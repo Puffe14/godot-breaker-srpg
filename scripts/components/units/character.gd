@@ -13,7 +13,7 @@ func swapClass(newClass: Class):
 	myClass = newClass
 
 #!!! could be changed to an event that give message as a legible string
-#Increase experience and handle if reaches lvlup
+## Increase experience and handle if reaches lvlup
 func expTrack(increase: int) -> Array:
 	var message: Array = [myName + " gained $increase exp"]
 	xp += increase

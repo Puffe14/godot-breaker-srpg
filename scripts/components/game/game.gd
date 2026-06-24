@@ -1,7 +1,7 @@
 class_name Game extends Resource
 
 # Map in question
-var currentMapNumber: int = 2
+var currentMapNumber: int = 1
 @export var currentMap: FieldMap = null
 var midBattle: bool = true
 var changeMap: bool = false
@@ -174,9 +174,10 @@ func place_player() -> void:
 func nextMap():
 	# TODO
 	# Advance to next map
-	currentMapNumber+=1
+	if currentMapNumber<2:
+		currentMapNumber+=1
 	turnOf = Units.Team.Player
-	#currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
+	currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
 
 func turnCountUp():
 	if currentMap:
@@ -206,6 +207,7 @@ func handle_turn() -> void:
 		print("Next Map!")
 		nextMap()
 		changeMap = false
+		return
 	# all groups on a particular side on the current map
 	var groupsWithTurn: Array[Group] = []
 	if currentMap:

@@ -1,377 +1,452 @@
 {
-  "tester": {
-	"name": "tester",
-	"level": 1,
-	"type": ["infantry"],
-	"stats": {
-	  "movement": 1,
-	  "jump": 1,
-	  "hitpoints": 1,
-	  "strength": 1,
-	  "magic": 1,
-	  "skill": 1,
-	  "speed": 1,
-	  "defence": 1,
-	  "resistance": 1},
-	"growth": {
-	  "hitpoints": 1,
-	  "strength": 1,
-	  "magic": 1,
-	  "skill": 1,
-	  "speed": 1,
-	  "defence": 1,
-	  "resistance": 1
+	"tester": {
+		"name": "tester",
+		"level": 1.0,
+		"type": [
+			"infantry"
+		],
+		"stats": {
+			"movement": 1.0,
+			"jump": 1.0,
+			"hitpoints": 1.0,
+			"strength": 1.0,
+			"magic": 1.0,
+			"skill": 1.0,
+			"speed": 1.0,
+			"defence": 1.0,
+			"resistance": 1.0
+		},
+		"growth": {
+			"hitpoints": 1.0,
+			"strength": 1.0,
+			"magic": 1.0,
+			"skill": 1.0,
+			"speed": 1.0,
+			"defence": 1.0,
+			"resistance": 1.0
+		},
+		"ranks": {
+			"Blunt": 1.0,
+			"Sharp": 1.0
+		},
+		"buffs": {
+			"AV": 1.0
+		},
+		"debuffs": {
+			"AV": 1.0
+		}
 	},
-	"ranks": {
-	  "Blunt":1,
-	  "Sharp":1
-	},
-	"buffs": {"AV": 1},
-	"debuffs": {"AV": 1}
-  },
-  "wilder": {
-	"name": "wilder",
-	"level": 1,
-	"type": ["breaker","infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 51,
-	  "strength": 2,
-	  "magic": 0,
-	  "skill": 1,
-	  "speed": 1,
-	  "defence": 1,
-	  "resistance": 0},
-	"growth": {
-	  "hitpoints": 15,
-	  "strength": 15,
-	  "magic": 0,
-	  "skill": 15,
-	  "speed": 5,
-	  "defence": 10,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Blunt":3,
-	  "Sharp":1
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
+	"wilder": {
+		"name": "wilder",
+		"level": 1.0,
+		"type": [
+			"breaker",
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 51.0,
+			"strength": 2.0,
+			"magic": 0.0,
+			"skill": 1.0,
+			"speed": 1.0,
+			"defence": 1.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 15.0,
+			"strength": 15.0,
+			"magic": 0.0,
+			"skill": 15.0,
+			"speed": 5.0,
+			"defence": 10.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Blunt": 3.0,
+			"Sharp": 1.0
+		},
+		"buffs": {
 
-  "slicer": {
-	"name": "slicer",
-	"level": 1,
-	"type": ["wounder","infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 3,
-	  "strength": 1,
-	  "magic": 0,
-	  "skill": 2,
-	  "speed": 2,
-	  "defence": 0,
-	  "resistance": 1},
-	"growth": {
-	  "hitpoints": 5,
-	  "strength": 10,
-	  "magic": 0,
-	  "skill": 10,
-	  "speed": 15,
-	  "defence": 0,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Sharp":4
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
+		},
+		"debuffs": {
 
-  "swordsman": {
-	"name": "swordsman",
-	"level": 1,
-	"type": ["wounder","infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 3,
-	  "strength": 1,
-	  "magic": 0,
-	  "skill": 2,
-	  "speed": 2,
-	  "defence": 0,
-	  "resistance": 1},
-	"growth": {
-	  "hitpoints": 5,
-	  "strength": 10,
-	  "magic": 0,
-	  "skill": 10,
-	  "speed": 15,
-	  "defence": 0,
-	  "resistance": 0
+		}
 	},
-	"ranks": {
-	  "Sharp":4
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
+	"slicer": {
+		"name": "slicer",
+		"level": 1.0,
+		"type": [
+			"wounder",
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 3.0,
+			"strength": 1.0,
+			"magic": 0.0,
+			"skill": 2.0,
+			"speed": 2.0,
+			"defence": 0.0,
+			"resistance": 1.0
+		},
+		"growth": {
+			"hitpoints": 5.0,
+			"strength": 10.0,
+			"magic": 0.0,
+			"skill": 10.0,
+			"speed": 15.0,
+			"defence": 0.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Sharp": 4.0
+		},
+		"buffs": {
 
-  "taker": {
-	"name": "taker",
-	"level": 1,
-	"type": ["infantry","healer"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 1,
-	  "hitpoints": 1,
-	  "strength": 1,
-	  "magic": 0,
-	  "skill": 2,
-	  "speed": 1,
-	  "defence": 0,
-	  "resistance": 2
+		},
+		"debuffs": {
+
+		}
 	},
-	"growth": {
-	  "hitpoints": 5,
-	  "strength": 10,
-	  "magic": 15,
-	  "skill": 10,
-	  "speed": 5,
-	  "defence": 0,
-	  "resistance": 10
+	"swordsman": {
+		"name": "swordsman",
+		"level": 1.0,
+		"type": [
+			"wounder",
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 3.0,
+			"strength": 1.0,
+			"magic": 0.0,
+			"skill": 2.0,
+			"speed": 2.0,
+			"defence": 0.0,
+			"resistance": 1.0
+		},
+		"growth": {
+			"hitpoints": 5.0,
+			"strength": 10.0,
+			"magic": 0.0,
+			"skill": 10.0,
+			"speed": 15.0,
+			"defence": 0.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Sharp": 4.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
 	},
-	"ranks": {
-	  "Blunt":2
+	"taker": {
+		"name": "taker",
+		"level": 1.0,
+		"type": [
+			"infantry",
+			"healer"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 1.0,
+			"hitpoints": 1.0,
+			"strength": 1.0,
+			"magic": 0.0,
+			"skill": 2.0,
+			"speed": 1.0,
+			"defence": 0.0,
+			"resistance": 2.0
+		},
+		"growth": {
+			"hitpoints": 5.0,
+			"strength": 10.0,
+			"magic": 15.0,
+			"skill": 10.0,
+			"speed": 5.0,
+			"defence": 0.0,
+			"resistance": 10.0
+		},
+		"ranks": {
+			"Blunt": 2.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+			"strength": -1.0,
+			"magic": -1.0,
+			"defence": -1.0,
+			"resistance": 1.0
+		}
 	},
-	"buffs": {},
-	"debuffs": {
-	  "strength": -1,
-	  "magic": -1,
-	  "defence": -1,
-	  "resistance": 1
+	"singer": {
+		"name": "singer",
+		"level": 1.0,
+		"type": [
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 3.0,
+			"strength": 1.0,
+			"magic": 0.0,
+			"skill": 1.0,
+			"speed": 2.0,
+			"defence": 0.0,
+			"resistance": 1.0
+		},
+		"growth": {
+			"hitpoints": 0.0,
+			"strength": 10.0,
+			"magic": 15.0,
+			"skill": 5.0,
+			"speed": 15.0,
+			"defence": 5.0,
+			"resistance": 10.0
+		},
+		"ranks": {
+			"Sharp": 2.0,
+			"Ranged": 1.0
+		},
+		"buffs": {
+			"strength": 1.0,
+			"magic": 1.0,
+			"speed": 1.0
+		},
+		"debuffs": {
+
+		}
+	},
+	"channeler": {
+		"name": "channeler",
+		"level": 1.0,
+		"type": [
+			"infantry",
+			"mystic"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 2.0,
+			"strength": 0.0,
+			"magic": 3.0,
+			"skill": 2.0,
+			"speed": 1.0,
+			"defence": 2.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 0.0,
+			"strength": 5.0,
+			"magic": 20.0,
+			"skill": 15.0,
+			"speed": 5.0,
+			"defence": 15.0,
+			"resistance": 5.0
+		},
+		"ranks": {
+			"Spell": 4.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
+	},
+	"rider": {
+		"name": "rider",
+		"level": 1.0,
+		"type": [
+			"mounted"
+		],
+		"stats": {
+			"movement": 5.0,
+			"jump": 1.0,
+			"hitpoints": 5.0,
+			"strength": 3.0,
+			"magic": 0.0,
+			"skill": 3.0,
+			"speed": 1.0,
+			"defence": 3.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 25.0,
+			"strength": 20.0,
+			"magic": 0.0,
+			"skill": 15.0,
+			"speed": 10.0,
+			"defence": 20.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Long": 4.0,
+			"Ranged": 3.0,
+			"Blunt": 2.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
+	},
+	"flier": {
+		"name": "flier",
+		"level": 1.0,
+		"type": [
+			"flier"
+		],
+		"stats": {
+			"movement": 4.0,
+			"jump": 4.0,
+			"hitpoints": 3.0,
+			"strength": 3.0,
+			"magic": 0.0,
+			"skill": 2.0,
+			"speed": 3.0,
+			"defence": 2.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 15.0,
+			"strength": 15.0,
+			"magic": 0.0,
+			"skill": 10.0,
+			"speed": 20.0,
+			"defence": 10.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Long": 3.0,
+			"Sharp": 2.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
+	},
+	"shooter": {
+		"name": "shooter",
+		"level": 1.0,
+		"type": [
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 8.0,
+			"strength": 4.0,
+			"magic": 0.0,
+			"skill": 4.0,
+			"speed": 2.0,
+			"defence": 1.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 25.0,
+			"strength": 20.0,
+			"magic": 0.0,
+			"skill": 15.0,
+			"speed": 10.0,
+			"defence": 20.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Ranged": 4.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
+	},
+	"medic": {
+		"name": "medic",
+		"level": 1.0,
+		"type": [
+			"infantry",
+			"healer"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 8.0,
+			"strength": 2.0,
+			"magic": 4.0,
+			"skill": 4.0,
+			"speed": 3.0,
+			"defence": 1.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 15.0,
+			"strength": 10.0,
+			"magic": 30.0,
+			"skill": 15.0,
+			"speed": 10.0,
+			"defence": 10.0,
+			"resistance": 20.0
+		},
+		"ranks": {
+			"Sharp": 1.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
+	},
+	"warrior": {
+		"name": "warrior",
+		"level": 1.0,
+		"type": [
+			"breaker",
+			"infantry"
+		],
+		"stats": {
+			"movement": 3.0,
+			"jump": 2.0,
+			"hitpoints": 8.0,
+			"strength": 1.0,
+			"magic": 0.0,
+			"skill": 2.0,
+			"speed": 1.0,
+			"defence": 1.0,
+			"resistance": 0.0
+		},
+		"growth": {
+			"hitpoints": 15.0,
+			"strength": 15.0,
+			"magic": 0.0,
+			"skill": 15.0,
+			"speed": 5.0,
+			"defence": 10.0,
+			"resistance": 0.0
+		},
+		"ranks": {
+			"Blunt": 4.0
+		},
+		"buffs": {
+
+		},
+		"debuffs": {
+
+		}
 	}
-  },
-
-  "singer": {
-	"name": "singer",
-	"level": 1,
-	"type": ["infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 3,
-	  "strength": 1,
-	  "magic": 0,
-	  "skill": 1,
-	  "speed": 2,
-	  "defence": 0,
-	  "resistance": 1
-	},
-	"growth": {
-	  "hitpoints": 0,
-	  "strength": 10,
-	  "magic": 15,
-	  "skill": 5,
-	  "speed": 15,
-	  "defence": 5,
-	  "resistance": 10
-	},
-	"ranks": {
-	  "Sharp":2,
-	  "Ranged": 1
-	},
-	"buffs": {
-	  "strength": 1,
-	  "magic": 1,
-	  "speed": 1
-	},
-	"debuffs": {}
-  },
-
-  "channeler": {
-	"name": "channeler",
-	"level": 1,
-	"type": ["infantry","mystic"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 2,
-	  "strength": 0,
-	  "magic": 3,
-	  "skill": 2,
-	  "speed": 1,
-	  "defence": 2,
-	  "resistance": 0
-	},
-	"growth": {
-	  "hitpoints": 0,
-	  "strength": 5,
-	  "magic": 20,
-	  "skill": 15,
-	  "speed": 5,
-	  "defence": 15,
-	  "resistance": 5
-	},
-	"ranks": {
-	  "Spell":4
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
-
-  "rider": {
-	"name": "rider",
-	"level": 1,
-	"type": ["mounted"],
-	"stats": {
-	  "movement": 5,
-	  "jump": 1,
-	  "hitpoints": 5,
-	  "strength": 3,
-	  "magic": 0,
-	  "skill": 3,
-	  "speed": 1,
-	  "defence": 3,
-	  "resistance": 0},
-	"growth": {
-	  "hitpoints": 25,
-	  "strength": 20,
-	  "magic": 0,
-	  "skill": 15,
-	  "speed": 10,
-	  "defence": 20,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Long":4,
-	  "Ranged":3,
-	  "Blunt":2
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
-
-  "flier": {
-	"name": "flier",
-	"level": 1,
-	"type": ["flier"],
-	"stats": {
-	  "movement": 4,
-	  "jump": 4,
-	  "hitpoints": 3,
-	  "strength": 3,
-	  "magic": 0,
-	  "skill": 2,
-	  "speed": 3,
-	  "defence": 2,
-	  "resistance": 0
-	},
-	"growth": {
-	  "hitpoints": 15,
-	  "strength": 15,
-	  "magic": 0,
-	  "skill": 10,
-	  "speed": 20,
-	  "defence": 10,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Long":3,
-	  "Sharp":2
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
-
-  "shooter": {
-	"name": "shooter",
-	"level": 1,
-	"type": ["infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 8,
-	  "strength": 4,
-	  "magic": 0,
-	  "skill": 4,
-	  "speed": 2,
-	  "defence": 1,
-	  "resistance": 0},
-	"growth": {
-	  "hitpoints": 25,
-	  "strength": 20,
-	  "magic": 0,
-	  "skill": 15,
-	  "speed": 10,
-	  "defence": 20,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Ranged":4
-	},
-	"buffs": {},
-	"debuffs": {}
-  },
-
-  "medic": {
-	"name": "medic",
-	"level": 1,
-	"type": ["infantry","healer"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 8,
-	  "strength": 2,
-	  "magic": 4,
-	  "skill": 4,
-	  "speed": 3,
-	  "defence": 1,
-	  "resistance": 0},
-	"growth": {
-	  "hitpoints": 15,
-	  "strength": 10,
-	  "magic": 30,
-	  "skill": 15,
-	  "speed": 10,
-	  "defence": 10,
-	  "resistance": 20
-	},
-	"ranks": {"Sharp":1},
-	"buffs": {},
-	"debuffs": {}
-  },
-  "warrior": {
-	"name": "warrior",
-	"level": 1,
-	"type": ["breaker","infantry"],
-	"stats": {
-	  "movement": 3,
-	  "jump": 2,
-	  "hitpoints": 8,
-	  "strength": 1,
-	  "magic": 0,
-	  "skill": 2,
-	  "speed": 1,
-	  "defence": 1,
-	  "resistance": 0
-	},
-	"growth": {
-	  "hitpoints": 15,
-	  "strength": 15,
-	  "magic": 0,
-	  "skill": 15,
-	  "speed": 5,
-	  "defence": 10,
-	  "resistance": 0
-	},
-	"ranks": {
-	  "Blunt":4
-	},
-	"buffs": {},
-	"debuffs": {}
-  }
 }

@@ -32,6 +32,9 @@ func canTakeSouls() -> bool:
 	return character.myClass.classType.has("mystic")
 
 # setters
+func _init(_character: Character, _inventory):
+	character = _character
+	inventory = _inventory
 func setTeam(newTeam: Team): team = newTeam
 func setLeader(newLeader: Units): leader = newLeader
 

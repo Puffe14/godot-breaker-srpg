@@ -7,6 +7,7 @@ var unit_dict: Dictionary = {
 	"Cylna":preload("res://resources/data/units/test_unit_c.tres"),
 	"BossLairaea":preload("res://resources/data/units/test_unit_l.tres"),
 	"Lairaea":preload("res://resources/data/units/test_unit_l.tres"),
+	"Lochagos":preload("res://resources/data/units/dummy2_unit.tres"),
 	}
 
 var class_dict: Dictionary = {
@@ -18,6 +19,20 @@ var character_dict: Dictionary = {
 }
 
 var item_dict: Dictionary = {
+}
+
+var inventory_dict: Dictionary = {
+	"Lairaea": preload("res://resources/data/items/test_bow_inv.tres"),
+	"BossLairaea": preload("res://resources/data/items/test_bow_inv.tres"),
+	"Cylna": preload("res://resources/data/items/test_club_inv.tres"),
+	"Dummy": preload("res://resources/data/test_inventory.tres"),
+	"Dummy2": preload("res://resources/data/test_inventory.tres"),
+	"Dummy3": preload("res://resources/data/test_inventory.tres"),
+	"Geblah": preload("res://resources/data/test_inventory.tres"),
+	"Medic": preload("res://resources/data/test_inventory.tres"),
+	"Locagos": preload("res://resources/data/test_inventory.tres"),
+	"Warrior": preload("res://resources/data/test_inventory.tres"),
+	"Aynia": preload("res://resources/data/test_inventory.tres")
 }
 
 
@@ -39,6 +54,12 @@ func make_tile() -> Tile:
 	var tile: Tile = Tile.new()
 	tile.tile_name = ""
 	return tile
+
+func makeUnit(unit_name: String) -> Units:
+	var character: Character = character_dict.get(unit_name, load("res://resources/data/characters/dummy.tres"))
+	var inventory: Inventory = inventory_dict.get(character.myName, load("res://resources/data/test_inventory.tres"))
+	return Units.new(character.duplicate(true),
+		inventory.duplicate(true))
 
 func read_tiles():
 	var tile_json = load("res://resources/data/tiles/tiles.json").data
@@ -123,9 +144,8 @@ func reread_map(map: FieldMap, map_key: String):
 	map.allies = []
 	var joining = map_json["joining"]
 	for joiner in joining:
-		var unit: Units = unit_dict[joiner[0]]
+		var unit: Units = makeUnit(joiner[0])
 		## TODO waiting for unit dict to be loaded first
-		unit.character = character_dict[joiner[0]]
 		unit.character.picture_name = joiner[0].to_lower()
 		##
 		unit.takeDamage(joiner[1])
@@ -138,7 +158,7 @@ func reread_map(map: FieldMap, map_key: String):
 		var group: Group = Group.new()
 		group.side = Units.Team.Enemy
 		for enemy in grouping:
-			var unit: Units = unit_dict[enemy[0]]
+			var unit: Units = makeUnit(enemy[0])
 			group.add_unit(unit)
 			unit.takeDamage(enemy[1])
 			var location = enemy[2]
@@ -149,7 +169,7 @@ func reread_map(map: FieldMap, map_key: String):
 		var group: Group = Group.new()
 		group.side = Units.Team.Enemy
 		for ally in grouping:
-			var unit: Units = unit_dict[ally[0]]
+			var unit: Units = makeUnit(ally[0])
 			group.add_unit(unit)
 			unit.takeDamage(ally[1])
 			var location = ally[2]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://cu2qeped1exml"]
+
+[ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="1_x2t5v"]
+[ext_resource type="Resource" uid="uid://cpc8l1qp52mc8" path="res://resources/data/items/test_bow.tres" id="2_kbanj"]
+[ext_resource type="Resource" uid="uid://cakksqejd8d0q" path="res://resources/data/items/moon_helmet.tres" id="3_qhhy2"]
+[ext_resource type="Resource" uid="uid://cf7g5ryeloruv" path="res://resources/data/items/test_bread.tres" id="4_0vrpb"]
+[ext_resource type="Resource" uid="uid://bx40u5b3es58s" path="res://resources/data/items/test_pole.tres" id="5_ms6yu"]
+
+[resource]
+script = ExtResource("1_x2t5v")
+slots = [ExtResource("2_kbanj"), ExtResource("3_qhhy2"), ExtResource("4_0vrpb"), ExtResource("5_ms6yu"), null, null]
+dontReset = true
+metadata/_custom_type_script = "uid://yejumcuhegph"

@@ -18,7 +18,8 @@
 	],
 	"joining": [
 	  ["Cylna",0,[0,2]],
-	  ["Lairaea",0,[0,4]]
+	  ["Lairaea",0,[0,4]],
+	  ["Geblah",0,[0,3]]
 	],
 	"events": {
 	  "aynia_joins": {
