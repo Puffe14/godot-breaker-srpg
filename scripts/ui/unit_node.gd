@@ -17,6 +17,7 @@ func set_node(new_unit: Units):
 		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
 
 func list_status_icons():
+	if not unit: return
 	if icon_control:
 		icon_control.set_icons(unit.status)
 		icon_control.set_wounds(unit)

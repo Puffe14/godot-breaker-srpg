@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dnny6nhd45x0s"]
+[gd_scene format=3 uid="uid://dnny6nhd45x0s"]
 
 [ext_resource type="Script" uid="uid://yn3qtaoh046r" path="res://scripts/ui/test_menu.gd" id="1_glbon"]
 [ext_resource type="PackedScene" uid="uid://bssumlqsjyewn" path="res://nodes/unit_node.tscn" id="2_7vrkn"]
@@ -61,52 +61,52 @@ void fragment() {
 	COLOR = vec4(vec3(gray), color.a);
 }"
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("timer", "map")]
+[node name="Node2D" type="Node2D" unique_id=1098047363 node_paths=PackedStringArray("timer", "map")]
 script = ExtResource("1_glbon")
 timer = NodePath("TestTimer")
 combat = SubResource("Resource_cm266")
 map = NodePath("MapNode")
 game = ExtResource("3_cm266")
 
-[node name="MapNode" parent="." instance=ExtResource("2_j5v2v")]
+[node name="MapNode" parent="." unique_id=436641020 instance=ExtResource("2_j5v2v")]
 position = Vector2(336, 202)
 scale = Vector2(3, 3)
 field_map = ExtResource("3_iotk1")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1792003163]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Control" unique_id=1759263292]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Hallo"
 
-[node name="TurnLabel" type="Label" parent="Control"]
+[node name="TurnLabel" type="Label" parent="Control" unique_id=181541543]
 layout_mode = 0
 offset_top = 22.0
 offset_right = 41.0
 offset_bottom = 45.0
 text = "Hallo"
 
-[node name="MenuControl" type="Control" parent="Control"]
+[node name="MenuControl" type="Control" parent="Control" unique_id=14041129]
 anchors_preset = 0
 offset_left = 10.0
 offset_top = 32.0
 offset_right = 50.0
 offset_bottom = 72.0
 
-[node name="Node2D" parent="." instance=ExtResource("2_7vrkn")]
+[node name="Node2D" parent="." unique_id=2114062860 instance=ExtResource("2_7vrkn")]
 position = Vector2(48, 77)
 unit = ExtResource("3_8qtwp")
 texture = ExtResource("4_glbon")
 frames = ExtResource("5_0o4t1")
 shader = SubResource("Shader_g8g3n")
 
-[node name="Node2D2" parent="." instance=ExtResource("2_7vrkn")]
+[node name="Node2D2" parent="." unique_id=391395166 instance=ExtResource("2_7vrkn")]
 position = Vector2(172, 75)
 unit = ExtResource("3_jix8l")
 texture = ExtResource("3_fu7sn")
@@ -114,39 +114,39 @@ frames = ExtResource("8_0k4wn")
 shader = SubResource("Shader_8u0te")
 flip = true
 
-[node name="Dummy" parent="." instance=ExtResource("2_7vrkn")]
+[node name="Dummy" parent="." unique_id=1439522486 instance=ExtResource("2_7vrkn")]
 position = Vector2(298, 75)
 unit = ExtResource("5_nlkkf")
 texture = ExtResource("6_qe12f")
 shader = SubResource("Shader_oiatc")
 flip = true
 
-[node name="Dummy2" parent="." instance=ExtResource("2_7vrkn")]
+[node name="Dummy2" parent="." unique_id=538528826 instance=ExtResource("2_7vrkn")]
 position = Vector2(456, 138)
 unit = ExtResource("16_8u0te")
 frames = ExtResource("16_g8g3n")
 shader = SubResource("Shader_mg3m2")
 flip = true
 
-[node name="TestTimer" type="Timer" parent="."]
+[node name="TestTimer" type="Timer" parent="." unique_id=2070590423]
 wait_time = 3.0
 autostart = true
 
-[node name="SpinBox" type="SpinBox" parent="."]
+[node name="SpinBox" type="SpinBox" parent="." unique_id=120195531]
 offset_left = 410.0
 offset_top = 19.0
 offset_right = 496.5625
 offset_bottom = 50.0
 max_value = 3.0
 
-[node name="UpdateButton" type="Button" parent="."]
+[node name="UpdateButton" type="Button" parent="." unique_id=1784675931]
 offset_left = 412.0
 offset_top = 62.0
 offset_right = 477.0
 offset_bottom = 94.0
 text = "Update"
 
-[node name="UpdateButton2" type="Button" parent="."]
+[node name="UpdateButton2" type="Button" parent="." unique_id=1842972230]
 offset_left = 412.0
 offset_top = 256.0
 offset_right = 477.0
