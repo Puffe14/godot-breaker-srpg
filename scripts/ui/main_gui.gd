@@ -33,6 +33,7 @@ func _process(_delta):
 	map.set_tiles_in_nodes()
 	if Input.is_action_just_pressed("retry"):
 		_ready()
+	spin_map()
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
@@ -204,3 +205,14 @@ func on_lose():
 	hud_node.add_child(msg_node)
 	await get_tree().create_timer(2).timeout
 	_ready()
+
+var map_rotation: int = 0
+func spin_map():
+	var spin_change = 0
+	if Input.is_action_just_pressed("rotate_left"):
+		spin_change += 1
+	if Input.is_action_just_pressed("rotate_right"):
+		spin_change -= 1
+	if spin_change != 0:
+		map_rotation = (4+(map_rotation+spin_change)%4)%4 
+		map._on_spin_box_value_changed(map_rotation)

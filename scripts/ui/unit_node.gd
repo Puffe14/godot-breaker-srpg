@@ -30,7 +30,8 @@ func on_update(delay: float, _dim: bool = true) -> void:
 	# wait for delay
 	await get_tree().create_timer(delay).timeout
 	# update hp_bar
-	hp_node.change_value(unit.HP(), unit.MaxHP())
+	if unit:
+		hp_node.change_value(unit.HP(), unit.MaxHP())
 	# update status icon
 	list_status_icons()
 	# dimming
@@ -50,8 +51,8 @@ func _on_area_2d_mouse_exited() -> void:
 
 func show_child_hp(should: bool):
 	hp_node.show_bar(should)
-	hp_node.change_value(unit.HP(), unit.MaxHP())
 	if unit and portrait:
+		hp_node.change_value(unit.HP(), unit.MaxHP())
 		hp_node.set_portrait(portrait)
 
 func _ready() -> void:
