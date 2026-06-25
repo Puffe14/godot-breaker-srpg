@@ -69,7 +69,7 @@ animations = [{
 "texture": ExtResource("3_lj3ou")
 }],
 "loop": true,
-"name": &"stills",
+"name": &"still",
 "speed": 5.0
 }, {
 "frames": [{
