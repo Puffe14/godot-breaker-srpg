@@ -3,17 +3,24 @@
 [ext_resource type="Script" uid="uid://bcn8tp67l360l" path="res://scripts/ui/unit_node.gd" id="1_xinmc"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="2_gax0m"]
 [ext_resource type="Script" uid="uid://dv60de3x0max6" path="res://scripts/ui/status_icon_display.gd" id="3_6kcvq"]
+[ext_resource type="Texture2D" uid="uid://3dbl7e3dpqs8" path="res://resources/images/portraits/default.png" id="3_ax037"]
 [ext_resource type="Shader" uid="uid://dl7mist6pfwy2" path="res://resources/shaders/gray.gdshader" id="3_c38aa"]
 [ext_resource type="PackedScene" uid="uid://burbvc1ohhmsh" path="res://nodes/status_icon.tscn" id="4_76tq2"]
+[ext_resource type="PackedScene" uid="uid://cu0vhy8s6mkvl" path="res://nodes/menus/hpbar.tscn" id="4_c38aa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax037"]
 resource_local_to_scene = true
 shader = ExtResource("3_c38aa")
 
-[node name="Node2D" type="Node2D" unique_id=1337361225 node_paths=PackedStringArray("icon_control") groups=["unit"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c38aa"]
+size = Vector2(31.66667, 31.333336)
+
+[node name="Node2D" type="Node2D" unique_id=1337361225 node_paths=PackedStringArray("hp_node", "icon_control") groups=["unit"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 shader = ExtResource("3_c38aa")
+hp_node = NodePath("HP")
+portrait = ExtResource("3_ax037")
 icon_control = NodePath("Control")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503339535]
@@ -22,6 +29,14 @@ texture = ExtResource("2_gax0m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1680806366]
 material = SubResource("ShaderMaterial_ax037")
 animation = &""
+
+[node name="HP" parent="." unique_id=924748288 instance=ExtResource("4_c38aa")]
+visible = false
+offset_left = -12.666667
+offset_top = -17.666666
+offset_right = 71.333336
+offset_bottom = 16.333334
+scale = Vector2(0.3, 0.3)
 
 [node name="Control" type="Control" parent="." unique_id=416744645 node_paths=PackedStringArray("vbox")]
 layout_mode = 3
@@ -45,3 +60,12 @@ theme_override_constants/separation = 1
 
 [node name="TextureRect" parent="Control/VBoxContainer" unique_id=1262584961 instance=ExtResource("4_76tq2")]
 layout_mode = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1806496943]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1010765838]
+position = Vector2(-0.8333335, 3.3333337)
+shape = SubResource("RectangleShape2D_c38aa")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -56,6 +56,7 @@ func _process(_delta):
 	if current_action:
 		current_action.animate.connect(animate)
 		current_action.move.connect(move_to_tile)
+		current_action.update.connect(update_unit_node)
 		current_action.play()
 		#hide move range
 		game.deSelect()
@@ -178,7 +179,7 @@ func on_change_turn():
 		msg = "Now " + game.turn_of_dict[game.turnOf]
 	var msg_node = fade_msg.instantiate()
 	msg_node.create(msg)
-	add_child(msg_node)
+	hud_node.add_child(msg_node)
 
 func on_selected(thing):
 	draw_and_set_tiles()
@@ -200,6 +201,6 @@ func on_lose():
 		msg = "The heroes have fallen."
 	var msg_node = fade_msg.instantiate()
 	msg_node.create(msg)
-	add_child(msg_node)
+	hud_node.add_child(msg_node)
 	await get_tree().create_timer(2).timeout
 	_ready()

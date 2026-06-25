@@ -4,7 +4,10 @@ class_name UnitNode extends Node2D
 @export var texture: Texture2D
 @export var frames: SpriteFrames = null
 @export var shader: Shader = null
+@export var hp_node: HpBar = null
 @export var flip: bool = false
+@export var portrait: Texture = null
+
 var timer: Timer = Timer.new()
 var popup_text: PackedScene = preload("res://nodes/popup_text.tscn")
 var status_icon: PackedScene = preload("res://nodes/status_icon.tscn")
@@ -15,6 +18,7 @@ func set_node(new_unit: Units):
 	unit = new_unit
 	if unit:
 		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
+		portrait = load("res://resources/images/portraits/"+unit.character.picture_name+".png")
 
 func list_status_icons():
 	if not unit: return
@@ -25,6 +29,9 @@ func list_status_icons():
 func on_update(delay: float, _dim: bool = true) -> void:
 	# wait for delay
 	await get_tree().create_timer(delay).timeout
+	# update hp_bar
+	hp_node.change_value(unit.HP(), unit.MaxHP())
+	# update status icon
 	list_status_icons()
 	# dimming
 	if unit and unit.acted:
@@ -32,6 +39,20 @@ func on_update(delay: float, _dim: bool = true) -> void:
 		$AnimatedSprite2D.stop()
 	else:
 		undim()
+
+##TODO: more component like design for hp hover
+
+func _on_area_2d_mouse_entered() -> void:
+	show_child_hp(true)
+
+func _on_area_2d_mouse_exited() -> void:
+	show_child_hp(false)
+
+func show_child_hp(should: bool):
+	hp_node.show_bar(should)
+	hp_node.change_value(unit.HP(), unit.MaxHP())
+	if unit and portrait:
+		hp_node.set_portrait(portrait)
 
 func _ready() -> void:
 	list_status_icons()

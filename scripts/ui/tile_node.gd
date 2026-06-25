@@ -79,3 +79,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		else:
 			print('not connected!')
 		on_selected()
+
+## TODO: somehow show hp for units but unit node not in TileNode
+#func show_child_hp(should: bool):
+#	for node in get_children():
+#		if node.is_in_group("hp"):
+#			node.hp_bar.show_bar(should)
+#			node.hp_bar.change_value()
