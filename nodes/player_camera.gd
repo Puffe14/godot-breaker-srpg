@@ -4,6 +4,10 @@ extends Camera2D
 @export var view_height = 600
 @export var horizontal_speed = 2
 @export var vertical_speed = 2
+@export var min_zoom = 0.5
+@export var max_zoom = 4
+@export var zoom_speed = Vector2(0.1,0.1)
+@export var zoom_base = Vector2(1,1)
 @export var menu_control: Control = null
 
 # Called when the node enters the scene tree for the first time.
@@ -28,3 +32,10 @@ func _process(delta: float) -> void:
 		offset.y -= vertical_speed
 	if cursor_position.y > (1-drag_bottom_margin)*view_height:
 		offset.y += vertical_speed
+	# zoom
+	if zoom.length() > min_zoom and Input.is_action_just_released("zoom_out"):
+		zoom -= zoom_speed
+	if zoom.length() < max_zoom and Input.is_action_just_released("zoom_in"):
+		zoom += zoom_speed
+	if Input.is_action_just_released("zoom_reset"):
+		zoom = zoom_base
