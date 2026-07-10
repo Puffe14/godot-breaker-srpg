@@ -51,8 +51,15 @@ func _on_area_2d_mouse_exited() -> void:
 
 func show_child_hp(should: bool):
 	hp_node.show_bar(should)
-	if unit and portrait:
+	if unit:
+		var team_color = "red"
+		match(unit.team):
+			Units.Team.Enemy: team_color = "red"
+			Units.Team.Player: team_color = "blue"
+			Units.Team.Ally: team_color = "green"
 		hp_node.change_value(unit.HP(), unit.MaxHP())
+		hp_node.set_color(team_color)
+	if portrait:
 		hp_node.set_portrait(portrait)
 
 func _ready() -> void:

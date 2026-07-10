@@ -2,13 +2,17 @@ class_name HpBar extends VBoxContainer
 @export var portrait_node: Sprite2D = null
 @export var progress_node: TextureProgressBar = null
 @export var text_label: Label = null
-
+@export var shader: Shader = null
 
 func set_portrait(portrait):
 	if portrait:
 		portrait_node.texture = portrait
 	else:
 		print("set portrait foiled")
+
+func set_color(color: String):
+	if color:
+		progress_node.texture_progress = load("res://resources/images/ui/slim bar "+color+".png")
 
 func change_value(hp: int, mhp: int):
 	var hpb = progress_node
