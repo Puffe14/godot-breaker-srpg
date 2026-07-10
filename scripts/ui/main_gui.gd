@@ -25,6 +25,8 @@ func _ready() -> void:
 	game.currentMap = map.field_map
 	game.update.connect(on_game_update)
 	draw_and_set_tiles()
+	await map.done_drawing_nodes
+	on_game_update()
 	
 var continue_process = true
 
@@ -127,6 +129,7 @@ func show_movement_range(reset_display: bool = false):
 func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
 	map.set_tiles_in_nodes()
+	connect_tile_nodes()
 
 func on_game_update():
 	map.set_tiles_in_nodes()

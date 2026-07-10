@@ -2,8 +2,8 @@ extends Camera2D
 
 @export var view_width = 1000
 @export var view_height = 600
-@export var horizontal_speed = 2
-@export var vertical_speed = 2
+@export var horizontal_speed = 150
+@export var vertical_speed = 150
 @export var min_zoom = 0.7
 @export var max_zoom = 4
 @export var zoom_speed = Vector2(0.1,0.1)
@@ -30,13 +30,13 @@ func _process(delta: float) -> void:
 	# move camera up or down based mouse compared to margin positions
 	var cursor_position = get_viewport().get_mouse_position()
 	if cursor_position.x < drag_left_margin*view_width:
-		offset.x -= horizontal_speed
+		offset.x -= horizontal_speed * delta
 	if cursor_position.x > (1-drag_right_margin)*view_width:
-		offset.x += horizontal_speed
+		offset.x += horizontal_speed * delta
 	if cursor_position.y < drag_top_margin*view_height:
-		offset.y -= vertical_speed
+		offset.y -= vertical_speed * delta
 	if cursor_position.y > (1-drag_bottom_margin)*view_height:
-		offset.y += vertical_speed
+		offset.y += vertical_speed * delta
 	# zoom
 	if zoom.length() > min_zoom and Input.is_action_just_released("zoom_out"):
 		zoom -= zoom_speed
