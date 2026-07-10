@@ -39,7 +39,7 @@ func _on_area_2d_mouse_exited() -> void:
 	hovered_tile.emit(null)
 
 func show_move_sprite(move_visibility: bool, can_move: bool = true, actor = null):
-	if !tile.occupiable:
+	if !tile or !tile.occupiable:
 		return
 	# elsewise, change the move sprite or teamsprite visibility
 	$MoveSprite.visible = move_visibility
@@ -60,6 +60,10 @@ func show_move_sprite(move_visibility: bool, can_move: bool = true, actor = null
 			_:
 				$TeamSprite.texture = null
 				print("no team found???")
+
+func hide_move_and_team():
+	$MoveSprite.visible = false
+	$TeamSprite.visible = false
 
 func on_selected():
 	selected_tile.emit(tile)

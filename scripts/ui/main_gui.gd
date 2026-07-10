@@ -24,13 +24,13 @@ func _ready() -> void:
 	map.field_map.player = null
 	game.currentMap = map.field_map
 	game.update.connect(on_game_update)
-	map.draw_tiles(map.direction)
 	draw_and_set_tiles()
 	
 var continue_process = true
 
 func _process(_delta):
-	map.set_tiles_in_nodes()
+	if Input.is_action_just_pressed("debug"):
+		draw_and_set_tiles()
 	if Input.is_action_just_pressed("retry"):
 		_ready()
 	spin_map()
@@ -47,7 +47,7 @@ func _process(_delta):
 		game.selected.connect(on_selected)
 	# set the nodes and tiles
 	connect_tile_nodes()
-	show_movement_range()
+	show_movement_range(game.acting == null)
 	make_unit_nodes()
 	if game.queue.is_empty():
 		#print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
@@ -61,7 +61,7 @@ func _process(_delta):
 		current_action.play()
 		#hide move range
 		game.deSelect()
-		show_movement_range()
+		show_movement_range(true)
 		continue_process = false
 		if current_action.closes_menu:
 			free_children(menu_node)
@@ -114,7 +114,10 @@ func connect_tile_nodes():
 				pass
 				# TODO create new unit node or somsin.ce
 
-func show_movement_range():
+func show_movement_range(reset_display: bool = false):
+	# hide movement area
+	if reset_display:
+		map.reset_movement_display()
 	# display movement area
 	for i: Tile in map.field_map.movementRangeTiles(game.acting):
 		var node = map.get_child_at_v3(i.position)
@@ -126,7 +129,8 @@ func draw_and_set_tiles():
 	map.set_tiles_in_nodes()
 
 func on_game_update():
-	draw_and_set_tiles()
+	map.set_tiles_in_nodes()
+	#draw_and_set_tiles()
 	unit_container._ready(game.acting)
 	tile_container._ready(null)
 	#free_children(menu_node)
@@ -183,7 +187,7 @@ func on_change_turn():
 	hud_node.add_child(msg_node)
 
 func on_selected(thing):
-	draw_and_set_tiles()
+	#draw_and_set_tiles()
 	unit_container._ready(game.acting)
 	tile_container._ready(null)
 	free_children(menu_node)

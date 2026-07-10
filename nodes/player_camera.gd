@@ -4,11 +4,12 @@ extends Camera2D
 @export var view_height = 600
 @export var horizontal_speed = 2
 @export var vertical_speed = 2
-@export var min_zoom = 0.5
+@export var min_zoom = 0.7
 @export var max_zoom = 4
 @export var zoom_speed = Vector2(0.1,0.1)
 @export var zoom_base = Vector2(1,1)
 @export var menu_control: Control = null
+var lock_camera = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# lock or unlock camera movement
+	if Input.is_action_just_pressed("lock"):
+		toggle_camera_lock()
+	if lock_camera: return
 	# don't move camera if there are menus in view
 	## TODO: More elegant solution not based on size > 1
 	if menu_control:
@@ -39,3 +44,6 @@ func _process(delta: float) -> void:
 		zoom += zoom_speed
 	if Input.is_action_just_released("zoom_reset"):
 		zoom = zoom_base
+
+func toggle_camera_lock():
+	lock_camera = not lock_camera

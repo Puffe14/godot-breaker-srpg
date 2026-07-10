@@ -10,6 +10,7 @@ enum Direction {UP, RIGHT, DOWN, LEFT}
 var direction: Direction = Direction.UP
 # signals
 signal move(pos: Vector2, unit: Units, delay: float)
+signal done_drawing_nodes
 
 func _ready() -> void:
 	# create layers
@@ -26,6 +27,7 @@ func _ready() -> void:
 func layers() -> Array:
 	return get_children()
 
+## Set the tile data into each node in the layers
 func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")
 	for jokin in joku:
@@ -37,7 +39,7 @@ func set_tiles_in_nodes():
 		pos = translate_back_dir(pos)
 		var tile: Tile = field_map.grid.get_tile_v(pos)
 		tile_node.tile = tile
-		if !tile.show_move.is_connected(tile_node.show_move_sprite):
+		if tile && !tile.show_move.is_connected(tile_node.show_move_sprite):
 			tile.show_move.connect(tile_node.show_move_sprite)
 	#joku.sort_custom(sort_tiles_pos_x_y)
 	#for i: int in range(0,joku.size()):
@@ -48,6 +50,7 @@ func set_tiles_in_nodes():
 		#tile_node._ready()
 	pass
 
+## Clear the layers and create tile nodes into cells
 func draw_tiles(dir: Direction = Direction.UP):
 	var translated: Vector2i = Vector2i(1,1)
 	direction = dir
@@ -77,6 +80,7 @@ func draw_tiles(dir: Direction = Direction.UP):
 		# draw bottoms
 		for z in range(0, pos_z):
 			layers()[z].set_cell(translated,0,Vector2i(0,0),2)
+	done_drawing_nodes.emit()
 
 
 func _on_spin_box_value_changed(value: float) -> void:
@@ -124,3 +128,8 @@ func translate_back_dir(v: Vector2i):
 		Direction.DOWN: translated = Vector2i(-pos_x,-pos_y)
 		Direction.LEFT: translated = Vector2i(-pos_y,pos_x)
 	return translated
+
+func reset_movement_display():
+	var children = get_tree().get_nodes_in_group("tile")
+	for tn: TileNode in children:
+		tn.hide_move_and_team()
