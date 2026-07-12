@@ -14,6 +14,14 @@ func set_new(_members: Array[Units], _behaviour: Behaviour, _side: Units.Team, _
 	for m: Units in members:
 		m.setTeam(side)
 
+func _init(_members: Array[Units] = [], _behaviour: Behaviour = Behaviour.Agressive, _side: Units.Team = Units.Team.Enemy, _condition: bool = false) -> void:
+	members = _members
+	behaviour = _behaviour
+	side = _side
+	condition_met = _condition
+	for m: Units in members:
+		m.setTeam(side)
+
 ## array of members that have not acted
 func haveNotActed() -> Array:
 	return members.filter(func(m:Units): return !(m.turnOver()||m.isDead()))

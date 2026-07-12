@@ -137,6 +137,15 @@ func reread_map(map: FieldMap, map_key: String):
 		map.loseConditions.push_back(read_condition(lose))
 	if map.loseConditions.is_empty():
 		map.loseConditions = [Route.new(Units.Team.Player)]
+	
+	# events
+	map.events = []
+	for event in map_json["events"].values():
+		var new_event = read_event(event)
+		if new_event:
+			map.events.push_back(new_event)
+		else:
+			print("event reding foiled")
 
 	## units onto map
 	map.enemies = []
@@ -176,7 +185,7 @@ func reread_map(map: FieldMap, map_key: String):
 		map.allies.append(group)
 	for unit in map.all_units(): unit.refresh()
 
-func read_condition(condition_object: Dictionary) -> Condition:
+static func read_condition(condition_object: Dictionary) -> Condition:
 	var condition: Condition = null
 	match condition_object["title"]:
 		"survive":
@@ -188,3 +197,29 @@ func read_condition(condition_object: Dictionary) -> Condition:
 		_:
 			condition = Route.new(Units.Team.Enemy)
 	return condition
+
+func read_event(event_object: Dictionary) -> Event:
+	var event: Event = null
+	match event_object["title"]:
+		"reinforcement":
+			var units_coords: Array[FieldMap.UV2] = []
+			for reinforcer in event_object["units"]:
+				var unit: Units = makeUnit(reinforcer[0])
+				## TODO waiting for unit dict to be loaded first
+				unit.character.picture_name = reinforcer[0].to_lower()
+				##
+				var location = reinforcer[1]
+				var new_uv2: FieldMap.UV2 = FieldMap.UV2.new(unit, Vector2i(location[0], location[1]))		
+				units_coords.push_back(new_uv2)
+			var team = Constants.string_to_team[event_object["team"].to_lower()]	
+			var turns: Array[int] = []
+			for i in event_object.get("turns"):
+				turns.push_back(floor(i))
+			return Reinforcement.new(units_coords, team, turns)
+		"message":
+			pass
+			#event = Kill.new(event_object["target"])
+		_:
+			pass
+			#event = Route.new(Units.Team.Enemy)
+	return event

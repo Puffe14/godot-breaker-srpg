@@ -38,6 +38,8 @@ func _init(_character: Character, _inventory):
 func setTeam(newTeam: Team): team = newTeam
 func setLeader(newLeader: Units): leader = newLeader
 
+func copy() -> Units:
+	return Units.new(character.duplicate(true), inventory.duplicate(true))
 
 ## Check if the unit has been killed.
 func isDead(): return !isAlive()
@@ -139,7 +141,8 @@ func toggleEquip(item: Item):
 
 func equipFirst():
 	for item: Item in inventory.slots:
-		equip(item)
+		if item != null:
+			equip(item)
 
 func discard(item: Item):
 	inventory.remove(item)

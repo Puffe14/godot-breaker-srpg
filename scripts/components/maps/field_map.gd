@@ -20,6 +20,13 @@ class UTR:
 		tile = _tile
 		dist = _dist
 
+class UV2:
+	var unit: Units
+	var pos: Vector2i
+	func _init(_unit: Units, _pos: Vector2i):
+		unit = _unit
+		pos = _pos
+
 func tickTurn():
 	turnNumber += 1
 
