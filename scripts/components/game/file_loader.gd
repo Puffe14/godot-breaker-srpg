@@ -217,8 +217,15 @@ func read_event(event_object: Dictionary) -> Event:
 				turns.push_back(floor(i))
 			return Reinforcement.new(units_coords, team, turns)
 		"message":
-			pass
-			#event = Kill.new(event_object["target"])
+			var lines: Array[String] = []
+			for line in event_object.get("lines"):
+				lines.push_back(line)
+			## TODO: multi condition support
+			var condition = event_object.get("when")
+			var conditions: Array[Condition] = []
+			if condition:
+				conditions.push_back(read_condition(condition))
+			event = Speech.new(conditions, lines)
 		_:
 			pass
 			#event = Route.new(Units.Team.Enemy)
