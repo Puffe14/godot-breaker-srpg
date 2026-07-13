@@ -58,8 +58,10 @@ func make_tile() -> Tile:
 func makeUnit(unit_name: String) -> Units:
 	var character: Character = character_dict.get(unit_name, load("res://resources/data/characters/dummy.tres"))
 	var inventory: Inventory = inventory_dict.get(character.myName, load("res://resources/data/test_inventory.tres"))
-	return Units.new(character.duplicate(true),
-		inventory.duplicate(true))
+	var unit = Units.new(character.duplicate(true),
+		inventory.copy())
+	unit.equipFirst()
+	return unit
 
 func read_tiles():
 	var tile_json = load("res://resources/data/tiles/tiles.json").data

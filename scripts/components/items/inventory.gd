@@ -144,4 +144,15 @@ func empty() -> bool:
 func _to_string() -> String:
 	return "Inventory"
 
+func copy() -> Inventory:
+	var new_inv = Inventory.new(slotCount)
+	for i in range(slotCount):
+		var item = slots[i]
+		if item:
+			item = item.duplicate(true)
+			if item.equipment and isEquipped(item):
+				item.equipment.unequip()
+		new_inv.slots[i] = item
+	return new_inv
+
 ##TODO redo equipment handling to  being handled and tracked only in Inventory
