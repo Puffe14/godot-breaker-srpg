@@ -60,7 +60,10 @@ func _process(_delta):
 		current_action.animate.connect(animate)
 		current_action.move.connect(move_to_tile)
 		current_action.update.connect(update_unit_node)
-		current_action.play()
+		var expl = current_action.play()
+		if expl.dialogueNotOver():
+			print(expl.dialogue())
+			expl.advanceDialogue()
 		#hide move range
 		game.deSelect()
 		show_movement_range(true)
