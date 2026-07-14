@@ -9,6 +9,7 @@ enum Team {Player, Ally, Enemy}
 @export var damageTaken: int = 0
 @export var wounds: Array[Constants.BodyPart] = [] # Array[Part]
 @export var status: Array[Constants.Status] = [] # Array[Status]
+@export var location_bonus: CombatBonus = CombatBonus.new()
 @export var temporaryStats: Stats = Stats.new()
 @export var nearbyBonuses: Stats = Stats.new()
 @export var team: Team = Team.Player
@@ -168,6 +169,9 @@ func bonus(_stat: String) -> int:
 				total += item.weapon.stats.get_a_val(_stat)
 			if item.armor and item.armor.stats:
 				total += item.armor.stats.get_a_val(_stat)
+	if _stat=="AV":
+		pass
+	total += location_bonus.get_a_val(_stat)
 	total += temporaryStats.get_a_val(_stat)
 	total += nearbyBonuses.get_a_val(_stat)
 	return total

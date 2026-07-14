@@ -74,17 +74,20 @@ func selectTile(tile: Tile) -> void:
 	else:
 		acting = null
 		target = null
+	currentMap.giveBonuses(false)
 	update.emit()
 
 func deSelect():
 	acting = null
 	target = null
+	currentMap.giveBonuses(false)
 	update.emit()
 
 ### ACTIONS INTO STACK ###
 
 func move_to(unit: Units, tile: Tile):
 	queue.push_back(Move.new(unit, currentMap, tile))
+	currentMap.giveBonuses(false)
 
 func add_to_queue(action: Action, unit: Units = null):
 	if unit and action.location:

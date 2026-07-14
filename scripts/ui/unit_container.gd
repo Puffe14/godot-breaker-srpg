@@ -28,7 +28,7 @@ func set_stat():
 		" Skill: "+str(unit.SK()),
 		" PhysDef: "+str(unit.PD()),
 		" MagicRes: "+str(unit.MD()),
-		" Avoid: "+str(unit.CR()),
+		" Avoid: "+str(unit.AV()),
 		" CritAvo: "+str(unit.CA()),
 		" Move: "+str(unit.MOVE()),
 		" Jump: "+str(unit.JUMP())

@@ -1,6 +1,7 @@
 class_name Occupiable extends Resource
 
 @export var occupant: Units = null
+@export var bonus: CombatBonus = null
 
 @export var atk: int = 0
 @export var avoid:int = 0
@@ -14,6 +15,7 @@ func _init(_atk = 0, _avoid = 0, _physical = 0, _magical = 0, _hpEffect = 0) -> 
 	physical = _physical
 	magical = _magical
 	hpEffect = _hpEffect
+	bonus = CombatBonus.new(atk, 0, 0, 0, physical, magical, 0, avoid, 0)
 
 func occupied() -> bool:
 	return occupant !=  null

@@ -54,9 +54,17 @@ func isLost() -> bool:
 	return lost
 
 ## TODO BONUSES
-
-func giveBonuses(boo: bool):
-	pass
+## Gives stat bonuses from tile, aura buffs, and debuffs
+func giveBonuses(includeHealth: bool):
+	for tile in grid.occupiables():
+		var occupant = tile.occupiable.occupant
+		if occupant:
+			occupant.location_bonus = tile.occupiable.bonus
+			## TODO close creature buff/debuff
+			if includeHealth:
+				occupant.takeDamage(-tile.occupiable.hpEffect)
+		
+		
 
 ### UNIT & GROUP HANDLING ###
 
