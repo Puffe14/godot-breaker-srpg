@@ -72,19 +72,22 @@ func unstun(): healStatus(Constants.Status.Stunned)
 
 # Hurt or Heal #
 
-func takeDamage(amount: int):
+func takeDamage(amount: int, lethal: bool = true):
 	damageTaken += amount
-	limitHP()
+	limitHP(lethal)
 
 func healDamage(amount: int):
 	damageTaken -= amount
 	limitHP()
 
-func limitHP():
+func limitHP(lethal: bool = true):
+	if damageTaken > MaxHP():
+		if lethal:
+			damageTaken = MaxHP()
+		else:
+			damageTaken = MaxHP() - 1
 	if damageTaken < 0:
 		damageTaken = 0
-	if damageTaken > MaxHP():
-		damageTaken = MaxHP()
 
 func breakArmor(piece: Item):
 	piece.armor.shatter()

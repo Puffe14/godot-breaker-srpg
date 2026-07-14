@@ -16,7 +16,13 @@
 "grf": {
 	"name": "grass",
 	"photo": "field_gray",
-	"effect": {},
+	"effect": {
+	"atk": -1,
+	"avoid": -25,
+	"physical": -1,
+	"magical": -1,
+	"hpEffect": -20
+	},
 	"reduction": {},
 	"occupiable": true
 },

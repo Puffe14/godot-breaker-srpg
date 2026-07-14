@@ -62,7 +62,8 @@ func giveBonuses(includeHealth: bool):
 			occupant.location_bonus = tile.occupiable.bonus
 			## TODO close creature buff/debuff
 			if includeHealth:
-				occupant.takeDamage(-tile.occupiable.hpEffect)
+				## deal non-lethal damage or heal from tile effect
+				occupant.takeDamage(-tile.occupiable.hpEffect, false)
 		
 		
 
