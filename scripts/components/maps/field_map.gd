@@ -59,10 +59,19 @@ func giveBonuses(includeHealth: bool):
 	for tile in grid.occupiables():
 		var occupant = tile.occupiable.occupant
 		if occupant:
-			occupant.location_bonus = tile.occupiable.bonus
+			occupant.location_bonus = CombatBonus.new()
+			## add tile
+			occupant.location_bonus.addUp(tile.occupiable.bonus)
 			## TODO close creature buff/debuff
+			for utr: UTR in unitsInRangeAt(occupant, tile, Vector2i(1,2)):
+				var unit = utr.unit
+				if unit.team != occupant.team:
+					occupant.location_bonus.addUp(unit.character.myClass.classDebuffs)
+				if unit.team == occupant.team:
+					occupant.location_bonus.addUp(unit.character.myClass.classBuffs)
+					
+			## deal non-lethal damage or heal from tile effect
 			if includeHealth:
-				## deal non-lethal damage or heal from tile effect
 				occupant.takeDamage(-tile.occupiable.hpEffect, false)
 		
 		

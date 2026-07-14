@@ -6,8 +6,8 @@ class_name Class extends Resource
 @export var classType: Array
 @export var classGrowth: Stats
 @export var stats: Stats
-@export var classBuffs: Stats
-@export var classDebuffs: Stats
+@export var classBuffs: CombatBonus
+@export var classDebuffs: CombatBonus
 @export var classRanks: Ranks
 
 func name(): return className

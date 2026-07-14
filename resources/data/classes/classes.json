@@ -182,10 +182,10 @@
 
 		},
 		"debuffs": {
-			"strength": -1.0,
-			"magic": -1.0,
-			"defence": -1.0,
-			"resistance": 1.0
+			"AT": -1.0,
+			"AS": -1.0,
+			"PD": -1.0,
+			"MD": -1.0
 		}
 	},
 	"singer": {
@@ -219,9 +219,8 @@
 			"Ranged": 1.0
 		},
 		"buffs": {
-			"strength": 1.0,
-			"magic": 1.0,
-			"speed": 1.0
+			"AT": 1.0,
+			"AS": 1.0
 		},
 		"debuffs": {
 

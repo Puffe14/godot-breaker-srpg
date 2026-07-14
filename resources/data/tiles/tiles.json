@@ -1,85 +1,91 @@
 {
-"gray_field": {
-	"name": "grass",
-	"photo": "field_gray",
-	"effect": {},
-	"reduction": {},
-	"occupiable": true
-},
-"bgf": {
-	"name": "blue grass",
-	"photo": "field_bluegrass",
-	"effect": {},
-	"reduction": {},
-	"occupiable": true
-},
-"grf": {
-	"name": "grass",
-	"photo": "field_gray",
-	"effect": {
-	"atk": -1,
-	"avoid": -25,
-	"physical": -1,
-	"magical": -1,
-	"hpEffect": -20
-	},
-	"reduction": {},
-	"occupiable": true
-},
-"gbu": {
-	"name": "bush",
-	"photo": "field_bush",
-	"effect": {
-	"avoid": 20,
-	"physical": 1
-	},
-	"reduction": {
-	"infantry": 2,
-	"mounted": 3},
-	"occupiable": true
-},
-"tar": {
-	"name": "tar",
-	"photo": "field_tar",
-	"effect": {
-	"avoid": -30,
-	"physical": -3,
-	"magical": -3,
-	"hpEffect": -2
-	},
-	"reduction": {
-	"infantry": 2,
-	"mounted": 3
-	},
-	"occupiable": true
-},
-"sand_field": {
-	"name": "sand",
-	"photo": "field_sand",
-	"effect": {
-	"atk": -1,
-	"avoid": -25,
-	"physical": -1,
-	"magical": -1,
-	"hpEffect": 0
-	},
-	"reduction": {
-	"infantry": 2,
-	"mounted": 2
-	},
-	"occupiable": true
-},
+	"gray_field": {
+		"name": "grass",
+		"photo": "field_gray",
+		"effect": {
 
-"wall_field": {
-	"name": "wall",
-	"photo": "field_red",
-	"occupiable": false,
-	"flyOver": false
-},
-"thc": {
-	"name": "thicket",
-	"photo": "field_thicket",
-	"occupiable": false,
-	"flyOver": true
-}
+		},
+		"reduction": {
+
+		},
+		"occupiable": true
+	},
+	"bgf": {
+		"name": "blue grass",
+		"photo": "field_bluegrass",
+		"effect": {
+
+		},
+		"reduction": {
+
+		},
+		"occupiable": true
+	},
+	"grf": {
+		"name": "grass",
+		"photo": "field_gray",
+		"effect": {
+
+		},
+		"reduction": {
+
+		},
+		"occupiable": true
+	},
+	"gbu": {
+		"name": "bush",
+		"photo": "field_bush",
+		"effect": {
+			"avoid": 20.0,
+			"physical": 1.0
+		},
+		"reduction": {
+			"infantry": 2.0,
+			"mounted": 3.0
+		},
+		"occupiable": true
+	},
+	"tar": {
+		"name": "tar",
+		"photo": "field_tar",
+		"effect": {
+			"avoid": -30.0,
+			"physical": -3.0,
+			"magical": -3.0,
+			"hpEffect": -2.0
+		},
+		"reduction": {
+			"infantry": 2.0,
+			"mounted": 3.0
+		},
+		"occupiable": true
+	},
+	"sand_field": {
+		"name": "sand",
+		"photo": "field_sand",
+		"effect": {
+			"atk": -1.0,
+			"avoid": -25.0,
+			"physical": -1.0,
+			"magical": -1.0,
+			"hpEffect": 0.0
+		},
+		"reduction": {
+			"infantry": 2.0,
+			"mounted": 2.0
+		},
+		"occupiable": true
+	},
+	"wall_field": {
+		"name": "wall",
+		"photo": "field_red",
+		"occupiable": false,
+		"flyOver": false
+	},
+	"thc": {
+		"name": "thicket",
+		"photo": "field_thicket",
+		"occupiable": false,
+		"flyOver": true
+	}
 }

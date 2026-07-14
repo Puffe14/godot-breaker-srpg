@@ -88,8 +88,8 @@ func read_classes():
 		new_class.classType = next_class["type"]
 		new_class.stats = Stats.new_val_from_dict(next_class["stats"])
 		new_class.classGrowth = Stats.new_val_from_dict(next_class["growth"])
-		new_class.classBuffs = Stats.new_val_from_dict(next_class["buffs"])
-		new_class.classDebuffs = Stats.new_val_from_dict(next_class["debuffs"])
+		new_class.classBuffs = CombatBonus.new_val_from_dict(next_class["buffs"])
+		new_class.classDebuffs = CombatBonus.new_val_from_dict(next_class["debuffs"])
 		class_dict[new_class.className] = new_class
 
 func read_characters():
