@@ -16,6 +16,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 var file_loader: FileLoader = FileLoader.new()
 
 func _ready() -> void:
+	file_loader.read_items()
 	file_loader.read_classes()
 	file_loader.read_characters()
 	file_loader.read_tiles()

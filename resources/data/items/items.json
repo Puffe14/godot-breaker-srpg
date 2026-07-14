@@ -1,0 +1,323 @@
+{
+      "practice_mail": {
+    "name": "Practice Mail",
+    "description": "Its effects are only imaginary.",
+    "armor":{
+    "part": "Torso",
+    "bonus": {
+      "PD": 10,
+      "AV": -40
+    }
+    }
+  },
+  "leather_greaves": {
+    "name": "Leather Greaves",
+    "description": "Leather greaves that give slight protection to the legs.",
+    "armor":{
+    "part": "Legs",
+    "bonus": {
+      "PD": 1,
+      "AV": 10
+    }
+}
+  },
+  "sun_lamerral": {
+    "name": "Sun Lamerral",
+    "description": "Lamerral body armor adorned with the holy sun of the Successor Empire",
+    "armor":{
+    "part": "Torso",
+    "bonus": {
+      "PD": 8,
+      "AV": 15
+    }
+}
+  },
+  "sun_gauntlets": {
+    "name": "Sun Gauntlets",
+    "description": "Gauntlets adorned with the holy sun of the Successor Empire",
+    "armor":{
+    "part": "Arms",
+    "bonus": {
+      "PD": 2,
+      "AV": 10
+    }
+  }
+  },
+  "moon_lamerral": {
+    "name": "Moon Lamerral",
+    "description": "Lamerral body armor polished to shine like the moon increasing mystical resistance.",
+    "armor":{
+        "part": "Torso",
+    "bonus": {
+      "PD": 5,
+      "MD": 5
+    }}
+  },
+  "moon_helm": {
+    "name": "Moon Helm",
+    "description": "A helmet polished to shine like the moon increasing resistance.",
+    "armor":{
+      "part": "Head",
+      "bonus": {
+        "PD": 2,
+        "MD": 2
+      }
+    }
+  },
+
+
+
+  "super_club": {
+    "name": "Super Club",
+    "description": "A test weapon.",
+    "durability":{
+        "spent": 0,
+        "durability": 15
+    },
+    "weapon":{
+	    "rank": "E",
+	    "quick": true,
+	    "wpntype": "Blunt",
+	    "dmgtype": "force",
+	    "power": 5,
+	    "hit": 260,
+	    "crit": 0,
+	    "range": [1, 1],
+	    "weight": 1,
+	    "effective": {},
+	    "bonus": {"MD": 2,
+		      "PD": 2}
+    }
+  },
+  "dagger": {
+    "name": "Dagger",
+    "description": "A simple dagger.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "E",
+    "quick": false,
+    "wpntype": "Sharp",
+    "dmgtype": "force",
+    "power": 1,
+    "hit": 70,
+    "crit": 10,
+    "range": [1, 1],
+    "weight": 1,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "i_sword": {
+    "name": "Iron Sword",
+    "description": "A good iron sword.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "D",
+    "quick": false,
+    "wpntype": "Sharp",
+    "dmgtype": "force",
+    "power": 3,
+    "hit": 70,
+    "crit": 0,
+    "range": [1, 1],
+    "weight": 1,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "i_lance": {
+    "name": "Iron Lance",
+    "description": "A good iron lance.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },   
+    "weapon":{
+    "rank": "D",
+    "quick": false,
+    "wpntype": "Long",
+    "dmgtype": "force",
+    "power": 4,
+    "hit": 65,
+    "crit": 0,
+    "range": [1, 1],
+    "weight": 1,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "d_mace": {
+    "name": "Damascus Mace",
+    "description": "A powerful mace forged from peculiar steel.",
+    "durability":{
+        "spent": 0,
+        "durability": 30
+    },
+    "weapon":{
+    "rank": "B",
+    "quick": false,
+    "wpntype": "Blunt",
+    "dmgtype": "force",
+    "power": 10,
+    "hit": 75,
+    "crit": 10,
+    "range": [1, 1],
+    "weight": 8,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "i_mace": {
+    "name": "Iron Mace",
+    "description": "A basic mace made of iron.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "D",
+    "quick": false,
+    "wpntype": "Blunt",
+    "dmgtype": "force",
+    "power": 6,
+    "hit": 65,
+    "crit": 10,
+    "range": [1, 1],
+    "weight": 5,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "w_club": {
+    "name": "Wooden Club",
+    "description": "A basic, wooden club.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "E",
+    "quick": false,
+    "wpntype": "Blunt",
+    "dmgtype": "force",
+    "power": 2,
+    "hit": 80,
+    "crit": 0,
+    "range": [1, 1],
+    "weight": 4,
+    "effective": {},
+    "bonus": {"MD": 1}
+    }
+  },
+  "bamboo_bow": {
+    "name": "Bamboo Bow",
+    "description": "A light, but effective bow.",
+    "durability":{
+        "spent": 0,
+        "durability": 20
+    },
+    "weapon":{
+    "rank": "D",
+    "quick": false,
+    "wpntype": "Ranged",
+    "dmgtype": "force",
+    "power": 7,
+    "hit": 60,
+    "crit": 5,
+    "range": [2, 2],
+    "weight": 3,
+    "effective": {"flier": true},
+    "bonus": {}
+    }
+  },
+  "s_sling": {
+    "name": "Simple Sling",
+    "description": "A simple sling that can be used with little training.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "E",
+    "quick": false,
+    "wpntype": "Ranged",
+    "dmgtype": "force",
+    "power": 1,
+    "hit": 55,
+    "crit": 0,
+    "range": [2, 2],
+    "weight": 2,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "far_sling": {
+    "name": "Far Sling",
+    "description": "A sling that hurtles small stones far.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "D",
+    "quick": false,
+    "wpntype": "Ranged",
+    "dmgtype": "force",
+    "power": 2,
+    "hit": 75,
+    "crit": 0,
+    "range": [2, 4],
+    "weight": 1,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "ray_spell": {
+    "name": "Ray Spell",
+    "description": "A spell that channels light into a beam.",
+    "durability":{
+        "spent": 0,
+        "durability": 25
+    },
+    "weapon":{
+    "rank": "E",
+    "quick": false,
+    "wpntype": "Spell",
+    "dmgtype": "magic",
+    "power": 1,
+    "hit": 80,
+    "crit": 0,
+    "range": [1, 2],
+    "weight": 3,
+    "effective": {},
+    "bonus": {}
+    }
+  },
+  "fission_spell": {
+    "name": "Fission Spell",
+    "description": "A spell that breaks matter apart.",
+    "durability":{
+        "spent": 0,
+        "durability": 6
+    },
+    "weapon":{
+    "rank": "B",
+    "quick": false,
+    "wpntype": "Spell",
+    "dmgtype": "magic",
+    "power": 6,
+    "hit": 45,
+    "crit": 0,
+    "range": [1, 2],
+    "weight": 5,
+    "effective": {},
+    "bonus": {}
+    }
+  }
+}

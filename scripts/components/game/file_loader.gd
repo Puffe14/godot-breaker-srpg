@@ -105,6 +105,60 @@ func read_characters():
 		new_character.possibleClass = next_character["classes"]
 		character_dict[new_character.myName] = new_character
 
+func read_items():
+	var item_json = load("res://resources/data/items/items.json").data
+	for next_item in item_json.values():
+		var new_item: Item = Item.new()
+		new_item.name = next_item["name"]
+		new_item.description = next_item["description"]
+		# is it durable
+		if next_item.has("durability"):
+			var next_durability = next_item["durability"]
+			var new_durability: Durability = Durability.new()
+			new_durability.spent = next_durability["spent"]
+			new_durability.maximum = next_durability["durability"]
+			next_item.durability = new_durability
+		# is it armor
+		if next_item.has("armor"):
+			var next_armor = next_item["armor"]
+			var new_armor: Armor = Armor.new()
+			new_armor.part = Constants.string_to_part[next_armor["part"]]
+			new_armor.stats = CombatBonus.new_val_from_dict(next_armor["bonus"])
+			new_item.armor = new_armor
+		# is it consumable
+		if next_item.has("consumable"):
+			var next_consumable = next_item["armor"]
+			var new_consumable: Consumable = Consumable.new()
+			new_consumable.permanent = next_consumable["permanent"]
+			new_consumable.heal = next_consumable["heal"]
+			new_consumable.effects = Stats.new_val_from_dict(next_consumable["bonus"])
+			new_item.consumable = new_consumable
+		# is it a weapon
+		if next_item.has("weapon"):
+			var next_weapon = next_item["weapon"]
+			var new_weapon: Weapon = Weapon.new()
+			new_weapon.dmgType = Constants.string_to_dmgtype[next_weapon["dmgtype"].to_lower()]
+			new_weapon.wpnType = Constants.string_to_wpntype[next_weapon["wpntype"].to_lower()]
+			new_weapon.rankLetter = Constants.string_to_letter[next_weapon["rank"]]
+			new_weapon.quick = next_weapon["quick"]
+			new_weapon.power = next_weapon["power"]
+			new_weapon.hit = next_weapon["hit"]
+			new_weapon.crit = next_weapon["crit"]
+			new_weapon.weight = next_weapon["weight"]
+			new_weapon.wrange = Vector2i(next_weapon["range"][0], next_weapon["range"][1])
+			#new_weapon.stats = Stats.new_val_from_dict(next_weapon["bonus"])
+			if not next_weapon["effective"].is_empty():
+				new_weapon.effectiveAgainst = Effective.new()
+				new_weapon.effectiveAgainst.flying= next_weapon["effective"].has("flier")
+				new_weapon.effectiveAgainst.infantry = next_weapon["effective"].has("infantry")
+				new_weapon.effectiveAgainst.mounted = next_weapon["effective"].has("rider")
+			new_item.weapon = new_weapon
+		# is it equipment
+		if next_item.has("weapon") or next_item.has("armor"):
+			new_item.equipment = Equipment.new()
+		item_dict[new_item.name] = new_item
+
+
 func reread_map(map: FieldMap, map_key: String):
 	map.grid = Grid.new()
 	map.turnNumber = 1
@@ -143,7 +197,7 @@ func reread_map(map: FieldMap, map_key: String):
 	# events
 	map.events = []
 	for event in map_json["events"].values():
-		var new_event = read_event(event)
+		var new_event = make_event(event)
 		if new_event:
 			map.events.push_back(new_event)
 		else:
@@ -200,7 +254,7 @@ static func read_condition(condition_object: Dictionary) -> Condition:
 			condition = Route.new(Units.Team.Enemy)
 	return condition
 
-func read_event(event_object: Dictionary) -> Event:
+func make_event(event_object: Dictionary) -> Event:
 	var event: Event = null
 	match event_object["title"]:
 		"reinforcement":
