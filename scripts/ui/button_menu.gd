@@ -17,7 +17,8 @@ func _ready() -> void:
 func connect_buttons() -> void:
 	var button_list = button_list_container.get_children()
 	for b in button_list:
-		b.pressed.connect(option_pressed.bind(b))
+		if !b.pressed.is_connected(option_pressed):
+			b.pressed.connect(option_pressed.bind(b))
 
 func option_pressed(button):
 	new_menu(button.pressed_option())

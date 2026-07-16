@@ -4,8 +4,12 @@ class_name Consumable extends Resource
 @export var effects: Stats
 @export var permanent: bool
 
-func use(_unit: Units) -> void:
+func use(unit: Units) -> void:
 	if heal != 0:
-		_unit.healDamage(heal)
+		unit.healDamage(heal)
 	if permanent:
-		pass#_unit..addUp(effects)
+		# for adding a permanent boost to a character's stats
+		unit.character.stats.addUp(effects)
+	else:
+		# for giving a character a temporary boost
+		unit.temporaryStats.addUp(effects)
