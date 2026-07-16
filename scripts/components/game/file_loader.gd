@@ -22,17 +22,17 @@ var item_dict: Dictionary = {
 }
 
 var inventory_dict: Dictionary = {
-	"Lairaea": preload("res://resources/data/items/test_bow_inv.tres"),
-	"BossLairaea": preload("res://resources/data/items/test_bow_inv.tres"),
-	"Cylna": preload("res://resources/data/items/test_club_inv.tres"),
-	"Dummy": preload("res://resources/data/test_inventory.tres"),
-	"Dummy2": preload("res://resources/data/test_inventory.tres"),
-	"Dummy3": preload("res://resources/data/test_inventory.tres"),
-	"Geblah": preload("res://resources/data/test_inventory.tres"),
-	"Medic": preload("res://resources/data/test_inventory.tres"),
-	"Locagos": preload("res://resources/data/test_inventory.tres"),
-	"Warrior": preload("res://resources/data/test_inventory.tres"),
-	"Aynia": preload("res://resources/data/test_inventory.tres")
+	"lairaea": preload("res://resources/data/items/test_bow_inv.tres"),
+	"bosslairaea": preload("res://resources/data/items/test_bow_inv.tres"),
+	"cylna": preload("res://resources/data/items/test_club_inv.tres"),
+	"dummy": preload("res://resources/data/test_inventory.tres"),
+	"dummy2": preload("res://resources/data/test_inventory.tres"),
+	"dummy3": preload("res://resources/data/test_inventory.tres"),
+	"geblah": preload("res://resources/data/test_inventory.tres"),
+	"medic": preload("res://resources/data/test_inventory.tres"),
+	"locagos": preload("res://resources/data/test_inventory.tres"),
+	"warrior": preload("res://resources/data/test_inventory.tres"),
+	"aynia": preload("res://resources/data/test_inventory.tres")
 }
 
 
@@ -57,7 +57,7 @@ func make_tile() -> Tile:
 
 func makeUnit(unit_name: String) -> Units:
 	var character: Character = character_dict.get(unit_name, load("res://resources/data/characters/dummy.tres"))
-	var inventory: Inventory = inventory_dict.get(character.myName, load("res://resources/data/test_inventory.tres"))
+	var inventory: Inventory = inventory_dict.get(character.myName.to_lower(), load("res://resources/data/test_inventory.tres"))
 	var unit = Units.new(character.duplicate(true),
 		inventory.copy())
 	unit.equipFirst()
@@ -107,7 +107,8 @@ func read_characters():
 
 func read_items():
 	var item_json = load("res://resources/data/items/items.json").data
-	for next_item in item_json.values():
+	for next_item_key in item_json:
+		var next_item = item_json[next_item_key]
 		var new_item: Item = Item.new()
 		new_item.name = next_item["name"]
 		new_item.description = next_item["description"]
@@ -156,7 +157,29 @@ func read_items():
 		# is it equipment
 		if next_item.has("weapon") or next_item.has("armor"):
 			new_item.equipment = Equipment.new()
-		item_dict[new_item.name] = new_item
+		item_dict[next_item_key] = new_item
+
+func read_inventories() -> void:
+	var inventory_json = load("res://resources/data/items/inventories.json").data
+	for inv_key in inventory_json:
+		var next_inv = inventory_json[inv_key]
+		## TODO make size somewhat variable
+		var size: int = 6
+		var new_inv = Inventory.new(size)
+		for i in range(size):
+			if i >= next_inv.size():
+				break
+			## TODO wt until item dict
+			var item_key = next_inv[i][0]
+			var item_spent = next_inv[i][1]
+			var new_item: Item = item_dict.get(item_key, null)
+			if new_item:
+				if new_item.durability:
+					new_item.durability.spent = item_spent
+				new_inv.slots[i] = new_item
+			else:
+				print("inv failed reading ", item_key, " of ", inv_key, " at item ", i)
+		inventory_dict[inv_key.to_lower()] = new_inv
 
 
 func reread_map(map: FieldMap, map_key: String):

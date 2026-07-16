@@ -20,6 +20,7 @@ func _ready() -> void:
 	file_loader.read_classes()
 	file_loader.read_characters()
 	file_loader.read_tiles()
+	file_loader.read_inventories()
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	map.move.connect(move)
 	map.field_map.player = null
