@@ -319,5 +319,42 @@
     "effective": {},
     "bonus": {}
     }
+  },
+  "bread" : {
+    "name": "bread",
+    "description": "yummy",
+    "consumable": {
+    "permanent": false,
+    "heal": 7,
+    "effect": {}
+    },
+    "durability":{
+        "spent": 0,
+        "durability": 3
+        }
+  },
+  "star_fragment" : {
+    "name": "star fragment",
+    "description": "Gives new power.",
+    "consumable": {
+    "permanent": true,
+    "effect": {"hitpoints":  4}
+    },
+    "durability":{
+        "spent": 0,
+        "durability": 1
+        }
+  },
+  "stellar_incence" : {
+    "name": "stellar insence",
+    "description": "Temporarily boosts concentration.",
+    "consumable": {
+    "permanent": false,
+    "effect": {"magic":  3}
+    },
+    "durability":{
+        "spent": 0,
+        "durability": 2
+        }
   }
 }

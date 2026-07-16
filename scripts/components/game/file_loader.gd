@@ -117,7 +117,7 @@ func read_items():
 			var new_durability: Durability = Durability.new()
 			new_durability.spent = next_durability["spent"]
 			new_durability.maximum = next_durability["durability"]
-			next_item.durability = new_durability
+			new_item.durability = new_durability
 		# is it armor
 		if next_item.has("armor"):
 			var next_armor = next_item["armor"]
@@ -127,11 +127,11 @@ func read_items():
 			new_item.armor = new_armor
 		# is it consumable
 		if next_item.has("consumable"):
-			var next_consumable = next_item["armor"]
+			var next_consumable = next_item["consumable"]
 			var new_consumable: Consumable = Consumable.new()
 			new_consumable.permanent = next_consumable["permanent"]
-			new_consumable.heal = next_consumable["heal"]
-			new_consumable.effects = Stats.new_val_from_dict(next_consumable["bonus"])
+			new_consumable.heal = next_consumable.get("heal",0)
+			new_consumable.effects = Stats.new_val_from_dict(next_consumable["effect"])
 			new_item.consumable = new_consumable
 		# is it a weapon
 		if next_item.has("weapon"):
@@ -146,7 +146,7 @@ func read_items():
 			new_weapon.crit = next_weapon["crit"]
 			new_weapon.weight = next_weapon["weight"]
 			new_weapon.wrange = Vector2i(next_weapon["range"][0], next_weapon["range"][1])
-			#new_weapon.stats = Stats.new_val_from_dict(next_weapon["bonus"])
+			new_weapon.stats = Stats.new_val_from_dict(next_weapon["bonus"])
 			if not next_weapon["effective"].is_empty():
 				new_weapon.effectiveAgainst = Effective.new()
 				new_weapon.effectiveAgainst.flying= next_weapon["effective"].has("flier")
