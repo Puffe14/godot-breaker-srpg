@@ -95,8 +95,10 @@ func moveTo(unit: Units, target: Tile) -> void:
 		# add to new target tile
 		target.occupiable.addOccupant(unit)
 		if target.interactible and target.interactible.soul && unit.canTakeSouls():
-			target.interactible.spendSoul()
-			unit.weapon.fix_full()
+			var current_weapon = unit.inventory.equippedWeapon()
+			if current_weapon and current_weapon.weapon.wpnType == Weapon.WeaponType.Spell:
+				current_weapon.fix_full()
+				target.interactible.consumeSoul()
 	else: print(target," cannot be occupied")
 
 ## remove dead units from the field, and add loot and souls

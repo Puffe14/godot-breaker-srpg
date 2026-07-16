@@ -26,8 +26,9 @@ func _ready() -> void:
 	#	tile.show_move.connect(show_move_sprite)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	if tile and tile.occupiable:
+		$LootSprite.visible = tile.containsLoot()
 
 func _on_area_2d_mouse_entered() -> void:
 	$TopSprite.visible = true
@@ -38,9 +39,13 @@ func _on_area_2d_mouse_exited() -> void:
 	$TopSprite.visible = false
 	hovered_tile.emit(null)
 
-func show_move_sprite(move_visibility: bool, can_move: bool = true, actor = null):
+func show_move_sprite(move_visibility: bool, can_move: bool = true, actor: Units = null):
 	if !tile or !tile.occupiable:
 		return
+	if actor and actor.canTakeSouls():
+		$SoulSprite.visible = tile.containsSoul()
+	else:
+		$SoulSprite.visible = false
 	# elsewise, change the move sprite or teamsprite visibility
 	$MoveSprite.visible = move_visibility
 	$TeamSprite.visible = !move_visibility

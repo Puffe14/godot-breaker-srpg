@@ -172,8 +172,6 @@ func bonus(_stat: String) -> int:
 				total += item.weapon.stats.get_a_val(_stat)
 			if item.armor and item.armor.stats:
 				total += item.armor.stats.get_a_val(_stat)
-	if _stat=="AV":
-		pass
 	total += location_bonus.get_a_val(_stat)
 	total += temporaryStats.get_a_val(_stat)
 	total += nearbyBonuses.get_a_val(_stat)
@@ -253,13 +251,13 @@ func SK() -> int:
 func PD() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Torso): penalty = 2
-	return (dfn() + bonus("PD")) / penalty
+	return round(dfn() + bonus("PD")) / penalty
 
 ## Magical funcence
 func MD() -> int:
 	var penalty = 1
 	if wounds.has(Constants.BodyPart.Torso): penalty = 2
-	return (res() + bonus("MD")) / penalty
+	return round(res() + bonus("MD")) / penalty
 
 ## Hit rate
 func HI() -> int:

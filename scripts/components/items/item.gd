@@ -36,7 +36,7 @@ func equipped() -> bool:
 	if equipment:
 		return equipment.equipped
 	else:
-		return true
+		return false
 
 ## Cause the weapon to lose durability by increasing the amount spent.
 func spend(durabilityLoss: int) -> void:

@@ -132,14 +132,15 @@ func listItems() -> Array:
 # When someone is killed, their inventory is lootified
 func toLoot() -> Inventory:
 	for i: Item in slots:
-		if i.durability:
+		if i and i.durability:
 			@warning_ignore("integer_division")
 			i.spend(i.durability.maximum/2)
-		i.equipment.unequip()
+		if i and i.equipped():
+			i.equipment.unequip()
 	return self
 
 func empty() -> bool:
-	return !slots.all(func(i): return i==null)
+	return slots.all(func(i): return i==null)
 
 func _to_string() -> String:
 	return "Inventory"

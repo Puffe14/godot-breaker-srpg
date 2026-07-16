@@ -23,9 +23,9 @@ func setPos(x: int, y: int, z: int) -> void:
 	position = Vector3i(x, y, z)
 
 func containsLoot() -> bool:
-	return interactible && interactible.loot.nonEmpty
+	return interactible && interactible.loot and not interactible.loot.slots.is_empty()
 func containsSoul() -> bool:
-	return interactible && interactible.soulLeft
+	return interactible && interactible.soulLeft()
 
 ## add the loot from a dead character, soul if applicable
 func addCorpse(loot: Inventory, hasSoul: bool = true):

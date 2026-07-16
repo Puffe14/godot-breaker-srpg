@@ -7,6 +7,9 @@ func _init(_loot: Inventory, _hasSoul: bool) -> void:
 	loot = _loot
 	soul = _hasSoul
 
+func soulLeft() -> bool:
+	return soul
+
 func consumeSoul() -> void:
 	soul = false
 
