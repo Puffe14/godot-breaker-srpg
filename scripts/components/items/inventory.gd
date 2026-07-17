@@ -137,6 +137,7 @@ func toLoot() -> Inventory:
 			i.spend(i.durability.maximum/2)
 		if i and i.equipped():
 			i.equipment.unequip()
+	clean()
 	return self
 
 func empty() -> bool:
@@ -155,5 +156,18 @@ func copy() -> Inventory:
 				item.equipment.unequip()
 		new_inv.slots[i] = item
 	return new_inv
+
+
+func take_all_from_until(other: Inventory) -> void:
+	for i in range(slotCount):
+		if slots[i] == null:
+			var new_item_index = other.slots.find_custom(func(item): return item!=null, 0)
+			# add another iten to an empty slot
+			if new_item_index > -1 and other.slots[new_item_index] != null:
+				slots[i] = other.remove(other.slots[new_item_index])
+			# stop since other has no items left
+			else:
+				return
+
 
 ##TODO redo equipment handling to  being handled and tracked only in Inventory
