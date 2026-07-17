@@ -141,6 +141,18 @@
 				"title": "survive",
 				"limit": 0.0
 			}
+		},
+		"msg_warrior_death": {
+			"title": "message",
+			"lines": [
+				"Damn. I got killed bro."
+			],
+			"when": {
+				"title": "kill",
+				"target": [
+					"Warrior"
+				]
+			}
 		}
 	},
 	"grid": {

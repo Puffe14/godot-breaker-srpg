@@ -37,7 +37,7 @@ var inventory_dict: Dictionary = {
 
 
 var map_dict: Dictionary = {
-	"1": preload("res://resources/data/maps/test_map.json"),
+	"1": preload("res://resources/data/maps/map_2.json"),
 	"2": preload("res://resources/data/maps/map_3.json")
 }
 
@@ -307,7 +307,7 @@ func make_event(event_object: Dictionary) -> Event:
 		"message":
 			var lines: Array[String] = []
 			for line in event_object.get("lines"):
-				lines.push_back(line)
+				lines.push_front(line)
 			## TODO: multi condition support
 			var condition = event_object.get("when")
 			var conditions: Array[Condition] = []

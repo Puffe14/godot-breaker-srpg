@@ -210,7 +210,8 @@ func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = 
 
 func num_to_str(num: int) -> String:
 	var msg = ""
-	if num < 0: msg += "-"
+	if num < 0:
+		pass
 	else: msg += "+"
 	msg += str(num)
 	return msg

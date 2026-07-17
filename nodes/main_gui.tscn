@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
 [ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="2_spby4"]
 [ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_spby4"]
+[ext_resource type="PackedScene" uid="uid://b8m08xt7gvwbu" path="res://nodes/menus/dialogue_container.tscn" id="8_cu6kq"]
 [ext_resource type="Script" uid="uid://b4iefuqxu83oa" path="res://nodes/player_camera.gd" id="8_lw646"]
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
 [ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
@@ -13,7 +14,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container", "dialogue_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_spby4")
@@ -23,6 +24,7 @@ unit_list_node = NodePath("UnitNodeList")
 map_info_label = NodePath("CanvasLayer/HUD/MapInfoLabel")
 unit_container = NodePath("CanvasLayer/HUD/UnitContainer")
 tile_container = NodePath("CanvasLayer/HUD/TileContainer")
+dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
 
 [node name="MapNode" parent="." unique_id=1417285264 instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
@@ -68,6 +70,13 @@ z_index = 12
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DialogueContainer" parent="CanvasLayer/HUD" unique_id=1495541055 instance=ExtResource("8_cu6kq")]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 408.0
+offset_right = 1114.0
+offset_bottom = 634.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=337985527 node_paths=PackedStringArray("menu_control")]
 position = Vector2(575, 325)

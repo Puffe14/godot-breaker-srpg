@@ -13,6 +13,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
+@export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
 
 func _ready() -> void:
@@ -66,7 +67,10 @@ func _process(_delta):
 		var expl = current_action.play()
 		while expl.dialogueNotOver():
 			print(expl.dialogue())
+			dialogue_container.set_dialogue(expl.dialogue())
+			await dialogue_container.progress
 			expl.advanceDialogue()
+		dialogue_container.set_dialogue(null)
 		#hide move range
 		game.deSelect()
 		show_movement_range(true)

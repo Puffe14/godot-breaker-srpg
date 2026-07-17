@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b8m08xt7gvwbu"]
+
+[ext_resource type="Script" uid="uid://d3sbq2ypwwqcy" path="res://scripts/ui/dialogue_container.gd" id="1_7nfae"]
+[ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="2_3ybtu"]
+[ext_resource type="Script" uid="uid://bx1lnykvib2dp" path="res://scripts/components/info/dialogue.gd" id="2_kl1cc"]
+[ext_resource type="Texture2D" uid="uid://3dbl7e3dpqs8" path="res://resources/images/portraits/default.png" id="4_kl1cc"]
+
+[sub_resource type="Resource" id="Resource_putcq"]
+script = ExtResource("2_kl1cc")
+metadata/_custom_type_script = "uid://bx1lnykvib2dp"
+
+[sub_resource type="Theme" id="Theme_4lkkm"]
+default_font_size = 32
+
+[node name="UnitContainer" type="MarginContainer" unique_id=1495541055 node_paths=PackedStringArray("title", "dia_text", "dia_pic")]
+offset_left = 35.0
+offset_top = 412.0
+offset_right = 1115.0
+offset_bottom = 638.0
+script = ExtResource("1_7nfae")
+title = NodePath("PanelContainer/VBoxContainer/Title")
+dia_text = NodePath("PanelContainer/VBoxContainer/Text")
+dia_pic = NodePath("PanelContainer/HBoxContainer/Sprite2D")
+dialogue = SubResource("Resource_putcq")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=79955257]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("2_3ybtu")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1482969888]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=675688972]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/HBoxContainer" unique_id=811947231]
+position = Vector2(71.00001, -27.999987)
+scale = Vector2(7, 7)
+texture = ExtResource("4_kl1cc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2005755283]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1127110197]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Unit"
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=675465875]
+layout_mode = 2
+text = "sdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+uuuuuuuuuuuuuuuuuuuuuuu"
+fit_content = true
+
+[node name="HideRect" type="ColorRect" parent="." unique_id=589654003]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)
