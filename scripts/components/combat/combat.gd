@@ -117,10 +117,15 @@ func play() -> Explain:
 		var current = events.pop_front()
 		current.resolve()
 		if !everyoneLived():
+			# award exp to the killer
 			if selected.isDead():
-				emit_signal("animate", "dead", selected, time_passed+dead_delay)
+				var xp_gain = Rules.kill_exp_formula(targeted, selected)
+				targeted.giveExp(xp_gain)
+				emit_signal("animate", "dead", selected, time_passed+dead_delay, "exp "+num_to_str(xp_gain))
 			if targeted.isDead():
-				emit_signal("animate", "dead", targeted, time_passed+dead_delay)
+				var xp_gain = Rules.kill_exp_formula(selected, targeted)
+				selected.giveExp(xp_gain)
+				emit_signal("animate", "dead", targeted, time_passed+dead_delay, "exp "+num_to_str(xp_gain))
 			print("death")
 			break
 		while (select_attacks > 0 || target_attacks > 0):
@@ -134,7 +139,7 @@ func play() -> Explain:
 	update.emit(selected, time_passed+1, true)
 	update.emit(targeted, time_passed+1, false)
 	selected.endTurn()
-	return Explain.new("")
+	return explain
 
 
 ## method for the performing attacks

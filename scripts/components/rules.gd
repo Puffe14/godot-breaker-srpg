@@ -18,3 +18,7 @@ static var doubleDiff = 4
 @export var skillHitRatePenaltyRatio = 2
 @export var wpnTypeAdvantageBonus = 15
 @export var statusAuraRange = Vector2i(1,2)
+
+static func kill_exp_formula(attacker: Units, defender: Units) -> int:
+    var level_diff_multiplier = max(defender.character.level - defender.character.level + 2, 0)
+    return level_diff_multiplier * 15

@@ -65,7 +65,7 @@ func _process(_delta):
 		current_action.update.connect(update_unit_node)
 		# play the action and read any dialogue
 		var expl = current_action.play()
-		while expl.dialogueNotOver():
+		while expl and expl.dialogueNotOver():
 			print(expl.dialogue())
 			dialogue_container.set_dialogue(expl.dialogue())
 			await dialogue_container.progress
