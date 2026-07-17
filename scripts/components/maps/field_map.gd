@@ -146,14 +146,14 @@ func addUnitListToDeployed(units: Array[Units]):
 func deployPlayer():
 	var tiles = deploymentTiles()
 	var deployed = player.deployed.slice(0,tiles.size())
+	for i in range(0, deployed.size()):
+		tiles[i].occupiable.addOccupant(deployed[i])   	# Add the characters chosen to be deployed onto the
+		deployed[i].setTeam(Units.Team.Player)  # deployment map and set their team to player.
+		print("deployed ", deployed[i])
 	# Get any "player" team characters on map
 	for unit in unitsOnTeam(Units.Team.Player):
 		# and add them to the player deployds.
 		addUnitToPlayerDeployed(unit)
-		print("deployed ", unit)
-	for i in range(0, deployed.size()):
-		tiles[i].occupiable.addOccupant(deployed[i])   	# Add the characters chosen to be deployed onto the
-		deployed[i].setTeam(Units.Team.Player)  # deployment map and set their team to player.
 
 
 ### MOVEMENT HANDLING ###

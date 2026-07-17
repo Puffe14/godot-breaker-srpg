@@ -38,7 +38,7 @@ var inventory_dict: Dictionary = {
 
 var map_dict: Dictionary = {
 	"1": preload("res://resources/data/maps/test_map.json"),
-	"2": preload("res://resources/data/maps/map_2.json")
+	"2": preload("res://resources/data/maps/map_3.json")
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -247,7 +247,7 @@ func reread_map(map: FieldMap, map_key: String):
 		unit.takeDamage(joiner[1])
 		var location = joiner[2]
 		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
-		map.addUnitToPlayerDeployed(unit)
+		#map.addUnitToPlayerDeployed(unit)
 		unit.setTeam(Units.Team.Player)
 	var enemies = map_json["enemies"]
 	for grouping in enemies:
