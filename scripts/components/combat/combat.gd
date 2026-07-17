@@ -129,6 +129,8 @@ func play() -> Explain:
 			else:
 				targetedStrikes()
 	stop.emit()
+	selected.inventory.clean()
+	targeted.inventory.clean()
 	update.emit(selected, time_passed+1, true)
 	update.emit(targeted, time_passed+1, false)
 	selected.endTurn()

@@ -111,6 +111,7 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 	var areaOfMovement = [fm.tileOf(unit)]
 	if moves: areaOfMovement = fm.movementRangeTiles(unit)
 	var combats = []
+	var heals = []
 	for tile in areaOfMovement:
 		for weapon in possibleWeaponsOrNone: # Weapons that the character could use
 			unit.equip(weapon)
@@ -139,7 +140,6 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					# Sets the weapon used when the actions happen
 					na.weapon = weapon
 				combats.append_array(newActions)
-		var heals = []
 		for medkit in possibleMedkitsOrNone: # Weapons that the character could use
 			unit.equip(medkit)
 			var targets = fm.unitsInRangeAt(unit,tile,unit.MedRange()) # Who can be healed? --(who, from)
@@ -163,13 +163,13 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					na.weapon = medkit
 				heals.append_array(newActions)
 	# all possible item uses for character
-		var uses = []
-		for c in unit.inventory.consumables():
-			# use action for each item
-			uses.push_back(Use.new(unit,c))
-		total.append_array(combats)
-		total.append_array(heals)
-		#total.append_array(uses)
+	var uses = []
+	for c in unit.inventory.consumables():
+		# use action for each item
+		uses.push_back(Use.new(unit,c))
+	total.append_array(combats)
+	total.append_array(heals)
+	#total.append_array(uses)
 	if !target:
 		total.push_back(Wait.new(unit))
 	return total
