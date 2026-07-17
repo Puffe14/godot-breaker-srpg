@@ -134,6 +134,15 @@ func read_items():
 			new_consumable.heal = next_consumable.get("heal",0)
 			new_consumable.effects = Stats.new_val_from_dict(next_consumable["effect"])
 			new_item.consumable = new_consumable
+		# is it a medkit
+		if next_item.has("medkit"):
+			var next_medkit = next_item["medkit"]
+			var new_medkit: Medkit = Medkit.new()
+			new_medkit.heal = next_medkit.get("heal",0)
+			new_medkit.effects = Stats.new_val_from_dict(next_medkit["effects"])
+			new_medkit.bonus = CombatBonus.new_val_from_dict(next_medkit["bonus"])
+			new_medkit.wrange = Vector2i(next_medkit["range"][0], next_medkit["range"][1])
+			new_item.medkit = new_medkit
 		# is it a weapon
 		if next_item.has("weapon"):
 			var next_weapon = next_item["weapon"]
@@ -155,7 +164,7 @@ func read_items():
 				new_weapon.effectiveAgainst.mounted = next_weapon["effective"].has("rider")
 			new_item.weapon = new_weapon
 		# is it equipment
-		if next_item.has("weapon") or next_item.has("armor"):
+		if next_item.has("weapon") or next_item.has("medkit") or next_item.has("armor"):
 			new_item.equipment = Equipment.new()
 		item_dict[next_item_key] = new_item
 

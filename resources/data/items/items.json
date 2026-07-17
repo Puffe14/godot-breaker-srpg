@@ -97,17 +97,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "E",
-    "quick": false,
-    "wpntype": "Sharp",
-    "dmgtype": "force",
-    "power": 1,
-    "hit": 70,
-    "crit": 10,
-    "range": [1, 1],
-    "weight": 1,
-    "effective": {},
-    "bonus": {}
+        "rank": "E",
+        "quick": false,
+        "wpntype": "Sharp",
+        "dmgtype": "force",
+        "power": 1,
+        "hit": 70,
+        "crit": 10,
+        "range": [1, 1],
+        "weight": 1,
+        "effective": {},
+        "bonus": {}
     }
   },
   "i_sword": {
@@ -118,17 +118,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "D",
-    "quick": false,
-    "wpntype": "Sharp",
-    "dmgtype": "force",
-    "power": 3,
-    "hit": 70,
-    "crit": 0,
-    "range": [1, 1],
-    "weight": 1,
-    "effective": {},
-    "bonus": {}
+        "rank": "D",
+        "quick": false,
+        "wpntype": "Sharp",
+        "dmgtype": "force",
+        "power": 3,
+        "hit": 70,
+        "crit": 0,
+        "range": [1, 1],
+        "weight": 1,
+        "effective": {},
+        "bonus": {}
     }
   },
   "i_lance": {
@@ -139,17 +139,17 @@
         "durability": 25
     },   
     "weapon":{
-    "rank": "D",
-    "quick": false,
-    "wpntype": "Long",
-    "dmgtype": "force",
-    "power": 4,
-    "hit": 65,
-    "crit": 0,
-    "range": [1, 1],
-    "weight": 1,
-    "effective": {},
-    "bonus": {}
+        "rank": "D",
+        "quick": false,
+        "wpntype": "Long",
+        "dmgtype": "force",
+        "power": 4,
+        "hit": 65,
+        "crit": 0,
+        "range": [1, 1],
+        "weight": 1,
+        "effective": {},
+        "bonus": {}
     }
   },
   "d_mace": {
@@ -160,17 +160,17 @@
         "durability": 30
     },
     "weapon":{
-    "rank": "B",
-    "quick": false,
-    "wpntype": "Blunt",
-    "dmgtype": "force",
-    "power": 10,
-    "hit": 75,
-    "crit": 10,
-    "range": [1, 1],
-    "weight": 8,
-    "effective": {},
-    "bonus": {}
+        "rank": "B",
+        "quick": false,
+        "wpntype": "Blunt",
+        "dmgtype": "force",
+        "power": 10,
+        "hit": 75,
+        "crit": 10,
+        "range": [1, 1],
+        "weight": 8,
+        "effective": {},
+        "bonus": {}
     }
   },
   "i_mace": {
@@ -181,17 +181,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "D",
-    "quick": false,
-    "wpntype": "Blunt",
-    "dmgtype": "force",
-    "power": 6,
-    "hit": 65,
-    "crit": 10,
-    "range": [1, 1],
-    "weight": 5,
-    "effective": {},
-    "bonus": {}
+        "rank": "D",
+        "quick": false,
+        "wpntype": "Blunt",
+        "dmgtype": "force",
+        "power": 6,
+        "hit": 65,
+        "crit": 10,
+        "range": [1, 1],
+        "weight": 5,
+        "effective": {},
+        "bonus": {}
     }
   },
   "w_club": {
@@ -202,17 +202,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "E",
-    "quick": false,
-    "wpntype": "Blunt",
-    "dmgtype": "force",
-    "power": 2,
-    "hit": 80,
-    "crit": 0,
-    "range": [1, 1],
-    "weight": 4,
-    "effective": {},
-    "bonus": {"MD": 1}
+        "rank": "E",
+        "quick": false,
+        "wpntype": "Blunt",
+        "dmgtype": "force",
+        "power": 2,
+        "hit": 80,
+        "crit": 0,
+        "range": [1, 1],
+        "weight": 4,
+        "effective": {},
+        "bonus": {"MD": 1}
     }
   },
   "bamboo_bow": {
@@ -223,17 +223,17 @@
         "durability": 20
     },
     "weapon":{
-    "rank": "D",
-    "quick": false,
-    "wpntype": "Ranged",
-    "dmgtype": "force",
-    "power": 7,
-    "hit": 60,
-    "crit": 5,
-    "range": [2, 2],
-    "weight": 3,
-    "effective": {"flier": true},
-    "bonus": {}
+        "rank": "D",
+        "quick": false,
+        "wpntype": "Ranged",
+        "dmgtype": "force",
+        "power": 7,
+        "hit": 60,
+        "crit": 5,
+        "range": [2, 2],
+        "weight": 3,
+        "effective": {"flier": true},
+        "bonus": {}
     }
   },
   "s_sling": {
@@ -244,17 +244,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "E",
-    "quick": false,
-    "wpntype": "Ranged",
-    "dmgtype": "force",
-    "power": 1,
-    "hit": 55,
-    "crit": 0,
-    "range": [2, 2],
-    "weight": 2,
-    "effective": {},
-    "bonus": {}
+        "rank": "E",
+        "quick": false,
+        "wpntype": "Ranged",
+        "dmgtype": "force",
+        "power": 1,
+        "hit": 55,
+        "crit": 0,
+        "range": [2, 2],
+        "weight": 2,
+        "effective": {},
+        "bonus": {}
     }
   },
   "far_sling": {
@@ -265,17 +265,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "D",
-    "quick": false,
-    "wpntype": "Ranged",
-    "dmgtype": "force",
-    "power": 2,
-    "hit": 75,
-    "crit": 0,
-    "range": [2, 4],
-    "weight": 1,
-    "effective": {},
-    "bonus": {}
+        "rank": "D",
+        "quick": false,
+        "wpntype": "Ranged",
+        "dmgtype": "force",
+        "power": 2,
+        "hit": 75,
+        "crit": 0,
+        "range": [2, 4],
+        "weight": 1,
+        "effective": {},
+        "bonus": {}
     }
   },
   "ray_spell": {
@@ -286,17 +286,17 @@
         "durability": 25
     },
     "weapon":{
-    "rank": "E",
-    "quick": false,
-    "wpntype": "Spell",
-    "dmgtype": "magic",
-    "power": 1,
-    "hit": 80,
-    "crit": 0,
-    "range": [1, 2],
-    "weight": 3,
-    "effective": {},
-    "bonus": {}
+        "rank": "E",
+        "quick": false,
+        "wpntype": "Spell",
+        "dmgtype": "magic",
+        "power": 1,
+        "hit": 80,
+        "crit": 0,
+        "range": [1, 2],
+        "weight": 3,
+        "effective": {},
+        "bonus": {}
     }
   },
   "fission_spell": {
@@ -307,26 +307,26 @@
         "durability": 6
     },
     "weapon":{
-    "rank": "B",
-    "quick": false,
-    "wpntype": "Spell",
-    "dmgtype": "magic",
-    "power": 6,
-    "hit": 45,
-    "crit": 0,
-    "range": [1, 2],
-    "weight": 5,
-    "effective": {},
-    "bonus": {}
+        "rank": "B",
+        "quick": false,
+        "wpntype": "Spell",
+        "dmgtype": "magic",
+        "power": 6,
+        "hit": 45,
+        "crit": 0,
+        "range": [1, 2],
+        "weight": 5,
+        "effective": {},
+        "bonus": {}
     }
   },
   "bread" : {
     "name": "bread",
     "description": "yummy",
     "consumable": {
-    "permanent": false,
-    "heal": 7,
-    "effect": {}
+        "permanent": false,
+        "heal": 7,
+        "effect": {}
     },
     "durability":{
         "spent": 0,
@@ -337,8 +337,8 @@
     "name": "star fragment",
     "description": "Gives new power.",
     "consumable": {
-    "permanent": true,
-    "effect": {"hitpoints":  4}
+        "permanent": true,
+        "effect": {"hitpoints":  4}
     },
     "durability":{
         "spent": 0,
@@ -349,12 +349,42 @@
     "name": "stellar insence",
     "description": "Temporarily boosts concentration.",
     "consumable": {
-    "permanent": false,
-    "effect": {"magic":  3}
+        "permanent": false,
+        "effect": {"magic":  3}
     },
     "durability":{
         "spent": 0,
         "durability": 2
         }
+    },
+  "simple_medkit": {
+    "name": "Simple Medkit",
+    "description": "A simple medical packet that healers can use to treat simple wounds.",
+    "durability":{
+        "spent": 0,
+        "durability": 15
+        },
+    "medkit":{
+        "heal": 6,
+        "range": [1,1],
+        "spent": 0,
+        "bonus": {},
+        "effects": {}
+    }
+  },
+  "astral_medkit": {
+    "name": "Astral Medkit",
+    "description": "A medical packet that is enhanced by sturdust; capable of healing without touch.",
+    "durability":{
+        "spent": 0,
+        "durability": 10
+        },
+    "medkit":{
+        "heal": 10,
+        "range": [1,4],
+        "spent": 0,
+        "bonus": {},
+        "effects": {}
+    }
   }
 }

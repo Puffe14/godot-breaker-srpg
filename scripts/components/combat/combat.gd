@@ -148,7 +148,7 @@ func attack(attacker: Units, defender: Units):
 		if isCritical: damage *= Rules.critMultiplier
 		defender.takeDamage(damage)
 		attacker.inventory.equippedWeapon().spend(1)
-		emit_signal("animate", "hurt", defender, time_passed+0.5, num_to_str(damage))
+		emit_signal("animate", "hurt", defender, time_passed+0.5, num_to_str(-damage))
 		print(defender.character.myName," bam, ",damage,"!")
 	else:
 		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
@@ -158,15 +158,19 @@ func attack(attacker: Units, defender: Units):
 func heal(attacker: Units, defender: Units):
 	# heal based on HL and medkit.heal
 	var healing = attacker.HL() + attacker.inventory.equippedMedkit().medkit.heal
-	defender.takeDamage(healing)
-	attacker.inventory.equippedWeapon().spend(1)
+	defender.healDamage(healing)
+	attacker.inventory.equippedMedkit().spend(1)
+	emit_signal("animate", "strike", attacker, time_passed)
+	emit_signal("animate", "evade", defender, time_passed+0.5, "heal " + num_to_str(healing))
 	print(defender.character.myName," heals, ",healing,"!")
 
-## method for healing with medkits
+## method for treating wounds with medkits
 func treat(attacker: Units, defender: Units):
 	# heal the wound
 	defender.healWound(target_part)
-	attacker.inventory.equippedWeapon().spend(cost)
+	attacker.inventory.equippedMedkit().spend(cost)
+	emit_signal("animate", "strike", attacker, time_passed)
+	emit_signal("animate", "evade", defender, time_passed+0.5, part_string() + " treated")
 	print(defender.character.myName," treats, ",target_part,"!")
 
 ## method for break attacks
@@ -184,7 +188,7 @@ func shatter(attacker: Units, defender: Units):
 		emit_signal("animate", "evade", defender, time_passed+0.5, "Miss!")
 		print("misses ",part_string())
 
-## method for break attacks
+## method for wound attacks
 func wound(attacker: Units, defender: Units):
 	# if the break is a success
 	var hitXcritY = forecast.predictHitCrit(attacker, defender)
@@ -205,7 +209,7 @@ func on_animate_sent(_anim: String, _unit: Units, _delay: float, _msg: String = 
 func num_to_str(num: int) -> String:
 	var msg = ""
 	if num < 0: msg += "-"
-	else: msg += "-"
+	else: msg += "+"
 	msg += str(num)
 	return msg
 
@@ -245,7 +249,7 @@ func arrow_string() -> String:
 	return arw
 
 func _to_string() -> String:
-	if combat_type == Type.Wound || combat_type == Type.Break:
+	if combat_type == Type.Wound || combat_type == Type.Break || combat_type == Type.Treat:
 		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName
 	elif combat_type == Type.Attack:
 		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName

@@ -28,6 +28,8 @@ var turn_of_dict = {
 @export var regular_combat: Combat
 @export var wound_combat: Combat
 @export var break_combat: Combat
+@export var heal_combat: Combat
+@export var treat_combat: Combat
 
 
 signal selected(thing)
@@ -105,7 +107,7 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 	var total: Array[Action] = []
 	var fm = currentMap
 	var possibleWeaponsOrNone = unit.usable_weapons()
-	#possibleWeaponsOrNone.push_back(null)
+	var possibleMedkitsOrNone = unit.usable_medkits()
 	var areaOfMovement = [fm.tileOf(unit)]
 	if moves: areaOfMovement = fm.movementRangeTiles(unit)
 	var combats = []
@@ -136,30 +138,38 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					na.location = tile
 					# Sets the weapon used when the actions happen
 					na.weapon = weapon
-				total.append_array(newActions)
-
-		var heals = [] #(for medkit <- unit.usableMedkits yield # Medkits that the character could use
-#fm.movementRangeTiles(unit) # On movement range tiles --Tiles
-#.flatMap(tile=>(fm.attackRangeUnitsAt(unit,tile,medkit.range)))
-#.toSet# Who can be attacked? --(who, from)
-#.map((targetable, distance, currentTile) =>  # all available unit, distance, tile combinations
-#  val newActions: Vector[Combat] =
-#    #  possible treats
-#    val treats = for b <- targetable.wounds yield
-#      Treat(unit, targetable, distance, medkit, b)
-#    treats.toVector.appended(Heal(unit, targetable, distance, medkit))
-#  newActions.foreach(_.location = Some(currentTile))
-#  newActions
-#).toVector
-#).flatten
-# all possible item uses for character
+				combats.append_array(newActions)
+		var heals = []
+		for medkit in possibleMedkitsOrNone: # Weapons that the character could use
+			unit.equip(medkit)
+			var targets = fm.unitsInRangeAt(unit,tile,unit.MedRange()) # Who can be healed? --(who, from)
+			if target:
+				targets = targets.filter(func(u):
+					print(u.unit," & ")
+					print(target)
+					return u.unit == target)
+			# all available unit, distance, tile combinations
+			for utr in targets:
+				var newActions: Array[Combat] = []
+				#  possible treats
+				for b in utr.unit.wounds:
+					newActions.push_back(treat_combat.recreate(unit, utr.unit, utr.dist, b))
+				#  possible heal
+				newActions.push_back(heal_combat.recreate(unit, utr.unit, utr.dist))
+				for na in newActions:
+					# Sets where these actions are happening so that a correct Move is made.
+					na.location = tile
+					# Sets the weapon used when the actions happen
+					na.weapon = medkit
+				heals.append_array(newActions)
+	# all possible item uses for character
 		var uses = []
 		for c in unit.inventory.consumables():
 			# use action for each item
 			uses.push_back(Use.new(unit,c))
 		total.append_array(combats)
-		heals.append_array(combats)
-		uses.append_array(combats)
+		total.append_array(heals)
+		#total.append_array(uses)
 	if !target:
 		total.push_back(Wait.new(unit))
 	return total

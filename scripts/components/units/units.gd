@@ -163,6 +163,12 @@ func usable_weapons() -> Array:
 		#TODO item.weapon.rankLetter
 	)
 
+func usable_medkits() -> Array:
+	return inventory.medkits().filter(func(item:Item):
+		return true
+		#TODO item.weapon.rankLetter
+	)
+
 ## Totals together all bonuses given to a particular stat.
 func bonus(_stat: String) -> int:
 	var total = 0
@@ -214,6 +220,12 @@ func Range() -> Vector2i:
 	var bonusRange = 0 ##TODO bonus range feature
 	if inventory.equippedWeapon():
 		var wrange = inventory.equippedWeapon().weapon.wrange
+		return Vector2i(wrange.x, wrange.y + bonusRange)
+	else: return Vector2i(0,0)
+func MedRange() -> Vector2i:
+	var bonusRange = 0 ##TODO bonus range feature
+	if inventory.equippedMedkit():
+		var wrange = inventory.equippedMedkit().medkit.wrange
 		return Vector2i(wrange.x, wrange.y + bonusRange)
 	else: return Vector2i(0,0)
 
