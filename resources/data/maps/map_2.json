@@ -137,6 +137,16 @@
 				"Defeat Lairaea by first breaking her armor.\nThis will lower her physical defence.",
 				"Then attack Lairaea to bring her HP to zero."
 			],
+			"titles": [
+				"one",
+				"two",
+				"three"
+			],
+			"pics": [
+				"Lairaea",
+				"Ulrarik",
+				"Cylna"
+			],
 			"when": {
 				"title": "survive",
 				"limit": 0.0
@@ -147,10 +157,16 @@
 			"lines": [
 				"Damn. I got killed bro."
 			],
+			"titles": [
+				"Warrior"
+			],
+			"pics": [
+				"Warrior"
+			],
 			"when": {
 				"title": "kill",
 				"target": [
-					"Warrior"
+					"Fusiller"
 				]
 			}
 		}

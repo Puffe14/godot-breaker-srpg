@@ -308,12 +308,20 @@ func make_event(event_object: Dictionary) -> Event:
 			var lines: Array[String] = []
 			for line in event_object.get("lines"):
 				lines.push_front(line)
+			var titles: Array[String] = []
+			if event_object.has("titles"):
+				for line in event_object.get("titles"):
+					titles.push_front(line)
+			var pic_titles: Array[String] = []
+			if event_object.has("pics"):
+				for line in event_object.get("pics"):
+					pic_titles.push_front(line)
 			## TODO: multi condition support
 			var condition = event_object.get("when")
 			var conditions: Array[Condition] = []
 			if condition:
 				conditions.push_back(read_condition(condition))
-			event = Speech.new(conditions, lines)
+			event = Speech.new(conditions, lines, titles, pic_titles)
 		_:
 			pass
 			#event = Route.new(Units.Team.Enemy)

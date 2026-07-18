@@ -37,5 +37,7 @@ func set_dialogue(new_dialogue: Dialogue):
 		if dialogue.pic:
 			dia_pic.texture = dialogue.pic
 		else:
-			dialogue.pic = default_pic
+			dia_pic.texture = default_pic
+		if dialogue.title != null:
+			title.text = dialogue.title
 	set_visibility()

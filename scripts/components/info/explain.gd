@@ -18,8 +18,8 @@ func addAnimation(unit: Units, animation: AnimationState, time: int, message: St
 	acts.push_back(Act.new(unit, animation, start, totalTime, message))
 
 ## Create a new dialogue and add it to the list
-func addDialogue(line: String) -> void: # , face: Image) -> void:
-	lines.push_front(Dialogue.new(line))
+func addDialogue(line: String = "", title: String = "", pic_title: String = "") -> void: # , face: Image) -> void:
+	lines.push_front(Dialogue.new(line, title, pic_title))
 
 ## returns the current dialogue
 func dialogue() -> Dialogue:
