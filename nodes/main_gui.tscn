@@ -74,9 +74,9 @@ offset_bottom = 40.0
 [node name="DialogueContainer" parent="CanvasLayer/HUD" unique_id=1495541055 instance=ExtResource("8_cu6kq")]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 408.0
+offset_top = 475.0
 offset_right = 1114.0
-offset_bottom = 634.0
+offset_bottom = 633.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=337985527 node_paths=PackedStringArray("menu_control")]
 position = Vector2(575, 325)

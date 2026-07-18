@@ -65,12 +65,14 @@ func _process(_delta):
 		current_action.update.connect(update_unit_node)
 		# play the action and read any dialogue
 		var expl = current_action.play()
+		dialogue_container.explain = expl
 		while expl and expl.dialogueNotOver():
 			print(expl.dialogue())
 			dialogue_container.set_dialogue(expl.dialogue())
 			await dialogue_container.progress
 			expl.advanceDialogue()
 		dialogue_container.set_dialogue(null)
+		dialogue_container.explain = null
 		#hide move range
 		game.deSelect()
 		show_movement_range(true)
