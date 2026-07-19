@@ -37,8 +37,9 @@ var inventory_dict: Dictionary = {
 
 
 var map_dict: Dictionary = {
-	"1": preload("res://resources/data/maps/map_2.json"),
-	"2": preload("res://resources/data/maps/map_3.json")
+	"1": preload("res://resources/data/maps/test_map.json"),
+	"2": preload("res://resources/data/maps/map_2.json"),
+	"3": preload("res://resources/data/maps/map_3.json")
 }
 
 # Called when the node enters the scene tree for the first time.

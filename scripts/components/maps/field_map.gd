@@ -238,12 +238,12 @@ func attackRangeUnits(mover: Units) -> Array[Units]:
 	return unitsFound
 
 ## Gives a set of who can a unit can attack from a tile.
-func unitsInRangeAt(mover: Units, tile: Tile, a_range: Vector2i) -> Array[UTR]:
+func unitsInRangeAt(mover: Units, tile: Tile, a_range: Vector2i, ignore_height: bool = false) -> Array[UTR]:
 	# find the location of the moving unit and find their info
 	var utrFound: Array[UTR] = []
 	if tile:
 		for i in range(a_range.x, a_range.y+1):
-			var unit_list = grid.unitsFromTiles(grid.tileInRangeFrom(tile,i))
+			var unit_list = grid.unitsFromTiles(grid.tileInRangeFrom(tile,i, ignore_height))
 			for unit in unit_list:
 				utrFound.push_back(UTR.new(unit, tile, i))
 		#if utrFound.has(mover): utrFound.erase(mover)

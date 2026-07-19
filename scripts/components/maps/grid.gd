@@ -91,10 +91,21 @@ func neighbors(chosenTile: Tile) -> Array[Tile]:
 func elevationDifference(elevation: int, tile: Tile) -> int:
 	return tile.position.z - elevation
 
+func tile_elevation_difference(tile_one: Tile, tile_two: Tile) -> int:
+	return elevationDifference(tile_one.position.z, tile_two)
+
 ## distance of tiles a to b based on their x and y
 func tileDistance(a: Tile, b: Tile) -> int:
 	return (abs(a.position.x-b.position.x)+abs(a.position.y-b.position.y))
 
-func tileInRangeFrom(tile: Tile, trange: int) -> Array[Tile]:
-	return tiles.filter(func(t:Tile): return tileDistance(t,tile)==trange)
+func tileInRangeFrom(tile: Tile, trange: int, ignore_elevation: bool = false) -> Array[Tile]:
+	return tiles.filter(func(t:Tile):
+		var is_elevation_ok = ignore_elevation
+		# no need to check appropriate elevation if it can be ignored
+		if not ignore_elevation:
+			var elevation_diff = 0
+			elevation_diff = tile_elevation_difference(tile, t)
+			is_elevation_ok = elevation_diff <= Rules.attack_height_up_max and elevation_diff >= -Rules.attack_height_down_max
+		return tileDistance(t,tile)==trange and is_elevation_ok
+	)
 	

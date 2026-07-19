@@ -76,13 +76,15 @@ func selectTile(tile: Tile) -> void:
 	else:
 		acting = null
 		target = null
-	currentMap.giveBonuses(false)
+	if currentMap:
+		currentMap.giveBonuses(false)
 	update.emit()
 
 func deSelect():
 	acting = null
 	target = null
-	currentMap.giveBonuses(false)
+	if currentMap:
+		currentMap.giveBonuses(false)
 	update.emit()
 
 ### ACTIONS INTO STACK ###
@@ -115,7 +117,8 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 	for tile in areaOfMovement:
 		for weapon in possibleWeaponsOrNone: # Weapons that the character could use
 			unit.equip(weapon)
-			var targets = fm.unitsInRangeAt(unit,tile,unit.Range()) # Who can be attacked? --(who, from)
+			# Who can be attacked? --(who, from)
+			var targets = fm.unitsInRangeAt(unit,tile,unit.Range(),Rules.ignore_elevation(weapon.weapon.wpnType))
 			if target:
 				targets = targets.filter(func(u):
 					print(u.unit," & ")
@@ -142,7 +145,7 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 				combats.append_array(newActions)
 		for medkit in possibleMedkitsOrNone: # Weapons that the character could use
 			unit.equip(medkit)
-			var targets = fm.unitsInRangeAt(unit,tile,unit.MedRange()) # Who can be healed? --(who, from)
+			var targets = fm.unitsInRangeAt(unit,tile,unit.MedRange(),true) # Who can be healed? --(who, from)
 			if target:
 				targets = targets.filter(func(u):
 					print(u.unit," & ")
@@ -187,7 +190,7 @@ func place_player() -> void:
 func nextMap():
 	# TODO
 	# Advance to next map
-	if currentMapNumber<2:
+	if currentMapNumber<3:
 		currentMapNumber+=1
 	turnOf = Units.Team.Player
 	currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
