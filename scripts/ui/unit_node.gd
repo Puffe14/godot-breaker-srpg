@@ -20,6 +20,14 @@ func set_node(new_unit: Units):
 		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
 		portrait = load("res://resources/images/portraits/"+unit.character.picture_name+".png")
 
+func get_icon_texture() -> Texture:
+	if not unit or not unit.inventory:
+		return null
+	var eq_weapon = unit.inventory.equippedWeapon()
+	if eq_weapon and eq_weapon.weapon:
+		return ButtonOption.wpnTypeDict.get(eq_weapon.weapon.wpnType)
+	return null
+
 func list_status_icons():
 	if not unit: return
 	if icon_control:
@@ -32,6 +40,9 @@ func on_update(delay: float, _dim: bool = true) -> void:
 	# update hp_bar
 	if unit:
 		hp_node.change_value(unit.HP(), unit.MaxHP())
+		var wpn_msg = "A: "+str(unit.AT())+", S: "+str(unit.AS())
+		hp_node.set_weapon_icon(get_icon_texture(),wpn_msg)
+		hp_node.set_exp_text(unit.lvlExp())
 	# update status icon
 	list_status_icons()
 	# dimming

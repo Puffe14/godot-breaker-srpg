@@ -6,14 +6,14 @@ class_name ButtonOption extends Button
 var game: Game = null
 signal next_options(array: Array)
 
-var wpnTypeDict: Dictionary = {
+static var wpnTypeDict: Dictionary = {
 	Weapon.WeaponType.Blunt: preload("res://resources/images/items/wpn_blunt.png"),
 	Weapon.WeaponType.Long: preload("res://resources/images/items/wpn_long.png"),
 	Weapon.WeaponType.Sharp: preload("res://resources/images/items/wpn_sharp.png"),
 	Weapon.WeaponType.Spell: preload("res://resources/images/items/wpn_spell.png"),
 	Weapon.WeaponType.Ranged: preload("res://resources/images/items/wpn_ranged.png")
 }
-var armorTypeDict: Dictionary = {
+static var armorTypeDict: Dictionary = {
 	Constants.BodyPart.Head: preload("res://resources/images/status/armor head.png"),
 	Constants.BodyPart.Legs: preload("res://resources/images/status/armor legs.png"),
 	Constants.BodyPart.Arms: preload("res://resources/images/status/armor arms.png"),

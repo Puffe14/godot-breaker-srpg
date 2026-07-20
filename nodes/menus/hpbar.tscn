@@ -5,12 +5,19 @@
 [ext_resource type="Texture2D" uid="uid://oc4f26xffshe" path="res://resources/images/ui/slim bar f1.png" id="2_gif5p"]
 [ext_resource type="Texture2D" uid="uid://3dbl7e3dpqs8" path="res://resources/images/portraits/default.png" id="3_f333l"]
 
-[node name="HP" type="VBoxContainer" unique_id=924748288 node_paths=PackedStringArray("portrait_node", "progress_node", "text_label")]
+[node name="HP" type="VBoxContainer" unique_id=924748288 node_paths=PackedStringArray("portrait_node", "weapon_icon_node", "progress_node", "text_label", "weapon_label", "exp_label")]
 size_flags_vertical = 8
 script = ExtResource("1_0kxjo")
 portrait_node = NodePath("HBoxContainer/Control/PanelContainer/Portrait")
+weapon_icon_node = NodePath("HBoxContainer2/PanelContainer/WeaponIcon")
 progress_node = NodePath("GaugeHP")
 text_label = NodePath("HBoxContainer/PRC")
+weapon_label = NodePath("HBoxContainer2/WeaponLabel")
+exp_label = NodePath("ExpLabel")
+
+[node name="ExpLabel" type="Label" parent="." unique_id=1194556455]
+layout_mode = 2
+text = "lvl: 00, exp: 00"
 
 [node name="GaugeHP" type="TextureProgressBar" parent="." unique_id=1592800651]
 custom_minimum_size = Vector2(50, 7)
@@ -40,3 +47,17 @@ offset_bottom = 23.0
 position = Vector2(20, 8)
 scale = Vector2(2, 1.846)
 texture = ExtResource("3_f333l")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1239962161]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer2" unique_id=362831248]
+layout_mode = 2
+
+[node name="WeaponIcon" type="Sprite2D" parent="HBoxContainer2/PanelContainer" unique_id=2107382388]
+scale = Vector2(2.167, 2)
+texture = ExtResource("3_f333l")
+
+[node name="WeaponLabel" type="Label" parent="HBoxContainer2" unique_id=1767677965]
+layout_mode = 2
+text = "AT aa AS bb"

@@ -312,5 +312,5 @@ func shortInfo() -> String:
 
 func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level
-func exp() -> int: return character.exp
-func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(exp)
+func xp() -> int: return character.xp
+func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(xp())
