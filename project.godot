@@ -19,7 +19,7 @@ config/name_localized={
 "tem_SL": ""
 }
 run/main_scene="uid://1ujjcngqv86f"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bjwbf02qpgcw8"
 config/icon="uid://808pernjhtg6"
 

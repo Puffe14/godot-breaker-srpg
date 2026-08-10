@@ -1,4 +1,4 @@
-class_name HpBar extends VBoxContainer
+class_name HpBar extends Control
 @export var portrait_node: Sprite2D = null
 @export var weapon_icon_node: Sprite2D = null
 @export var progress_node: TextureProgressBar = null
@@ -16,7 +16,7 @@ func set_portrait(portrait):
 func set_weapon_icon(weapon_icon: Texture, msg: String = ""):
 	if weapon_icon:
 		weapon_icon_node.texture = weapon_icon
-		weapon_label.text = msg
+		weapon_label.text = "    "+msg
 	else:
 		weapon_label.text = ""
 		print("set weapon_icon foiled, msg: "+msg)

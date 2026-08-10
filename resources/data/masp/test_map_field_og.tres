@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FieldMap" format=3 uid="uid://d08ufdvmyc403"]
+[gd_resource type="Resource" script_class="FieldMap" load_steps=0 format=3 uid="uid://d08ufdvmyc403"]
 
 [ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="1_iop84"]
 [ext_resource type="Resource" uid="uid://buxq4ac16fcnf" path="res://resources/data/test_group_a.tres" id="2_cythp"]
