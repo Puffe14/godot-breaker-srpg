@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bssumlqsjyewn"]
+[gd_scene load_steps=11 format=3 uid="uid://bssumlqsjyewn"]
 
 [ext_resource type="Script" uid="uid://bcn8tp67l360l" path="res://scripts/ui/unit_node.gd" id="1_xinmc"]
 [ext_resource type="Texture2D" uid="uid://bbncbtpmocpjy" path="res://resources/images/units/lairaea_idle.png" id="2_gax0m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://dl7mist6pfwy2" path="res://resources/shaders/gray.gdshader" id="3_c38aa"]
 [ext_resource type="PackedScene" uid="uid://burbvc1ohhmsh" path="res://nodes/status_icon.tscn" id="4_76tq2"]
 [ext_resource type="PackedScene" uid="uid://cu0vhy8s6mkvl" path="res://nodes/menus/hpbar.tscn" id="4_c38aa"]
+[ext_resource type="PackedScene" uid="uid://c0apq5cwd60v5" path="res://nodes/menus/smallhpbar.tscn" id="8_qxdjq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax037"]
 resource_local_to_scene = true
@@ -19,7 +20,7 @@ size = Vector2(31.66667, 31.333336)
 scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 shader = ExtResource("3_c38aa")
-hp_node = NodePath("HP")
+hp_node = NodePath("HP2")
 portrait = ExtResource("3_ax037")
 icon_control = NodePath("Control")
 
@@ -60,6 +61,7 @@ position = Vector2(-0.8333335, 3.3333337)
 shape = SubResource("RectangleShape2D_c38aa")
 
 [node name="HP" parent="." instance=ExtResource("4_c38aa")]
+visible = false
 z_index = 3
 offset_left = -20.0
 offset_top = -31.0
@@ -67,6 +69,14 @@ offset_right = 88.0
 offset_bottom = 61.0
 scale = Vector2(0.3, 0.3)
 mouse_filter = 1
+
+[node name="HP2" parent="." instance=ExtResource("8_qxdjq")]
+visible = false
+offset_left = -18.666666
+offset_top = -28.333332
+offset_right = 69.72317
+offset_bottom = -28.333332
+scale = Vector2(0.295, 0.295)
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
