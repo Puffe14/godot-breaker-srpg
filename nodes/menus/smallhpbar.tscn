@@ -27,6 +27,7 @@ offset_right = 127.0
 offset_bottom = 68.0
 
 [node name="ExpLabel" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "lvl: 00, exp: 00"
 

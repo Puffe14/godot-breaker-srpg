@@ -14,13 +14,14 @@ resource_local_to_scene = true
 shader = ExtResource("3_c38aa")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c38aa"]
-size = Vector2(31.66667, 31.333336)
+size = Vector2(18, 17.666668)
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("hp_node", "icon_control") groups=["unit"]]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("hp_node", "alt_hp_node", "icon_control") groups=["unit"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_xinmc")
 shader = ExtResource("3_c38aa")
 hp_node = NodePath("HP2")
+alt_hp_node = NodePath("HP")
 portrait = ExtResource("3_ax037")
 icon_control = NodePath("Control")
 
@@ -57,7 +58,7 @@ layout_mode = 2
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.8333335, 3.3333337)
+position = Vector2(-1, 5.166667)
 shape = SubResource("RectangleShape2D_c38aa")
 
 [node name="HP" parent="." instance=ExtResource("4_c38aa")]
@@ -78,5 +79,6 @@ offset_right = 69.72317
 offset_bottom = -28.333332
 scale = Vector2(0.295, 0.295)
 
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

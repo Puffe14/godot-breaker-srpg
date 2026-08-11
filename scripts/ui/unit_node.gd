@@ -5,6 +5,7 @@ class_name UnitNode extends Node2D
 @export var frames: SpriteFrames = null
 @export var shader: Shader = null
 @export var hp_node: HpBar = null
+@export var alt_hp_node: HpBar = null
 @export var flip: bool = false
 @export var portrait: Texture = null
 
@@ -59,6 +60,13 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	show_child_hp(false)
+
+func swap_hpbar_to_alt() -> void:
+	var temp = hp_node
+	hp_node = alt_hp_node
+	alt_hp_node = temp
+	hp_node.show_bar(alt_hp_node.visible)
+	alt_hp_node.show_bar(false)
 
 func show_child_hp(should: bool):
 	hp_node.show_bar(should)
@@ -123,3 +131,8 @@ func undim():
 		
 func is_dim() -> bool:
 	return frames and !$AnimatedSprite2D.material.shader
+
+
+func _process(delta: float) -> void:
+	if hp_node.visible and Input.is_action_just_released("alt_hp"):
+		swap_hpbar_to_alt()
