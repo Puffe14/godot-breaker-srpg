@@ -1,14 +1,10 @@
-[gd_resource type="Resource" script_class="FieldMap" load_steps=8 format=3 uid="uid://ck2g62guljqbd"]
+[gd_resource type="Resource" script_class="FieldMap" format=3 uid="uid://ck2g62guljqbd"]
 
 [ext_resource type="Script" uid="uid://puvu5m1h8ffy" path="res://scripts/components/maps/field_map.gd" id="1_6a2bk"]
-[ext_resource type="Script" path="res://scripts/components/units/group.gd" id="1_ny7gg"]
-[ext_resource type="Script" path="res://scripts/components/maps/event.gd" id="2_vd0kk"]
+[ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="1_ny7gg"]
+[ext_resource type="Script" uid="uid://cdouyaimvdgrx" path="res://scripts/components/maps/event.gd" id="2_vd0kk"]
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="9_vcrps"]
-[ext_resource type="Script" path="res://scripts/components/maps/condition.gd" id="10_u2i03"]
-
-[sub_resource type="Resource" id="Resource_k0t0v"]
-script = ExtResource("10_u2i03")
-metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
+[ext_resource type="Script" uid="uid://cjlqy5rlp8ji7" path="res://scripts/components/maps/condition.gd" id="10_u2i03"]
 
 [sub_resource type="Resource" id="Resource_ghn50"]
 script = ExtResource("10_u2i03")
@@ -16,6 +12,5 @@ metadata/_custom_type_script = "uid://cjlqy5rlp8ji7"
 
 [resource]
 script = ExtResource("1_6a2bk")
-clearCondition = SubResource("Resource_k0t0v")
 loseConditions = Array[ExtResource("10_u2i03")]([SubResource("Resource_ghn50")])
 metadata/_custom_type_script = "uid://puvu5m1h8ffy"

@@ -14,10 +14,11 @@
 		"name": "blue grass",
 		"photo": "field_bluegrass",
 		"effect": {
-
+			"avoid": 20.0,
+			"physical": 1.0
 		},
 		"reduction": {
-
+			
 		},
 		"occupiable": true
 	},
@@ -56,7 +57,7 @@
 		},
 		"reduction": {
 			"infantry": 2.0,
-			"mounted": 3.0
+			"mounted": 4.0
 		},
 		"occupiable": true
 	},

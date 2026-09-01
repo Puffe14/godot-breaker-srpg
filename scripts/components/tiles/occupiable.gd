@@ -8,13 +8,15 @@ class_name Occupiable extends Resource
 @export var physical: int = 0
 @export var magical: int = 0
 @export var hpEffect: int = 0
+@export var move_reductions = {}
 
-func _init(_atk = 0, _avoid = 0, _physical = 0, _magical = 0, _hpEffect = 0) -> void:
+func _init(_atk = 0, _avoid = 0, _physical = 0, _magical = 0, _hpEffect = 0, _move_reductions = {}) -> void:
 	atk = _atk
 	avoid = _avoid
 	physical = _physical
 	magical = _magical
 	hpEffect = _hpEffect
+	move_reductions = _move_reductions
 	bonus = CombatBonus.new(atk, 0, 0, 0, physical, magical, 0, avoid, 0)
 
 func occupied() -> bool:
@@ -34,7 +36,13 @@ func removeOccupant() -> Units:
 ## Determine reduction to movement
 #TODO
 func moveReduction(classMovementType: Array) -> float:
-	return 1
+	if classMovementType.has("infantry"):
+		return move_reductions.get_or_add("infantry", 1)
+	if classMovementType.has("mounted"):
+		return move_reductions.get_or_add("mounted", 1)
+	if classMovementType.has("flier"):
+		return move_reductions.get_or_add("flier", 1)
+	return 3
 
 func effects_from_dict(sl: Dictionary) -> void:
 	atk = sl.get("atk",0)
@@ -45,5 +53,5 @@ func effects_from_dict(sl: Dictionary) -> void:
 
 func copy() -> Occupiable:
 	var new_copy = Occupiable.new()
-	new_copy._init(atk, avoid, physical, magical, hpEffect)
+	new_copy._init(atk, avoid, physical, magical, hpEffect, move_reductions)
 	return new_copy

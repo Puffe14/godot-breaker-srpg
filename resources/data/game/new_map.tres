@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FieldMap" format=3 uid="uid://bkmhydkgntmfb"]
+
+[ext_resource type="Script" uid="uid://crqgat2qr076t" path="res://scripts/components/units/group.gd" id="1_hkagu"]
+[ext_resource type="Script" uid="uid://cdouyaimvdgrx" path="res://scripts/components/maps/event.gd" id="2_a8j62"]
+[ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="3_qegd3"]
+[ext_resource type="Script" uid="uid://cjlqy5rlp8ji7" path="res://scripts/components/maps/condition.gd" id="4_lo8ua"]
+[ext_resource type="Script" uid="uid://puvu5m1h8ffy" path="res://scripts/components/maps/field_map.gd" id="5_5icuo"]
+
+[resource]
+script = ExtResource("5_5icuo")
+metadata/_custom_type_script = "uid://puvu5m1h8ffy"

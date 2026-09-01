@@ -5,12 +5,18 @@
 	"events": {
 	  "message": {
 		"title": "message",
+		"titles": [
+			"title of test speaker","title of test speaker","title of test speaker"
+		],
+		"pics": [
+			"Default","Default","Default"
+		],
 		"lines": ["Cylna and Lairaea are training.",
 				  "Defeat Lairaea by first breaking her armor.\nThis will lower her physical defence.",
 				  "Then attack Lairaea to bring her HP to zero."],
 		"when": {
 		  "title": "survive",
-		  "limit": 1
+		  "limit": 0
 	  },
 	  "onclear": {
 		"title": "message",

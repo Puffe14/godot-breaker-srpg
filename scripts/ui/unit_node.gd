@@ -107,7 +107,8 @@ func play_animation(anim_name: String, delay: float, msg: String = "") -> void:
 		add_child(msg_node)
 	# handle death
 	if anim_name == "dead":
-		$Control.queue_free()
+		if $Control:
+			$Control.queue_free()
 		await get_tree().create_timer(delay).timeout
 		dead.emit()
 		queue_free()

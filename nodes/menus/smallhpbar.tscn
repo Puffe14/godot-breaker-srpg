@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0apq5cwd60v5"]
+[gd_scene format=3 uid="uid://c0apq5cwd60v5"]
 
 [ext_resource type="Script" uid="uid://br8jbd0a7kxfm" path="res://nodes/menus/hpbar.gd" id="1_pqwkk"]
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="2_32hnk"]

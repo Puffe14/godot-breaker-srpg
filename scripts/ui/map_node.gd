@@ -21,7 +21,7 @@ func _ready() -> void:
 		new_layer_node.position.y -= i*(tile_height/2)
 		new_layer_node.z_index = i
 	# create tiles
-	if field_map.grid:
+	if field_map && field_map.grid:
 		draw_tiles(direction)
 
 func layers() -> Array:

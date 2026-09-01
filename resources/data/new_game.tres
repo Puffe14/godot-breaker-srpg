@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Game" format=3 uid="uid://bfr8wdi708xmq"]
+
+[ext_resource type="Resource" uid="uid://c6wjn0immhcsg" path="res://resources/data/combat/break.tres" id="1_mow33"]
+[ext_resource type="Resource" uid="uid://bspm5khen3o2k" path="res://resources/data/game/new_player.tres" id="3_rxxr6"]
+[ext_resource type="Resource" uid="uid://dyeijavyug311" path="res://resources/data/combat/heal.tres" id="3_twihk"]
+[ext_resource type="Resource" uid="uid://b4gpmj6l0pvke" path="res://resources/data/combat/attack.tres" id="5_rfxw6"]
+[ext_resource type="Script" uid="uid://djci7nw8gativ" path="res://scripts/components/game/game.gd" id="6_ui1a3"]
+[ext_resource type="Resource" uid="uid://bs8kbvasvs67g" path="res://resources/data/combat/treat.tres" id="7_etqr7"]
+[ext_resource type="Resource" uid="uid://cyn5xbj75eyib" path="res://resources/data/combat/wound.tres" id="8_88lhj"]
+
+[resource]
+script = ExtResource("6_ui1a3")
+player = ExtResource("3_rxxr6")
+regular_combat = ExtResource("5_rfxw6")
+wound_combat = ExtResource("8_88lhj")
+break_combat = ExtResource("1_mow33")
+heal_combat = ExtResource("3_twihk")
+treat_combat = ExtResource("7_etqr7")
+metadata/_custom_type_script = "uid://djci7nw8gativ"

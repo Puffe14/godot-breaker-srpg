@@ -178,12 +178,13 @@ func unit_is_on_tile(u:Units,t:Tile) -> bool:
 func moveCheck(moveLeft: float, tile: Tile, types: Array, team: Units.Team, elevation: int, jump: int) -> Array[Tile]:
 	if moveLeft < 0:
 		return []
-	var reduction = 1
+	var reduction: float = 1
 	var occupiable = tile.occupiable
 	var occupant = null
 	if occupiable:
-		occupiable.moveReduction(types)
-		if occupiable.occupant: occupant = occupiable.occupant
+		reduction = occupiable.moveReduction(types)
+		if occupiable.occupant:
+			occupant = occupiable.occupant
 	# inner lambda
 	var findSurrounding = (func(thisOneOk: bool):
 		var accessibles: Array[Tile] = []

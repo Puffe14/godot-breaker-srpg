@@ -1,9 +1,8 @@
-[gd_scene load_steps=0 format=3 uid="uid://1ujjcngqv86f"]
+[gd_scene format=3 uid="uid://1ujjcngqv86f"]
 
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
-[ext_resource type="Resource" uid="uid://52m2blhp25hg" path="res://resources/data/test_game.tres" id="2_spby4"]
-[ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="3_spby4"]
+[ext_resource type="Resource" uid="uid://bfr8wdi708xmq" path="res://resources/data/new_game.tres" id="2_cu6kq"]
 [ext_resource type="PackedScene" uid="uid://b8m08xt7gvwbu" path="res://nodes/menus/dialogue_container.tscn" id="8_cu6kq"]
 [ext_resource type="Script" uid="uid://b4iefuqxu83oa" path="res://nodes/player_camera.gd" id="8_lw646"]
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
@@ -17,7 +16,7 @@ default_font = ExtResource("9_qdy25")
 [node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container", "dialogue_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
-game = ExtResource("2_spby4")
+game = ExtResource("2_cu6kq")
 hud_node = NodePath("CanvasLayer/HUD")
 menu_node = NodePath("CanvasLayer/HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
@@ -29,7 +28,6 @@ dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
 [node name="MapNode" parent="." unique_id=1417285264 instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
 scale = Vector2(3, 3)
-field_map = ExtResource("3_spby4")
 
 [node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
 
@@ -49,6 +47,8 @@ offset_left = 850.0
 offset_top = 12.0
 offset_right = 1134.0
 offset_bottom = 238.0
+
+[node name="UnitNodeList" type="Node" parent="CanvasLayer/HUD" unique_id=276389693]
 
 [node name="TileContainer" parent="CanvasLayer/HUD" unique_id=1353515007 instance=ExtResource("10_4lkkm")]
 layout_mode = 0

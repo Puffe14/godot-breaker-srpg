@@ -74,6 +74,7 @@ func read_tiles():
 		if next_tile["occupiable"]:
 			new_tile.occupiable = Occupiable.new()
 			new_tile.occupiable.effects_from_dict(next_tile["effect"])
+			new_tile.occupiable.move_reductions = next_tile.get("reduction", {})
 		else:
 			new_tile.occupiable = null
 		new_tile.photo_name = next_tile["photo"]
