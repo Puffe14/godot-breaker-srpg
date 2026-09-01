@@ -46,6 +46,9 @@ func changeBehaviour(newBehaviour: Behaviour):
 
 func setLeader():
 	var lm = living_members()
+	if lm.size() < 1:
+		print("empty group, can't set leader")
+		return
 	lm.sort_custom(higherLevel)
 	var leader = lm.front()
 	for m: Units in lm:

@@ -27,6 +27,10 @@ func _ready() -> void:
 func layers() -> Array:
 	return get_children()
 
+func change_field_map(new_field_map):
+	field_map = new_field_map
+	print("changed MapNode field_map")
+
 ## Set the tile data into each node in the layers
 func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")

@@ -16,22 +16,36 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
 
-func _ready() -> void:
+func load_game_component_data() -> void: ### WWWWWHYYYYYYYYYYY ISSSSSSSSSS READDDDDDDDDDDYYYYYYYYY NOYYYT CALLLLLLLLLLED
 	file_loader.read_items()
 	file_loader.read_classes()
 	file_loader.read_characters()
 	file_loader.read_tiles()
 	file_loader.read_inventories()
+func _init() -> void:
+	print("main gui - init called, does nothing")
+	#load_game_component_data()
+	#continue_process = false
+	
+func _ready() -> void:
+	# Dont start again while drawing nodes
+	if continue_process:
+		continue_process = false
+	else:
+		return
+	load_game_component_data()
 	if not map.field_map:
 		print("field_map of Map node empty, creating empty field_map")
-		map.field_map = FieldMap.new()
-	file_loader.reread_map(map.field_map, str(2))
+		map.change_field_map(FieldMap.new())
+	file_loader.reread_map(map.field_map, str(1))
 	map.move.connect(move)
 	map.field_map.player = null
 	game.currentMap = map.field_map
+	# connect tiles and draw the map
 	game.update.connect(on_game_update)
 	draw_and_set_tiles()
 	await map.done_drawing_nodes
+	continue_process = true
 	on_game_update()
 	
 var continue_process = true
@@ -41,6 +55,9 @@ func _process(_delta):
 		draw_and_set_tiles()
 	if Input.is_action_just_pressed("retry"):
 		_ready()
+	if not game or not game.currentMap:
+		print("game or map missing")
+		return
 	spin_map()
 	if not continue_process: return
 	if Input.is_action_just_pressed("deselect"):

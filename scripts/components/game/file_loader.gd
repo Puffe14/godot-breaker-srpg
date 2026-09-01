@@ -37,8 +37,8 @@ var inventory_dict: Dictionary = {
 
 
 var map_dict: Dictionary = {
-	"1": preload("res://resources/data/maps/test_map.json"),
-	"3": preload("res://resources/data/maps/map_2.json"),
+	"3": preload("res://resources/data/maps/test_map.json"),
+	"1": preload("res://resources/data/maps/map_2.json"),
 	"2": preload("res://resources/data/maps/map_3.json")
 }
 
@@ -274,6 +274,7 @@ func reread_map(map: FieldMap, map_key: String):
 			map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
 		map.allies.append(group)
 	for unit in map.all_units(): unit.refresh()
+	print("read map from mapdict key "+map_key)
 
 static func read_condition(condition_object: Dictionary) -> Condition:
 	var condition: Condition = null

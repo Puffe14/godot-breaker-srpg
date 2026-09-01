@@ -18,8 +18,16 @@ signal dead
 func set_node(new_unit: Units):
 	unit = new_unit
 	if unit:
-		frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
-		portrait = load("res://resources/images/portraits/"+unit.character.picture_name+".png")
+		var new_frames = load("res://resources/images/animation/"+unit.character.picture_name+".tres")
+		if new_frames:
+			frames = new_frames
+		else:
+			print("frames not found for "+unit.character.picture_name)
+		var new_portrait = load("res://resources/images/portraits/"+unit.character.picture_name+".png")
+		if new_portrait:
+			portrait = new_portrait
+		else:
+			print("portrait not found for "+unit.character.picture_name)
 
 func get_icon_texture() -> Texture:
 	if not unit or not unit.inventory:
