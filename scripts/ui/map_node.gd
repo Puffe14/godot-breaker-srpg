@@ -34,15 +34,17 @@ func change_field_map(new_field_map):
 ## Set the tile data into each node in the layers
 func set_tiles_in_nodes():
 	var joku = get_tree().get_nodes_in_group("tile")
-	for jokin in joku:
-		var tile_node: TileNode = jokin
-		tile_node._ready()
+	for tile_node: TileNode in joku:
+		if tile_node.tile:
+			pass
 		var pos_z = tile_node.z_index
 		var pos = layers()[pos_z].local_to_map(tile_node.position)
 		# rotate pos back to 0 rotation
 		pos = translate_back_dir(pos)
 		var tile: Tile = field_map.grid.get_tile_v(pos)
 		tile_node.tile = tile
+		# only ready after inserting tile
+		tile_node._ready()
 		if tile && !tile.show_move.is_connected(tile_node.show_move_sprite):
 			tile.show_move.connect(tile_node.show_move_sprite)
 	#joku.sort_custom(sort_tiles_pos_x_y)
@@ -52,7 +54,12 @@ func set_tiles_in_nodes():
 		#tile_node.tile = tile
 		#tile.show_move.connect(tile_node.show_move_sprite)
 		#tile_node._ready()
-	pass
+	if joku.is_empty():
+		print("Tried to set tiles, but tile node list is empty, what happened?")
+	elif joku.front().texture == "field_base":
+		print("Tried to set tiles, but first tile seems hollow, is this a mistake?")
+	else:
+		pass#print("Set tiles from map into their nodes")
 
 ## Clear the layers and create tile nodes into cells
 func draw_tiles(dir: Direction = Direction.UP):
@@ -85,6 +92,7 @@ func draw_tiles(dir: Direction = Direction.UP):
 		for z in range(0, pos_z):
 			layers()[z].set_cell(translated,0,Vector2i(0,0),2)
 	done_drawing_nodes.emit()
+	print("Drew tiles onto layers")
 
 
 func _on_spin_box_value_changed(value: float) -> void:
@@ -137,3 +145,6 @@ func reset_movement_display():
 	var children = get_tree().get_nodes_in_group("tile")
 	for tn: TileNode in children:
 		tn.hide_move_and_team()
+
+func get_tiles_in_tree():
+	return get_tree().get_nodes_in_group("tile")

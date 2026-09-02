@@ -16,7 +16,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
 
-func load_game_component_data() -> void: ### WWWWWHYYYYYYYYYYY ISSSSSSSSSS READDDDDDDDDDDYYYYYYYYY NOYYYT CALLLLLLLLLLED
+func load_game_component_data() -> void:
 	file_loader.read_items()
 	file_loader.read_classes()
 	file_loader.read_characters()
@@ -44,7 +44,7 @@ func _ready() -> void:
 	# connect tiles and draw the map
 	game.update.connect(on_game_update)
 	draw_and_set_tiles()
-	await map.done_drawing_nodes
+	#await map.done_drawing_nodes
 	continue_process = true
 	on_game_update()
 	
@@ -72,8 +72,9 @@ func _process(_delta):
 		game.selected.connect(on_selected)
 	# set the nodes and tiles
 	connect_tile_nodes()
+	map.set_tiles_in_nodes()
+	#make_unit_nodes()
 	show_movement_range(game.acting == null)
-	make_unit_nodes()
 	if game.queue.is_empty():
 		#print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
 		game.handle_turn()
@@ -138,7 +139,7 @@ func tile_sent_hovered(tile: Tile):
 
 func connect_tile_nodes():
 	for i: Tile in game.currentMap.grid.tiles:
-		var node = map.get_child_at_v3(i.position)
+		var node: TileNode = map.get_child_at_v3(i.position)
 		if node:
 			if !node.selected_tile.is_connected(tile_sent_selected):
 				node.selected_tile.connect(tile_sent_selected)
@@ -147,6 +148,7 @@ func connect_tile_nodes():
 			if node.tile.occupiable and node.tile.occupiable.occupant:
 				pass
 				# TODO create new unit node or somsin.ce
+	#print("Connected tiles to signal function")
 
 func show_movement_range(reset_display: bool = false):
 	# hide movement area
@@ -160,11 +162,16 @@ func show_movement_range(reset_display: bool = false):
 
 func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
-	map.set_tiles_in_nodes()
 	connect_tile_nodes()
+	map.set_tiles_in_nodes()
+	make_unit_nodes()
+	#on_game_update()
 
 func on_game_update():
 	map.set_tiles_in_nodes()
+	make_unit_nodes()
+	#var bruh = map.get_tiles_in_tree()
+	#bruh
 	#draw_and_set_tiles()
 	unit_container._ready(game.acting)
 	tile_container._ready(null)
@@ -200,6 +207,8 @@ func make_unit_nodes() -> void:
 			new_unit_node.set_node(unit)
 			new_unit_node._ready()
 			unit_list_node.add_child(new_unit_node)
+			print("make_unit_nodes added "+new_unit_node.unit.character.myName)
+	#print("make_unit_nodes added missing unit nodes")
 
 func on_change_turn():
 	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
@@ -220,6 +229,7 @@ func on_change_turn():
 	var msg_node = fade_msg.instantiate()
 	msg_node.create(msg)
 	hud_node.add_child(msg_node)
+	draw_and_set_tiles()
 
 func on_selected(thing):
 	#draw_and_set_tiles()
@@ -254,4 +264,6 @@ func spin_map():
 		spin_change -= 1
 	if spin_change != 0:
 		map_rotation = (4+(map_rotation+spin_change)%4)%4 
-		map._on_spin_box_value_changed(map_rotation)
+		#map._on_spin_box_value_changed(map_rotation)
+		map.direction = map_rotation
+		draw_and_set_tiles()
