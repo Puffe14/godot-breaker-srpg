@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://crdd7l11uuw22"]
 
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_lerbw"]
+[ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="1_npdtd"]
 [ext_resource type="Script" uid="uid://6ho420hkl0gv" path="res://scripts/ui/button_menu.gd" id="1_rc8qm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc8qm"]
 bg_color = Color(0.19076231, 0.19076234, 0.19076222, 0.4745098)
 
 [sub_resource type="Theme" id="Theme_lerbw"]
-default_font_size = 10
+default_font = ExtResource("1_npdtd")
+default_font_size = 14
 Button/styles/normal = SubResource("StyleBoxFlat_rc8qm")
 
 [node name="Control" type="Control" unique_id=1714220438 node_paths=PackedStringArray("button_list_container", "menu_h_container", "hider_rect", "title")]
@@ -17,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 theme = SubResource("Theme_lerbw")
 script = ExtResource("1_rc8qm")
 button_list_container = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/ButtonList")

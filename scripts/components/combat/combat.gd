@@ -21,6 +21,7 @@ var target_attacks = -1
 @export var hit_penalty_factor = 1
 @export var cost = 1
 @export var target_part: Constants.BodyPart = Constants.BodyPart.Head
+@export var always_hits = false
 var body_part_text: String = ""
 
 const dead_delay = 0.5
@@ -256,9 +257,26 @@ func arrow_string() -> String:
 		arw = "<" + arw
 	return arw
 
+func hit_crit_forecast_string() -> String:
+	var stdmg = ""
+	var tsdmg = ""
+	# if no integer is dealt, no need for dmg text
+	if not no_counter:
+		stdmg = str(forecast.aAtkNum) + "x" + str(forecast.aDmg) + ", h " + str(forecast.aHit) + "%, c " + str(forecast.aCrit) + "%"
+		tsdmg = str(forecast.bAtkNum) + "x" + str(forecast.bDmg) + ", h " + str(forecast.bHit) + "%, c " + str(forecast.bCrit) + "%"
+	elif combat_type == Type.Heal:
+		stdmg = str(selected.HL()) + " healing"
+	elif always_hits:
+		stdmg = "h 100%"
+	else:
+		stdmg = "h " + str(forecast.aHit) + "%, " + str(forecast.aCrit) + "%"
+	if no_counter or forecast.bAtkNum < 1:
+		tsdmg = "no counter"
+	return " " + stdmg + " vs " + tsdmg
+
 func _to_string() -> String:
 	if combat_type == Type.Wound || combat_type == Type.Break || combat_type == Type.Treat:
-		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName
+		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + hit_crit_forecast_string()
 	elif combat_type == Type.Attack:
-		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName
-	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName
+		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName + "\n" + hit_crit_forecast_string()
+	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + hit_crit_forecast_string()

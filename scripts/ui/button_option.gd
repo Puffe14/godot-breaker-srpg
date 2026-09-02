@@ -20,6 +20,7 @@ static var armorTypeDict: Dictionary = {
 	Constants.BodyPart.Torso: preload("res://resources/images/status/armor torso.png")
 }
 
+## Takes game, item?, user? and creates text based on str(item) and adds icon based on item type 
 func _init(_game: Game, _item = null, _user = null) -> void:
 	text = str(_item)
 	game = _game
@@ -30,16 +31,22 @@ func _init(_game: Game, _item = null, _user = null) -> void:
 	if item:
 		if "consumable" in item and item.consumable:
 			icon = load("res://resources/images/items/itm_consumable.png")
+		if "medkit" in item and item.medkit:
+			icon = load("res://resources/images/items/med_medkit.png")
 		if "weapon" in item and "equipment" in item and item.weapon:
 			icon = wpnTypeDict[item.weapon.wpnType]
 		if "armor" in item and item.armor:
 			icon = armorTypeDict[item.armor.part]
+	if item == null:
+		text = "empty"
 
 func pressed_option() -> Array:
 	var options: Array = []
 	# if the options is an action, play it instead
 	if item and item.has_method("play"):
 		game.add_to_queue(item, user)
+		return []
+	if item == null:
 		return []
 	## create sub menu options
 	# if the item has an inventory
