@@ -43,8 +43,10 @@ func copy() -> Units:
 	return Units.new(character.duplicate(true), inventory.duplicate(true))
 
 ## Check if the unit has been killed.
-func isDead(): return !isAlive()
-func isAlive(): return HP() > 0
+func isDead():
+	return !isAlive()
+func isAlive():
+	return HP() > 0
 
 func giveExp(gained:int) -> String:
 	var msg = ""

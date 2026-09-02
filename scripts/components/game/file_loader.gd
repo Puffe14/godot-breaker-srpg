@@ -196,6 +196,9 @@ func read_inventories() -> void:
 func reread_map(map: FieldMap, map_key: String):
 	map.grid = Grid.new()
 	map.turnNumber = 1
+	if map.player:
+		map.player.clearDeployed()
+		map.player.refresh_acts_for_members()
 	var map_json = map_dict[map_key].data
 
 	# boundaries
@@ -249,7 +252,7 @@ func reread_map(map: FieldMap, map_key: String):
 		unit.takeDamage(joiner[1])
 		var location = joiner[2]
 		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
-		#map.addUnitToPlayerDeployed(unit)
+		map.addUnitToPlayerDeployed(unit)
 		unit.setTeam(Units.Team.Player)
 	var enemies = map_json["enemies"]
 	for grouping in enemies:

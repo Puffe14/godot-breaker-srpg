@@ -20,8 +20,20 @@ func removeMember(unit: Units):
 
 ## Adds a new unit to the deployed team.
 func addDeployed(unit: Units):
-	addMember(unit)
 	deployed.push_back(unit)
+
+## Adds missing units to the members of the org.
+func addMissingToMembers(units: Array):
+	for unit in units:
+		if not members.has(unit):
+			addMember(unit)
+
+## Adds missing units to the members of the org.
+func addMissingToDeployed(units: Array):
+	for unit in units:
+		if not deployed.has(unit):
+			addDeployed(unit)
+
 
 ## Removes a new unit from the deployed team.
 func removeDeployed(unit: Units):
@@ -29,4 +41,13 @@ func removeDeployed(unit: Units):
 
 ## Removes all dead characters from an organization
 func clearDead():
-	members = members.filter(func(u:Units): u.isDead())
+	members = members.filter(func(u:Units) -> bool: return not u.isDead())
+	deployed = deployed.filter(func(u:Units) -> bool: return not u.isDead())
+	pass
+
+func refresh_acts_for_members() -> void:
+	for memb in members:
+		memb.refresh()
+
+func clearDeployed():
+	deployed = []

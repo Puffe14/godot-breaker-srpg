@@ -205,6 +205,9 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 
 func place_player() -> void:
 	if player:
+		## TODO character choice between levels
+		player.clearDeployed()
+		player.deployed = player.members
 		player.re_group()
 		currentMap.setPlayer(player)
 		currentMap.deployPlayer()
@@ -215,6 +218,10 @@ func nextMap():
 	# Advance to next map
 	if currentMapNumber<3:
 		currentMapNumber+=1
+	player.addMissingToMembers(player.deployed)
+	player.clearDead()
+	player.refresh_acts_for_members()
+	#player.clearDeployed()
 	turnOf = Units.Team.Player
 	currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
 
@@ -253,6 +260,9 @@ func handle_turn() -> void:
 		if currentMap.player != player:
 			place_player()
 			change_turn.emit()
+		if currentMap.player:
+			#player.addMissingToDeployed(currentMap.unitsOnTeam(player.side))
+			player.re_group()
 		currentMap.clearDead()
 		currentTurn = currentMap.turnNumber
 		add_array_to_queue(currentMap.eventCheck())

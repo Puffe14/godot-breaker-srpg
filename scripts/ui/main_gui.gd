@@ -47,10 +47,11 @@ func _ready() -> void:
 	if not map.field_map:
 		print("field_map of Map node empty, creating empty field_map")
 		map.change_field_map(FieldMap.new())
-	file_loader.reread_map(map.field_map, str(1))
-	map.move.connect(move)
+	#reset player for map and take it from game
 	map.field_map.player = null
 	game.currentMap = map.field_map
+	map.move.connect(move)
+	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	# connect tiles and draw the map
 	game.update.connect(on_game_update)
 	draw_and_set_tiles()
