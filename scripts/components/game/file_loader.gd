@@ -256,6 +256,7 @@ func reread_map(map: FieldMap, map_key: String):
 		group.side = Units.Team.Enemy
 		for enemy in grouping:
 			var unit: Units = makeUnit(enemy[0])
+			unit.character.picture_name = enemy[0].to_lower()
 			group.add_unit(unit)
 			unit.takeDamage(enemy[1])
 			var location = enemy[2]
@@ -267,6 +268,7 @@ func reread_map(map: FieldMap, map_key: String):
 		group.side = Units.Team.Ally
 		for ally in grouping:
 			var unit: Units = makeUnit(ally[0])
+			unit.character.picture_name = ally[0].to_lower()
 			group.add_unit(unit)
 			unit.takeDamage(ally[1])
 			var location = ally[2]

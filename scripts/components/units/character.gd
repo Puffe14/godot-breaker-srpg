@@ -33,8 +33,8 @@ func expTrack(increase: int) -> Array:
 func levelUp() -> Dictionary:
 	var levelUpsMap = {}
 	var leveled = growths
-	for stat in leveled.keys:
-		var currentG = leveled[stat]
+	for stat in Stats.level_up_keys:
+		var currentG = leveled.get_a_val(stat)
 		if roll() < currentG:
 			var up = (currentG-1)/100 + 1
 			levelUpsMap[stat] = up
@@ -43,10 +43,10 @@ func levelUp() -> Dictionary:
 
 ## adds int to a stat
 func addToStat(which: String, amount: int):
-	#Calculates the new total stat
-	var newTotal = stats[which] + amount
-	#Changes stats map to reflect change
-	stats[which] = newTotal
+	#Calculates the new total stat and changes stats map to reflect change
+	stats.add_a_val(which,amount)
+	var newTotal = stats.get_a_val(which)
+	return newTotal
 
 static func roll(): return randi()%100
-static func statPointStr(k, v): return "\n"+k+": "+v
+static func statPointStr(k, v): return "\n"+str(k)+": "+str(v)

@@ -10,6 +10,16 @@ class_name Stats extends Resource
 @export var move: int = 0
 @export var jump:int = 0
 
+static var level_up_keys = [
+"hitpoints",
+"strength",
+"magic",
+"skill",
+"speed",
+"defence",
+"resistance",
+]
+
 func addUp(other: Stats) -> void:
 	# don't add up null
 	if !other: return
@@ -26,6 +36,7 @@ func addUp(other: Stats) -> void:
 
 func get_a_val(stat: String) -> int:
 	match stat:
+		"hitpoints": return maxHp
 		"strength": return stn
 		"magic": return mag
 		"skill": return skl
@@ -34,7 +45,19 @@ func get_a_val(stat: String) -> int:
 		"resistance": return res
 		_: return 0
 
-func _init(_maxHp: int = 0,
+func add_a_val(stat: String, plus: int) -> void:
+	match stat:
+		"hitpoints": maxHp += plus
+		"strength": stn += plus
+		"magic":  mag += plus
+		"skill":  skl += plus
+		"speed":  spd += plus
+		"defence":  dfn += plus
+		"resistance": res += plus
+		_: pass
+
+func _init(
+	_maxHp: int = 0,
 	_stn: int = 0,
 	_mag: int = 0,
 	_skl: int = 0,
@@ -65,4 +88,3 @@ static func new_val_from_dict(sl: Dictionary) -> Stats:
 	sl.get("resistance",0),
 	sl.get("movement",0),
 	sl.get("jump",0))
-	

@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="Organisation" format=3 uid="uid://bspm5khen3o2k"]
 
 [ext_resource type="Script" uid="uid://0slpdtksthq2" path="res://scripts/components/units/units.gd" id="1_bibh5"]
+[ext_resource type="Resource" uid="uid://bie562w7q05je" path="res://resources/data/units/test_unit_c.tres" id="2_q63r2"]
 [ext_resource type="Script" uid="uid://dvhtd7aojoqbl" path="res://scripts/components/units/organisation.gd" id="2_wrrww"]
 
 [resource]
 script = ExtResource("2_wrrww")
+members = Array[ExtResource("1_bibh5")]([ExtResource("2_q63r2")])
 metadata/_custom_type_script = "uid://dvhtd7aojoqbl"

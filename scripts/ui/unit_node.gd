@@ -23,6 +23,7 @@ func set_node(new_unit: Units):
 			frames = new_frames
 		else:
 			print("frames not found for "+unit.character.picture_name)
+			frames = load("res://resources/images/animation/guy.tres")
 		var new_portrait = load("res://resources/images/portraits/"+unit.character.picture_name+".png")
 		if new_portrait:
 			portrait = new_portrait

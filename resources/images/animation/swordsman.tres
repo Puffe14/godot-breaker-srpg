@@ -1,0 +1,91 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://2s4ng580lkwu"]
+
+[ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_51pjn"]
+[ext_resource type="Texture2D" uid="uid://cbdr01kvted2c" path="res://resources/images/units/swordsman_hurt.png" id="2_51pjn"]
+[ext_resource type="Texture2D" uid="uid://brgp4eejnahj3" path="res://resources/images/units/swordsman_idle.png" id="3_d1nxi"]
+[ext_resource type="Texture2D" uid="uid://c7p5fbxl0tis6" path="res://resources/images/units/swordsman_atk_1.png" id="4_d0j2m"]
+[ext_resource type="Texture2D" uid="uid://w4usv2uuda31" path="res://resources/images/units/swordsman_atk_2.png" id="5_mui6q"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_51pjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_51pjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_51pjn")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_51pjn")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d0j2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_d0j2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}],
+"loop": false,
+"name": &"evade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51pjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}],
+"loop": true,
+"name": &"still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d0j2m")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_mui6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d1nxi")
+}],
+"loop": false,
+"name": &"strike",
+"speed": 5.0
+}]
