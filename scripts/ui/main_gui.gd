@@ -71,6 +71,8 @@ func _process(_delta):
 		return
 	spin_map()
 	if not continue_process: return
+	if Input.is_action_just_pressed("quick_end_turn"):
+		game.skip_player()
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
 		free_children(menu_node)

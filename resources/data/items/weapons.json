@@ -8,7 +8,7 @@
 	"quick": true,
 	"wpntype": "Blunt",
 	"dmgtype": "force",
-	"power": 5,
+	"power": 50,
 	"hit": 260,
 	"crit": 0,
 	"range": [1, 1],

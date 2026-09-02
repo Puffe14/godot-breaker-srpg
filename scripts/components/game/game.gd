@@ -52,6 +52,7 @@ func selectTile(tile: Tile) -> void:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
+		send_tip.emit(acting.character.myName+" targeting self")
 		if (acting.team == turnOf and not acting.acted) or cheat_mode:
 			selected.emit([acting])
 	# Beat-em-up with current weapon
@@ -94,6 +95,11 @@ func selectTile(tile: Tile) -> void:
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
+		if acting:
+			if acting.acted or acting.team != turnOf:
+				send_tip.emit("selected " + acting.character.myName + " (can't act)")
+			else:
+				send_tip.emit("selected " + acting.character.myName)
 		if acting and ((acting.team == turnOf and not acting.acted) or cheat_mode):
 			selected.emit([acting])
 	else:
@@ -212,6 +218,14 @@ func place_player() -> void:
 		currentMap.setPlayer(player)
 		currentMap.deployPlayer()
 		currentMap.setLeaders()
+
+func skip_player() -> void:
+	if currentMap and turnOf==player.side:
+		for unit in currentMap.unitsOnTeam(player.side):
+			queue.push_back(Wait.new(unit))
+		send_tip.emit("selected wait for all player units")
+	else:
+		send_tip.emit("could not skip plyer turn")
 
 func nextMap():
 	# TODO
