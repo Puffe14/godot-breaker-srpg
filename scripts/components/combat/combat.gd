@@ -265,6 +265,8 @@ func hit_crit_forecast_string() -> String:
 		stdmg = str(forecast.aAtkNum) + "x" + str(forecast.aDmg) + ", h " + str(forecast.aHit) + "%, c " + str(forecast.aCrit) + "%"
 		tsdmg = str(forecast.bAtkNum) + "x" + str(forecast.bDmg) + ", h " + str(forecast.bHit) + "%, c " + str(forecast.bCrit) + "%"
 	elif combat_type == Type.Heal:
+		# TODO proper heal amount
+		# var selected.medkit
 		stdmg = str(selected.HL()) + " healing"
 	elif always_hits:
 		stdmg = "h 100%"
