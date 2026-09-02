@@ -1,44 +1,59 @@
 {
-	"enemies": [ [["BossLairaea",10,[1,1]]] ],
+	"enemies": [ [["BossLairaea",1,[1,1]]] ],
 	"allies": [[]],
-	"joining": [["Cylna",0,[2,0]]],
+	"joining": [["Cylna",0,[0,0]]],
 	"events": {
-	  "message": {
-		"title": "message",
-		"titles": [
-			"title of test speaker","title of test speaker","title of test speaker"
-		],
-		"pics": [
-			"Default","Default","Default"
-		],
-		"lines": ["Cylna and Lairaea are training.",
-				  "Defeat Lairaea by first breaking her armor.\nThis will lower her physical defence.",
-				  "Then attack Lairaea to bring her HP to zero."],
-		"when": {
-		  "title": "survive",
-		  "limit": 0
+		"message": {
+			"title": "message",
+			"lines": [
+				"Cylna and Lairaea are training.",
+				"Defeat Lairaea by first breaking her armor.\nThis will lower her physical defence.",
+				"Then attack Lairaea to bring her HP to zero."
+			],
+			"titles": [
+				"one",
+				"two",
+				"three"
+			],
+			"pics": [
+				"Lairaea",
+				"Ulrarik",
+				"Cylna"
+			],
+			"when": {
+				"title": "survive",
+				"limit": 0.0
+			}
 	  },
 	  "onclear": {
 		"title": "message",
-		"lines": ["Lairaea: You're tougher I remembered."],
-		"when": {
-		  "title": "kill",
-		  "target": ["Lairaea"]
+			"lines": [
+				"You're tougher I remembered."
+			],
+			"titles": [
+				"Lairaea"
+			],
+			"pics": [
+				"Lairaea"
+			],
+			"when": {
+				"title": "kill",
+				"target": [
+					"BossLairaea"
+				]
+			}
 		}
-	  }
-	  }
 	},
 	"grid": {
-	  "tiles": ["gray_field","gray_field","gray_field",
-				"gray_field","sand_field","sand_field",
-				"gray_field","sand_field","sand_field"],
-	  "row": 3,
-	  "column": 3,
-	  "elevation": [0,0,1,0,0,1,0,0,0]
+	  "tiles": ["gray_field","sand_field",
+				"gray_field","sand_field"],
+	  "row": 2,
+	  "column": 2,
+	  "elevation": [0,0,1,1]
 	},
 	"clear": {
 	  "title": "kill",
-	  "target": ["Lairaea"]
+	  "target": ["BossLairaea"]
 	},
 	"lose": [
 		{
@@ -50,7 +65,7 @@
 		  "team": "player"
 		}
 	],
-	"deploy": [[0,0],[0,1],[1,0]],
+	"deploy": [[0,0]],
 	"rotation": 2,
 	"turnNumber": 1
   }

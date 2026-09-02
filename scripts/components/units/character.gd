@@ -32,7 +32,7 @@ func expTrack(increase: int) -> Array:
 ## Rolls growths for level-ups and collects them for display
 func levelUp() -> Dictionary:
 	var levelUpsMap = {}
-	var leveled = growths.toMap
+	var leveled = growths
 	for stat in leveled.keys:
 		var currentG = leveled[stat]
 		if roll() < currentG:

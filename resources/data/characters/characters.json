@@ -3,8 +3,8 @@
 	"name": "Cylna",
 	"class": "wilder",
 	"classes": ["wilder"],
-	"level": 2,
-	"exp": 0,
+	"level": 1,
+	"exp": 99,
 	"stats": {
 	  "hitpoints": 15,
 	  "strength": 6,
@@ -26,6 +26,32 @@
 
   "Lairaea": {
 	"name": "Lairaea",
+	"class": "slicer",
+	"classes": ["slicer"],
+	"level": 2,
+	"exp": 0,
+	"stats": {
+	  "hitpoints": 13,
+	  "strength": 6,
+	  "magic": 0,
+	  "skill": 4,
+	  "speed": 8,
+	  "defence": 2,
+	  "resistance": 2
+	},
+	"growth": {
+	  "hitpoints": 50,
+	  "strength": 60,
+	  "magic": 20,
+	  "skill": 60,
+	  "speed": 35,
+	  "defence": 10,
+	  "resistance": 10
+	}
+  },
+
+  "BossLairaea": {
+	"name": "BossLairaea",
 	"class": "slicer",
 	"classes": ["slicer"],
 	"level": 2,
@@ -355,31 +381,6 @@
 	}
   },
 
-  "BossLairaea": {
-	"name": "Lairaea",
-	"class": "slicer",
-	"classes": ["slicer"],
-	"level": 2,
-	"exp": 0,
-	"stats": {
-	  "hitpoints": 13,
-	  "strength": 4,
-	  "magic": 0,
-	  "skill": 4,
-	  "speed": 8,
-	  "defence": 2,
-	  "resistance": 2
-	},
-	"growth": {
-	  "hitpoints": 50,
-	  "strength": 60,
-	  "magic": 20,
-	  "skill": 60,
-	  "speed": 35,
-	  "defence": 20,
-	  "resistance": 20
-	}
-  },
 
   "tester": {
 	"name": "test",

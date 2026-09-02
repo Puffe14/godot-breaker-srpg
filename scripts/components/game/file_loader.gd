@@ -4,10 +4,6 @@ var tile_dict: Dictionary = {
 	}
 
 var unit_dict: Dictionary = {
-	"Cylna":preload("res://resources/data/units/test_unit_c.tres"),
-	"BossLairaea":preload("res://resources/data/units/test_unit_l.tres"),
-	"Lairaea":preload("res://resources/data/units/test_unit_l.tres"),
-	"Lochagos":preload("res://resources/data/units/dummy2_unit.tres"),
 	}
 
 var class_dict: Dictionary = {
@@ -37,9 +33,9 @@ var inventory_dict: Dictionary = {
 
 
 var map_dict: Dictionary = {
-	"3": preload("res://resources/data/maps/test_map.json"),
-	"1": preload("res://resources/data/maps/map_2.json"),
-	"2": preload("res://resources/data/maps/map_3.json")
+	"1": preload("res://resources/data/maps/test_map.json"),
+	"2": preload("res://resources/data/maps/map_2.json"),
+	"3": preload("res://resources/data/maps/map_3.json")
 }
 
 # Called when the node enters the scene tree for the first time.

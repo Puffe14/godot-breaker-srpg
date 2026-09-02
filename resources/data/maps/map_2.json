@@ -133,19 +133,19 @@
 		"message": {
 			"title": "message",
 			"lines": [
-				"Cylna and Lairaea are training.",
-				"Defeat Lairaea by first breaking her armor.\nThis will lower her physical defence.",
-				"Then attack Lairaea to bring her HP to zero."
+				"More imperial hounds.\nThe people from the village still need some time.",
+				"Damn. We have to distract the troop.\nKeep me close for support!",
+				"Hah! Then let us bleed."
 			],
 			"titles": [
-				"one",
-				"two",
-				"three"
+				"Cylna",
+				"???",
+				"Lairaea"
 			],
 			"pics": [
-				"Lairaea",
-				"Ulrarik",
-				"Cylna"
+				"Cylna",
+				"Geblah",
+				"Lairaea"
 			],
 			"when": {
 				"title": "survive",
@@ -155,7 +155,7 @@
 		"msg_warrior_death": {
 			"title": "message",
 			"lines": [
-				"Damn. I got killed bro."
+				"Damn. I got killed bro. A warriors death..."
 			],
 			"titles": [
 				"Warrior"
@@ -166,7 +166,7 @@
 			"when": {
 				"title": "kill",
 				"target": [
-					"Fusiller"
+					"Warrior"
 				]
 			}
 		}
