@@ -31,11 +31,13 @@ var turn_of_dict = {
 @export var heal_combat: Combat
 @export var treat_combat: Combat
 
+var cheat_mode = false
 
 signal selected(thing)
 signal inspected(thing)
 signal update
 signal change_turn
+signal send_tip(tip_text: String)
 
 ## Decides what happens when a tile is selected.
 func selectTile(tile: Tile) -> void:
@@ -50,29 +52,50 @@ func selectTile(tile: Tile) -> void:
 		acting = null
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
-		selected.emit([acting])
+		if (acting.team == turnOf and not acting.acted) or cheat_mode:
+			selected.emit([acting])
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
 		#attack()
 	# Select target
 	elif occupiable and occupant and acting:
+		if not cheat_mode and acting.team != turnOf:
+			send_tip.emit("can't act, wrong turn ("+turn_of_dict[turnOf]+")")
+			return
+		elif not cheat_mode and acting.acted:
+			send_tip.emit("actions exhausted for this turn!")
+			return
 		target = occupant
 		#if target == acting:
-		selected.emit(availableActions(acting, !acting.moved))
+		var available_actions = []
+		if cheat_mode:
+			available_actions = availableActions(acting, !acting.moved)
+			send_tip.emit("all actions for "+acting.character.myName)
+		else:
+			available_actions = availableActions(acting, false)
+			send_tip.emit("actions for "+acting.character.myName)
+		# send out selected actions to the gui
+		selected.emit(available_actions)
+		if available_actions.is_empty():
+			send_tip.emit("can't find any actions from here!")
 	# Move acting unit to given tile
 	elif occupiable and acting:
 		if currentMap.movementRangeTiles(acting).has(tile):
-			if !acting.moved:
-				move_to(acting, tile)
+			if cheat_mode or !acting.moved:
+				if cheat_mode or acting.team == turnOf:
+					move_to(acting, tile)
+				else:
+					send_tip.emit("can't move, wrong turn ("+turn_of_dict[turnOf]+")")
 			else:
-				print("cant move again!!!")
+				send_tip.emit("can't move again!!!")
 		else:
-			print("out of range, cant move!!!")
+			send_tip.emit("out of range, can't move!!!")
 
 	# Select a new acting unit
 	elif occupiable:
 		acting = occupant
-		selected.emit([acting])
+		if acting and ((acting.team == turnOf and not acting.acted) or cheat_mode):
+			selected.emit([acting])
 	else:
 		acting = null
 		target = null

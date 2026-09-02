@@ -13,7 +13,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container", "dialogue_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "tip_label", "unit_container", "tile_container", "dialogue_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_cu6kq")
@@ -21,6 +21,7 @@ hud_node = NodePath("CanvasLayer/HUD")
 menu_node = NodePath("CanvasLayer/HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
 map_info_label = NodePath("CanvasLayer/HUD/MapInfoLabel")
+tip_label = NodePath("CanvasLayer/HUD/TipLabel")
 unit_container = NodePath("CanvasLayer/HUD/UnitContainer")
 tile_container = NodePath("CanvasLayer/HUD/TileContainer")
 dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
@@ -57,13 +58,25 @@ offset_top = 565.0
 offset_right = 1136.0
 offset_bottom = 632.0
 
-[node name="MapInfoLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1166450183]
+[node name="MapInfoLabel" type="Label" parent="CanvasLayer/HUD" unique_id=2060529685]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 4.0
-offset_right = 49.0
-offset_bottom = 22.0
+offset_left = 27.0
+offset_top = 12.0
+offset_right = 67.0
+offset_bottom = 30.0
 scale = Vector2(2, 2)
+text = "Map info"
+
+[node name="TipLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1166450183]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 402.0
+offset_right = 359.0
+offset_bottom = 520.5
+scale = Vector2(2, 2)
+text = "SOme tip given to somebody on the screen
+woow"
+vertical_alignment = 2
 
 [node name="MenuControl" type="Control" parent="CanvasLayer/HUD" unique_id=1583445029]
 z_index = 12

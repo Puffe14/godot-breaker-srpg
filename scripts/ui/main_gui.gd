@@ -10,11 +10,15 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var menu_node: Control = null
 @export var unit_list_node: Node = null
 @export var map_info_label: Label = null
+@export var tip_label: Label = null
 
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
 @export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
+
+## constants
+var tip_timer: float = 3.0
 
 func load_game_component_data() -> void:
 	file_loader.read_items()
@@ -28,6 +32,12 @@ func _init() -> void:
 	#continue_process = false
 	
 func _ready() -> void:
+	# reset text and lists
+	if tip_label:
+		tip_label.text = ""
+	if map_info_label:
+		map_info_label.text = ""
+	free_children(unit_list_node)
 	# Dont start again while drawing nodes
 	if continue_process:
 		continue_process = false
@@ -64,12 +74,15 @@ func _process(_delta):
 		game.deSelect()
 		free_children(menu_node)
 	game.currentMap = map.field_map
+	var player_check = game.player
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
 	if !game.change_turn.is_connected(on_change_turn):
 		game.change_turn.connect(on_change_turn)
 	if !game.selected.is_connected(on_selected):
 		game.selected.connect(on_selected)
+	if !game.send_tip.is_connected(on_game_tip):
+		game.send_tip.connect(on_game_tip)
 	# set the nodes and tiles
 	connect_tile_nodes()
 	map.set_tiles_in_nodes()
@@ -190,6 +203,13 @@ func on_game_update():
 	#	
 	#	menu.new_menu([game.acting])
 	#	menu_node.add_child(menu)
+
+func on_game_tip(tip_string: String) -> void:
+	tip_label.text = tip_string
+	print("tip: "+tip_string)
+	tip_label.show()
+	await get_tree().create_timer(tip_timer).timeout
+	tip_label.hide()
 
 func free_children(node) -> void:
 	for child in node.get_children():
