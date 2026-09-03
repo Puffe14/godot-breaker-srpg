@@ -43,12 +43,15 @@ func show_reach_sprite(reach_type, hide_reach = false):
 	if hide_reach:
 		$MedkitReachSprite.visible = false
 		$WeaponReachSprite.visible = false
+		$SelfSprite.visible = false
 		return
 	match reach_type:
 		"med":
 			$MedkitReachSprite.visible = true
 		"wep":
 			$WeaponReachSprite.visible = true
+		"self":
+			$SelfSprite.visible = true
 		_:
 			pass
 

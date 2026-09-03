@@ -19,5 +19,5 @@ func description() -> String:
 	for i in range(targets.size()):
 		if i > 0:
 			txt += ", "
-		txt += str(targets[i])
+		txt += "["+str(floori(targets[i][0]))+", "+str(floori(targets[i][1]))+"]"
 	return Constants.team_of_dict[team] + " reach " + txt

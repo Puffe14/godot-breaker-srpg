@@ -181,15 +181,17 @@ func show_movement_range(reset_display: bool = false):
 func show_reach_range(unit: Units):
 	if not unit: return
 	# display reach area
-	for i: Tile in map.field_map.tilesInRangeFor(unit, unit.Range()):
-		var node = map.get_child_at_v3(i.position)
-		if node:
-			node.show_reach_sprite("wep")
-	for i: Tile in map.field_map.tilesInRangeFor(unit, unit.MedRange()):
-		var node = map.get_child_at_v3(i.position)
-		if node:
-			node.show_reach_sprite("med")
-	
+	if unit.inventory.equippedWeapon():
+		for i: Tile in map.field_map.tilesInRangeFor(unit, unit.Range()):
+			var node = map.get_child_at_v3(i.position)
+			if node:
+				node.show_reach_sprite("wep")
+	if unit.inventory.equippedMedkit():
+		for i: Tile in map.field_map.tilesInRangeFor(unit, unit.MedRange()):
+			var node = map.get_child_at_v3(i.position)
+			if node:
+				node.show_reach_sprite("med")
+	map.get_child_at_v3(map.field_map.tileOf(unit).position).show_reach_sprite("self")
 
 func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
@@ -271,6 +273,8 @@ func on_change_turn():
 
 func on_selected(thing):
 	#draw_and_set_tiles()
+	if not continue_process:
+		return # dont let the player select anything when process not continuing
 	unit_container._ready(game.acting)
 	tile_container._ready(null)
 	free_children(menu_node)

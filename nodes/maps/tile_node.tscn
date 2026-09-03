@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://31nnsalxndep" path="res://resources/images/tiles/field_cursor.png" id="3_b5hsi"]
 [ext_resource type="Texture2D" uid="uid://bxmajmbxmqh5q" path="res://resources/images/tiles/field_move.png" id="3_d0kgv"]
 [ext_resource type="Texture2D" uid="uid://uoudc2w6riu2" path="res://resources/images/tiles/field_cursor_medkit.png" id="5_5e0v2"]
+[ext_resource type="Shader" uid="uid://dl7mist6pfwy2" path="res://resources/shaders/gray.gdshader" id="5_ebcfd"]
 [ext_resource type="Texture2D" uid="uid://bh1imtobvb6vh" path="res://resources/images/interactibles/loot.png" id="5_nvye0"]
 [ext_resource type="Texture2D" uid="uid://degmwt37qwckd" path="res://resources/images/tiles/field_cursor_wepon.png" id="6_ebcfd"]
 [ext_resource type="Texture2D" uid="uid://dd145f335cfv2" path="res://resources/images/interactibles/soul.png" id="6_ost45"]
@@ -13,6 +14,9 @@
 size = Vector2(16, 12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0kgv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8j4eu"]
+shader = ExtResource("5_ebcfd")
 
 [node name="TileNode" type="Node2D" unique_id=48730674 groups=["tile"]]
 script = ExtResource("1_10ckc")
@@ -37,6 +41,11 @@ visible = false
 
 [node name="TopSprite" type="Sprite2D" parent="." unique_id=1138989718]
 visible = false
+texture = ExtResource("3_b5hsi")
+
+[node name="SelfSprite" type="Sprite2D" parent="." unique_id=277374555]
+visible = false
+material = SubResource("ShaderMaterial_8j4eu")
 texture = ExtResource("3_b5hsi")
 
 [node name="MedkitReachSprite" type="Sprite2D" parent="." unique_id=388164106]
