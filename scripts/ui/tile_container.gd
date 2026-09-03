@@ -49,6 +49,14 @@ func set_stat():
 		#"res: "+str(unit.res()),
 		#"move: "+str(unit.MOVE()),
 		#"jump: "+str(unit.JUMP())
+	else:
+		stat_labels.append("  Unoccupiable")
+		# TODO more elegant solution to skipping columns
+		stat_labels.append("")
+		if tile.canFlyOver:
+			stat_labels.append("  Can be flown over.")
+		else:
+			stat_labels.append("  Cannot be flown over.")
 	for label_text in stat_labels:
 		var new_label: Label = Label.new()
 		new_label.text = label_text

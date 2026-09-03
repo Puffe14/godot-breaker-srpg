@@ -50,6 +50,7 @@ func _ready() -> void:
 	#reset player for map and take it from game
 	map.field_map.player = null
 	game.currentMap = map.field_map
+	game.acting = null
 	map.move.connect(move)
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	# connect tiles and draw the map

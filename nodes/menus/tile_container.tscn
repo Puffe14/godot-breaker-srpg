@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://d3leony1sl4j3"]
 
+[ext_resource type="Theme" uid="uid://b5ljomfh6unha" path="res://resources/themes/menu_text.tres" id="1_461od"]
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_bvy3b"]
 [ext_resource type="Script" uid="uid://p0roxqun8pi1" path="res://scripts/ui/tile_container.gd" id="1_oyo3n"]
 
 [sub_resource type="Theme" id="Theme_4lkkm"]
-default_font_size = 32
+default_font_size = 42
 
 [node name="TileContainer" type="MarginContainer" unique_id=1830309598 node_paths=PackedStringArray("title", "stat_container")]
 anchors_preset = 3
@@ -17,6 +18,7 @@ offset_top = -251.0
 offset_bottom = -59.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("1_461od")
 script = ExtResource("1_oyo3n")
 title = NodePath("PanelContainer/VBoxContainer/Title")
 stat_container = NodePath("PanelContainer/VBoxContainer/StatList")
@@ -46,13 +48,15 @@ theme = SubResource("Theme_4lkkm")
 text = "Tile"
 horizontal_alignment = 1
 
-[node name="StatList" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=152367943]
+[node name="StatList" type="GridContainer" parent="PanelContainer/VBoxContainer" unique_id=62609683]
 layout_mode = 2
+size_flags_vertical = 8
+columns = 2
 
 [node name="Title2" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=40468991]
 layout_mode = 2
 theme = SubResource("Theme_4lkkm")
-text = "Tile"
+text = "Tileuuuuuu"
 horizontal_alignment = 1
 
 [node name="Title3" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=1712626443]
@@ -61,10 +65,16 @@ theme = SubResource("Theme_4lkkm")
 text = "Tile"
 horizontal_alignment = 1
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=1348704464]
+[node name="Title5" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=1669890898]
 layout_mode = 2
 theme = SubResource("Theme_4lkkm")
 text = "Tile"
+horizontal_alignment = 1
+
+[node name="Title4" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=157725365]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Tileuuuuuu"
 horizontal_alignment = 1
 
 [node name="HideRect" type="ColorRect" parent="." unique_id=337083112]
