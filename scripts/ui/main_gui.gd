@@ -91,6 +91,7 @@ func _process(_delta):
 	map.set_tiles_in_nodes()
 	#make_unit_nodes()
 	show_movement_range(game.acting == null)
+	show_reach_range(game.acting)
 	if game.queue.is_empty():
 		#print("turn of ",game.turn_of_dict[game.turnOf], " (",game.turnOf,")")
 		game.handle_turn()
@@ -170,6 +171,7 @@ func show_movement_range(reset_display: bool = false):
 	# hide movement area
 	if reset_display:
 		map.reset_movement_display()
+		return
 	# display movement area
 	for i: Tile in map.field_map.movementRangeTiles(game.acting):
 		var node = map.get_child_at_v3(i.position)
@@ -177,7 +179,8 @@ func show_movement_range(reset_display: bool = false):
 			node.show_move_sprite(true, !game.acting.moved)
 
 func show_reach_range(unit: Units):
-	# display raech area
+	if not unit: return
+	# display reach area
 	for i: Tile in map.field_map.tilesInRangeFor(unit, unit.Range()):
 		var node = map.get_child_at_v3(i.position)
 		if node:
