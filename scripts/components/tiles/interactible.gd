@@ -20,3 +20,6 @@ func takeLoot() -> Inventory:
 	var tempO = loot
 	loot = null
 	return tempO
+
+func loot_string() -> String:
+	return loot.to_string()

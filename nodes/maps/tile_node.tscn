@@ -22,6 +22,15 @@ shader = ExtResource("5_ebcfd")
 script = ExtResource("1_10ckc")
 texture = "field_base"
 
+[node name="Sprite2D3" type="TextureRect" parent="." unique_id=952106547]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 0
+texture = ExtResource("2_d0kgv")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=643211788]
 texture = ExtResource("2_d0kgv")
 
@@ -56,13 +65,21 @@ texture = ExtResource("5_5e0v2")
 visible = false
 texture = ExtResource("6_ebcfd")
 
-[node name="LootSprite" type="Sprite2D" parent="." unique_id=2126048468]
+[node name="LootSprite3" type="Sprite2D" parent="." unique_id=2126048468]
 visible = false
 texture = ExtResource("5_nvye0")
 
 [node name="SoulSprite" type="Sprite2D" parent="." unique_id=816287222]
 visible = false
 texture = ExtResource("6_ost45")
+
+[node name="LootSprite" type="TextureRect" parent="." unique_id=456944368]
+visible = false
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("5_nvye0")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

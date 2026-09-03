@@ -72,21 +72,21 @@
     "description": "A test weapon.",
     "durability":{
         "spent": 0,
-        "durability": 15
+        "durability": 150
     },
     "weapon":{
 	    "rank": "E",
 	    "quick": true,
 	    "wpntype": "Blunt",
 	    "dmgtype": "force",
-	    "power": 5,
+	    "power": 500,
 	    "hit": 260,
 	    "crit": 0,
-	    "range": [1, 1],
+	    "range": [1, 4],
 	    "weight": 1,
 	    "effective": {},
 	    "bonus": {"MD": 2,
-		      "PD": 2}
+		      "PD": 20}
     }
   },
   "dagger": {

@@ -17,7 +17,7 @@ func set_visibility() -> bool:
 func set_stat():
 	if !set_visibility() or not tile: return # stop if not visible
 	
-	title.text = tile.tile_name
+	title.text = tile.tile_name + " " + "["+str(floori(tile.position.x))+", "+str(floori(tile.position.y))+"]"
 	# remove the previous text labels
 	for child_node in stat_container.get_children():
 		child_node.queue_free()
@@ -25,17 +25,21 @@ func set_stat():
 	if tile.occupiable:
 		var occ = tile.occupiable
 		stat_labels = [
-		#	" Atk: "+str(unit.AT()),
+			" Atk: "+str(occ.atk),
 		#	" Crit: "+str(unit.CR()),
 		#	" Hit: "+str(unit.HI()),
 		#	" Speed: "+str(unit.AS()),
 		#	" Skill: "+str(unit.SK()),
 			" PhysDef: "+str(occ.physical),
-		#	" MagicRes: "+str(unit.MD()),
+			" MagicDef: "+str(occ.magical),
 			" Avoid: "+str(occ.avoid),
 		#	" CritAvo: "+str(unit.CA())
 		]
-
+		
+		if occ.hpEffect < 0:
+			stat_labels.append(" Dmg: "+str(occ.avoid))
+		elif occ.hpEffect > 0:
+			stat_labels.append(" Heal: "+str(occ.avoid))
 		#"\n",
 		#"stn: "+str(unit.stn()),
 		#"mag: "+str(unit.mag()),

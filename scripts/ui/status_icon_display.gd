@@ -18,9 +18,11 @@ func set_wounds(unit: Units):
 		var thing = Constants.body_part_dict[status].to_lower()
 		var new_icon = icon_rect.instantiate()
 		new_icon.texture = load("res://resources/images/status/armor "+thing+".png")
+		new_icon.tooltip_text = thing + " protected"
 		vbox.add_child(new_icon)
 	for status in w_list:
 		var thing = Constants.body_part_dict[status].to_lower()
 		var new_icon = icon_rect.instantiate()
 		new_icon.texture = load("res://resources/images/status/wound "+thing+".png")
+		new_icon.tooltip_text = thing + " wounded"
 		vbox.add_child(new_icon)

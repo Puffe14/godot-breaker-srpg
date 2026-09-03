@@ -29,6 +29,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if tile and tile.occupiable:
 		$LootSprite.visible = tile.containsLoot()
+		if tile.containsLoot():
+			$LootSprite.tooltip_text = tile.interactible.loot_string()
 
 func _on_area_2d_mouse_entered() -> void:
 	$TopSprite.visible = true

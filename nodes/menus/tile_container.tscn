@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3leony1sl4j3"]
+[gd_scene format=3 uid="uid://d3leony1sl4j3"]
 
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="1_bvy3b"]
 [ext_resource type="Script" uid="uid://p0roxqun8pi1" path="res://scripts/ui/tile_container.gd" id="1_oyo3n"]
@@ -6,16 +6,22 @@
 [sub_resource type="Theme" id="Theme_4lkkm"]
 default_font_size = 32
 
-[node name="TileContainer" type="MarginContainer" node_paths=PackedStringArray("title", "stat_container")]
-offset_left = 919.0
-offset_top = 571.0
-offset_right = 1134.0
-offset_bottom = 638.0
+[node name="TileContainer" type="MarginContainer" unique_id=1830309598 node_paths=PackedStringArray("title", "stat_container")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_top = -251.0
+offset_bottom = -59.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("1_oyo3n")
 title = NodePath("PanelContainer/VBoxContainer/Title")
 stat_container = NodePath("PanelContainer/VBoxContainer/StatList")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1189927280]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 texture = ExtResource("1_bvy3b")
@@ -27,22 +33,41 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=556297156]
+layout_mode = 2
+tooltip_text = "jjojojooi"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1768895245]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2091072414]
 layout_mode = 2
 theme = SubResource("Theme_4lkkm")
 text = "Tile"
 horizontal_alignment = 1
 
-[node name="StatList" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="StatList" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=152367943]
 layout_mode = 2
 
-[node name="HideRect" type="ColorRect" parent="."]
+[node name="Title2" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=40468991]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Tile"
+horizontal_alignment = 1
+
+[node name="Title3" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=1712626443]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Tile"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/StatList" unique_id=1348704464]
+layout_mode = 2
+theme = SubResource("Theme_4lkkm")
+text = "Tile"
+horizontal_alignment = 1
+
+[node name="HideRect" type="ColorRect" parent="." unique_id=337083112]
 visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 0.6392157)

@@ -144,7 +144,15 @@ func empty() -> bool:
 	return slots.all(func(i): return i==null)
 
 func _to_string() -> String:
-	return "Inventory"
+	var text = ""
+	if empty():
+		return "empty"
+	else:
+		for item: Item in slots:
+			if item:
+				text += item._to_string()
+			text += "\n"
+	return text
 
 func copy() -> Inventory:
 	var new_inv = Inventory.new(slotCount)

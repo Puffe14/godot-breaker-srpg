@@ -18,17 +18,7 @@ var item_dict: Dictionary = {
 }
 
 var inventory_dict: Dictionary = {
-	"lairaea": preload("res://resources/data/items/test_bow_inv.tres"),
-	"bosslairaea": preload("res://resources/data/items/test_bow_inv.tres"),
-	"cylna": preload("res://resources/data/items/test_club_inv.tres"),
-	"dummy": preload("res://resources/data/test_inventory.tres"),
-	"dummy2": preload("res://resources/data/test_inventory.tres"),
-	"dummy3": preload("res://resources/data/test_inventory.tres"),
-	"geblah": preload("res://resources/data/test_inventory.tres"),
-	"medic": preload("res://resources/data/test_inventory.tres"),
-	"locagos": preload("res://resources/data/test_inventory.tres"),
-	"warrior": preload("res://resources/data/test_inventory.tres"),
-	"aynia": preload("res://resources/data/test_inventory.tres")
+
 }
 
 
@@ -149,7 +139,8 @@ func read_items():
 			new_weapon.wpnType = Constants.string_to_wpntype[next_weapon["wpntype"].to_lower()]
 			new_weapon.rankLetter = Constants.string_to_letter[next_weapon["rank"]]
 			new_weapon.quick = next_weapon["quick"]
-			new_weapon.power = next_weapon["power"]
+			var power =  next_weapon["power"]
+			new_weapon.power =power
 			new_weapon.hit = next_weapon["hit"]
 			new_weapon.crit = next_weapon["crit"]
 			new_weapon.weight = next_weapon["weight"]
