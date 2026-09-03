@@ -57,6 +57,7 @@ func _ready() -> void:
 	draw_and_set_tiles()
 	#await map.done_drawing_nodes
 	continue_process = true
+	repaint_unit_shaders()
 	on_game_update()
 	
 var continue_process = true
@@ -249,6 +250,12 @@ func make_unit_nodes() -> void:
 			unit_list_node.add_child(new_unit_node)
 			print("make_unit_nodes added "+new_unit_node.unit.character.myName)
 	#print("make_unit_nodes added missing unit nodes")
+
+## set all current unit_node shaders to null
+func repaint_unit_shaders() -> void:
+	var node_list = get_tree().get_nodes_in_group("unit")
+	for next_unit_node: UnitNode in node_list:
+		next_unit_node.undim()
 
 func on_change_turn():
 	for u: UnitNode in get_tree().get_nodes_in_group("unit"):

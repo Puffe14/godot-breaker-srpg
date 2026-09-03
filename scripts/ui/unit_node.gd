@@ -44,15 +44,18 @@ func list_status_icons():
 		icon_control.set_icons(unit.status)
 		icon_control.set_wounds(unit)
 
-func on_update(delay: float, _dim: bool = true) -> void:
-	# wait for delay
-	await get_tree().create_timer(delay).timeout
-	# update hp_bar
+func update_hpbar() -> void:
 	if unit:
 		hp_node.change_value(unit.HP(), unit.MaxHP())
 		var wpn_msg = "A: "+str(unit.AT())+", S: "+str(unit.AS())
 		hp_node.set_weapon_icon(get_icon_texture(),wpn_msg)
 		hp_node.set_exp_text(unit.lvlExp())
+
+func on_update(delay: float, _dim: bool = true) -> void:
+	# wait for delay
+	await get_tree().create_timer(delay).timeout
+	# update hp_bar
+	update_hpbar()
 	# update status icon
 	list_status_icons()
 	# dimming
@@ -76,6 +79,7 @@ func swap_hpbar_to_alt() -> void:
 	alt_hp_node = temp
 	hp_node.show_bar(alt_hp_node.visible)
 	alt_hp_node.show_bar(false)
+	update_hpbar()
 
 func show_child_hp(should: bool):
 	hp_node.show_bar(should)

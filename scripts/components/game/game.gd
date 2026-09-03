@@ -144,6 +144,7 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 	var combats = []
 	var heals = []
 	for tile in areaOfMovement:
+		var current_weapon = possibleWeaponsOrNone.front()
 		for weapon in possibleWeaponsOrNone: # Weapons that the character could use
 			unit.equip(weapon)
 			# Who can be attacked? --(who, from)
@@ -172,6 +173,11 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					# Sets the weapon used when the actions happen
 					na.weapon = weapon
 				combats.append_array(newActions)
+		# set the weapon back
+		if not possibleWeaponsOrNone.is_empty():
+			unit.equip(current_weapon)
+		# check all medkit options
+		var current_medkit = possibleWeaponsOrNone.front()
 		for medkit in possibleMedkitsOrNone: # Weapons that the character could use
 			unit.equip(medkit)
 			var targets = fm.unitsInRangeAt(unit,tile,unit.MedRange(),true) # Who can be healed? --(who, from)
@@ -194,6 +200,9 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 					# Sets the weapon used when the actions happen
 					na.weapon = medkit
 				heals.append_array(newActions)
+		# set the weapon back
+		if not possibleMedkitsOrNone.is_empty():
+			unit.equip(current_medkit)
 	# all possible item uses for character
 	var uses = []
 	for c in unit.inventory.consumables():

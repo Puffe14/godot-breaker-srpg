@@ -109,6 +109,8 @@ func targetedStrikes():
 
 func play() -> Explain:
 	print(selected, " ", type_dict.get(combat_type))
+	# equip the correct weapon or medkit that was specified for the action
+	selected.equip(weapon)
 	if !override_vantage and target_attacks > 0 and skill_diff < -Rules.vantageDiff:
 		targetedStrikes()
 	else:

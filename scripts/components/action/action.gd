@@ -4,6 +4,8 @@ class_name Action extends Resource
 var location = null
 # nullable weapon
 var weapon = null
+# nullable medkit
+var medkit = null
 # length of an action
 var actLength: float = 1.0
 # explain
