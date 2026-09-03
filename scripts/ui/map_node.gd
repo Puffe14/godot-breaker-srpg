@@ -145,6 +145,7 @@ func reset_movement_display():
 	var children = get_tree().get_nodes_in_group("tile")
 	for tn: TileNode in children:
 		tn.hide_move_and_team()
+		tn.show_reach_sprite(null, true)
 
 func get_tiles_in_tree():
 	return get_tree().get_nodes_in_group("tile")

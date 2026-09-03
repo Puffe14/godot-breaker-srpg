@@ -39,6 +39,19 @@ func _on_area_2d_mouse_exited() -> void:
 	$TopSprite.visible = false
 	hovered_tile.emit(null)
 
+func show_reach_sprite(reach_type, hide_reach = false):
+	if hide_reach:
+		$MedkitReachSprite.visible = false
+		$WeaponReachSprite.visible = false
+		return
+	match reach_type:
+		"med":
+			$MedkitReachSprite.visible = true
+		"wep":
+			$WeaponReachSprite.visible = true
+		_:
+			pass
+
 func show_move_sprite(move_visibility: bool, can_move: bool = true, actor: Units = null):
 	if !tile or !tile.occupiable:
 		return

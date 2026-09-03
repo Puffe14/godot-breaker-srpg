@@ -176,6 +176,18 @@ func show_movement_range(reset_display: bool = false):
 		if node:
 			node.show_move_sprite(true, !game.acting.moved)
 
+func show_reach_range(unit: Units):
+	# display raech area
+	for i: Tile in map.field_map.tilesInRangeFor(unit, unit.Range()):
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			node.show_reach_sprite("wep")
+	for i: Tile in map.field_map.tilesInRangeFor(unit, unit.MedRange()):
+		var node = map.get_child_at_v3(i.position)
+		if node:
+			node.show_reach_sprite("med")
+	
+
 func draw_and_set_tiles():
 	map.draw_tiles(map.direction)
 	connect_tile_nodes()
@@ -265,6 +277,7 @@ func on_selected(thing):
 		menu.user = game.acting
 		menu.new_menu(thing)
 		show_movement_range()
+		show_reach_range(game.acting)
 		menu_node.add_child(menu)
 		print("made menu", thing)
 

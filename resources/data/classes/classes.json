@@ -46,7 +46,7 @@
 		"stats": {
 			"movement": 3.0,
 			"jump": 2.0,
-			"hitpoints": 51.0,
+			"hitpoints": 15.0,
 			"strength": 2.0,
 			"magic": 0.0,
 			"skill": 1.0,

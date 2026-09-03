@@ -286,6 +286,8 @@ static func read_condition(condition_object: Dictionary) -> Condition:
 			condition = Kill.new(condition_object["target"])
 		"route":
 			condition = Route.new(Constants.string_to_team[condition_object["team"].to_lower()])
+		"reach":
+			condition = Reach.new(condition_object["target"], Constants.string_to_team[condition_object["team"].to_lower()])
 		_:
 			condition = Route.new(Units.Team.Enemy)
 	return condition
