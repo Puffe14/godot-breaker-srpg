@@ -210,12 +210,12 @@ func HP() -> int: return MaxHP() - damageTaken
 # Move
 func MOVE() -> int:
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Legs): penalty = 3
+	if wounds.has(Constants.BodyPart.Legs): penalty = Rules.move_wound_penalty
 	return (character.myClass.stats.move + bonus("move")) / penalty
 # Jump
 func JUMP() -> int:
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Legs): penalty = 3
+	if wounds.has(Constants.BodyPart.Legs): penalty = Rules.move_wound_penalty
 	return (character.myClass.stats.jump + bonus("jump")) / penalty
 # Range
 func Range() -> Vector2i:
@@ -239,7 +239,7 @@ func AT() -> int:
 		return wep.weapon.power + mag() + bonus("AT")
 	elif wep.weapon.dmgType == Weapon.DamageType.Force:
 		var penalty = 1
-		if wounds.has(Constants.BodyPart.Arms): penalty = 2
+		if wounds.has(Constants.BodyPart.Arms): penalty = Rules.arm_wound_penalty
 		return (wep.weapon.power + stn() + bonus("AT")) / penalty
 	else: return 0
 
@@ -257,20 +257,19 @@ func AS() -> int:
 
 ## Combat skill
 func SK() -> int:
-	var wep = inventory.equippedWeapon()
-	if !wep: return 0
-	else: return skl() - wep.weapon.weight/3 + bonus("SK")
+	return skl() + bonus("SK")
+	# skl() - wep.weapon.weight/Rules.weight_skill_penalty + bonus("SK")
 
 ## Physical funcence
 func PD() -> int:
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Torso): penalty = 2
+	if wounds.has(Constants.BodyPart.Torso): penalty = Rules.torso_wound_penalty
 	return round(dfn() + bonus("PD")) / penalty
 
 ## Magical funcence
 func MD() -> int:
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Torso): penalty = 2
+	if wounds.has(Constants.BodyPart.Torso): penalty = Rules.torso_wound_penalty
 	return round(res() + bonus("MD")) / penalty
 
 ## Hit rate
@@ -278,13 +277,13 @@ func HI() -> int:
 	var wep = inventory.equippedWeapon()
 	if !wep: return 0
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Head): penalty = 2
+	if wounds.has(Constants.BodyPart.Head): penalty = Rules.head_wound_penalty
 	return round(wep.weapon.hit + (skl() + spd()*0.5) + bonus("HI")) / penalty
 
 ## Rate of avoiding attacks
 func AV() -> int:
 	var penalty = 1
-	if wounds.has(Constants.BodyPart.Legs): penalty = 2
+	if wounds.has(Constants.BodyPart.Legs): penalty = Rules.leg_wound_penalty
 	return (round(spd() + skl()*0.5) + bonus("AV")) / penalty
 
 ## Rate of avoiding critical hits
@@ -295,7 +294,7 @@ func CA() -> int:
 
 ## Amount of healing given
 func HL() -> int:
-	return mag()/2 + skl()/2
+	return roundi(mag()/2 + skl()/2)
 
 func isQuick() -> bool:
 	var w: Item = inventory.equippedWeapon()
@@ -317,25 +316,21 @@ func lvl() -> int: return character.level
 func xp() -> int: return character.xp
 func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(xp())
 
+func wep_get_param_or_0(param: String) -> int:
+	if inventory.equippedWeapon():
+		return inventory.equippedWeapon().weapon[param]
+	else: return 0
+
 
 func character_info_dict() -> Dictionary:
 	var info_dict = {
-		" Hitpoints: "+str(skl()): totaling_string("maxHp", "hitpoints"),
+		" Hitpoints: "+str(hp()): totaling_string("maxHp", "hitpoints"),
 		" Strength: "+str(stn()): totaling_string("stn", "strength"),
 		" Magic: "+str(mag()): totaling_string("mag", "magic"),
 		" PhysDef: "+str(dfn()): totaling_string("dfn", "physical"),
 		" MagDef: "+str(res()): totaling_string("res", "resistance"),
 		" Speed: "+str(spd()): totaling_string("spd", "speed"),
 		" Skill: "+str(skl()): totaling_string("skl", "skill"),
-		#" PhysDef: "+str(HI()),
-		#" MagDef: "+str(AS()),
-		#" Skill: "+str(SK()),
-		#" PhysDef: "+str(PD()),
-		#" MagicRes: "+str(MD()),
-		#" Avoid: "+str(AV()),
-		#" CritAvo: "+str(CA()),
-		#" Move: "+str(MOVE()),
-		#" Jump: "+str(JUMP())
 	}
 	return info_dict
 
@@ -343,7 +338,41 @@ func class_info_dict() -> Dictionary:
 	var info_dict = {
 		"Ranks": str(character.myClass.classRanks)
 	}
+	#info_dict.append(character.myClass.classRanks.info_dict())
+	return info_dict
+
+func combat_info_dict() -> Dictionary:
+	var info_dict = {
+		" Atk: "+str(AT()):
+			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("power"), bonus("AT")]) + " + (St "+ str(stn()) + ", Ma " + str(mag()) +")", Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
+		" Crit: "+str(CR()):
+			Constants.array_to_sum_string([wep_get_param_or_0("crit"), roundi(skl() * 0.5), bonus("CR")]),
+		" Hit: "+str(HI()):
+			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("hit"), roundi(skl() + spd()*0.5), bonus("HI")]), Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
+		" PhysDef: "+str(PD()):
+			penalise_string(Constants.array_to_sum_string([dfn(), bonus("PD")]), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
+		" MagicDef: "+str(MD()):
+			penalise_string(Constants.array_to_sum_string([res(), bonus("MD")]), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
+		" Speed: "+str(AS()):
+			Constants.array_to_sum_string([-wep_get_param_or_0("weight"), spd(), bonus("AS")]),
+		" Skill: "+str(SK()):
+			Constants.array_to_sum_string([skl(), bonus("SK")]),
+		" Avoid: "+str(AV()):
+			penalise_string(Constants.array_to_sum_string([roundi(spd() + skl()*0.5), bonus("AV")]), Rules.leg_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
+		" CritAvo: "+str(CA()):
+			Constants.array_to_sum_string([10, -wep_get_param_or_0("weight"), bonus("CA")]),
+		" Move: "+str(MOVE()):
+			penalise_string(str(character.myClass.stats.move) + " + " + str(bonus("move")), Rules.move_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
+		" Jump: "+str(JUMP()):
+			penalise_string(str(character.myClass.stats.jump) + " + " + str(bonus("jump")), Rules.move_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
+		
+	}
 	return info_dict
 
 func totaling_string(call_st: String, bonus_st: String) -> String:
 	return str(character.stats[call_st] + character.myClass.stats[call_st]) + " + " + str(bonus(bonus_st))
+
+func penalise_string(given_string: String, penalty: int, penalise: bool):
+	if penalise:
+		return "("+given_string+") / "+str(penalty)
+	return given_string

@@ -6,12 +6,16 @@
 [sub_resource type="Theme" id="Theme_ew3fk"]
 default_font_size = 42
 
+[sub_resource type="Theme" id="Theme_wtmig"]
+default_font_size = 25
+
 [node name="MarginContainer2" type="MarginContainer" unique_id=1361043059 node_paths=PackedStringArray("title", "label_container")]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_akl5b")
 title = NodePath("PanelContainer/VBoxContainer/Title")
 label_container = NodePath("PanelContainer/VBoxContainer/LabeList")
+column_num = 3
 label_tip_map = {
 "gop": "gup gup",
 "meeeeeeeeeee": "mooooo",
@@ -47,6 +51,7 @@ horizontal_alignment = 1
 [node name="LabeList" type="GridContainer" parent="PanelContainer/VBoxContainer" unique_id=1234803876]
 layout_mode = 2
 size_flags_vertical = 8
+theme = SubResource("Theme_wtmig")
 theme_override_constants/h_separation = 22
 columns = 2
 

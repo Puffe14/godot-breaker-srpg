@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
 [ext_resource type="Resource" uid="uid://bfr8wdi708xmq" path="res://resources/data/new_game.tres" id="2_cu6kq"]
+[ext_resource type="PackedScene" uid="uid://bvwmdud6iyn78" path="res://nodes/menus/column_container.tscn" id="6_4lkkm"]
 [ext_resource type="PackedScene" uid="uid://bupc6gl702bnm" path="res://nodes/menus/inspect_unit_containers.tscn" id="7_cu6kq"]
 [ext_resource type="PackedScene" uid="uid://b8m08xt7gvwbu" path="res://nodes/menus/dialogue_container.tscn" id="8_cu6kq"]
 [ext_resource type="Script" uid="uid://b4iefuqxu83oa" path="res://nodes/player_camera.gd" id="8_lw646"]
@@ -43,13 +44,25 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_mvnht")
 
-[node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=828232133 instance=ExtResource("9_4lkkm")]
+[node name="UnitContainer2" parent="CanvasLayer/HUD" unique_id=828232133 instance=ExtResource("9_4lkkm")]
+visible = false
 z_index = 12
 layout_mode = 0
 offset_left = 850.0
 offset_top = 12.0
 offset_right = 1134.0
 offset_bottom = 238.0
+
+[node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=1361043059 instance=ExtResource("6_4lkkm")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.250002
+anchor_bottom = 13.909
+offset_left = 767.0
+offset_top = 15.0
+offset_right = -49.000122
+offset_bottom = -307.36
+grow_horizontal = 0
 
 [node name="UnitNodeList" type="Node" parent="CanvasLayer/HUD" unique_id=276389693]
 

@@ -16,6 +16,13 @@ static var ignore_height_weapontypes = [Weapon.WeaponType.Ranged]
 static var vantageDiff = 9
 static var alacrityDiff = 9
 static var doubleDiff = 4
+# wound penalties
+static var arm_wound_penalty = 2
+static var head_wound_penalty = 2
+static var leg_wound_penalty = 2
+static var torso_wound_penalty = 2
+static var move_wound_penalty = 3
+static var weight_skill_penalty = 3
 # bonus
 @export var skillBonusHitRateForEffective = 20
 @export var skillHitRatePenaltyRatio = 2

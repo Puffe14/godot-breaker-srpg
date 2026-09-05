@@ -12,7 +12,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var map_info_label: Label = null
 @export var tip_label: Label = null
 
-@export var unit_container: UnitContainer = null
+@export var unit_container: Container = null
 @export var tile_container: TileContainer = null
 @export var inspect_container: InspectUnitContainer = null
 @export var dialogue_container: DialogueContainer = null
@@ -213,7 +213,7 @@ func on_game_update():
 	#var bruh = map.get_tiles_in_tree()
 	#bruh
 	#draw_and_set_tiles()
-	unit_container._ready(game.acting)
+	update_unit_container(game.acting)
 	tile_container._ready(null)
 	#free_children(menu_node)
 	#if game.acting == game.target:
@@ -288,7 +288,7 @@ func on_selected(thing):
 	#draw_and_set_tiles()
 	if not continue_process:
 		return # dont let the player select anything when process not continuing
-	unit_container._ready(game.acting)
+	update_unit_container(null)
 	tile_container._ready(null)
 	free_children(menu_node)
 	if game.acting:
@@ -330,3 +330,13 @@ func spin_map():
 		#map._on_spin_box_value_changed(map_rotation)
 		map.direction = map_rotation
 		draw_and_set_tiles()
+
+func update_unit_container(unit: Units):
+	#unit_container._ready(game.acting)
+	if unit:
+		unit_container.set_map_and_title(unit.combat_info_dict(), unit.shortInfo())
+		unit_container.visible = true
+	else:
+		unit_container.set_map_and_title({}, "")
+		unit_container.visible = false
+	unit_container.set_labels()
