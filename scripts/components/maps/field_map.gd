@@ -10,6 +10,7 @@ class_name FieldMap extends Resource
 @export var deployment: Array[Vector2i]
 @export var joining: Array[Units] = []
 @export var events: Array[Event] = []
+@export var base_rotation: int = 1
 
 class UTR:
 	var unit: Units

@@ -192,6 +192,7 @@ func reread_map(map: FieldMap, map_key: String):
 	# boundaries
 	map.grid.row = map_json["grid"]["row"]
 	map.grid.column = map_json["grid"]["column"]
+	map.base_rotation = map_json["rotation"]
 
 	# create the tiles
 	var index: int = 0

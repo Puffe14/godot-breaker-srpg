@@ -49,7 +49,7 @@
 				"gray_field","sand_field"],
 	  "row": 2,
 	  "column": 2,
-	  "elevation": [0,0,1,1]
+	  "elevation": [1,1,0,0]
 	},
 	"clear": {
 	  "title": "reach",
@@ -67,6 +67,6 @@
 		}
 	],
 	"deploy": [[0,0]],
-	"rotation": 2,
+	"rotation": 0,
 	"turnNumber": 1
   }

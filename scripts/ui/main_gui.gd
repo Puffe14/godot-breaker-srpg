@@ -57,6 +57,7 @@ func _ready() -> void:
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	# connect tiles and draw the map
 	game.update.connect(on_game_update)
+	map.reset_direction()
 	draw_and_set_tiles()
 	#await map.done_drawing_nodes
 	continue_process = true

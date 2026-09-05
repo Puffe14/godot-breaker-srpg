@@ -147,5 +147,9 @@ func reset_movement_display():
 		tn.hide_move_and_team()
 		tn.show_reach_sprite(null, true)
 
+func reset_direction():
+	if field_map:
+		direction = field_map.base_rotation
+
 func get_tiles_in_tree():
 	return get_tree().get_nodes_in_group("tile")
