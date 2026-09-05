@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://qu8m10gfjbyl"]
+
+[ext_resource type="Script" uid="uid://weuo6dmjnyud" path="res://column_control.gd" id="1_a06vh"]
+[ext_resource type="PackedScene" uid="uid://bvwmdud6iyn78" path="res://nodes/menus/column_container.tscn" id="2_4pwg0"]
+
+[node name="Control" type="Control" unique_id=7198525 node_paths=PackedStringArray("title", "label_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a06vh")
+title = NodePath("")
+label_container = NodePath("")
+label_tip_map = {
+"gop": "gup gup",
+"meeeeeeeeeee": "mooooo",
+"wheeeeeeeeeeeeeeeeeee": "wuuuuuuuuu",
+"yop": "yup yup"
+}
+container_title = "funny"
+
+[node name="ColumnContainer" parent="." unique_id=1361043059 instance=ExtResource("2_4pwg0")]
+layout_mode = 0

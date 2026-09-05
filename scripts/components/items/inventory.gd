@@ -144,6 +144,9 @@ func empty() -> bool:
 	return slots.all(func(i): return i==null)
 
 func _to_string() -> String:
+	return "Inventory"
+
+func inventory_string() -> String:
 	var text = ""
 	if empty():
 		return "empty"

@@ -53,8 +53,7 @@ func selectTile(tile: Tile) -> void:
 	# If the character is selected again during the turn
 	elif occupiable and acting and acting == occupant:
 		send_tip.emit(acting.character.myName+" targeting self")
-		if (acting.team == turnOf and not acting.acted) or cheat_mode:
-			selected.emit([acting])
+		inspected.emit([acting])
 	# Beat-em-up with current weapon
 		#case o: Occupiable if target.nonEmpty && !acting.forall(_.turnOver) && targetInRangeOfActor =>
 		#attack()

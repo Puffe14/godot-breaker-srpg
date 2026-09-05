@@ -316,3 +316,34 @@ func hpMhp() -> String: return str(HP())+"/"+str(MaxHP())
 func lvl() -> int: return character.level
 func xp() -> int: return character.xp
 func lvlExp() -> String: return "LVL: "+str(lvl())+", EXP: "+str(xp())
+
+
+func character_info_dict() -> Dictionary:
+	var info_dict = {
+		" Hitpoints: "+str(skl()): totaling_string("maxHp", "hitpoints"),
+		" Strength: "+str(stn()): totaling_string("stn", "strength"),
+		" Magic: "+str(mag()): totaling_string("mag", "magic"),
+		" PhysDef: "+str(dfn()): totaling_string("dfn", "physical"),
+		" MagDef: "+str(res()): totaling_string("res", "resistance"),
+		" Speed: "+str(spd()): totaling_string("spd", "speed"),
+		" Skill: "+str(skl()): totaling_string("skl", "skill"),
+		#" PhysDef: "+str(HI()),
+		#" MagDef: "+str(AS()),
+		#" Skill: "+str(SK()),
+		#" PhysDef: "+str(PD()),
+		#" MagicRes: "+str(MD()),
+		#" Avoid: "+str(AV()),
+		#" CritAvo: "+str(CA()),
+		#" Move: "+str(MOVE()),
+		#" Jump: "+str(JUMP())
+	}
+	return info_dict
+
+func class_info_dict() -> Dictionary:
+	var info_dict = {
+		"Ranks": str(character.myClass.classRanks)
+	}
+	return info_dict
+
+func totaling_string(call_st: String, bonus_st: String) -> String:
+	return str(character.stats[call_st] + character.myClass.stats[call_st]) + " + " + str(bonus(bonus_st))

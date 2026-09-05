@@ -14,6 +14,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 
 @export var unit_container: UnitContainer = null
 @export var tile_container: TileContainer = null
+@export var inspect_container: InspectUnitContainer = null
 @export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
 
@@ -37,12 +38,12 @@ func _ready() -> void:
 		tip_label.text = ""
 	if map_info_label:
 		map_info_label.text = ""
-	free_children(unit_list_node)
 	# Dont start again while drawing nodes
 	if continue_process:
 		continue_process = false
 	else:
 		return
+	free_children(unit_list_node)
 	load_game_component_data()
 	if not map.field_map:
 		print("field_map of Map node empty, creating empty field_map")
@@ -51,7 +52,8 @@ func _ready() -> void:
 	map.field_map.player = null
 	game.currentMap = map.field_map
 	game.acting = null
-	map.move.connect(move)
+	if !map.move.is_connected(move):
+		map.move.connect(move)
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	# connect tiles and draw the map
 	game.update.connect(on_game_update)
@@ -77,6 +79,7 @@ func _process(_delta):
 		game.skip_player()
 	if Input.is_action_just_pressed("deselect"):
 		game.deSelect()
+		inspect_container.update(null)
 		free_children(menu_node)
 	game.currentMap = map.field_map
 	var player_check = game.player
@@ -86,6 +89,8 @@ func _process(_delta):
 		game.change_turn.connect(on_change_turn)
 	if !game.selected.is_connected(on_selected):
 		game.selected.connect(on_selected)
+	if !game.inspected.is_connected(on_inspected):
+		game.inspected.connect(on_inspected)
 	if !game.send_tip.is_connected(on_game_tip):
 		game.send_tip.connect(on_game_tip)
 	# set the nodes and tiles
@@ -295,6 +300,13 @@ func on_selected(thing):
 		show_reach_range(game.acting)
 		menu_node.add_child(menu)
 		print("made menu", thing)
+
+func on_inspected(thing):
+	#draw_and_set_tiles()
+	if not continue_process:
+		return # dont let the player select anything when process not continuing
+	free_children(menu_node)
+	inspect_container.update(game.acting)
 
 func on_lose():
 	var msg: String = ""

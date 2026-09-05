@@ -16,6 +16,7 @@
     "armor":{
     "part": "Legs",
     "bonus": {
+      "skill": 10,
       "PD": 1,
       "AV": 10
     }

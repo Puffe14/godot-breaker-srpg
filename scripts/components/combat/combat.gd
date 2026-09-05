@@ -280,7 +280,7 @@ func hit_crit_forecast_string() -> String:
 
 func _to_string() -> String:
 	if combat_type == Type.Wound || combat_type == Type.Break || combat_type == Type.Treat:
-		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + hit_crit_forecast_string()
+		return type_dict[combat_type] + " " + part_string() + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + "\n" + weapon._to_string() + hit_crit_forecast_string()
 	elif combat_type == Type.Attack:
-		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName + "\n" + hit_crit_forecast_string()
-	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + hit_crit_forecast_string()
+		return type_dict[combat_type] + ": " + selected.character.myName + " " + arrow_string() + " " + targeted.character.myName + "\n" + weapon._to_string() + " " + hit_crit_forecast_string()
+	return type_dict[combat_type] + ": " + selected.character.myName + " -> " + targeted.character.myName + "\n" + weapon._to_string() + " " + hit_crit_forecast_string()

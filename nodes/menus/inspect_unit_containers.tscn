@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bupc6gl702bnm"]
+
+[ext_resource type="PackedScene" uid="uid://bvwmdud6iyn78" path="res://nodes/menus/column_container.tscn" id="1_gv7vh"]
+[ext_resource type="Script" uid="uid://ta64i0ibyycq" path="res://scripts/ui/inspect_unit_containers.gd" id="1_y3asj"]
+
+[node name="Control" type="Control" unique_id=551527426 node_paths=PackedStringArray("character_stat_block", "class_stat_block")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y3asj")
+character_stat_block = NodePath("VBoxContainer/CharacterStatBlock")
+class_stat_block = NodePath("VBoxContainer/ClassInfoBlock")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1166648473]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+
+[node name="CharacterStatBlock" parent="VBoxContainer" unique_id=1361043059 instance=ExtResource("1_gv7vh")]
+layout_mode = 2
+
+[node name="ClassInfoBlock" parent="VBoxContainer" unique_id=278907995 instance=ExtResource("1_gv7vh")]
+layout_mode = 2

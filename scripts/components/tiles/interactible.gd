@@ -22,4 +22,4 @@ func takeLoot() -> Inventory:
 	return tempO
 
 func loot_string() -> String:
-	return loot.to_string()
+	return loot.inventory_string()

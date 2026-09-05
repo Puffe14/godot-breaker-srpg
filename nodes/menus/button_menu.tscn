@@ -22,10 +22,10 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 theme = SubResource("Theme_lerbw")
 script = ExtResource("1_rc8qm")
-button_list_container = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/ButtonList")
+button_list_container = NodePath("HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ButtonList")
 menu_h_container = NodePath("HMenuContainer")
 hider_rect = NodePath("HMenuContainer/MarginContainer/HideRect")
-title = NodePath("HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/Title")
+title = NodePath("HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Title")
 
 [node name="HMenuContainer" type="HBoxContainer" parent="." unique_id=1045226906]
 layout_mode = 0
@@ -33,6 +33,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="HMenuContainer" unique_id=454229197]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HMenuContainer/MarginContainer" unique_id=1139349635]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HMenuContainer/MarginContainer" unique_id=1852034843]
 layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HMenuContainer/MarginContainer" unique_id=1382920127]
@@ -47,28 +54,34 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="HMenuContainer/MarginContainer" unique_id=1139349635]
+[node name="HideRect" type="ColorRect" parent="HMenuContainer/MarginContainer" unique_id=204531022]
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HMenuContainer/MarginContainer" unique_id=1168087666]
+custom_minimum_size = Vector2(120, 200)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HMenuContainer/MarginContainer/ScrollContainer" unique_id=444933910]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HMenuContainer/MarginContainer/PanelContainer" unique_id=567402967]
+[node name="VBoxContainer" type="VBoxContainer" parent="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=567402967]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer" unique_id=926411643]
+[node name="Title" type="Label" parent="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=926411643]
 visible = false
 layout_mode = 2
 text = "Title"
 horizontal_alignment = 1
 
-[node name="ButtonList" type="VBoxContainer" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer" unique_id=1889879639]
+[node name="ButtonList" type="VBoxContainer" parent="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1889879639]
 layout_mode = 2
 
-[node name="Close" type="Button" parent="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer" unique_id=1191727583]
+[node name="Close" type="Button" parent="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1191727583]
 layout_mode = 2
 text = "CLOSE"
 
-[node name="HideRect" type="ColorRect" parent="HMenuContainer/MarginContainer" unique_id=204531022]
-visible = false
-layout_mode = 2
-color = Color(0, 0, 0, 0.6392157)
-
-[connection signal="pressed" from="HMenuContainer/MarginContainer/PanelContainer/VBoxContainer/Close" to="." method="close_this_menu"]
+[connection signal="pressed" from="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Close" to="." method="close_this_menu"]
