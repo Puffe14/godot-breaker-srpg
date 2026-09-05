@@ -5,6 +5,8 @@ class_name ColumnContainer extends Control
 @export var column_num: int = 2
 @export var label_tip_map = {}
 @export var container_title: String = ""
+@export var label_object: PackedScene = null
+
 
 func _ready() -> void: #new_label_map) -> void:
 #	label_tip_map = new_label_map
@@ -29,7 +31,7 @@ func set_labels():
 		child_node.queue_free()
 	label_container.columns = column_num
 	for label_text in label_tip_map.keys():
-		var new_label: Label = Label.new()
+		var new_label = label_object.instantiate()
 		new_label.text = label_text
 		new_label.tooltip_text = label_tip_map[label_text]
 		new_label.mouse_filter = Control.MOUSE_FILTER_PASS

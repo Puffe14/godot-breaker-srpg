@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvwmdud6iyn78"]
 
 [ext_resource type="Script" uid="uid://weuo6dmjnyud" path="res://column_control.gd" id="1_akl5b"]
+[ext_resource type="PackedScene" uid="uid://cutp5feanfqp" path="res://nodes/menus/rich_label.tscn" id="3_akl5b"]
 [ext_resource type="Texture2D" uid="uid://dip55r228m6to" path="res://resources/images/ui/background-purple.png" id="3_i3n03"]
 
 [sub_resource type="Theme" id="Theme_ew3fk"]
@@ -23,6 +24,7 @@ label_tip_map = {
 "yop": "yup yup"
 }
 container_title = "Funny"
+label_object = ExtResource("3_akl5b")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1720901916]
 custom_minimum_size = Vector2(100, 0)
@@ -72,6 +74,16 @@ layout_mode = 2
 theme = SubResource("Theme_ew3fk")
 text = "Tileee"
 horizontal_alignment = 1
+
+[node name="RichTextLabel" parent="PanelContainer/VBoxContainer/LabeList" unique_id=716470972 instance=ExtResource("3_akl5b")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]rewrer[/b]werf
+sasssaaSAS
+
+yhgyfdg"
 
 [node name="Title4" type="Label" parent="PanelContainer/VBoxContainer/LabeList" unique_id=487776189]
 layout_mode = 2

@@ -54,6 +54,7 @@ func _ready() -> void:
 	game.acting = null
 	if !map.move.is_connected(move):
 		map.move.connect(move)
+	#map.field_map.player = game.player
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
 	# connect tiles and draw the map
 	game.update.connect(on_game_update)

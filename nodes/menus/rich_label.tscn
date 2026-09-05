@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cutp5feanfqp"]
+
+[node name="RichTextLabel" type="RichTextLabel" unique_id=716470972]
+custom_minimum_size = Vector2(120, 40)
+offset_right = 1.0
+bbcode_enabled = true
+text = "[color=lightblue]rewrerwerf[/color]"
+scroll_active = false

@@ -347,28 +347,29 @@ func class_info_dict() -> Dictionary:
 	return info_dict
 
 func combat_info_dict() -> Dictionary:
+	var with_colors: bool = false
 	var info_dict = {
-		" Atk: "+str(AT()):
-			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("power"), bonus("AT")]) + " + (St "+ str(stn()) + ", Ma " + str(mag()) +")", Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
-		" Crit: "+str(CR()):
-			Constants.array_to_sum_string([wep_get_param_or_0("crit"), roundi(skl() * 0.5), bonus("CR")]),
-		" Hit: "+str(HI()):
-			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("hit"), roundi(skl() + spd()*0.5), bonus("HI")]), Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
-		" PhysDef: "+str(PD()):
-			penalise_string(Constants.array_to_sum_string([dfn(), bonus("PD")]), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
-		" MagicDef: "+str(MD()):
-			penalise_string(Constants.array_to_sum_string([res(), bonus("MD")]), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
-		" Speed: "+str(AS()):
-			Constants.array_to_sum_string([-wep_get_param_or_0("weight"), spd(), bonus("AS")]),
-		" Skill: "+str(SK()):
-			Constants.array_to_sum_string([skl(), bonus("SK")]),
-		" Avoid: "+str(AV()):
-			penalise_string(Constants.array_to_sum_string([roundi(spd() + skl()*0.5), bonus("AV")]), Rules.leg_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
-		" CritAvo: "+str(CA()):
-			Constants.array_to_sum_string([10, -wep_get_param_or_0("weight"), bonus("CA")]),
-		" Move: "+str(MOVE()):
+		" Atk: "+Constants.nps_str(AT(), bonus("AT")):
+			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("power"), bonus("AT")], with_colors) + " + (St "+ str(stn()) + ", Ma " + str(mag()) +")", Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
+		" Crit: "+Constants.nps_str(CR(), bonus("CR")):
+			Constants.array_to_sum_string([wep_get_param_or_0("crit"), roundi(skl() * 0.5), bonus("CR")], with_colors),
+		" Hit: "+Constants.nps_str(HI(), bonus("HI")):
+			penalise_string(Constants.array_to_sum_string([wep_get_param_or_0("hit"), roundi(skl() + spd()*0.5), bonus("HI")], with_colors), Rules.arm_wound_penalty, wounds.has(Constants.BodyPart.Arms)),
+		" PhysDef: "+Constants.nps_str(PD(), bonus("PD")):
+			penalise_string(Constants.array_to_sum_string([dfn(), bonus("PD")], with_colors), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
+		" MagicDef: "+Constants.nps_str(MD(), bonus("MD")):
+			penalise_string(Constants.array_to_sum_string([res(), bonus("MD")], with_colors), Rules.torso_wound_penalty, wounds.has(Constants.BodyPart.Torso)),
+		" Speed: "+Constants.nps_str(AS(), bonus("AS")):
+			Constants.array_to_sum_string([-wep_get_param_or_0("weight"), spd(), bonus("AS")], with_colors),
+		" Skill: "+Constants.nps_str(SK(), bonus("SK")):
+			Constants.array_to_sum_string([skl(), bonus("SK")], with_colors),
+		" Avoid: "+Constants.nps_str(AV(), bonus("AV")):
+			penalise_string(Constants.array_to_sum_string([roundi(spd() + skl()*0.5), bonus("AV")], with_colors), Rules.leg_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
+		" CritAvo: "+Constants.nps_str(CA(), bonus("CA")):
+			Constants.array_to_sum_string([10, -wep_get_param_or_0("weight"), bonus("CA")], with_colors),
+		" Move: "+Constants.nps_str(MOVE(), bonus("MOVE")):
 			penalise_string(str(character.myClass.stats.move) + " + " + str(bonus("move")), Rules.move_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
-		" Jump: "+str(JUMP()):
+		" Jump: "+Constants.nps_str(JUMP(), bonus("JUMP")):
 			penalise_string(str(character.myClass.stats.jump) + " + " + str(bonus("jump")), Rules.move_wound_penalty, wounds.has(Constants.BodyPart.Legs)),
 		
 	}
@@ -376,7 +377,7 @@ func combat_info_dict() -> Dictionary:
 
 
 func totaling_string(call_st: String, bonus_st: String) -> String:
-	return str(character.stats[call_st] + character.myClass.stats[call_st]) + " + " + str(bonus(bonus_st))
+	return Constants.array_to_sum_string([character.stats[call_st] + character.myClass.stats[call_st], bonus(bonus_st)])
 
 func penalise_string(given_string: String, penalty: int, penalise: bool):
 	if penalise:

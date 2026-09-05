@@ -59,16 +59,35 @@ static func body_part_to_text(part: BodyPart) -> String:
 	return body_part_dict[part]
 
 ## Turn an array of numbers into a string for a sum
-static func array_to_sum_string(string_array: Array) -> String:
+static func array_to_sum_string(string_array: Array, color: bool = false) -> String:
 	var text = ""
 	var length = string_array.size()
 	for i in range(length):
 		var next = string_array[i]
 		if i > 0:
 			if next < 0:
-				text += str(" - ") + str(abs(next))
+				text += str(" - ") 
+				if color:
+					text += nps_str(next)
+				else:
+					text += str(abs(next))
 			else:
-				text += str(" + ") + str(next)
+				text += str(" + ")
+				if color:
+					text += nps_str(next)
+				else:
+					text += str(abs(next))
 		else:
 			text += str(next)
+	return text
+
+## negative-positive colored string for a number
+static func nps_str(number, comparitor: int = 0):
+	var text = ""
+	if comparitor < 0:
+		text += "[color=pink]" + str(abs(number)) + "[/color]"
+	elif comparitor > 0:
+		text += "[color=lightblue]" + str(abs(number)) + "[/color]"
+	else:
+		text += str(abs(number))
 	return text
