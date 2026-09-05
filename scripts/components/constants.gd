@@ -45,13 +45,12 @@ static var string_to_letter = {
 	null: Ranks.Letter.None
 }
 static var letter_to_string = {
-	"A": Ranks.Letter.A,
-	"B": Ranks.Letter.B,
-	"C": Ranks.Letter.C,
-	"D": Ranks.Letter.D,
-	"E": Ranks.Letter.E,
-	"": Ranks.Letter.None,
-	null: Ranks.Letter.None
+	Ranks.Letter.A: "A",
+	Ranks.Letter.B: "B",
+	Ranks.Letter.C: "C",
+	Ranks.Letter.D: "D",
+	Ranks.Letter.E: "E",
+	Ranks.Letter.None: "None"
 }
 
 static var parts = [BodyPart.Head, BodyPart.Arms, BodyPart.Legs, BodyPart.Torso]

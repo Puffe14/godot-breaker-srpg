@@ -108,10 +108,10 @@ offset_bottom = 40.0
 
 [node name="InspectContainer" parent="CanvasLayer/HUD" unique_id=551527426 instance=ExtResource("7_cu6kq")]
 layout_mode = 1
-offset_left = 11.0
-offset_top = 120.0
-offset_right = 11.0
-offset_bottom = 120.0
+offset_left = 17.0
+offset_top = 273.0
+offset_right = 17.0
+offset_bottom = 273.0
 
 [node name="DialogueContainer" parent="CanvasLayer/HUD" unique_id=1495541055 instance=ExtResource("8_cu6kq")]
 layout_mode = 0

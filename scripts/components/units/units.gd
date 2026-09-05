@@ -335,10 +335,15 @@ func character_info_dict() -> Dictionary:
 	return info_dict
 
 func class_info_dict() -> Dictionary:
-	var info_dict = {
-		"Ranks": str(character.myClass.classRanks)
-	}
-	#info_dict.append(character.myClass.classRanks.info_dict())
+	var my_class = character.myClass
+	var info_dict: Dictionary = {}
+	info_dict.merge(my_class.classRanks.info_dict())
+	for type in my_class.classType:
+		info_dict[type] = ""
+	if my_class.classBuffs:
+		info_dict.merge(my_class.classBuffs.combat_bonus_info_dict("buffs "))
+	if my_class.classDebuffs:
+		info_dict.merge(my_class.classDebuffs.combat_bonus_info_dict("debuffs "))
 	return info_dict
 
 func combat_info_dict() -> Dictionary:
@@ -368,6 +373,7 @@ func combat_info_dict() -> Dictionary:
 		
 	}
 	return info_dict
+
 
 func totaling_string(call_st: String, bonus_st: String) -> String:
 	return str(character.stats[call_st] + character.myClass.stats[call_st]) + " + " + str(bonus(bonus_st))

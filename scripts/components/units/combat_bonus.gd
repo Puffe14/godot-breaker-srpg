@@ -20,6 +20,8 @@ class_name CombatBonus extends Resource
 @export var AV: int = 0
 @export var CA: int = 0
 
+static var stat_names = ["AT","CR","AS","SK","PD","MD","HI","AV","CA"]
+
 func addUp(other: CombatBonus) -> void:
 	# don't add up null
 	if !other: return
@@ -80,3 +82,15 @@ static func new_val_from_dict(sl: Dictionary) -> CombatBonus:
 	sl.get("AV",0),
 	sl.get("CA",0))
 	
+
+func combat_bonus_info_dict(extra_string: String = "") -> Dictionary:
+	var info_dict = {}
+	for stat_name in stat_names:
+		info_dict.merge(string_bonus_or_empty(stat_name, extra_string))
+	return info_dict
+
+func string_bonus_or_empty(stat_name: String, extra_string: String = ""):
+	if self[stat_name] != 0:
+		return {extra_string + stat_name + " " + str(self[stat_name]): ""}
+	else:
+		return {}
