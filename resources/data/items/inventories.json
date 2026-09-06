@@ -1,77 +1,206 @@
 {
-  "Cylna": [
-	["w_club",2],
-	["i_mace",0],
-	["bread",1],
-	["leather_greaves",0],
-	["super_club",0],
-	["d_mace",0]
-  ],
-  "Lairaea": [
-	["i_sword",0],
-	["dagger",0],
-	["bread",0]
-  ],
-  "BossLairaea": [
-	["dagger",0],
-	["practice_mail",0]
-  ],
-  "Geblah": [
-	["dagger",0],
-	["s_sling",0],
-	["star_fragment",0]
-  ],
-  "Aynia": [
-	["ray_spell",0],
-	["fission_spell",0],
-	["sun_gauntlets",0],
-	["stellar_incence",0]
-  ],
-  "Faga": [
-	["i_lance",0],
-	["bread",0]
-  ],
-  "Ulrarik": [
-	["w_club",0],
-	["simple_medkit",0],
-	["astral_medkit",2]
-  ],
-
-  "Warrior": [
-	["w_club",0]
-  ],
-  "Swordsman": [
-	["dagger",0],
-	["i_sword",0]
-  ],
-  "Slingman": [
-	["far_sling",0]
-  ],
-  "Fusiller": [
-	["s_sling",2]
-  ],
-  "Medic": [
-	["dagger",0],
-	["simple_medkit",0]
-  ],
-  "Archer": [
-	["bamboo_bow",0],
-	["moon_helm",0]
-  ],
-  "Lochagos": [
-	["bread",0],
-	["d_mace",0],
-	["i_lance",0],
-	["sun_lamerral",0]
-  ],
-  "Ghulam": [
-	["bamboo_bow",0],
-	["i_lance",0],
-	["moon_lamerral",0],
-	["moon_helm",0],
-	["bread",2]
-  ],
-  "tester": [
-	["super_club",2]
-  ]
+	"Cylna": [
+		[
+			"w_club",
+			2.0
+		],
+		[
+			"i_mace",
+			0.0
+		],
+		[
+			"bread",
+			1.0
+		],
+		[
+			"leather_greaves",
+			0.0
+		],
+		[
+			"super_club",
+			0.0
+		],
+		[
+			"d_mace",
+			0.0
+		]
+	],
+	"Lairaea": [
+		[
+			"i_sword",
+			0.0
+		],
+		[
+			"dagger",
+			0.0
+		],
+		[
+			"bread",
+			0.0
+		]
+	],
+	"BossLairaea": [
+		[
+			"s_sling",
+			0.0
+		],
+		[
+			"s_sling",
+			0.0
+		],
+		[
+			"practice_mail",
+			0.0
+		]
+	],
+	"Geblah": [
+		[
+			"dagger",
+			0.0
+		],
+		[
+			"s_sling",
+			0.0
+		],
+		[
+			"star_fragment",
+			0.0
+		]
+	],
+	"Aynia": [
+		[
+			"ray_spell",
+			0.0
+		],
+		[
+			"fission_spell",
+			0.0
+		],
+		[
+			"sun_gauntlets",
+			0.0
+		],
+		[
+			"stellar_incence",
+			0.0
+		]
+	],
+	"Faga": [
+		[
+			"i_lance",
+			0.0
+		],
+		[
+			"bread",
+			0.0
+		]
+	],
+	"Ulrarik": [
+		[
+			"w_club",
+			0.0
+		],
+		[
+			"simple_medkit",
+			0.0
+		],
+		[
+			"astral_medkit",
+			2.0
+		]
+	],
+	"Warrior": [
+		[
+			"w_club",
+			0.0
+		]
+	],
+	"Swordsman": [
+		[
+			"dagger",
+			0.0
+		],
+		[
+			"i_sword",
+			0.0
+		]
+	],
+	"Slingman": [
+		[
+			"far_sling",
+			0.0
+		]
+	],
+	"Fusiller": [
+		[
+			"s_sling",
+			2.0
+		]
+	],
+	"Medic": [
+		[
+			"dagger",
+			0.0
+		],
+		[
+			"simple_medkit",
+			0.0
+		]
+	],
+	"Archer": [
+		[
+			"bamboo_bow",
+			0.0
+		],
+		[
+			"moon_helm",
+			0.0
+		]
+	],
+	"Lochagos": [
+		[
+			"bread",
+			0.0
+		],
+		[
+			"d_mace",
+			0.0
+		],
+		[
+			"i_lance",
+			0.0
+		],
+		[
+			"sun_lamerral",
+			0.0
+		]
+	],
+	"Ghulam": [
+		[
+			"bamboo_bow",
+			0.0
+		],
+		[
+			"i_lance",
+			0.0
+		],
+		[
+			"moon_lamerral",
+			0.0
+		],
+		[
+			"moon_helm",
+			0.0
+		],
+		[
+			"bread",
+			2.0
+		]
+	],
+	"tester": [
+		[
+			"super_club",
+			2.0
+		]
+	]
 }

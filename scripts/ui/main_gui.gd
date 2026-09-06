@@ -110,6 +110,7 @@ func _process(_delta):
 		return
 	var current_action: Action = game.queue.pop_front()
 	if current_action:
+		inspect_container.update(null)
 		current_action.animate.connect(animate)
 		current_action.move.connect(move_to_tile)
 		current_action.update.connect(update_unit_node)

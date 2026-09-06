@@ -53,7 +53,7 @@ func inCounterRange() -> bool:
 	if t_wep:
 		var t_wrange = t_wep.weapon.wrange
 		# true only if target's current weapon range includes given range
-		return t_wrange.x >= act_range and t_wrange.y <= act_range
+		return t_wrange.x <= act_range and t_wrange.y >= act_range
 	return false
 
 ## calculate how many attacks in combat for select
@@ -123,12 +123,14 @@ func play() -> Explain:
 			# award exp to the killer
 			if selected.isDead():
 				var xp_gain = Rules.kill_exp_formula(targeted, selected)
-				targeted.giveExp(xp_gain)
+				var xp_msg = targeted.giveExp(xp_gain)
 				emit_signal("animate", "dead", selected, time_passed+dead_delay, "exp "+num_to_str(xp_gain))
+				emit_signal("animate", "evade", targeted, time_passed+0.5, xp_msg)
 			if targeted.isDead():
 				var xp_gain = Rules.kill_exp_formula(selected, targeted)
-				selected.giveExp(xp_gain)
+				var xp_msg = selected.giveExp(xp_gain)
 				emit_signal("animate", "dead", targeted, time_passed+dead_delay, "exp "+num_to_str(xp_gain))
+				emit_signal("animate", "evade", selected, time_passed+0.5, xp_msg)
 			print("death")
 			break
 		while (select_attacks > 0 || target_attacks > 0):

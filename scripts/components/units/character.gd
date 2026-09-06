@@ -21,12 +21,12 @@ func expTrack(increase: int) -> Array:
 	var howManyLvlsUp = xp/100
 	if howManyLvlsUp > 0:
 		level += 1
-		message.push_back("LEVEL UP\n")
+		message.push_back(" LEVEL UP\n")
 		for i in range(0, howManyLvlsUp):
 			var lup = levelUp()
 			for key in lup:
-				message.push_back(statPointStr(key, lup[key]))
-		xp = 0
+				message.push_back(statPointStr(key, lup[key], key == lup.keys().front()))
+		xp = xp % 100
 	return message
 
 ## Rolls growths for level-ups and collects them for display
@@ -36,7 +36,7 @@ func levelUp() -> Dictionary:
 	for stat in Stats.level_up_keys:
 		var currentG = leveled.get_a_val(stat)
 		if roll() < currentG:
-			var up = (currentG-1)/100 + 1
+			var up = round(currentG-1)/100 + 1
 			levelUpsMap[stat] = up
 			addToStat(stat, up)
 	return levelUpsMap
@@ -49,4 +49,9 @@ func addToStat(which: String, amount: int):
 	return newTotal
 
 static func roll(): return randi()%100
-static func statPointStr(k, v): return "\n"+str(k)+": "+str(v)
+
+static func statPointStr(k, v, first = false, seperator = ", "):
+	if first:
+		return str(k)+": "+str(v)
+	else:
+		return seperator+str(k)+": "+str(v)
