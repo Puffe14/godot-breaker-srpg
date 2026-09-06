@@ -48,6 +48,8 @@ func update_hpbar() -> void:
 	if unit:
 		hp_node.change_value(unit.HP(), unit.MaxHP())
 		var wpn_msg = "A: "+str(unit.AT())+", S: "+str(unit.AS())
+		if portrait:
+			hp_node.set_portrait(portrait)
 		hp_node.set_weapon_icon(get_icon_texture(),wpn_msg)
 		hp_node.set_exp_text(unit.lvlExp())
 

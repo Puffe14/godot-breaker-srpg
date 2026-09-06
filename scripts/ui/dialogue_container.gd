@@ -41,3 +41,4 @@ func set_dialogue(new_dialogue: Dialogue):
 		if dialogue.title != null:
 			title.text = dialogue.title
 	set_visibility()
+	progress.emit()

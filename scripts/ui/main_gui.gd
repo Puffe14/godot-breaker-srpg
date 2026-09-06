@@ -73,7 +73,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed("retry"):
 		_ready()
 	if not game or not game.currentMap:
+		await get_tree().create_timer(1).timeout
 		print("game or map missing")
+		if not game or not game.currentMap:
+			_ready()
 		return
 	spin_map()
 	if not continue_process: return
@@ -113,6 +116,7 @@ func _process(_delta):
 		# play the action and read any dialogue
 		var expl = current_action.play()
 		dialogue_container.explain = expl
+		continue_process = false
 		while expl and expl.dialogueNotOver():
 			print(expl.dialogue())
 			dialogue_container.set_dialogue(expl.dialogue())
@@ -123,7 +127,6 @@ func _process(_delta):
 		#hide move range
 		game.deSelect()
 		show_movement_range(true)
-		continue_process = false
 		if current_action.closes_menu:
 			free_children(menu_node)
 		await get_tree().create_timer(current_action.actLength).timeout
