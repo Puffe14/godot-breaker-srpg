@@ -6,3 +6,6 @@ class_name Armor extends Resource
 
 func shatter():
 	broken = true
+
+func describe():
+	return "\nArmor\n  Armor slot: " + Constants.body_part_dict[part] + "\n  " + stats.to_string()

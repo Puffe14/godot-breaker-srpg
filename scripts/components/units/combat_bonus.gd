@@ -94,3 +94,10 @@ func string_bonus_or_empty(stat_name: String, extra_string: String = ""):
 		return {extra_string + stat_name + " " + str(self[stat_name]): ""}
 	else:
 		return {}
+
+func _to_string() -> String:
+	var text_list = ""
+	for stat_name in stat_names:
+		if self[stat_name] != 0:
+			text_list += "  " + stat_name + " " + str(self[stat_name])
+	return text_list

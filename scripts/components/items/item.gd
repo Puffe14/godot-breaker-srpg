@@ -12,8 +12,18 @@ class_name Item extends Resource
 @export var discardable: bool = true
 
 ## text intended as full item information
-func describe() -> String:
-	return name +":\n" + description
+func describe(full: bool = false) -> String:
+	var text = name +":\n " + description
+	if full:
+		if consumable:
+			text += consumable.describe()
+		if armor:
+			text += armor.describe()
+		if weapon:
+			text += weapon.describe()
+		if medkit:
+			text += medkit.describe()
+	return text
 
 func _to_string() -> String:
 	var string: String = ""

@@ -28,6 +28,17 @@ static var string_to_dmgtype = {
 	"force": Weapon.DamageType.Force,
 	"magic": Weapon.DamageType.Magic
 }
+static var dmgtype_to_string = {
+	Weapon.DamageType.Force: "Force",
+	Weapon.DamageType.Magic: "Magic"
+}
+static var wpntype_to_string = {
+	Weapon.WeaponType.Sharp: "Sharp",
+	Weapon.WeaponType.Blunt: "Blunt",
+	Weapon.WeaponType.Long: "Long",
+	Weapon.WeaponType.Ranged: "Ranged",
+	Weapon.WeaponType.Spell: "Spell"
+}
 static var string_to_wpntype = {
 	"sharp": Weapon.WeaponType.Sharp,
 	"blunt": Weapon.WeaponType.Blunt,

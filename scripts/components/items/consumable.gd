@@ -13,3 +13,13 @@ func use(unit: Units) -> void:
 	else:
 		# for giving a character a temporary boost
 		unit.temporaryStats.addUp(effects)
+
+func describe() -> String:
+	var text = "\nConsumable:"
+	if not heal == 0:
+		text += "\n Heal: " + str(heal)
+	if effects:
+		text += "\n effects:\n  " + str(effects._to_string())
+	if permanent:
+		text += "\n permanent"
+	return text

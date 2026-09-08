@@ -20,6 +20,18 @@ static var level_up_keys = [
 "resistance",
 ]
 
+static var stat_keys = [
+	"maxHp",
+	"stn",
+	"mag",
+	"skl",
+	"spd",
+	"dfn",
+	"res",
+	"move",
+    "jump"
+]
+
 func addUp(other: Stats) -> void:
 	# don't add up null
 	if !other: return
@@ -43,6 +55,8 @@ func get_a_val(stat: String) -> int:
 		"speed": return spd
 		"defence": return dfn
 		"resistance": return res
+		"jump": return jump
+		"move": return move
 		_: return 0
 
 func add_a_val(stat: String, plus: int) -> void:
@@ -54,6 +68,8 @@ func add_a_val(stat: String, plus: int) -> void:
 		"speed":  spd += plus
 		"defence":  dfn += plus
 		"resistance": res += plus
+		"jump":  jump += plus
+		"move": move += plus
 		_: pass
 
 func _init(
@@ -88,3 +104,14 @@ static func new_val_from_dict(sl: Dictionary) -> Stats:
 	sl.get("resistance",0),
 	sl.get("movement",0),
 	sl.get("jump",0))
+
+func all_at_none() -> bool:
+	return stat_keys.all( func(s):
+		var is_0 = self[s] == 0
+		return is_0
+	)
+
+func _to_string() -> String:
+	if all_at_none():
+		return "no effects"
+	return "max hp: " + str(maxHp) + " stn: " + str(stn) + " mag: " + str(mag) + " skl: " + str(skl) + " spd: " + str(spd) + " dfn: " + str(dfn) + " res: " + str(res) + " move: " + str(move) + " jump: " + str(jump)

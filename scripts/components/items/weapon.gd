@@ -32,3 +32,12 @@ func advantage(other: Weapon) -> bool:
 	if vantages[atkpos+1] == other.wpnType:
 		return true
 	return false
+
+func describe() -> String:
+	var text = "\nWeapon"
+	text += "\n Type " + Constants.wpntype_to_string[wpnType] + " (" + Constants.letter_to_string[rankLetter] + "), " + Constants.dmgtype_to_string[dmgType]
+	text += "\n Attack " + str(power) + ", Hit " + str(hit) +  ", Crit " + str(crit)
+	text += "\n Range: " + str(wrange.x) + " - " + str(wrange.y) + ", Weight " + str(weight)
+	if quick: text += "\n quick"
+	if stats: text += "\n " + stats.to_string()
+	return text
