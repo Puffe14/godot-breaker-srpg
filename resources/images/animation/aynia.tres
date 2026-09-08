@@ -1,10 +1,10 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://bdoaq6ghyukrc"]
 
 [ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_q318e"]
-[ext_resource type="Texture2D" uid="uid://bv68n5gd3ouh5" path="res://resources/images/units/guy_atk_1.png" id="2_rs1gw"]
-[ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="3_eso5m"]
-[ext_resource type="Texture2D" uid="uid://c0lav1xyi811v" path="res://resources/images/units/guy_hurt.png" id="4_d0275"]
-[ext_resource type="Texture2D" uid="uid://c6suv7evvmpy5" path="res://resources/images/units/guy_atk_2.png" id="5_vaxor"]
+[ext_resource type="Texture2D" uid="uid://7wr0ndbdhfxa" path="res://resources/images/units/aynia_hurt.png" id="2_q318e"]
+[ext_resource type="Texture2D" uid="uid://dnnd1c5l7ipmd" path="res://resources/images/units/aynia_idle.png" id="3_rs1gw"]
+[ext_resource type="Texture2D" uid="uid://dg85p6x10bbnl" path="res://resources/images/units/aynia_atk_1.png" id="4_eso5m"]
+[ext_resource type="Texture2D" uid="uid://c0an526dqwryg" path="res://resources/images/units/aynia_atk_2.png" id="5_d0275"]
 
 [resource]
 animations = [{
@@ -13,7 +13,7 @@ animations = [{
 "texture": ExtResource("1_q318e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rs1gw")
+"texture": ExtResource("2_q318e")
 }, {
 "duration": 1.0,
 "texture": ExtResource("1_q318e")
@@ -33,10 +33,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rs1gw")
+"texture": ExtResource("4_eso5m")
 }],
 "loop": true,
 "name": &"default",
@@ -44,10 +44,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rs1gw")
+"texture": ExtResource("4_eso5m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }],
 "loop": false,
 "name": &"evade",
@@ -55,10 +55,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_d0275")
+"texture": ExtResource("2_q318e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }],
 "loop": false,
 "name": &"hurt",
@@ -66,7 +66,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }],
 "loop": true,
 "name": &"still",
@@ -74,16 +74,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rs1gw")
+"texture": ExtResource("4_eso5m")
 }, {
 "duration": 2.0,
-"texture": ExtResource("5_vaxor")
+"texture": ExtResource("5_d0275")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eso5m")
+"texture": ExtResource("3_rs1gw")
 }],
 "loop": false,
 "name": &"strike",

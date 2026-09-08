@@ -304,7 +304,7 @@
 	},
 	"Warrior": {
 		"name": "Warrior",
-		"picture": "numibian",
+		"picture": "warrior",
 		"class": "warrior",
 		"classes": [
 			"warrior"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_rwq8n"]
 [ext_resource type="Texture2D" uid="uid://c3572fckgbydw" path="res://resources/images/units/isometric_32_numibian_LI_hurt.png" id="2_q2fit"]
+[ext_resource type="Texture2D" uid="uid://bv68n5gd3ouh5" path="res://resources/images/units/guy_atk_1.png" id="2_q10vo"]
 [ext_resource type="Texture2D" uid="uid://d0f3jfb0r5u2s" path="res://resources/images/units/isometric_32_numibian_LI_idle.png" id="3_q10vo"]
 [ext_resource type="Texture2D" uid="uid://doeelmh72lbkr" path="res://resources/images/units/isometric_32_numibian_LI_atk1.png" id="4_bha3l"]
 [ext_resource type="Texture2D" uid="uid://clo1l6rmw5jup" path="res://resources/images/units/isometric_32_numibian_LI_atk2.png" id="5_ya7kg"]
@@ -13,7 +14,7 @@ animations = [{
 "texture": ExtResource("1_rwq8n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_q2fit")
+"texture": ExtResource("2_q10vo")
 }, {
 "duration": 1.0,
 "texture": ExtResource("1_rwq8n")

@@ -83,6 +83,8 @@ func show_move_sprite(move_visibility: bool, can_move: bool = true, actor: Units
 			_:
 				$TeamSprite.texture = null
 				print("no team found???")
+	else:
+		$TeamSprite.texture = null
 
 func hide_move_and_team():
 	$MoveSprite.visible = false
