@@ -35,4 +35,5 @@ equipment = SubResource("Resource_55lec")
 name = "test stick"
 description = "yum yum xizzy"
 durability = SubResource("Resource_i4fld")
+discardable = null
 metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

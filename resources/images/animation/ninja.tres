@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=0 format=3 uid="uid://bx864agjdymh1"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bx864agjdymh1"]
 
 [ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_tg7rq"]
 [ext_resource type="Texture2D" uid="uid://bkj30xjyeuny3" path="res://resources/images/units/ninja_atk_1.png" id="1_uo0kj"]

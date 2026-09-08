@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Game" load_steps=0 format=3 uid="uid://52m2blhp25hg"]
+[gd_resource type="Resource" script_class="Game" format=3 uid="uid://52m2blhp25hg"]
 
 [ext_resource type="Resource" uid="uid://c6wjn0immhcsg" path="res://resources/data/combat/break.tres" id="1_gs87y"]
 [ext_resource type="Resource" uid="uid://ck2g62guljqbd" path="res://resources/data/masp/test_map_field.tres" id="2_6kqxf"]

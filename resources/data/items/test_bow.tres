@@ -42,4 +42,5 @@ equipment = SubResource("Resource_84g7s")
 name = "test bow"
 description = "yum yum xizzy"
 durability = SubResource("Resource_55lec")
+discardable = null
 metadata/_custom_type_script = "uid://cj1r2ti1vrrxq"

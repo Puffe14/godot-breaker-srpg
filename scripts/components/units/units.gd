@@ -324,13 +324,13 @@ func wep_get_param_or_0(param: String) -> int:
 
 func character_info_dict() -> Dictionary:
 	var info_dict = {
-		" Hitpoints: "+str(hp()): totaling_string("maxHp", "hitpoints"),
-		" Strength: "+str(stn()): totaling_string("stn", "strength"),
-		" Magic: "+str(mag()): totaling_string("mag", "magic"),
-		" PhysDef: "+str(dfn()): totaling_string("dfn", "physical"),
-		" MagDef: "+str(res()): totaling_string("res", "resistance"),
-		" Speed: "+str(spd()): totaling_string("spd", "speed"),
-		" Skill: "+str(skl()): totaling_string("skl", "skill"),
+		" Hitpoints: "+Constants.nps_str(hp(), bonus("hitpoints")): totaling_string("maxHp", "hitpoints"),
+		" Strength: "+Constants.nps_str(stn(), bonus("strength")): totaling_string("stn", "strength"),
+		" Magic: "+Constants.nps_str(mag(), bonus("magic")): totaling_string("mag", "magic"),
+		" PhysDef: "+Constants.nps_str(dfn(), bonus("physical")): totaling_string("dfn", "physical"),
+		" MagDef: "+Constants.nps_str(res(), bonus("resistance")): totaling_string("res", "resistance"),
+		" Speed: "+Constants.nps_str(spd(), bonus("speed")): totaling_string("spd", "speed"),
+		" Skill: "+Constants.nps_str(skl(), bonus("skill")): totaling_string("skl", "skill"),
 	}
 	return info_dict
 
@@ -376,8 +376,8 @@ func combat_info_dict() -> Dictionary:
 	return info_dict
 
 
-func totaling_string(call_st: String, bonus_st: String) -> String:
-	return Constants.array_to_sum_string([character.stats[call_st] + character.myClass.stats[call_st], bonus(bonus_st)])
+func totaling_string(call_st: String, bonus_st: String, with_colors = true) -> String:
+	return Constants.array_to_sum_string([character.stats[call_st] + character.myClass.stats[call_st], bonus(bonus_st)], with_colors)
 
 func penalise_string(given_string: String, penalty: int, penalise: bool):
 	if penalise:

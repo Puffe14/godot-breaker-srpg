@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bub7lcqqoqotq" path="res://scripts/components/items/armor.gd" id="1_7q1je"]
 [ext_resource type="Script" uid="uid://cj1r2ti1vrrxq" path="res://scripts/components/items/item.gd" id="1_hmc25"]
 [ext_resource type="Script" uid="uid://gvxgetac3srb" path="res://scripts/components/items/consumable.gd" id="2_b3oy7"]
-[ext_resource type="Script" uid="uid://dnwfyufvn1amq" path="res://scripts/components/units/combat_bonus.gd" id="2_r6tg7"]
+[ext_resource type="Script" path="res://scripts/components/units/combat_bonus.gd" id="2_r6tg7"]
 [ext_resource type="Script" uid="uid://bb6vt655walxx" path="res://scripts/components/items/durability.gd" id="3_r6tg7"]
 [ext_resource type="Script" uid="uid://cclj43y3y4ppb" path="res://scripts/components/items/equipment.gd" id="5_b3oy7"]
 
