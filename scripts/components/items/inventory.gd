@@ -180,5 +180,12 @@ func take_all_from_until(other: Inventory) -> void:
 			else:
 				return
 
+## array of strings describing every slot
+func info_dict() -> Dictionary:
+	var inv_dict = {}
+	for item: Item in slots:
+		if item:
+			inv_dict[item._to_string()] = item.describe()
+	return inv_dict
 
 ##TODO redo equipment handling to  being handled and tracked only in Inventory

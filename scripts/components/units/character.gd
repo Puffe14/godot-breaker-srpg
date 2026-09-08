@@ -55,3 +55,6 @@ static func statPointStr(k, v, first = false, seperator = ", "):
 		return str(k)+": "+str(v)
 	else:
 		return seperator+str(k)+": "+str(v)
+
+func name() -> String:
+	return myName

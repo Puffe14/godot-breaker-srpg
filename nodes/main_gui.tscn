@@ -55,13 +55,13 @@ offset_bottom = 238.0
 
 [node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=1361043059 instance=ExtResource("6_4lkkm")]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 28.250002
-anchor_bottom = 13.909
-offset_left = 767.0
-offset_top = 15.0
-offset_right = -49.000122
-offset_bottom = -307.36
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 776.0
+offset_top = 16.0
+offset_right = 1073.0
+offset_bottom = 212.0
 grow_horizontal = 0
 
 [node name="UnitNodeList" type="Node" parent="CanvasLayer/HUD" unique_id=276389693]
@@ -108,10 +108,10 @@ offset_bottom = 40.0
 
 [node name="InspectContainer" parent="CanvasLayer/HUD" unique_id=551527426 instance=ExtResource("7_cu6kq")]
 layout_mode = 1
-offset_left = 17.0
-offset_top = 273.0
-offset_right = 17.0
-offset_bottom = 273.0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 8.0
+offset_bottom = 5.0
 
 [node name="DialogueContainer" parent="CanvasLayer/HUD" unique_id=1495541055 instance=ExtResource("8_cu6kq")]
 layout_mode = 0

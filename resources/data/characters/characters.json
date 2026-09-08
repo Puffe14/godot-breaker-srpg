@@ -1,6 +1,7 @@
 {
   "Cylna": {
 	"name": "Cylna",
+	"picture": "cylna",
 	"class": "wilder",
 	"classes": ["wilder"],
 	"level": 1,
@@ -26,6 +27,7 @@
 
   "Lairaea": {
 	"name": "Lairaea",
+	"picture": "lairaea",
 	"class": "slicer",
 	"classes": ["slicer"],
 	"level": 2,
@@ -52,6 +54,7 @@
 
   "BossLairaea": {
 	"name": "BossLairaea",
+	"picture": "lairaea",
 	"class": "slicer",
 	"classes": ["slicer"],
 	"level": 2,
@@ -78,6 +81,7 @@
 
   "Geblah": {
 	"name": "Geblah",
+	"picture": "geblah",
 	"class": "singer",
 	"classes": ["singer"],
 	"level": 1,
@@ -104,6 +108,7 @@
 
   "Ulrarik": {
 	"name": "Ulrarik",
+	"picture": "ulrarik",
 	"class": "taker",
 	"classes": ["taker"],
 	"level": 1,
@@ -130,6 +135,7 @@
 
   "Aynia": {
 	"name": "Aynia",
+	"picture": "aynia",
 	"class": "channeler",
 	"classes": ["channeler"],
 	"level": 1,
@@ -156,6 +162,7 @@
 
   "Faga": {
 	"name": "Faga",
+	"picture": "faga",
 	"class": "flier",
 	"classes": ["flier"],
 	"level": 3,
@@ -282,6 +289,7 @@
   },
   "Warrior": {
 	"name": "Warrior",
+	"picture": "numibian",
 	"class": "warrior",
 	"classes": ["warrior"],
 	"level": 2,

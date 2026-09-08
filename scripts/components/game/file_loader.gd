@@ -92,6 +92,10 @@ func read_characters():
 		new_character.stats = Stats.new_val_from_dict(next_character["stats"])
 		new_character.growths = Stats.new_val_from_dict(next_character["growth"])
 		new_character.possibleClass = next_character["classes"]
+		if next_character.has("picture"):
+			new_character.picture_name = next_character["picture"]
+		else:
+			new_character.picture_name = new_character.myName.to_lower()
 		character_dict[new_character.myName] = new_character
 
 func read_items():
@@ -235,9 +239,7 @@ func reread_map(map: FieldMap, map_key: String):
 	var joining = map_json["joining"]
 	for joiner in joining:
 		var unit: Units = makeUnit(joiner[0])
-		## TODO waiting for unit dict to be loaded first
-		unit.character.picture_name = joiner[0].to_lower()
-		##
+		## give the unit effects
 		unit.takeDamage(joiner[1])
 		var location = joiner[2]
 		map.grid.addUnitAt(unit, Vector2i(location[0], location[1]))
@@ -249,7 +251,6 @@ func reread_map(map: FieldMap, map_key: String):
 		group.side = Units.Team.Enemy
 		for enemy in grouping:
 			var unit: Units = makeUnit(enemy[0])
-			unit.character.picture_name = enemy[0].to_lower()
 			group.add_unit(unit)
 			unit.takeDamage(enemy[1])
 			var location = enemy[2]
@@ -261,7 +262,6 @@ func reread_map(map: FieldMap, map_key: String):
 		group.side = Units.Team.Ally
 		for ally in grouping:
 			var unit: Units = makeUnit(ally[0])
-			unit.character.picture_name = ally[0].to_lower()
 			group.add_unit(unit)
 			unit.takeDamage(ally[1])
 			var location = ally[2]
@@ -293,8 +293,6 @@ func make_event(event_object: Dictionary) -> Event:
 			for reinforcer in event_object["units"]:
 				var unit: Units = makeUnit(reinforcer[0])
 				## TODO waiting for unit dict to be loaded first
-				unit.character.picture_name = reinforcer[0].to_lower()
-				##
 				var location = reinforcer[1]
 				var new_uv2: FieldMap.UV2 = FieldMap.UV2.new(unit, Vector2i(location[0], location[1]))		
 				units_coords.push_back(new_uv2)
