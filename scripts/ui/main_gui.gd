@@ -343,6 +343,6 @@ func update_unit_container(unit: Units):
 		unit_container.set_map_and_title(unit.combat_info_dict(), unit.shortInfo())
 		unit_container.visible = true
 	else:
-		unit_container.set_map_and_title({}, "")
+		#unit_container.set_map_and_title({}, "")
 		unit_container.visible = false
 	unit_container.set_labels()

@@ -15,7 +15,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "unit_container", "tile_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_cu6kq")
@@ -23,8 +23,11 @@ hud_node = NodePath("CanvasLayer/HUD")
 menu_node = NodePath("CanvasLayer/HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
 map_info_label = NodePath("CanvasLayer/HUD/MapInfoLabel")
+tip_label = NodePath("CanvasLayer/HUD/TipLabel")
 unit_container = NodePath("CanvasLayer/HUD/UnitContainer")
 tile_container = NodePath("CanvasLayer/HUD/TileContainer")
+inspect_container = NodePath("CanvasLayer/HUD/InspectContainer")
+dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
 
 [node name="MapNode" parent="." unique_id=1417285264 instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
@@ -51,15 +54,11 @@ offset_right = 1134.0
 offset_bottom = 238.0
 
 [node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=1361043059 instance=ExtResource("6_4lkkm")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 776.0
-offset_top = 16.0
-offset_right = 1073.0
-offset_bottom = 212.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 729.0
+offset_top = 23.0
+offset_right = 1106.0
+offset_bottom = 285.0
 
 [node name="UnitNodeList" type="Node" parent="CanvasLayer/HUD" unique_id=276389693]
 
