@@ -80,18 +80,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k8riy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cj3o8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lj3ou")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_574gk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_574gk")
 }],
 "loop": true,
 "name": &"still",

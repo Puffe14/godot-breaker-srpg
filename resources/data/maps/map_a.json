@@ -1,0 +1,150 @@
+{
+	"enemies": [
+		[
+			[
+				"Lochagos",
+				0,
+				[
+					11,
+					5
+				]
+			],
+			[
+				"Lochagos",
+				0,
+				[
+					11,
+					0
+				]
+			]
+		],
+		[
+			[
+				"Warrior",
+				0,
+				[
+					4,
+					2
+				]
+			],
+			[
+				"Slingman",
+				0,
+				[
+					4,
+					4
+				]
+			],
+			[
+				"Warrior",
+				0,
+				[
+					8,
+					3
+				]
+			]
+		],
+		[
+			[
+				"Slingman",
+				0,
+				[
+					8,
+					4
+				]
+			]
+		]
+	],
+	"allies": [
+		[]
+	],
+	"joining": [],
+	"events": {
+		"message": {
+			"title": "message",
+			"lines": [
+				"We have to take the battle to the tar field. Hurry\n(Take the gray tiles to advance)",
+				"Use the bushes for an advantage when needed."
+			],
+			"titles": [
+				"Cylna",
+				"Geblah"
+			],
+			"pics": [
+				"Cylna",
+				"Geblah"
+			],
+			"when": {
+				"title": "survive",
+				"limit": 0
+			}
+		}
+	},
+	"grid": {
+		"tiles": [
+			"orf","orf","orf","orf","orf","orf","orf","orf","orf","orf","orf","grf",
+			"orf","gbu","orf","orf","orf","orf","orf","gbu","orf","orf","orf","tar",
+			"orf","orf","orf","gbu","orf","orf","orf","orf","orf","gbu","orf","tar",
+			"orf","orf","orf","orf","orf","orf","gbu","orf","orf","orf","tar","tar",
+			"orf","gbu","orf","orf","orf","orf","orf","orf","orf","gbu","orf","tar",
+			"orf","orf","orf","orf","orf","orf","orf","gbu","orf","orf","orf","grf"
+		],
+		"row": 12,
+		"column": 6,
+		"elevation": [
+			1,1,0,0,0,0,0,0,0,0,0,1,
+			1,1,0,0,0,0,0,0,0,0,0,0,
+			1,1,0,0,0,0,0,0,0,0,0,0,
+			1,1,0,0,0,0,0,0,0,0,0,0,
+			1,1,0,0,0,0,0,0,0,0,0,0,
+			1,1,0,0,0,0,0,0,0,0,0,1
+		]
+	},
+	"clear": {
+		"title": "reach",
+		"target": [
+			[
+				11,0
+			],
+			[
+				11,5
+			]
+		],
+		"team": "player"
+	},
+	"lose": [
+		{
+			"title": "route",
+			"team": "player"
+		},
+		{
+			"title": "survive",
+			"limit": 12
+		}
+	],
+	"deploy": [
+		[
+			0,0
+		],
+		[
+			0,1
+		],
+		[
+			1,0
+		],
+		[
+			1,1
+		],
+		[
+			0,2
+		],
+		[
+			2,0
+		],
+		[
+			2,1
+		]
+	],
+	"rotation": 0,
+	"turnNumber": 1
+}

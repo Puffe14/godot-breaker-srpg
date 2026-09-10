@@ -46,6 +46,16 @@
 		},
 		"occupiable": true
 	},
+	"orf": {
+		"name": "grass",
+		"photo": "field_orange",
+		"effect": {
+			"magical": -2.0
+		},
+		"reduction": {
+		},
+		"occupiable": true
+	},
 	"tar": {
 		"name": "tar",
 		"photo": "field_tar",
