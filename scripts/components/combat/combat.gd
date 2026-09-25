@@ -169,7 +169,7 @@ func attack(attacker: Units, defender: Units):
 ## method for healing with medkits
 func heal(attacker: Units, defender: Units):
 	# heal based on HL and medkit.heal
-	var healing = attacker.HL() + attacker.inventory.equippedMedkit().medkit.heal
+	var healing = attacker.HL()
 	defender.healDamage(healing)
 	attacker.inventory.equippedMedkit().spend(1)
 	emit_signal("animate", "strike", attacker, time_passed)
@@ -271,7 +271,7 @@ func hit_crit_forecast_string() -> String:
 	elif combat_type == Type.Heal:
 		# TODO proper heal amount
 		# var selected.medkit
-		stdmg = str(selected.HL()) + " healing"
+		stdmg = str(forecast.aHeal) + " healing"
 	elif always_hits:
 		stdmg = "h 100%"
 	else:

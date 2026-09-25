@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0rdyn84l4of8"]
+[gd_scene format=3 uid="uid://d0rdyn84l4of8"]
 
 [ext_resource type="Script" uid="uid://c4jw2ts06wxx4" path="res://scripts/ui/popup_text.gd" id="1_tjqwh"]
 
-[node name="PopupText" type="Control"]
+[node name="PopupText" type="Control" unique_id=1212752309]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,19 +12,19 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_tjqwh")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1195602338]
 autostart = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=848786954]
 layout_mode = 0
 offset_right = 6.0
 offset_bottom = 24.0
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1022221548]
 layout_mode = 2
 color = Color(0, 0, 0, 0.21568628)
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1169548762]
 layout_mode = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

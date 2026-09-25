@@ -21,11 +21,13 @@ func expTrack(increase: int) -> Array:
 	var howManyLvlsUp = xp/100
 	if howManyLvlsUp > 0:
 		level += 1
-		message.push_back(" LEVEL UP\n")
+		message.push_back("\n LEVEL UP\n")
 		for i in range(0, howManyLvlsUp):
 			var lup = levelUp()
 			for key in lup:
 				message.push_back(statPointStr(key, lup[key], key == lup.keys().front()))
+			if lup.is_empty():
+				message.push_back("no increases")
 		xp = xp % 100
 	return message
 

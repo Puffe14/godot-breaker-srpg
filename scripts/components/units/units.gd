@@ -294,7 +294,10 @@ func CA() -> int:
 
 ## Amount of healing given
 func HL() -> int:
-	return roundi(mag()/2 + skl()/2)
+	var kit_heal = 0
+	if inventory.equippedMedkit():
+		kit_heal = inventory.equippedMedkit().medkit.heal
+	return roundi(mag()/2 + skl()/2) + kit_heal
 
 func isQuick() -> bool:
 	var w: Item = inventory.equippedWeapon()

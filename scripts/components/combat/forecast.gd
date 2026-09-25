@@ -21,6 +21,8 @@ func _init(_a: Units, _b: Units, _aAtkNum: int, _bAtkNum: int, _hitPenalty: int 
 	# predicted dmg
 	aDmg = predictDmg(a, b)
 	bDmg = predictDmg(b, a)
+	# predict heal
+	predictHeal(a.HL(), b.HL())
 	# total hit and crit rate
 	aHitCrit = predictHitCrit(a, b)
 	aHit = aHitCrit.x
@@ -44,6 +46,9 @@ var speedDif: int = 0
 # predicted dmg
 var aDmg = 0
 var bDmg = 0
+# predicted heal
+var aHeal = 0
+var bHeal = 0
 # total hit and crit rate
 var aHitCrit = 0
 var aHit = 0
@@ -130,3 +135,7 @@ func advantage(attacker: Units, defender: Units) -> int:
 	if sw and sw.weapon and tw and sw.weapon.advantage(tw.weapon):
 		result = rules.wpnTypeAdvantageBonus
 	return result
+
+func predictHeal(a_heal_amount: int, b_heal_amount: int) -> void:
+	aHeal = a_heal_amount
+	bHeal = b_heal_amount
