@@ -27,6 +27,7 @@ func load_game_component_data() -> void:
 	file_loader.read_characters()
 	file_loader.read_tiles()
 	file_loader.read_inventories()
+
 func _init() -> void:
 	print("main gui - init called, does nothing")
 	#load_game_component_data()
@@ -62,7 +63,6 @@ func _ready() -> void:
 	draw_and_set_tiles()
 	#await map.done_drawing_nodes
 	continue_process = true
-	repaint_unit_shaders()
 	on_game_update()
 	
 var continue_process = true
@@ -80,6 +80,7 @@ func _process(_delta):
 		return
 	spin_map()
 	if not continue_process: return
+	#repaint_unit_shaders()
 	if Input.is_action_just_pressed("quick_end_turn"):
 		game.skip_player()
 	if Input.is_action_just_pressed("deselect"):
@@ -269,10 +270,14 @@ func make_unit_nodes() -> void:
 	#print("make_unit_nodes added missing unit nodes")
 
 ## set all current unit_node shaders to null
-func repaint_unit_shaders() -> void:
+func repaint_unit_shaders(override_act: bool = false) -> void:
 	var node_list = get_tree().get_nodes_in_group("unit")
 	for next_unit_node: UnitNode in node_list:
-		next_unit_node.undim()
+		if override_act:
+			next_unit_node.undim()
+		else:
+			# dim if acted
+			next_unit_node.on_update(0, true)
 
 func on_change_turn():
 	for u: UnitNode in get_tree().get_nodes_in_group("unit"):
@@ -340,14 +345,13 @@ func spin_map():
 		map_rotation = (4+(map_rotation+spin_change)%4)%4 
 		#map._on_spin_box_value_changed(map_rotation)
 		map.direction = map_rotation
+		repaint_unit_shaders(true)
 		draw_and_set_tiles()
 
 func update_unit_container(unit: Units):
-	#unit_container._ready(game.acting)
 	if unit:
 		unit_container.set_map_and_title(unit.combat_info_dict(), unit.shortInfo())
 		unit_container.visible = true
 	else:
-		#unit_container.set_map_and_title({}, "")
 		unit_container.visible = false
 	unit_container.set_labels()

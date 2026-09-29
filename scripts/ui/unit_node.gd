@@ -63,7 +63,7 @@ func on_update(delay: float, _dim: bool = true) -> void:
 	# dimming
 	if unit and unit.acted:
 		dim()
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play("still")
 	else:
 		undim()
 
