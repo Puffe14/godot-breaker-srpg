@@ -54,7 +54,7 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="HideRect" type="ColorRect" parent="HMenuContainer/MarginContainer" unique_id=204531022]
+[node name="ColorRect" type="ColorRect" parent="HMenuContainer/MarginContainer" unique_id=579229069]
 layout_mode = 2
 color = Color(0, 0, 0, 0.6392157)
 
@@ -83,5 +83,10 @@ layout_mode = 2
 [node name="Close" type="Button" parent="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1191727583]
 layout_mode = 2
 text = "CLOSE"
+
+[node name="HideRect" type="ColorRect" parent="HMenuContainer/MarginContainer" unique_id=204531022]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.6392157)
 
 [connection signal="pressed" from="HMenuContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Close" to="." method="close_this_menu"]
