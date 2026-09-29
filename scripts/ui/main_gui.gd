@@ -151,7 +151,12 @@ func move(pos: Vector2, unit: Units, index: int, delay: float):
 func move_to_tile(location: Tile, unit: Units, delay: float):
 	var pos = map.tile_translated_to_v2(location)
 	print("moving to tile "+str(location.position))
-	move(pos, unit, location.position.z, delay)
+	var target_tile_node = map.get_child_at_v3(location.position)
+	var new_z_index = location.position.z
+	## TODO fix z_index
+	#if target_tile_node:
+	#	new_z_index = target_tile_node.z_index + 0.2 * pos.y
+	move(pos, unit, new_z_index, delay)
 
 func update_unit_node(unit: Units, delay: float, dim: bool):
 	for u in get_tree().get_nodes_in_group("unit"):
