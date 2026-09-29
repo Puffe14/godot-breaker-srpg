@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwmdud6iyn78" path="res://nodes/menus/column_container.tscn" id="6_4lkkm"]
 [ext_resource type="PackedScene" uid="uid://bupc6gl702bnm" path="res://nodes/menus/inspect_unit_containers.tscn" id="7_cu6kq"]
 [ext_resource type="PackedScene" uid="uid://b8m08xt7gvwbu" path="res://nodes/menus/dialogue_container.tscn" id="8_cu6kq"]
-[ext_resource type="Script" path="res://nodes/player_camera.gd" id="8_lw646"]
+[ext_resource type="Script" uid="uid://b4iefuqxu83oa" path="res://nodes/player_camera.gd" id="8_lw646"]
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
 [ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
 [ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
@@ -122,4 +122,5 @@ process_callback = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("8_lw646")
+horizontal_speed = 149
 menu_control = NodePath("../CanvasLayer/HUD/MenuControl")

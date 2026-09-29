@@ -47,3 +47,9 @@ func _process(delta: float) -> void:
 
 func toggle_camera_lock():
 	lock_camera = not lock_camera
+
+func camera_lock():
+	lock_camera = true
+
+func camera_unlock():
+	lock_camera = false

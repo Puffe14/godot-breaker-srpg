@@ -38,8 +38,10 @@ func _init() -> void:
 func _ready() -> void:
 	if not started:
 		$CanvasLayer.visible = false
+		$Camera2D.camera_lock()
 		return
 	$CanvasLayer.visible = true
+	$Camera2D.camera_unlock()
 	# reset text and lists
 	if tip_label:
 		tip_label.text = ""
