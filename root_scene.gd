@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var title_menu: Node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,3 +15,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func start_new_game():
+	print("start game")
+	$TitleMenu.visible = false
+	$MainGUI.visible = true
+	$MainGUI.started = true
+	$MainGUI._ready()
+
+
+func _on_title_menu_start_new_game(level: int) -> void:
+	start_new_game()

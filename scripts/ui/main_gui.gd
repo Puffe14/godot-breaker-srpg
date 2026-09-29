@@ -18,6 +18,8 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var dialogue_container: DialogueContainer = null
 var file_loader: FileLoader = FileLoader.new()
 
+var started = false
+
 ## constants
 var tip_timer: float = 3.0
 
@@ -34,6 +36,10 @@ func _init() -> void:
 	#continue_process = false
 	
 func _ready() -> void:
+	if not started:
+		$CanvasLayer.visible = false
+		return
+	$CanvasLayer.visible = true
 	# reset text and lists
 	if tip_label:
 		tip_label.text = ""
