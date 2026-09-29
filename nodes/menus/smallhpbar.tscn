@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://oc4f26xffshe" path="res://resources/images/ui/slim bar f1.png" id="4_sk7al"]
 [ext_resource type="Texture2D" uid="uid://3dbl7e3dpqs8" path="res://resources/images/portraits/default.png" id="5_nkdec"]
 
-[node name="HP" type="Control" node_paths=PackedStringArray("portrait_node", "weapon_icon_node", "progress_node", "text_label", "weapon_label", "exp_label")]
+[node name="HP" type="Control" unique_id=268990011 node_paths=PackedStringArray("portrait_node", "weapon_icon_node", "progress_node", "text_label", "weapon_label", "exp_label")]
+z_index = 4096
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 85.0
@@ -20,18 +22,18 @@ text_label = NodePath("VBoxContainer/HBoxContainer/PRC")
 weapon_label = NodePath("VBoxContainer/HBoxContainer2/WeaponLabel")
 exp_label = NodePath("VBoxContainer/ExpLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1283267870]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 127.0
 offset_bottom = 68.0
 
-[node name="ExpLabel" type="Label" parent="VBoxContainer"]
+[node name="ExpLabel" type="Label" parent="VBoxContainer" unique_id=1932507747]
 visible = false
 layout_mode = 2
 text = "lvl: 00, exp: 00"
 
-[node name="GaugeHP" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="GaugeHP" type="TextureProgressBar" parent="VBoxContainer" unique_id=700591830]
 custom_minimum_size = Vector2(66.965, 7)
 layout_mode = 2
 size_flags_vertical = 8
@@ -40,45 +42,45 @@ nine_patch_stretch = true
 texture_under = ExtResource("3_4grq6")
 texture_progress = ExtResource("4_sk7al")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=337806015]
 layout_mode = 2
 
-[node name="PRC" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="PRC" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1615093861]
 layout_mode = 2
 text = "HP: 0/0"
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1801975555]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control" unique_id=1041954056]
 layout_mode = 0
 offset_left = -4.0
 offset_right = -4.0
 offset_bottom = 23.0
 
-[node name="Portrait" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Control/PanelContainer"]
+[node name="Portrait" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Control/PanelContainer" unique_id=320729073]
 position = Vector2(20, 8)
 scale = Vector2(2, 1.846)
 texture = ExtResource("5_nkdec")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=408617660]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer2" unique_id=459998530]
 layout_mode = 2
 
-[node name="WeaponIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer2/PanelContainer"]
+[node name="WeaponIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer2/PanelContainer" unique_id=358305235]
 visible = false
 position = Vector2(6.331999, 6.5)
 scale = Vector2(3, 3)
 texture = ExtResource("5_nkdec")
 
-[node name="WeaponLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="WeaponLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1153836951]
 visible = false
 layout_mode = 2
 text = "    AT aa AS bb"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=529306951]
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
@@ -95,13 +97,13 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect"]
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect" unique_id=1355323510]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 8.0
 offset_right = 19.0
 offset_bottom = 8.0
 
-[node name="ColorRect" type="ColorRect" parent="NinePatchRect/PanelContainer"]
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect/PanelContainer" unique_id=26317153]
 layout_mode = 2
 color = Color(0.026220879, 0.016216785, 0.005346089, 0.7607843)

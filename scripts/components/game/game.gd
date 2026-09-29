@@ -229,8 +229,9 @@ func place_player() -> void:
 
 func skip_player() -> void:
 	if currentMap and turnOf==player.side:
-		for unit in currentMap.unitsOnTeam(player.side):
-			queue.push_back(Wait.new(unit))
+		for unit: Units in currentMap.unitsOnTeam(player.side) :
+			if not unit.acted:
+				queue.push_back(Wait.new(unit))
 		send_tip.emit("selected wait for all player units")
 	else:
 		send_tip.emit("could not skip plyer turn")

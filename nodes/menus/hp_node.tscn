@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b8c84mplv564v"]
 
 [node name="HP_node" type="Control" unique_id=1835954591]
+z_index = 500
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
