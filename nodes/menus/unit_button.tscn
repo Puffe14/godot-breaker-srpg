@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bbw4rmbm6ny3f"]
+
+[ext_resource type="Texture2D" uid="uid://3dbl7e3dpqs8" path="res://resources/images/portraits/default.png" id="1_38rpf"]
+[ext_resource type="Script" uid="uid://btv5mqmm48eh6" path="res://nodes/menus/unit_button.gd" id="1_y67ry"]
+
+[node name="UnitButton" type="Control" unique_id=640610094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y67ry")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1626004741]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("1_38rpf")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=917991053]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=185139067]
+layout_mode = 2
+texture = ExtResource("1_38rpf")

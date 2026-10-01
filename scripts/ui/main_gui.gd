@@ -10,6 +10,7 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 @export var menu_node: Control = null
 @export var unit_list_node: Node = null
 @export var map_info_label: Label = null
+@export var organisation_menu: Control = null
 @export var tip_label: Label = null
 
 @export var unit_container: Container = null
@@ -19,6 +20,8 @@ var unit_node: PackedScene = preload("res://nodes/unit_node.tscn")
 var file_loader: FileLoader = FileLoader.new()
 
 var started = false
+
+signal open_org_menu
 
 ## constants
 var tip_timer: float = 3.0
@@ -36,10 +39,15 @@ func _init() -> void:
 	#continue_process = false
 	
 func _ready() -> void:
+	open_org_menu.connect(_on_open_organisation_menu)
+	start_game()
+
+func start_game():
 	if not started:
 		$CanvasLayer.visible = false
 		$Camera2D.camera_lock()
 		return
+	organisation_menu.visible = false
 	$CanvasLayer.visible = true
 	$Camera2D.camera_unlock()
 	# reset text and lists
@@ -79,12 +87,16 @@ func _process(_delta):
 	if Input.is_action_just_pressed("debug"):
 		draw_and_set_tiles()
 	if Input.is_action_just_pressed("retry"):
-		_ready()
-	if not game or not game.currentMap:
+		start_game()
+	if continue_process and (not game or not game.currentMap):
+		continue_process = false
 		await get_tree().create_timer(1).timeout
 		print("game or map missing")
+		open_org_menu.emit()
+		await organisation_menu.start_pressed
 		if not game or not game.currentMap:
-			_ready()
+			continue_process = true
+			start_game()
 		return
 	spin_map()
 	if not continue_process: return
@@ -96,7 +108,7 @@ func _process(_delta):
 		inspect_container.update(null)
 		free_children(menu_node)
 	game.currentMap = map.field_map
-	var player_check = game.player
+	# connect all signals
 	if !game.update.is_connected(on_game_update):
 		game.update.connect(on_game_update)
 	if !game.change_turn.is_connected(on_change_turn):
@@ -258,7 +270,7 @@ func on_game_tip(tip_string: String) -> void:
 	await get_tree().create_timer(tip_timer).timeout
 	tip_label.hide()
 
-func free_children(node) -> void:
+static func free_children(node) -> void:
 	for child in node.get_children():
 		child.queue_free()
 
@@ -340,7 +352,7 @@ func on_lose():
 	msg_node.create(msg)
 	hud_node.add_child(msg_node)
 	await get_tree().create_timer(2).timeout
-	_ready()
+	start_game()
 
 var map_rotation: int = 0
 func spin_map():
@@ -363,3 +375,12 @@ func update_unit_container(unit: Units):
 	else:
 		unit_container.visible = false
 	unit_container.set_labels()
+
+
+## called when player's organisation menu should be opened
+func _on_open_organisation_menu():
+	var lg = game.player
+	organisation_menu.start_pressed.connect(start_game)
+	organisation_menu.org = lg
+	organisation_menu._ready()
+	organisation_menu.visible = true

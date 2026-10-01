@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://26x1vfagdlpy"]
+
+[ext_resource type="Texture2D" uid="uid://b844cj0pc2l2p" path="res://resources/images/portraits/cylna.png" id="1_d8xkl"]
+[ext_resource type="Script" uid="uid://b16np3qje7i88" path="res://scripts/ui/non-combat/deploy_button.gd" id="1_shdwa"]
+
+[node name="Button" type="Button" unique_id=1299940781]
+custom_minimum_size = Vector2(100, 100)
+script = ExtResource("1_shdwa")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1966196050]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19607843, 0.2627451, 0.6784314, 0.57254905)
+
+[node name="Picture" type="TextureRect" parent="." unique_id=1700663493]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 94.0
+offset_bottom = 92.0
+texture = ExtResource("1_d8xkl")
+expand_mode = 1
+
+[node name="BottomLabel" type="Label" parent="." unique_id=712287782]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.080000006
+anchor_top = 0.77000004
+anchor_right = 0.90000004
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "asda"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -10,12 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://c73exgfedhbd7" path="res://nodes/menus/unit_container.tscn" id="9_4lkkm"]
 [ext_resource type="FontFile" uid="uid://b1q1y0wi884fk" path="res://resources/fonts/Jersey_10/Jersey10-Regular.ttf" id="9_qdy25"]
 [ext_resource type="PackedScene" uid="uid://d3leony1sl4j3" path="res://nodes/menus/tile_container.tscn" id="10_4lkkm"]
+[ext_resource type="PackedScene" uid="uid://m27yeif40ova" path="res://nodes/menus/non-combat/organisation_control.tscn" id="10_qdy25"]
 
 [sub_resource type="Theme" id="Theme_mvnht"]
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container")]
+[node name="MainGUI" type="Node2D" unique_id=779973715 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "organisation_menu", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_cu6kq")
@@ -23,6 +24,7 @@ hud_node = NodePath("CanvasLayer/HUD")
 menu_node = NodePath("CanvasLayer/HUD/MenuControl")
 unit_list_node = NodePath("UnitNodeList")
 map_info_label = NodePath("CanvasLayer/HUD/MapInfoLabel")
+organisation_menu = NodePath("CanvasLayer/HUD/OrganisationMenu")
 tip_label = NodePath("CanvasLayer/HUD/TipLabel")
 unit_container = NodePath("CanvasLayer/HUD/UnitContainer")
 tile_container = NodePath("CanvasLayer/HUD/TileContainer")
@@ -115,6 +117,10 @@ offset_left = 34.0
 offset_top = 475.0
 offset_right = 1114.0
 offset_bottom = 633.0
+
+[node name="OrganisationMenu" parent="CanvasLayer/HUD" unique_id=510489322 instance=ExtResource("10_qdy25")]
+visible = false
+layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=337985527 node_paths=PackedStringArray("menu_control")]
 position = Vector2(575, 325)
