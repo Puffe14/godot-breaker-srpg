@@ -220,8 +220,6 @@ func availableActions(unit: Units, moves: bool = false) -> Array[Action]:
 func place_player() -> void:
 	if player:
 		## TODO character choice between levels
-		player.clearDeployed()
-		player.deployed = player.members
 		player.re_group()
 		currentMap.setPlayer(player)
 		currentMap.deployPlayer()
@@ -239,12 +237,13 @@ func skip_player() -> void:
 func nextMap():
 	# TODO
 	# Advance to next map
-	if currentMapNumber<3:
+	if currentMapNumber<4:
 		currentMapNumber+=1
 	player.addMissingToMembers(player.deployed)
 	player.clearDead()
 	player.refresh_acts_for_members()
-	#player.clearDeployed()
+	player.clearDeployed()
+	player.deployed = player.members.duplicate()
 	turnOf = Units.Team.Player
 	currentMap = null #DataLibrary.maps.get(currentMapNumber.toString)
 

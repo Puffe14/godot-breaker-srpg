@@ -51,3 +51,6 @@ func refresh_acts_for_members() -> void:
 
 func clearDeployed():
 	deployed = []
+
+func is_unit_deployed(unit: Units) -> bool:
+	return deployed.has(unit)
