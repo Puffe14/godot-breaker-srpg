@@ -283,7 +283,6 @@ func handle_turn() -> void:
 			place_player()
 			change_turn.emit()
 		if currentMap.player:
-			#player.addMissingToDeployed(currentMap.unitsOnTeam(player.side))
 			player.re_group()
 		currentMap.clearDead()
 		currentTurn = currentMap.turnNumber

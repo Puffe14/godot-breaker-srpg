@@ -1,10 +1,23 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://bdihvhm1cjnb8"]
 
 [ext_resource type="Texture2D" uid="uid://cngtgbo5fu8g8" path="res://resources/images/units/dead.png" id="1_0pi3v"]
-[ext_resource type="Texture2D" uid="uid://bv68n5gd3ouh5" path="res://resources/images/units/guy_atk_1.png" id="2_mknre"]
-[ext_resource type="Texture2D" uid="uid://7b85wqqur6pa" path="res://resources/images/units/guy_idle.png" id="3_aokvy"]
-[ext_resource type="Texture2D" uid="uid://c0lav1xyi811v" path="res://resources/images/units/guy_hurt.png" id="4_crw4c"]
-[ext_resource type="Texture2D" uid="uid://c6suv7evvmpy5" path="res://resources/images/units/guy_atk_2.png" id="5_a2fvp"]
+[ext_resource type="Texture2D" uid="uid://dnflb20dsiv1m" path="res://resources/images/units/ulrarik_spritesheet.png" id="2_187uv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdwmn"]
+atlas = ExtResource("2_187uv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pi3v"]
+atlas = ExtResource("2_187uv")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mknre"]
+atlas = ExtResource("2_187uv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aokvy"]
+atlas = ExtResource("2_187uv")
+region = Rect2(0, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -13,7 +26,7 @@ animations = [{
 "texture": ExtResource("1_0pi3v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_mknre")
+"texture": SubResource("AtlasTexture_bdwmn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("1_0pi3v")
@@ -33,10 +46,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_mknre")
+"texture": SubResource("AtlasTexture_mknre")
 }],
 "loop": true,
 "name": &"default",
@@ -44,10 +57,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mknre")
+"texture": SubResource("AtlasTexture_mknre")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }],
 "loop": false,
 "name": &"evade",
@@ -55,10 +68,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_crw4c")
+"texture": SubResource("AtlasTexture_bdwmn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }],
 "loop": false,
 "name": &"hurt",
@@ -66,7 +79,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }],
 "loop": true,
 "name": &"still",
@@ -74,16 +87,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_mknre")
+"texture": SubResource("AtlasTexture_mknre")
 }, {
 "duration": 2.0,
-"texture": ExtResource("5_a2fvp")
+"texture": SubResource("AtlasTexture_aokvy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_aokvy")
+"texture": SubResource("AtlasTexture_0pi3v")
 }],
 "loop": false,
 "name": &"strike",

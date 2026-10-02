@@ -71,10 +71,19 @@ func start_game():
 	game.acting = null
 	if !map.move.is_connected(move):
 		map.move.connect(move)
-	#map.field_map.player = game.player
 	file_loader.reread_map(map.field_map, str(game.currentMapNumber))
+	# connect game signals
+	if !game.update.is_connected(on_game_update):
+		game.update.connect(on_game_update)
+	if !game.change_turn.is_connected(on_change_turn):
+		game.change_turn.connect(on_change_turn)
+	if !game.selected.is_connected(on_selected):
+		game.selected.connect(on_selected)
+	if !game.inspected.is_connected(on_inspected):
+		game.inspected.connect(on_inspected)
+	if !game.send_tip.is_connected(on_game_tip):
+		game.send_tip.connect(on_game_tip)
 	# connect tiles and draw the map
-	game.update.connect(on_game_update)
 	map.reset_direction()
 	draw_and_set_tiles()
 	#await map.done_drawing_nodes
@@ -100,7 +109,7 @@ func _process(_delta):
 		return
 	spin_map()
 	if not continue_process: return
-	#repaint_unit_shaders()
+	#
 	if Input.is_action_just_pressed("quick_end_turn"):
 		game.skip_player()
 	if Input.is_action_just_pressed("deselect"):
@@ -108,17 +117,6 @@ func _process(_delta):
 		inspect_container.update(null)
 		free_children(menu_node)
 	game.currentMap = map.field_map
-	# connect all signals
-	if !game.update.is_connected(on_game_update):
-		game.update.connect(on_game_update)
-	if !game.change_turn.is_connected(on_change_turn):
-		game.change_turn.connect(on_change_turn)
-	if !game.selected.is_connected(on_selected):
-		game.selected.connect(on_selected)
-	if !game.inspected.is_connected(on_inspected):
-		game.inspected.connect(on_inspected)
-	if !game.send_tip.is_connected(on_game_tip):
-		game.send_tip.connect(on_game_tip)
 	# set the nodes and tiles
 	connect_tile_nodes()
 	map.set_tiles_in_nodes()
