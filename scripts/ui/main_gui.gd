@@ -43,6 +43,7 @@ func _ready() -> void:
 func start_game():
 	if not started:
 		$CanvasLayer.visible = false
+		map.visible = false
 		$Camera2D.camera_lock()
 		return
 	organisation_menu.visible = false
@@ -87,6 +88,7 @@ func start_game():
 	#await map.done_drawing_nodes
 	continue_process = true
 	hud_node.visible = true
+	map.visible = true
 	on_game_update()
 	
 var continue_process = true

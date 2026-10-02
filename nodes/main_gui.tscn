@@ -38,7 +38,6 @@ scale = Vector2(3, 3)
 [node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=126515447]
-visible = false
 
 [node name="HUD" type="Control" parent="CanvasLayer" unique_id=113286467]
 layout_mode = 3
@@ -57,13 +56,12 @@ offset_right = 1134.0
 offset_bottom = 238.0
 
 [node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=1361043059 instance=ExtResource("6_4lkkm")]
+visible = false
 layout_mode = 0
 offset_left = 729.0
 offset_top = 23.0
 offset_right = 1106.0
 offset_bottom = 285.0
-
-[node name="UnitNodeList" type="Node" parent="CanvasLayer/HUD" unique_id=276389693]
 
 [node name="TileContainer" parent="CanvasLayer/HUD" unique_id=1353515007 instance=ExtResource("10_4lkkm")]
 layout_mode = 0
