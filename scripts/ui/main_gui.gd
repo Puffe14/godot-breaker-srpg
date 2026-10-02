@@ -35,9 +35,7 @@ func load_game_component_data() -> void:
 
 func _init() -> void:
 	print("main gui - init called, does nothing")
-	#load_game_component_data()
-	#continue_process = false
-	
+
 func _ready() -> void:
 	open_org_menu.connect(_on_open_organisation_menu)
 	start_game()
@@ -88,6 +86,7 @@ func start_game():
 	draw_and_set_tiles()
 	#await map.done_drawing_nodes
 	continue_process = true
+	hud_node.visible = true
 	on_game_update()
 	
 var continue_process = true
@@ -102,7 +101,14 @@ func _process(_delta):
 		await get_tree().create_timer(1).timeout
 		print("game or map missing")
 		open_org_menu.emit()
-		await organisation_menu.start_pressed
+		# dont open an org with no members
+		if not organisation_menu.org or organisation_menu.org.members.is_empty():
+			organisation_menu._on_start_button_pressed()
+		# if there are things to choose, open the org menu and wait
+		else:
+			$Camera2D.camera_lock()
+			await organisation_menu.start_pressed
+		hud_node.visible = false
 		if not game or not game.currentMap:
 			continue_process = true
 			start_game()
@@ -377,8 +383,9 @@ func update_unit_container(unit: Units):
 
 ## called when player's organisation menu should be opened
 func _on_open_organisation_menu():
-	var lg = game.player
+	# connect menu start
 	organisation_menu.start_pressed.connect(start_game)
+	var lg = game.player
 	organisation_menu.org = lg
 	organisation_menu._ready()
 	organisation_menu.visible = true

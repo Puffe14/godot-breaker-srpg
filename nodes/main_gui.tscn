@@ -38,6 +38,7 @@ scale = Vector2(3, 3)
 [node name="UnitNodeList" type="Node" parent="." unique_id=2145727142]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=126515447]
+visible = false
 
 [node name="HUD" type="Control" parent="CanvasLayer" unique_id=113286467]
 layout_mode = 3
