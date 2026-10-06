@@ -14,7 +14,7 @@ var lock_camera = false
 
 var not_android = false
 @export var drag_speed = 0.5
-@export var pinch_speed = 2
+@export var pinch_speed = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,6 +53,7 @@ func _process(delta: float) -> void:
 		zoom = zoom_base
 
 func _unhandled_input(event: InputEvent) -> void:
+	var pinching: bool = false
 	if event is InputEventMagnifyGesture:
 		# if factor < 1, zoom_out else zoom_in
 		zoom += zoom_speed * pinch_speed * (event.factor - 1)
@@ -60,16 +61,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			zoom = min_zoom
 		if zoom.length() > max_zoom:
 			zoom = max_zoom
+		pinching = true
 	if event is InputEventScreenDrag:
-		offset -= event.screen_relative * drag_speed
-		#if cursor_position.x < drag_left_margin*view_width:
-		#	offset.x -= horizontal_speed * delta
-		#if cursor_position.x > (1-drag_right_margin)*view_width:
-		#	offset.x += horizontal_speed * delta
-		#if cursor_position.y < drag_top_margin*view_height:
-		#	offset.y -= vertical_speed * delta
-		#if cursor_position.y > (1-drag_bottom_margin)*view_height:
-		#	offset.y += vertical_speed * delta
+		# prevent pinching from moving camera unpredictably
+		if not pinching:
+			offset -= event.screen_relative * drag_speed
+
 
 func toggle_camera_lock():
 	lock_camera = not lock_camera

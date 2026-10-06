@@ -370,8 +370,8 @@ func on_lose():
 	start_game()
 
 var map_rotation: int = 0
-func spin_map():
-	var spin_change = 0
+func spin_map(spin_set: int = 0):
+	var spin_change = spin_set
 	if Input.is_action_just_pressed("rotate_left"):
 		spin_change += 1
 	if Input.is_action_just_pressed("rotate_right"):
@@ -400,3 +400,10 @@ func _on_open_organisation_menu():
 	organisation_menu.org = lg
 	organisation_menu._ready()
 	organisation_menu.visible = true
+
+
+func _on_rotate_right_button_up() -> void:
+	spin_map(-1)
+
+func _on_rotate_left_button_up() -> void:
+	spin_map(1)

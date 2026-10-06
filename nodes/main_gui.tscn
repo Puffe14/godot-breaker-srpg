@@ -56,10 +56,29 @@ offset_bottom = 100.0
 toggle_mode = true
 text = "View"
 
+[node name="RotateRight" type="Button" parent="CanvasLayer/AndroidLayer"]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 40.0
+offset_right = 1079.0
+offset_bottom = 76.0
+focus_mode = 0
+text = "R >"
+
+[node name="RotateLeft" type="Button" parent="CanvasLayer/AndroidLayer"]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 40.0
+offset_right = 991.0
+offset_bottom = 76.0
+focus_mode = 0
+text = "< L"
+
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -1.0
+offset_right = 39.0
 offset_bottom = 40.0
 theme = SubResource("Theme_mvnht")
 
@@ -117,8 +136,10 @@ vertical_alignment = 2
 [node name="MenuControl" type="Control" parent="CanvasLayer/HUD"]
 z_index = 12
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 52.0
+offset_bottom = 56.0
 
 [node name="InspectContainer" parent="CanvasLayer/HUD" instance=ExtResource("7_cu6kq")]
 layout_mode = 1
@@ -146,3 +167,6 @@ drag_vertical_enabled = true
 script = ExtResource("8_lw646")
 horizontal_speed = 149
 menu_control = NodePath("../CanvasLayer/HUD/MenuControl")
+
+[connection signal="button_up" from="CanvasLayer/AndroidLayer/RotateRight" to="." method="_on_rotate_right_button_up"]
+[connection signal="button_up" from="CanvasLayer/AndroidLayer/RotateLeft" to="." method="_on_rotate_left_button_up"]
