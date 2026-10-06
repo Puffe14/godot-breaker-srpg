@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" format=3 uid="uid://csqh8v33brm61"]
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://csqh8v33brm61"]
 
 [ext_resource type="Resource" uid="uid://dudanf5lhdgy8" path="res://resources/data/classes/wilder.tres" id="1_e7l0s"]
 [ext_resource type="Script" uid="uid://dalmi1756haci" path="res://scripts/components/units/character.gd" id="1_wdxxv"]
