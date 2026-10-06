@@ -23,6 +23,11 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bjwbf02qpgcw8"
 config/icon="uid://808pernjhtg6"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [global_group]
 
 unit=""
@@ -110,6 +115,7 @@ quick_end_turn={
 [input_devices]
 
 pointing/android/enable_long_press_as_right_click=true
+pointing/android/enable_pan_and_scale_gestures=true
 
 [rendering]
 

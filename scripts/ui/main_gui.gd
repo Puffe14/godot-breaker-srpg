@@ -23,6 +23,11 @@ var started = false
 
 signal open_org_menu
 
+## android
+
+@export var inspect_button: Button = null
+var ignore_input = false
+
 ## constants
 var tip_timer: float = 3.0
 
@@ -193,8 +198,12 @@ func update_unit_node(unit: Units, delay: float, dim: bool):
 ### TILE NODE HANDING ###
 
 func tile_sent_selected(tile: Tile):
+	if ignore_input: return
 	game.selectTile(tile)
 	tile_container._ready(tile)
+	ignore_input = true
+	await  get_tree().create_timer(0.15).timeout
+	ignore_input = false
 
 func tile_sent_hovered(tile: Tile):
 	tile_container._ready(tile)

@@ -16,7 +16,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "organisation_menu", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container")]
+[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "organisation_menu", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container", "inspect_button")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_cu6kq")
@@ -30,6 +30,7 @@ unit_container = NodePath("CanvasLayer/HUD/UnitContainer")
 tile_container = NodePath("CanvasLayer/HUD/TileContainer")
 inspect_container = NodePath("CanvasLayer/HUD/InspectContainer")
 dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
+inspect_button = NodePath("CanvasLayer/AndroidLayer/InspectButton")
 
 [node name="MapNode" parent="." instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
@@ -38,6 +39,22 @@ scale = Vector2(3, 3)
 [node name="UnitNodeList" type="Node" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AndroidLayer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InspectButton" type="Button" parent="CanvasLayer/AndroidLayer"]
+visible = false
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 43.0
+offset_right = 1102.0
+offset_bottom = 100.0
+toggle_mode = true
+text = "View"
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
