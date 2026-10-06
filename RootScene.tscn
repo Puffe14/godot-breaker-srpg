@@ -1,16 +1,15 @@
-[gd_scene format=3 uid="uid://jywlve753ycf"]
+[gd_scene load_steps=4 format=3 uid="uid://jywlve753ycf"]
 
 [ext_resource type="Script" uid="uid://c8c3wdv4q3ee2" path="res://root_scene.gd" id="1_03604"]
 [ext_resource type="PackedScene" uid="uid://1ujjcngqv86f" path="res://nodes/main_gui.tscn" id="1_vw6t8"]
 [ext_resource type="PackedScene" uid="uid://uk0luqkkgmn6" path="res://title_menu.tscn" id="2_y8vh0"]
 
-[node name="RootScene" type="Node2D" unique_id=1934897969 node_paths=PackedStringArray("title_menu")]
+[node name="RootScene" type="Node2D" node_paths=PackedStringArray("title_menu")]
 script = ExtResource("1_03604")
 title_menu = NodePath("TitleMenu")
 
-[node name="TitleMenu" parent="." unique_id=239761791 instance=ExtResource("2_y8vh0")]
+[node name="TitleMenu" parent="." instance=ExtResource("2_y8vh0")]
 
-[node name="MainGUI" parent="." unique_id=779973715 instance=ExtResource("1_vw6t8")]
-visible = false
+[node name="MainGUI" parent="." instance=ExtResource("1_vw6t8")]
 
 [connection signal="start_new_game" from="TitleMenu" to="." method="_on_title_menu_start_new_game"]

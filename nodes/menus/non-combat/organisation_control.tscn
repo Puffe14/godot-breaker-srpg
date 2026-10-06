@@ -1,15 +1,11 @@
-[gd_scene format=3 uid="uid://m27yeif40ova"]
+[gd_scene load_steps=5 format=3 uid="uid://m27yeif40ova"]
 
-[ext_resource type="Script" uid="uid://bxu4v76kap8um" path="res://scripts/ui/organisation_menu.gd" id="1_e3px1"]
+[ext_resource type="Script" path="res://scripts/ui/organisation_menu.gd" id="1_e3px1"]
 [ext_resource type="Resource" uid="uid://bspm5khen3o2k" path="res://resources/data/game/new_player.tres" id="2_vjrq7"]
-[ext_resource type="Texture2D" uid="uid://808pernjhtg6" path="res://resources/images/portraits/lairaea.png" id="3_6r0xc"]
-[ext_resource type="Script" uid="uid://btv5mqmm48eh6" path="res://nodes/menus/unit_button.gd" id="4_6klx2"]
 [ext_resource type="Texture2D" uid="uid://b844cj0pc2l2p" path="res://resources/images/portraits/cylna.png" id="5_pcsv6"]
-[ext_resource type="PackedScene" uid="uid://bbw4rmbm6ny3f" path="res://nodes/menus/unit_button.tscn" id="6_nm417"]
-[ext_resource type="Script" uid="uid://jsqdwlq65u5c" path="res://scripts/ui/button_option.gd" id="7_yu3if"]
 [ext_resource type="PackedScene" uid="uid://26x1vfagdlpy" path="res://nodes/menus/non-combat/deploy_button.tscn" id="8_mfbhw"]
 
-[node name="OrganisationMenu" type="Control" unique_id=510489322 node_paths=PackedStringArray("tabs", "deploy_list")]
+[node name="OrganisationMenu" type="Control" node_paths=PackedStringArray("tabs", "deploy_list")]
 layout_mode = 3
 anchor_left = 0.10300001
 anchor_top = 0.136
@@ -28,7 +24,7 @@ org = ExtResource("2_vjrq7")
 deploy_list = NodePath("TabContainer/Deploy List/DeployGrid")
 deploy_button_scene = ExtResource("8_mfbhw")
 
-[node name="Panel" type="Panel" parent="." unique_id=1461145214]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.126
@@ -40,85 +36,18 @@ offset_top = -33.96
 offset_right = 1184.692
 offset_bottom = 686.04
 
-[node name="TabContainer" type="TabContainer" parent="." unique_id=189579925]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
 offset_right = 394.0
 offset_bottom = 504.0
-current_tab = 2
+current_tab = 0
 tabs_position = 1
 
-[node name="Scroll Deploy List" type="ScrollContainer" parent="TabContainer" unique_id=1022565231]
-visible = false
+[node name="Deploy List" type="Panel" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Scroll Deploy List" unique_id=249003072]
-layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1357778954]
-visible = false
-position = Vector2(35.5, 34.5)
-scale = Vector2(5.4375, 5.3125)
-texture = ExtResource("3_6r0xc")
-
-[node name="Sprite2D2" type="Sprite2D" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=569089408]
-visible = false
-position = Vector2(105.00001, 46)
-scale = Vector2(5.4375, 5.3125)
-texture = ExtResource("3_6r0xc")
-
-[node name="UnitButton" type="Control" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=105508488]
-layout_mode = 2
-script = ExtResource("4_6klx2")
-metadata/_custom_type_script = "uid://btv5mqmm48eh6"
-
-[node name="TextureButton" type="TextureButton" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1426510342]
-layout_mode = 2
-texture_normal = ExtResource("5_pcsv6")
-stretch_mode = 0
-
-[node name="UnitButton2" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=640610094 instance=ExtResource("6_nm417")]
-layout_mode = 2
-
-[node name="UnitButton3" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=2102201356 instance=ExtResource("6_nm417")]
-layout_mode = 2
-
-[node name="ButtonOption" type="Button" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1421777374]
-layout_mode = 2
-text = "pokpkpopopo"
-script = ExtResource("7_yu3if")
-metadata/_custom_type_script = "uid://jsqdwlq65u5c"
-
-[node name="ButtonOption2" type="Button" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1693162380]
-layout_mode = 2
-text = "pokpkpopopo"
-script = ExtResource("7_yu3if")
-metadata/_custom_type_script = "uid://jsqdwlq65u5c"
-
-[node name="ButtonOption3" type="Button" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1674254893]
-layout_mode = 2
-text = "pokpkpopopo"
-script = ExtResource("7_yu3if")
-metadata/_custom_type_script = "uid://jsqdwlq65u5c"
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Scroll Deploy List/VBoxContainer" unique_id=1377065726]
-layout_mode = 2
-texture = ExtResource("5_pcsv6")
-expand_mode = 5
-
-[node name="Item List" type="ScrollContainer" parent="TabContainer" unique_id=835134906]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Item List" unique_id=2114600119]
-layout_mode = 2
-
-[node name="Deploy List" type="Panel" parent="TabContainer" unique_id=1466746062]
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="DeployGrid" type="GridContainer" parent="TabContainer/Deploy List" unique_id=257088112]
+[node name="DeployGrid" type="GridContainer" parent="TabContainer/Deploy List"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,14 +60,14 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[node name="Button9" parent="TabContainer/Deploy List/DeployGrid" unique_id=1299940781 instance=ExtResource("8_mfbhw")]
+[node name="Button9" parent="TabContainer/Deploy List/DeployGrid" instance=ExtResource("8_mfbhw")]
 layout_mode = 2
 
-[node name="Button8" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=804111408]
+[node name="Button8" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button8" unique_id=1201987622]
+[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button8"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 4.0
@@ -147,7 +76,7 @@ offset_bottom = 92.0
 texture = ExtResource("5_pcsv6")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="TabContainer/Deploy List/DeployGrid/Button8" unique_id=1007016143]
+[node name="Label" type="Label" parent="TabContainer/Deploy List/DeployGrid/Button8"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.080000006
@@ -159,11 +88,11 @@ grow_vertical = 0
 text = "asda"
 horizontal_alignment = 1
 
-[node name="Button6" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=890293808]
+[node name="Button6" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button6" unique_id=1775333622]
+[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button6"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 4.0
@@ -172,11 +101,11 @@ offset_bottom = 92.0
 texture = ExtResource("5_pcsv6")
 expand_mode = 1
 
-[node name="Button7" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=1781508866]
+[node name="Button7" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button7" unique_id=539608695]
+[node name="TextureRect2" type="TextureRect" parent="TabContainer/Deploy List/DeployGrid/Button7"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 4.0
@@ -185,23 +114,31 @@ offset_bottom = 92.0
 texture = ExtResource("5_pcsv6")
 expand_mode = 1
 
-[node name="Button2" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=83122174]
+[node name="Button2" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Button3" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=20227674]
+[node name="Button3" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Button4" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=835430497]
+[node name="Button4" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Button5" type="Button" parent="TabContainer/Deploy List/DeployGrid" unique_id=1921699129]
+[node name="Button5" type="Button" parent="TabContainer/Deploy List/DeployGrid"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="." unique_id=1120630411]
+[node name="Item List" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Item List"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 814.0
 offset_top = 428.0
@@ -210,7 +147,7 @@ offset_bottom = 523.0
 theme_override_font_sizes/font_size = 63
 text = "Start!"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=208894034]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.128

@@ -98,7 +98,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 	if $TopSprite.visible:
 		hovered_tile.emit(tile)
 	# if clicked
-	if Input.is_action_just_pressed('select'):
+	if Input.is_action_just_released('select'):
 		if tile:
 			print('clicked!'+str(tile.position))
 			if tile.occupiable:

@@ -23,6 +23,11 @@ var started = false
 
 signal open_org_menu
 
+## android
+
+@export var inspect_button: Button = null
+var ignore_input = false
+
 ## constants
 var tip_timer: float = 3.0
 
@@ -193,8 +198,12 @@ func update_unit_node(unit: Units, delay: float, dim: bool):
 ### TILE NODE HANDING ###
 
 func tile_sent_selected(tile: Tile):
+	if ignore_input: return
 	game.selectTile(tile)
 	tile_container._ready(tile)
+	ignore_input = true
+	await  get_tree().create_timer(0.15).timeout
+	ignore_input = false
 
 func tile_sent_hovered(tile: Tile):
 	tile_container._ready(tile)
@@ -361,8 +370,8 @@ func on_lose():
 	start_game()
 
 var map_rotation: int = 0
-func spin_map():
-	var spin_change = 0
+func spin_map(spin_set: int = 0):
+	var spin_change = spin_set
 	if Input.is_action_just_pressed("rotate_left"):
 		spin_change += 1
 	if Input.is_action_just_pressed("rotate_right"):
@@ -391,3 +400,10 @@ func _on_open_organisation_menu():
 	organisation_menu.org = lg
 	organisation_menu._ready()
 	organisation_menu.visible = true
+
+
+func _on_rotate_right_button_up() -> void:
+	spin_map(-1)
+
+func _on_rotate_left_button_up() -> void:
+	spin_map(1)
