@@ -407,3 +407,6 @@ func _on_rotate_right_button_up() -> void:
 
 func _on_rotate_left_button_up() -> void:
 	spin_map(1)
+
+func _on_wait_button_up() -> void:
+	game.skip_player()

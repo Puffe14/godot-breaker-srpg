@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Units" load_steps=8 format=3 uid="uid://clrx651vvcyce"]
+[gd_resource type="Resource" script_class="Units" format=3 uid="uid://clrx651vvcyce"]
 
 [ext_resource type="Resource" uid="uid://bdub1bfsqbcql" path="res://resources/data/characters/dummy2.tres" id="1_df30j"]
 [ext_resource type="Script" uid="uid://yejumcuhegph" path="res://scripts/components/items/inventory.gd" id="2_ghkls"]

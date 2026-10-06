@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1ujjcngqv86f"]
+[gd_scene format=3 uid="uid://1ujjcngqv86f"]
 
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
@@ -16,7 +16,7 @@
 default_font = ExtResource("9_qdy25")
 /fonts/font = ExtResource("9_qdy25")
 
-[node name="MainGUI" type="Node2D" node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "organisation_menu", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container", "inspect_button")]
+[node name="MainGUI" type="Node2D" unique_id=201366933 node_paths=PackedStringArray("map", "hud_node", "menu_node", "unit_list_node", "map_info_label", "organisation_menu", "tip_label", "unit_container", "tile_container", "inspect_container", "dialogue_container", "inspect_button")]
 script = ExtResource("1_q7ebc")
 map = NodePath("MapNode")
 game = ExtResource("2_cu6kq")
@@ -32,21 +32,21 @@ inspect_container = NodePath("CanvasLayer/HUD/InspectContainer")
 dialogue_container = NodePath("CanvasLayer/HUD/DialogueContainer")
 inspect_button = NodePath("CanvasLayer/AndroidLayer/InspectButton")
 
-[node name="MapNode" parent="." instance=ExtResource("2_7wb8r")]
+[node name="MapNode" parent="." unique_id=1424485741 instance=ExtResource("2_7wb8r")]
 position = Vector2(336, 202)
 scale = Vector2(3, 3)
 
-[node name="UnitNodeList" type="Node" parent="."]
+[node name="UnitNodeList" type="Node" parent="." unique_id=2052692208]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2000599375]
 
-[node name="AndroidLayer" type="Control" parent="CanvasLayer"]
+[node name="AndroidLayer" type="Control" parent="CanvasLayer" unique_id=1479318981]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="InspectButton" type="Button" parent="CanvasLayer/AndroidLayer"]
+[node name="InspectButton" type="Button" parent="CanvasLayer/AndroidLayer" unique_id=38946]
 visible = false
 layout_mode = 0
 offset_left = 1043.0
@@ -56,7 +56,7 @@ offset_bottom = 100.0
 toggle_mode = true
 text = "View"
 
-[node name="RotateRight" type="Button" parent="CanvasLayer/AndroidLayer"]
+[node name="RotateRight" type="Button" parent="CanvasLayer/AndroidLayer" unique_id=545963727]
 layout_mode = 0
 offset_left = 1013.0
 offset_top = 40.0
@@ -65,7 +65,7 @@ offset_bottom = 76.0
 focus_mode = 0
 text = "R >"
 
-[node name="RotateLeft" type="Button" parent="CanvasLayer/AndroidLayer"]
+[node name="RotateLeft" type="Button" parent="CanvasLayer/AndroidLayer" unique_id=1988696342]
 layout_mode = 0
 offset_left = 926.0
 offset_top = 40.0
@@ -74,7 +74,16 @@ offset_bottom = 76.0
 focus_mode = 0
 text = "< L"
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="Wait" type="Button" parent="CanvasLayer/AndroidLayer" unique_id=804520313]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 39.0
+offset_right = 313.0
+offset_bottom = 75.0
+focus_mode = 0
+text = "END TURN"
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1418857412]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1.0
@@ -82,7 +91,7 @@ offset_right = 39.0
 offset_bottom = 40.0
 theme = SubResource("Theme_mvnht")
 
-[node name="UnitContainer2" parent="CanvasLayer/HUD" instance=ExtResource("9_4lkkm")]
+[node name="UnitContainer2" parent="CanvasLayer/HUD" unique_id=809323482 instance=ExtResource("9_4lkkm")]
 visible = false
 z_index = 12
 layout_mode = 0
@@ -91,7 +100,7 @@ offset_top = 12.0
 offset_right = 1134.0
 offset_bottom = 238.0
 
-[node name="UnitContainer" parent="CanvasLayer/HUD" instance=ExtResource("6_4lkkm")]
+[node name="UnitContainer" parent="CanvasLayer/HUD" unique_id=1621556859 instance=ExtResource("6_4lkkm")]
 visible = false
 layout_mode = 0
 offset_left = 729.0
@@ -99,7 +108,7 @@ offset_top = 23.0
 offset_right = 1106.0
 offset_bottom = 285.0
 
-[node name="TileContainer" parent="CanvasLayer/HUD" instance=ExtResource("10_4lkkm")]
+[node name="TileContainer" parent="CanvasLayer/HUD" unique_id=1127606770 instance=ExtResource("10_4lkkm")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -113,7 +122,7 @@ offset_bottom = 623.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="MapInfoLabel" type="Label" parent="CanvasLayer/HUD"]
+[node name="MapInfoLabel" type="Label" parent="CanvasLayer/HUD" unique_id=480532350]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 12.0
@@ -122,7 +131,7 @@ offset_bottom = 30.0
 scale = Vector2(2, 2)
 text = "Map info"
 
-[node name="TipLabel" type="Label" parent="CanvasLayer/HUD"]
+[node name="TipLabel" type="Label" parent="CanvasLayer/HUD" unique_id=447574319]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 402.0
@@ -133,7 +142,7 @@ text = "SOme tip given to somebody on the screen
 woow"
 vertical_alignment = 2
 
-[node name="MenuControl" type="Control" parent="CanvasLayer/HUD"]
+[node name="MenuControl" type="Control" parent="CanvasLayer/HUD" unique_id=1973652902]
 z_index = 12
 anchors_preset = 0
 offset_left = 12.0
@@ -141,25 +150,25 @@ offset_top = 16.0
 offset_right = 52.0
 offset_bottom = 56.0
 
-[node name="InspectContainer" parent="CanvasLayer/HUD" instance=ExtResource("7_cu6kq")]
+[node name="InspectContainer" parent="CanvasLayer/HUD" unique_id=1560271328 instance=ExtResource("7_cu6kq")]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 5.0
 offset_right = 8.0
 offset_bottom = 5.0
 
-[node name="DialogueContainer" parent="CanvasLayer/HUD" instance=ExtResource("8_cu6kq")]
+[node name="DialogueContainer" parent="CanvasLayer/HUD" unique_id=1075358311 instance=ExtResource("8_cu6kq")]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 475.0
 offset_right = 1114.0
 offset_bottom = 633.0
 
-[node name="OrganisationMenu" parent="CanvasLayer/HUD" instance=ExtResource("10_qdy25")]
+[node name="OrganisationMenu" parent="CanvasLayer/HUD" unique_id=878412136 instance=ExtResource("10_qdy25")]
 visible = false
 layout_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("menu_control")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1161146293 node_paths=PackedStringArray("menu_control")]
 position = Vector2(575, 325)
 process_callback = 0
 drag_horizontal_enabled = true
@@ -170,3 +179,4 @@ menu_control = NodePath("../CanvasLayer/HUD/MenuControl")
 
 [connection signal="button_up" from="CanvasLayer/AndroidLayer/RotateRight" to="." method="_on_rotate_right_button_up"]
 [connection signal="button_up" from="CanvasLayer/AndroidLayer/RotateLeft" to="." method="_on_rotate_left_button_up"]
+[connection signal="button_up" from="CanvasLayer/AndroidLayer/Wait" to="." method="_on_wait_button_up"]
