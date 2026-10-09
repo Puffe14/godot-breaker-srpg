@@ -54,6 +54,9 @@ func start_game():
 	organisation_menu.visible = false
 	$CanvasLayer.visible = true
 	$Camera2D.camera_unlock()
+	# set touch creen options / disable them
+	$Camera2D.not_android = not OS.get_name() == "Android"
+	$CanvasLayer/AndroidLayer.visible = not $Camera2D.not_android
 	# reset text and lists
 	if tip_label:
 		tip_label.text = ""

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c8jybve2q3q2y" path="res://scripts/ui/main_gui.gd" id="1_q7ebc"]
 [ext_resource type="PackedScene" uid="uid://diiheyi84s1fi" path="res://nodes/maps/map_node.tscn" id="2_7wb8r"]
 [ext_resource type="Resource" uid="uid://bfr8wdi708xmq" path="res://resources/data/new_game.tres" id="2_cu6kq"]
+[ext_resource type="Theme" uid="uid://b5ljomfh6unha" path="res://resources/themes/menu_text.tres" id="4_mvnht"]
 [ext_resource type="PackedScene" uid="uid://bvwmdud6iyn78" path="res://nodes/menus/column_container.tscn" id="6_4lkkm"]
 [ext_resource type="PackedScene" uid="uid://bupc6gl702bnm" path="res://nodes/menus/inspect_unit_containers.tscn" id="7_cu6kq"]
 [ext_resource type="PackedScene" uid="uid://b8m08xt7gvwbu" path="res://nodes/menus/dialogue_container.tscn" id="8_cu6kq"]
@@ -41,10 +42,12 @@ scale = Vector2(3, 3)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2000599375]
 
 [node name="AndroidLayer" type="Control" parent="CanvasLayer" unique_id=1479318981]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("4_mvnht")
 
 [node name="InspectButton" type="Button" parent="CanvasLayer/AndroidLayer" unique_id=38946]
 visible = false
